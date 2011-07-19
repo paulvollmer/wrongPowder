@@ -1,13 +1,15 @@
 ofxWNGUI (version 1.0)
+======================
 
 
 Description:
-ofxWNGUI API create Graphical User Interface
+ofxWNGUI API create Graphical User Interface to use with openFrameworks.
 
 Build with openFrameworks (version 0.6.2)
 
-The ofxWNGUI Project is Hosted at bitbucket.
-Check out for New released Version at (https://bitbucket.org/wrong_entertainment/ofxWNGUI).
+The ofxWNGUI Project is Hosted at github.
+Check out for New released Version at
+(https://github.com/WrongEntertainment/wnglibs/tree/master/ofxWNGUI).
 
 
 
