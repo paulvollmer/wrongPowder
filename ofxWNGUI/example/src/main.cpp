@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxWNGUI.
  *
@@ -25,13 +25,13 @@
  */
 
 
-
 #include "ofMain.h"
 #include "testApp.h"
 #include "ofAppGlutWindow.h"
 
-//========================================================================
-int main() {
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+int main(){
 
     ofAppGlutWindow window;
 	ofSetupOpenGL(&window, 1024,768, OF_WINDOW);			// <-------- setup the GL context

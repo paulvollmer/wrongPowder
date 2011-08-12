@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxWNGUI.
  *
@@ -25,102 +25,124 @@
  */
 
 
-
 #include "testApp.h"
 
 
-
-//--------------------------------------------------------------
-void testApp::setup() {
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::setup(){
+	
 	ofSetFrameRate(60);
-	ofBackground(127,127,127);
+	ofBackground(80);
 	
 	// button
-	for(int i=0; i<3; i++) {
-		button[i].init("TEST", 50, 50*i, 100, 20);
-		button[i].addListener();
-	}
-	button[0].setShortcut('a', true);
-	button[0].setDescription("Hello World This is a Test\nsecond row\nwrong-entertainment", true);
+	btn[0].init("TEST", 50, 50, 100, 20);
+	btn[0].addListener();
+	btn[0].setShortcut('a', true);
+	//btn[0].setDescription("Hello World This is a Test\nsecond row\nwrong-entertainment", true);
 	
-	// checkbox
+	btn[1].init("WRONG", 50, 80, 100, 20);
+	btn[1].addListener();
+	
+	btn[2].init("HELLO WORLD", 50, 110, 100, 100);
+	btn[2].addListener();
+	
+	// checkbox 1
 	checkbox[0].init(200, 50);
 	checkbox[0].status = true;
-	
-	checkbox[1].init(220, 50);
+	// checkbox 2
+	checkbox[1].init("HELLO WORLD", 200, 65);
 	checkbox[1].removeListener();
 	
 	// rightclick menu
-	rMenu.init(0, 0, 100, 100);	
+	rMenu.init(0, 0, 100, 100);
+	
 }
 
 
-//--------------------------------------------------------------
-void testApp::update() {
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::update(){
+
 	if(checkbox[0].status == true){
 		checkbox[1].addListener();
 	}else{
 		checkbox[1].removeListener();
 	}
+	
 }
 
 
-//--------------------------------------------------------------
-void testApp::draw() {
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::draw(){
+
 	for(int i=0; i<3; i++) {
-		button[0].display();
-		button[1].display();
-		button[2].display();
+		btn[0].display();
+		btn[1].display();
+		btn[2].display();
 	}
-	checkbox[0].display();
-	checkbox[1].display();
+	
+	//checkbox[0].display();
+	//checkbox[1].display();
+	
 	rMenu.display();
+	
 }
 
 
-//--------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::exit() {
 	
 }
 
 
-//--------------------------------------------------------------
-void testApp::keyPressed(int key) {
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::keyPressed(int key){
 
 }
 
 
-//--------------------------------------------------------------
-void testApp::keyReleased(int key) {
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::keyReleased(int key){
 
 }
 
 
-//--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y) {
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::mouseMoved(int x, int y ){
 
 }
 
 
-//--------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::mouseDragged(int x, int y, int button){
 
 }
 
 
-//--------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::mousePressed(int x, int y, int button){
 
 }
 
 
-//--------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::mouseReleased(int x, int y, int button){
 
 }
 
 
-//--------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::windowResized(int w, int h){
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::gotMessage(ofMessage msg){
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+void testApp::dragEvent(ofDragInfo dragInfo){ 
 
 }

@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxWNGUI.
  *
@@ -40,12 +40,13 @@ class ofxWNGUIconfig {
 	
 		bool overRect(int mx, int my, int x, int y, int w, int h);
 		void roundedRect(int x, int y, int w, int h, int rnds);
-		void displayDescription(string _description, int _descriptionX, int _descriptionY);
+		//void displayDescription(string _description, int _descriptionX, int _descriptionY);
 		
 		ofTrueTypeFont	font;
 	
 	
 		// button
+		int BUTTON_ROUNDEDRECT;
 		int BUTTON_COLOR_R;
 		int BUTTON_COLOR_G;
 		int BUTTON_COLOR_B;
@@ -62,20 +63,20 @@ class ofxWNGUIconfig {
 		int CHECKBOX_COLOR_R;
 		int CHECKBOX_COLOR_G;
 		int CHECKBOX_COLOR_B;
-		int CHECKBOX_COLOR_OVER_R;
-		int CHECKBOX_COLOR_OVER_G;
-		int CHECKBOX_COLOR_OVER_B;
+		//int CHECKBOX_COLOR_OVER_R;
+		//int CHECKBOX_COLOR_OVER_G;
+		//int CHECKBOX_COLOR_OVER_B;
 		int CHECKBOX_COLOR_ACTIVE_R;
 		int CHECKBOX_COLOR_ACTIVE_G;
 		int CHECKBOX_COLOR_ACTIVE_B;
 		int CHECKBOX_ALPHA;
 
 		// text
-		int TEXT_COLOR_R;
-		int TEXT_COLOR_G;
-		int TEXT_COLOR_B;
+		int	FONT_COLOR_R;
+		int	FONT_COLOR_G;
+		int	FONT_COLOR_B;
 		
-		// description box
+		/* description box
 		int DESCRIPTION_TIME;
 		int DESCRIPTION_ROUNDEDRECT;
 		int DESCRIPTION_COLOR_BACKGROUND_R;
@@ -84,7 +85,7 @@ class ofxWNGUIconfig {
 		int DESCRIPTION_ALPHA_BACKGROUND;
 		int DESCRIPTION_COLOR_TEXT_R;
 		int DESCRIPTION_COLOR_TEXT_G;
-		int DESCRIPTION_COLOR_TEXT_B;
+		int DESCRIPTION_COLOR_TEXT_B;*/
 	
 		// rightclick menu
 		int RIGHTCLICKMENU_ROUNDEDRECT;

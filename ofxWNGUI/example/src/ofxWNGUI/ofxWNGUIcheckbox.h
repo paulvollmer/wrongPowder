@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxWNGUI.
  *
@@ -25,11 +25,9 @@
  */
 
 
-
 #pragma once
 
 #include "ofxWNGUIconfig.h"
-
 
 
 class ofxWNGUIcheckbox : public ofxWNGUIconfig {
@@ -41,16 +39,17 @@ class ofxWNGUIcheckbox : public ofxWNGUIconfig {
 		void removeListener();
 	
 		void init(int _x, int _y);
-		void display();//ofEventArgs &args);
+		void init(string _name, int _x, int _y);
+		void display(ofEventArgs &args);
 		void exit(ofEventArgs &args);
 		void onPress(ofMouseEventArgs &args);
 		
-	
 		bool status;
 	
 	
-	
 	private:
-		int x, y;
+		int		x, y;
+		string	name;
+		int		textX, textY;
 	
 };

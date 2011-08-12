@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxWNGUI.
  *
@@ -25,11 +25,9 @@
  */
 
 
-
 #pragma once
 
 #include "ofxWNGUIconfig.h"
-
 
 
 class ofxWNGUIbutton : public ofxWNGUIconfig {
@@ -47,10 +45,10 @@ class ofxWNGUIbutton : public ofxWNGUIconfig {
 		void onMove(ofMouseEventArgs &args);
 		void onPress(ofMouseEventArgs &args);
 		void keyPress(ofKeyEventArgs &args);
-		
+	
 		void setShortcut(char _shortcut, bool _active);
-		void setDescription(string _description, bool _active);
-		
+		//void setDescription(string _description, bool _active);
+	
 	
 		bool status;
 	
@@ -65,10 +63,10 @@ class ofxWNGUIbutton : public ofxWNGUIconfig {
 		char shortcut;
 		bool shortcutActive;
 	
-		string description;
-		bool   descriptionActive;
-		int    descriptionCounter;
-		int    descriptionX, descriptionY;
-		bool   descriptionDisplay;
+		//string description;
+		//bool   descriptionActive;
+		//int    descriptionCounter;
+		//int    descriptionX, descriptionY;
+		//bool   descriptionDisplay;
 	
 };

@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxWNGUI.
  *
@@ -25,16 +25,13 @@
  */
 
 
-
-#ifndef _TEST_APP
-#define _TEST_APP
-
+#pragma once
 
 #include "ofMain.h"
 #include "ofxWNGUI.h"
 
 
-class testApp : public ofBaseApp {
+class testApp : public ofBaseApp{
 
 	public:
 		void setup();
@@ -42,18 +39,18 @@ class testApp : public ofBaseApp {
 		void draw();
 		void exit();
 
-		void keyPressed  (int key);
+		void keyPressed(int key);
 		void keyReleased(int key);
-		void mouseMoved(int x, int y );
+		void mouseMoved(int x, int y);
 		void mouseDragged(int x, int y, int button);
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
+		void dragEvent(ofDragInfo dragInfo);
+		void gotMessage(ofMessage msg);
 	
-		ofxWNGUIbutton   button[3];
+		ofxWNGUIbutton   btn[3];
 		ofxWNGUIcheckbox checkbox[2];
 		ofxWNGUIrightclickMenu rMenu;
-
+		
 };
-
-#endif
