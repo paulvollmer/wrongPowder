@@ -42,11 +42,10 @@ class ofxWNGUIrightclickMenu : public ofxWNGUIconfig {
 	
 		void init(int _x, int _y, int _w, int _h);
 		void update(ofEventArgs &args);
-		void display();//ofEventArgs &args);
+		void display(ofEventArgs &args);
 		void exit(ofEventArgs &args);
 		void onPress(ofMouseEventArgs &args);
 	
-		
 		bool status;
 	
 	

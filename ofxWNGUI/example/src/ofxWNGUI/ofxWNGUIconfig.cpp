@@ -33,7 +33,7 @@ ofxWNGUIconfig::ofxWNGUIconfig(){
 	// button class
 	// color palette for
 	BUTTON_ROUNDEDRECT    = 6;
-	//BUTTON_COLOR          = 0x0033BC;
+	BUTTON_COLOR          = 0x0033BC;
 	BUTTON_COLOR_OVER     = 0x0046FF;
 	BUTTON_COLOR_ACTIVE   = 0x0046FF;
 	
@@ -42,6 +42,7 @@ ofxWNGUIconfig::ofxWNGUIconfig(){
 	CHECKBOX_COLOR          = 0x0033BC;
 	//CHECKBOX_COLOR_OVER     = 0x0046FF;
 	CHECKBOX_COLOR_ACTIVE   = 0x0046FF;
+	CHECKBOX_COLOR_FONT     = 0xFFFFFF;
 	
 	// text
 	FONT_COLOR		= 0x000000;

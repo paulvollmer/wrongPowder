@@ -46,7 +46,7 @@ ofxWNGUIrightclickMenu::ofxWNGUIrightclickMenu(){
 void ofxWNGUIrightclickMenu::addListener(){
 	
 	ofAddListener(ofEvents.update, this, &ofxWNGUIrightclickMenu::update);
-	//ofAddListener(ofEvents.draw, this, &ofxWNGUIrightclickMenu::draw);
+	ofAddListener(ofEvents.draw, this, &ofxWNGUIrightclickMenu::display);
 	ofAddListener(ofEvents.exit, this, &ofxWNGUIrightclickMenu::exit);
 	ofAddListener(ofEvents.mousePressed, this, &ofxWNGUIrightclickMenu::onPress);
 	
@@ -59,7 +59,7 @@ void ofxWNGUIrightclickMenu::addListener(){
 void ofxWNGUIrightclickMenu::removeListener(){
 	
 	ofRemoveListener(ofEvents.update, this, &ofxWNGUIrightclickMenu::update);
-	//ofRemoveListener(ofEvents.draw, this, &ofxWNGUIrightclickMenu::draw);
+	ofRemoveListener(ofEvents.draw, this, &ofxWNGUIrightclickMenu::display);
 	ofRemoveListener(ofEvents.exit, this, &ofxWNGUIrightclickMenu::exit);
 	ofRemoveListener(ofEvents.mousePressed, this, &ofxWNGUIrightclickMenu::onPress);
 	
@@ -90,7 +90,7 @@ void ofxWNGUIrightclickMenu::update(ofEventArgs &args){
 /**
  * Draw the checkbox.
  */
-void ofxWNGUIrightclickMenu::display(){//ofEventArgs &args) {
+void ofxWNGUIrightclickMenu::display(ofEventArgs &args){
 	
 	if(status == true) {
 		ofEnableAlphaBlending();

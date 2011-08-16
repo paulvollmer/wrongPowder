@@ -70,10 +70,13 @@ void ofxWNGUIcheckbox::init(int _x,int _y){
 	
 	addListener();
 	
-	x = _x;
-	y = _y;
-	textX = _x + CHECKBOX_SIZE + 5;
-	textY = _y + CHECKBOX_SIZE;
+	// Set the Variables.
+	x               = _x;
+	y               = _y;
+	textX           = _x + CHECKBOX_SIZE + 5;
+	textY           = _y + CHECKBOX_SIZE;
+	clickableWidth  = CHECKBOX_SIZE;
+	clickableHeight = CHECKBOX_SIZE;
 	
 }
 
@@ -84,8 +87,9 @@ void ofxWNGUIcheckbox::init(int _x,int _y){
 void ofxWNGUIcheckbox::init(string _name, int _x, int _y){
 	
 	name = _name;
-	
 	init(_x, _y);
+	clickableWidth  = CHECKBOX_SIZE + 5 + font.stringWidth(_name);
+	clickableHeight = CHECKBOX_SIZE;
 }
 
 
@@ -94,7 +98,7 @@ void ofxWNGUIcheckbox::init(string _name, int _x, int _y){
  */
 void ofxWNGUIcheckbox::display(ofEventArgs &args){
 	
-	// draw the checkbox rectangle
+	// Draw the Checkbox Rectangle,
 	ofFill();
 	if(status == false){
 		ofSetHexColor(CHECKBOX_COLOR);
@@ -103,8 +107,8 @@ void ofxWNGUIcheckbox::display(ofEventArgs &args){
 	}
 	ofRect(x, y, CHECKBOX_SIZE, CHECKBOX_SIZE);
 	
-	// draw the text
-	ofSetHexColor(FONT_COLOR);
+	// Draw the Textfield.
+	ofSetHexColor(CHECKBOX_COLOR_FONT);
 	font.drawString(name, textX, textY);
 	
 }
@@ -125,7 +129,7 @@ void ofxWNGUIcheckbox::exit(ofEventArgs &args){
  */
 void ofxWNGUIcheckbox::onPress(ofMouseEventArgs &args){
 	
-	if(overRect(args.x, args.y, x, y, CHECKBOX_SIZE, CHECKBOX_SIZE)) {
+	if(overRect(args.x, args.y, x, y, clickableWidth, clickableWidth)) {
 		status= !status;
 	}
 	

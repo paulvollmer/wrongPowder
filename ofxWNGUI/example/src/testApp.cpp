@@ -32,11 +32,11 @@
 void testApp::setup(){
 	
 	// we load our settings file. check if it exist.
-	if( WNGUI_XML.loadFile("data/wngui_settings.xml") ){
+	/*if( WNGUI_XML.loadFile("data/wngui_settings.xml") ){
 		cout << "wngui_settings.xml loaded!" << endl;
 	}else{
 		cout << "unable to load wngui_settings.xml check data/ folder" << endl;
-	}
+	}*/
 	//read the colors from XML
 	//if the settings file doesn't exist we assigns default values (170, 190, 240)
 	//BUTTON_COLOR	= WNGUI_XML.getValue("WNGUI:BUTTON:COLOR", 0x0033BC);
@@ -91,16 +91,16 @@ void testApp::update(){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::draw(){
 
-	for(int i=0; i<3; i++) {
+	/*for(int i=0; i<3; i++) {
 		btn[0].display();
 		btn[1].display();
 		btn[2].display();
-	}
+	}*/
 	
 	//checkbox[0].display();
 	//checkbox[1].display();
 	
-	rMenu.display();
+	//rMenu.display();
 	
 }
 

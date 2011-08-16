@@ -42,9 +42,7 @@ class ofxWNGUIconfig {
 		void roundedRect(int x, int y, int w, int h, int rnds);
 		//void displayDescription(string _description, int _descriptionX, int _descriptionY);
 	
-	
 		ofTrueTypeFont	font;
-	
 	
 		// button
 		int BUTTON_ROUNDEDRECT;
@@ -58,7 +56,7 @@ class ofxWNGUIconfig {
 		int CHECKBOX_COLOR;
 		//int CHECKBOX_COLOR_OVER;
 		int CHECKBOX_COLOR_ACTIVE;
-		int CHECKBOX_ALPHA;
+		int CHECKBOX_COLOR_FONT;
 
 		// text
 		int	FONT_COLOR;

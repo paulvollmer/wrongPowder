@@ -51,7 +51,7 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	
-		ofxXmlSettings WNGUI_XML;
+		//ofxXmlSettings WNGUI_XML;
 	
 		ofxWNGUIbutton   btn[3];
 		ofxWNGUIcheckbox checkbox[2];

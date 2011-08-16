@@ -51,5 +51,6 @@ class ofxWNGUIcheckbox : public ofxWNGUIconfig {
 		int		x, y;
 		string	name;
 		int		textX, textY;
-	
+		int		clickableWidth, clickableHeight;
+
 };
