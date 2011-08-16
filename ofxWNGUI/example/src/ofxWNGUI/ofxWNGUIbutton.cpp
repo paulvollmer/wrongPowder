@@ -109,20 +109,15 @@ void ofxWNGUIbutton::update(ofEventArgs &args) {
  */
 void ofxWNGUIbutton::display() {//ofEventArgs &args) {
 	
-	ofEnableAlphaBlending();
-	
 	ofFill();
 	if(status == false) {
-		ofSetColor(BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, BUTTON_ALPHA);
+		ofSetHexColor(BUTTON_COLOR);
 	} else {
-		ofSetColor(BUTTON_COLOR_ACTIVE_R, BUTTON_COLOR_ACTIVE_G, BUTTON_COLOR_ACTIVE_B, BUTTON_ALPHA);
+		ofSetHexColor(BUTTON_COLOR_ACTIVE);
 	}
-	//ofRect(x, y, w, h);
 	roundedRect(x, y, w, h, BUTTON_ROUNDEDRECT);
 	
-	ofDisableAlphaBlending();
-	
-	ofSetColor(FONT_COLOR_R, FONT_COLOR_G, FONT_COLOR_B);
+	ofSetHexColor(FONT_COLOR);
 	font.drawString(name, textX, textY);
 	
 	// description

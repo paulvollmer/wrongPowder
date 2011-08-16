@@ -31,7 +31,7 @@
 /**
  * Constuctor
  */
-ofxWNGUIrightclickMenu::ofxWNGUIrightclickMenu() {
+ofxWNGUIrightclickMenu::ofxWNGUIrightclickMenu(){
 	
 	addListener();
 	
@@ -43,7 +43,7 @@ ofxWNGUIrightclickMenu::ofxWNGUIrightclickMenu() {
 /**
  * Add ofEvents for the ofxWNGUIrightclickMenu class.
  */
-void ofxWNGUIrightclickMenu::addListener() {
+void ofxWNGUIrightclickMenu::addListener(){
 	
 	ofAddListener(ofEvents.update, this, &ofxWNGUIrightclickMenu::update);
 	//ofAddListener(ofEvents.draw, this, &ofxWNGUIrightclickMenu::draw);
@@ -56,7 +56,7 @@ void ofxWNGUIrightclickMenu::addListener() {
 /**
  * Remove ofEvents for the ofxWNGUIrightclickMenu class.
  */
-void ofxWNGUIrightclickMenu::removeListener() {
+void ofxWNGUIrightclickMenu::removeListener(){
 	
 	ofRemoveListener(ofEvents.update, this, &ofxWNGUIrightclickMenu::update);
 	//ofRemoveListener(ofEvents.draw, this, &ofxWNGUIrightclickMenu::draw);
@@ -69,7 +69,7 @@ void ofxWNGUIrightclickMenu::removeListener() {
 /**
  * initialize x, y positon for the checkbox.
  */
-void ofxWNGUIrightclickMenu::init(int _x,int _y, int _w, int _h) {
+void ofxWNGUIrightclickMenu::init(int _x,int _y, int _w, int _h){
 	
 	x = _x;
 	y = _y;
@@ -82,7 +82,7 @@ void ofxWNGUIrightclickMenu::init(int _x,int _y, int _w, int _h) {
 /**
  * update
  */
-void ofxWNGUIrightclickMenu::update(ofEventArgs &args) {
+void ofxWNGUIrightclickMenu::update(ofEventArgs &args){
 	
 }
 
@@ -90,13 +90,13 @@ void ofxWNGUIrightclickMenu::update(ofEventArgs &args) {
 /**
  * Draw the checkbox.
  */
-void ofxWNGUIrightclickMenu::display() {//ofEventArgs &args) {
+void ofxWNGUIrightclickMenu::display(){//ofEventArgs &args) {
 	
 	if(status == true) {
 		ofEnableAlphaBlending();
 		
 		ofFill();
-		ofSetColor(RIGHTCLICKMENU_COLOR_BACKGROUND_R, RIGHTCLICKMENU_COLOR_BACKGROUND_G, RIGHTCLICKMENU_COLOR_BACKGROUND_B, RIGHTCLICKMENU_ALPHA_BACKGROUND);
+		ofSetHexColor(RIGHTCLICKMENU_COLOR_BACKGROUND);
 	
 		roundedRect(x, y, 100, 100, RIGHTCLICKMENU_ROUNDEDRECT);
 		
@@ -109,7 +109,7 @@ void ofxWNGUIrightclickMenu::display() {//ofEventArgs &args) {
 /**
  * If Application exit, remove the listener.
  */
-void ofxWNGUIrightclickMenu::exit(ofEventArgs &args) {
+void ofxWNGUIrightclickMenu::exit(ofEventArgs &args){
 	
 	removeListener();
 }
@@ -118,7 +118,7 @@ void ofxWNGUIrightclickMenu::exit(ofEventArgs &args) {
 /**
  * Check if mouse is pressed and over the checkbox.
  */
-void ofxWNGUIrightclickMenu::onPress(ofMouseEventArgs &args) {
+void ofxWNGUIrightclickMenu::onPress(ofMouseEventArgs &args){
 	
 	if(args.button == 2 && overRect(args.x, args.y, x, y, w, h)){
 		status = !status;

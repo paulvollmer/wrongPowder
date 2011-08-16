@@ -31,6 +31,23 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 void testApp::setup(){
 	
+	// we load our settings file. check if it exist.
+	if( WNGUI_XML.loadFile("data/wngui_settings.xml") ){
+		cout << "wngui_settings.xml loaded!" << endl;
+	}else{
+		cout << "unable to load wngui_settings.xml check data/ folder" << endl;
+	}
+	//read the colors from XML
+	//if the settings file doesn't exist we assigns default values (170, 190, 240)
+	//BUTTON_COLOR	= WNGUI_XML.getValue("WNGUI:BUTTON:COLOR", 0x0033BC);
+	//cout << BUTTON_COLOR << endl;
+	/*red	= XML.getValue("WNGUI:BUTTON:ROUNDEDRECT", 6);
+	 red	= XML.getValue("WNGUI:BUTTON:ROUNDEDRECT", 6);
+	 red	= XML.getValue("WNGUI:BUTTON:ROUNDEDRECT", 6);
+	 red	= XML.getValue("WNGUI:BUTTON:ROUNDEDRECT", 6);
+	 red	= XML.getValue("WNGUI:BUTTON:ROUNDEDRECT", 6);
+	 */
+	
 	ofSetFrameRate(60);
 	ofBackground(80);
 	

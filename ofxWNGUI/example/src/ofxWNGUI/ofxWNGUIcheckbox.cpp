@@ -95,18 +95,16 @@ void ofxWNGUIcheckbox::init(string _name, int _x, int _y){
 void ofxWNGUIcheckbox::display(ofEventArgs &args){
 	
 	// draw the checkbox rectangle
-	ofEnableAlphaBlending();
-		ofFill();
-		if(status == false){
-			ofSetColor(CHECKBOX_COLOR_R, CHECKBOX_COLOR_G, CHECKBOX_COLOR_B, CHECKBOX_ALPHA);
-		} else {
-			ofSetColor(CHECKBOX_COLOR_ACTIVE_R, CHECKBOX_COLOR_ACTIVE_G, CHECKBOX_COLOR_ACTIVE_B, CHECKBOX_ALPHA);
-		}
-		ofRect(x, y, CHECKBOX_SIZE, CHECKBOX_SIZE);
-	ofDisableAlphaBlending();
+	ofFill();
+	if(status == false){
+		ofSetHexColor(CHECKBOX_COLOR);
+	} else {
+		ofSetHexColor(CHECKBOX_COLOR_ACTIVE);
+	}
+	ofRect(x, y, CHECKBOX_SIZE, CHECKBOX_SIZE);
 	
 	// draw the text
-	ofSetColor(FONT_COLOR_R, FONT_COLOR_G, FONT_COLOR_B);
+	ofSetHexColor(FONT_COLOR);
 	font.drawString(name, textX, textY);
 	
 }

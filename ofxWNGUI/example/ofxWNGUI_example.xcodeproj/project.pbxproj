@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E210B0013F82B9C005E5D72 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E210AF913F82B9C005E5D72 /* tinyxml.cpp */; };
+		4E210B0113F82B9C005E5D72 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E210AFB13F82B9C005E5D72 /* tinyxmlerror.cpp */; };
+		4E210B0213F82B9C005E5D72 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E210AFC13F82B9C005E5D72 /* tinyxmlparser.cpp */; };
+		4E210B0313F82B9C005E5D72 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E210AFE13F82B9C005E5D72 /* ofxXmlSettings.cpp */; };
 		4E7BFBDA13F552E200C6CCF8 /* ofxWNGUIbutton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7BFBD213F552E200C6CCF8 /* ofxWNGUIbutton.cpp */; };
 		4E7BFBDB13F552E200C6CCF8 /* ofxWNGUIcheckbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7BFBD413F552E200C6CCF8 /* ofxWNGUIcheckbox.cpp */; };
 		4E7BFBDC13F552E200C6CCF8 /* ofxWNGUIconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E7BFBD613F552E200C6CCF8 /* ofxWNGUIconfig.cpp */; };
@@ -61,6 +65,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E210AF713F82B9C005E5D72 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		4E210AF913F82B9C005E5D72 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
+		4E210AFA13F82B9C005E5D72 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
+		4E210AFB13F82B9C005E5D72 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
+		4E210AFC13F82B9C005E5D72 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
+		4E210AFE13F82B9C005E5D72 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
+		4E210AFF13F82B9C005E5D72 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		4E7BFBD113F552E200C6CCF8 /* ofxWNGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxWNGUI.h; path = ofxWNGUI/ofxWNGUI.h; sourceTree = "<group>"; };
 		4E7BFBD213F552E200C6CCF8 /* ofxWNGUIbutton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxWNGUIbutton.cpp; path = ofxWNGUI/ofxWNGUIbutton.cpp; sourceTree = "<group>"; };
 		4E7BFBD313F552E200C6CCF8 /* ofxWNGUIbutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxWNGUIbutton.h; path = ofxWNGUI/ofxWNGUIbutton.h; sourceTree = "<group>"; };
@@ -118,6 +129,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E210AF613F82B9C005E5D72 /* ofxXmlSettings */ = {
+			isa = PBXGroup;
+			children = (
+				4E210AF713F82B9C005E5D72 /* install.xml */,
+				4E210AF813F82B9C005E5D72 /* libs */,
+				4E210AFD13F82B9C005E5D72 /* src */,
+			);
+			name = ofxXmlSettings;
+			path = ../../../addons/ofxXmlSettings;
+			sourceTree = SOURCE_ROOT;
+		};
+		4E210AF813F82B9C005E5D72 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				4E210AF913F82B9C005E5D72 /* tinyxml.cpp */,
+				4E210AFA13F82B9C005E5D72 /* tinyxml.h */,
+				4E210AFB13F82B9C005E5D72 /* tinyxmlerror.cpp */,
+				4E210AFC13F82B9C005E5D72 /* tinyxmlparser.cpp */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		4E210AFD13F82B9C005E5D72 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4E210AFE13F82B9C005E5D72 /* ofxXmlSettings.cpp */,
+				4E210AFF13F82B9C005E5D72 /* ofxXmlSettings.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		4E7BFBD013F552CC00C6CCF8 /* ofxWNGUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +179,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				4E210AF613F82B9C005E5D72 /* ofxXmlSettings */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -307,6 +350,10 @@
 				4E7BFBDB13F552E200C6CCF8 /* ofxWNGUIcheckbox.cpp in Sources */,
 				4E7BFBDC13F552E200C6CCF8 /* ofxWNGUIconfig.cpp in Sources */,
 				4E7BFBDD13F552E200C6CCF8 /* ofxWNGUIrightclickMenu.cpp in Sources */,
+				4E210B0013F82B9C005E5D72 /* tinyxml.cpp in Sources */,
+				4E210B0113F82B9C005E5D72 /* tinyxmlerror.cpp in Sources */,
+				4E210B0213F82B9C005E5D72 /* tinyxmlparser.cpp in Sources */,
+				4E210B0313F82B9C005E5D72 /* ofxXmlSettings.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
