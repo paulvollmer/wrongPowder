@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxCML.
  *
@@ -48,11 +48,11 @@ void ofxCML::loadFile(string path) {
 	
 	// Load the CML File.
 	if(XML.loadFile(path)) {
-		cmlMessage = "CML File " + path + " loaded!";
-		cout << cmlMessage << endl;
+		cmlMessage = "CML File " + path + " loaded!\n";
+		//cout << cmlMessage << endl;
 	} else {
-		cmlMessage = "Unable to Load CML File " + path + " check data/ folder";
-		cout << cmlMessage << endl;
+		cmlMessage = "Unable to Load CML File " + path + " check data/ folder\n";
+		//cout << cmlMessage << endl;
 	}
 	
 	
@@ -62,25 +62,25 @@ void ofxCML::loadFile(string path) {
 	// Set Debug wng HEX Code
 	for(int i = 0; i < NUM_HARDWARE; i++) {
 		// <HARDWARE> Tag
-		getHardwareName[i]         = "0x11120119";
-		getHardwarePlatform[i]     = "0x11120119";
-		getHardwareCompany[i]      = "0x11120119";
-		getHardwareModell[i]       = "0x11120119";
-		getHardwareUrl[i]          = "0x11120119";
-		getInterfaceMidiIn[i]      = "0x11120119";
-		getInterfaceMidiOut[i]     = "0x11120119";
-		getInterfaceOscHostIn[i]   = "0x11120119";
-		getInterfaceOscHostOut[i]  = "0x11120119";
-		getInterfaceOscPortIn[i]   = "0x11120119";
-		getInterfaceOscPortOut[i]  = "0x11120119";
+		getHardwareName[i]         = WNGHEX;
+		getHardwarePlatform[i]     = WNGHEX;
+		getHardwareCompany[i]      = WNGHEX;
+		getHardwareModell[i]       = WNGHEX;
+		getHardwareUrl[i]          = WNGHEX;
+		getInterfaceMidiIn[i]      = WNGHEX;
+		getInterfaceMidiOut[i]     = WNGHEX;
+		getInterfaceOscHostIn[i]   = WNGHEX;
+		getInterfaceOscHostOut[i]  = WNGHEX;
+		getInterfaceOscPortIn[i]   = WNGHEX;
+		getInterfaceOscPortOut[i]  = WNGHEX;
 		// <CONTROL> Tag
 		for(int j = 0; j < NUM_CONTROL; j++) {
-			getControlName[j][i]     = "0x11120119";
-			getControlMidiB1[j][i]   = "0x11120119";
-			getControlMidiB2[j][i]   = "0x11120119";
-			getControlOscPath[j][i]  = "0x11120119";
-			getControlOscStart[j][i] = "0x11120119";
-			getControlOscStop[j][i]  = "0x11120119";
+			getControlName[j][i]     = WNGHEX;
+			getControlMidiB1[j][i]   = WNGHEX;
+			getControlMidiB2[j][i]   = WNGHEX;
+			getControlOscPath[j][i]  = WNGHEX;
+			getControlOscStart[j][i] = WNGHEX;
+			getControlOscStop[j][i]  = WNGHEX;
 		}
 	}
 	
@@ -91,8 +91,8 @@ void ofxCML::loadFile(string path) {
 	// Check CML File.
 	// Search <CML> Tag inside a File. Check the Version.
 	int NUM_CML_TAGS = XML.getNumTags("CML");
-	cmlMessage = "Check the CML File. " + ofToString(NUM_CML_TAGS) + " CML Tag/s found at loaded File";
-	cout << cmlMessage << endl;
+	cmlMessage = cmlMessage + "Check the CML File. " + ofToString(NUM_CML_TAGS) + " CML Tag/s found at loaded File";
+	//cout << cmlMessage << endl;
 	
 	// if <CML> Tag exist, read...
 	if(NUM_CML_TAGS > 0) {
@@ -103,15 +103,15 @@ void ofxCML::loadFile(string path) {
 		// check the 'version' Attribute. Save Value.
 		if(XML.attributeExists("CML", "version", 0) == 1) {
 			cmlVersion = XML.getAttribute("CML", "version", "NOT AVAILABLE");
-			cmlMessage = "CML Version: " + cmlVersion;
-			cout << cmlMessage << endl;
+			cmlMessage = cmlMessage + "CML Version: " + cmlVersion + "\n";
+			//cout << cmlMessage << endl;
 		}
 		
 		// check the 'url' Attribute. Save Value.
 		if(XML.attributeExists("CML", "url", 0) == 1) {
 			cmlUrl = XML.getAttribute("CML", "url", "NOT AVAILABLE");
-			cmlMessage = "CML Url: " + cmlUrl;
-			cout << cmlMessage << endl;
+			cmlMessage = cmlMessage + "CML Url: " + cmlUrl + "\n";
+			//cout << cmlMessage << endl;
 		}
 		
 		
@@ -127,8 +127,9 @@ void ofxCML::loadFile(string path) {
 		
 			// lets see how many <HARDWARE> </HARDWARE> tags are inside the xml File.
 			getNumHardware = XML.getNumTags("HARDWARE");
-			cout << "### CML --> Number of Hardware Tags: " << getNumHardware << endl;
-			cout << "###################################################################" << endl;
+			cmlMessage = cmlMessage + "Number of Hardware Tags: " + ofToString(getNumHardware) + "\n";
+			//cout << "### CML --> Number of Hardware Tags: " << getNumHardware << endl;
+			//cout << "###################################################################" << endl;
 		
 			if(getNumHardware > 0) {
 				//int numHardwareAttribute = XML.getNumAttributes("HARDWARE", 0);
@@ -155,7 +156,19 @@ void ofxCML::loadFile(string path) {
 					getInterfaceOscPortIn[i]  = XML.getAttribute("HARDWARE:INTERFACE", "osc-port-in",  "NOT AVAILABLE");
 					getInterfaceOscPortOut[i] = XML.getAttribute("HARDWARE:INTERFACE", "osc-port-out", "NOT AVAILABLE");
 					
-					cout << "### CML --> Hardware[" << i << "] name: "     << getHardwareName[i] << endl;
+					cmlMessage = cmlMessage + "Hardware["  + ofToString(i) + "] name: "         + ofToString(getHardwareName[i]) +
+											"\nHardware["  + ofToString(i) + "] platform: "     + ofToString(getHardwarePlatform[i]) +
+											"\nHardware["  + ofToString(i) + "] company: "      + ofToString(getHardwareCompany[i]) +
+											"\nHardware["  + ofToString(i) + "] modell: "       + ofToString(getHardwareModell[i]) +
+											"\nHardware["  + ofToString(i) + "] url: "          + ofToString(getHardwareUrl[i]) +
+											"\nInterface[" + ofToString(i) + "] midi-in: "      + ofToString(getInterfaceMidiIn[i]) +
+											"\nInterface[" + ofToString(i) + "] midi-out: "     + ofToString(getInterfaceMidiOut[i]) +
+											"\nInterface[" + ofToString(i) + "] osc-host-in: "  + ofToString(getInterfaceOscHostIn[i]) +
+											"\nInterface[" + ofToString(i) + "] osc-host-out: " + ofToString(getInterfaceOscHostOut[i]) +
+											"\nInterface[" + ofToString(i) + "] osc-port-in: "  + ofToString(getInterfaceOscPortIn[i]) +
+											"\nInterface[" + ofToString(i) + "] osc-port-out: " + ofToString(getInterfaceOscPortOut[i]) + "\n";
+					
+					/*cout << "### CML --> Hardware[" << i << "] name: "     << getHardwareName[i] << endl;
 					cout << "### CML --> Hardware[" << i << "] platform: " << getHardwarePlatform[i] << endl;
 					cout << "### CML --> Hardware[" << i << "] company: "  << getHardwareCompany[i] << endl;
 					cout << "### CML --> Hardware[" << i << "] modell: "   << getHardwareModell[i] << endl;
@@ -166,8 +179,7 @@ void ofxCML::loadFile(string path) {
 					cout << "### CML --> Interface[" << i << "] osc-host-out: " << getInterfaceOscHostOut[i] << endl;
 					cout << "### CML --> Interface[" << i << "] osc-port-in: "  << getInterfaceOscPortIn[i] << endl;
 					cout << "### CML --> Interface[" << i << "] osc-port-out: " << getInterfaceOscPortOut[i] << endl;
-					cout << "###################################################################" << endl;
-					
+					cout << "###################################################################" << endl;*/
 					
 					
 					
@@ -183,8 +195,9 @@ void ofxCML::loadFile(string path) {
 					
 					// lets see how many <CONTROL> tags are inside the xml File.
 					getNumControl[i] = XML.getNumTags("CONTROL");
-					cout << "### CML --> Number of Control[" << i << "] Tags: " << getNumControl[i] << endl;
-					cout << "###################################################################" << endl;
+					cmlMessage = cmlMessage + "Number of Control[" + ofToString(i) + "] Tags: " + ofToString(getNumControl[i]) + "\n";
+					//cout << "### CML --> Number of Control[" << i << "] Tags: " << getNumControl[i] << endl;
+					//cout << "###################################################################" << endl;
 					
 					if(getNumControl[i] > 0) {
 						
@@ -194,7 +207,8 @@ void ofxCML::loadFile(string path) {
 						// we have only allocated a certan amount of space for our array
 						// so we don't want to read more than that amount of points
 						int totalControlToRead = MIN(getNumControl[i], NUM_CONTROL);
-						cout << "### CML --> totalControlToRead" << totalControlToRead << endl;
+						cmlMessage = cmlMessage + "Total Control to Read" + ofToString(totalControlToRead) + "\n";
+						//cout << "### CML --> totalControlToRead" << totalControlToRead << endl;
 						
 						for(int j = 0; j < totalControlToRead; j++) {
 							// get the <CONTROL> Attributes.
@@ -206,14 +220,22 @@ void ofxCML::loadFile(string path) {
 							getControlOscStart[j][i] = XML.getAttribute("CONTROL", "osc-start", "0", j);
 							getControlOscStop[j][i]  = XML.getAttribute("CONTROL", "osc-stop",  "1", j);
 							
-							cout << "### CML --> Control[" << j << "][" << i << "] Name: "      << getControlName[j][i] << endl;
+							cmlMessage = cmlMessage + "Control[" + ofToString(j) + "][" + ofToString(i) + "] Name: " +      ofToString(getControlName[j][i]) +
+													"\nControl[" + ofToString(j) + "][" + ofToString(i) + "] Midi-b1: " +   ofToString(getControlMidiB0[j][i]) +
+													"\nControl[" + ofToString(j) + "][" + ofToString(i) + "] Midi-b2: " +   ofToString(getControlMidiB1[j][i]) +
+													"\nControl[" + ofToString(j) + "][" + ofToString(i) + "] Midi-b3: " +   ofToString(getControlMidiB2[j][i]) +
+													"\nControl[" + ofToString(j) + "][" + ofToString(i) + "] Osc-Path: " +  ofToString(getControlOscPath[j][i]) +
+													"\nControl[" + ofToString(j) + "][" + ofToString(i) + "] Osc_Start: " + ofToString(getControlOscStart[j][i]) +
+													"\nControl[" + ofToString(j) + "][" + ofToString(i) + "] Osc-Stop: "  + ofToString(getControlOscStop[j][i]) + "\n";
+							
+							/*cout << "### CML --> Control[" << j << "][" << i << "] Name: "      << getControlName[j][i] << endl;
 							cout << "### CML --> Control[" << j << "][" << i << "] Midi-b1: "   << getControlMidiB0[j][i] << endl;
 							cout << "### CML --> Control[" << j << "][" << i << "] Midi-b2: "   << getControlMidiB1[j][i] << endl;
 							cout << "### CML --> Control[" << j << "][" << i << "] Midi-b3: "   << getControlMidiB2[j][i] << endl;
 							cout << "### CML --> Control[" << j << "][" << i << "] Osc-Path: "  << getControlOscPath[j][i] << endl;
 							cout << "### CML --> Control[" << j << "][" << i << "] Osc_Start: " << getControlOscStart[j][i] << endl;
 							cout << "### CML --> Control[" << j << "][" << i << "] Osc-Stop: "  << getControlOscStop[j][i] << endl;
-							cout << "###" << endl;
+							cout << "###" << endl;*/
 						}
 						
 					}
@@ -271,4 +293,27 @@ void ofxCML::loadFile(string path) {
 		
 		
 	}
+}
+
+
+
+/**
+ * ofxCML saveFile
+ * Save CML File.
+ */
+void ofxCML::saveFile() {
+	
+}
+
+
+
+/**
+ * ofxCML saveFile
+ * Save CML File.
+ *
+ * @param path 
+ *        CML File Path
+ */
+void ofxCML::saveFile(string path) {
+	
 }

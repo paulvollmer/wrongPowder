@@ -4,8 +4,8 @@
  *
  *
  *  Copyright 2011 wrong-entertainment
- *                 wrongentertainment@yahoo.de
- *                 http://wrong-entertainment.com
+ *                 <wrongentertainment@yahoo.de>
+ *                 <http://wrong-entertainment.com>
  * 
  *  This file is part of ofxCml.
  *
