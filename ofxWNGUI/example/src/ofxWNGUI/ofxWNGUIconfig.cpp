@@ -45,7 +45,7 @@ ofxWNGUIconfig::ofxWNGUIconfig(){
 	CHECKBOX_COLOR_FONT     = 0xFFFFFF;
 	
 	// text
-	FONT_COLOR		= 0x000000;
+	FONT_COLOR		= 0xFFFFFF;
 	
 	/* description box
 	DESCRIPTION_TIME               = 100;
@@ -67,7 +67,7 @@ ofxWNGUIconfig::ofxWNGUIconfig(){
 	ofTrueTypeFont::setGlobalDpi(72);
 	// now load another font, but with extended parameters:
 	// font name, size, anti-aliased, full character set
-	font.loadFont("/System/Library/Fonts/LucidaGrande.ttc", 10, true, true);
+	font.loadFont("/System/Library/Fonts/LucidaGrande.ttc", 10, false, true);
 	font.setLineHeight(12.0f);
 	font.setLetterSpacing(1.035f);
 };
