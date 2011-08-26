@@ -16,11 +16,11 @@
  *
  *  ofxCML is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with ofxCML.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with ofxCML. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -34,10 +34,10 @@
 class testApp : public ofBaseApp{
 
 	public:
+		/* Methods */
 		void setup();
 		void update();
 		void draw();
-
 		void keyPressed  (int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
@@ -48,6 +48,10 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	
+	
+	
+	private:
+		/* Variables */
 		ofxCML cml;
 		
 };

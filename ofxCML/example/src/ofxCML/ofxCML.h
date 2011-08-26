@@ -16,11 +16,11 @@
  *
  *  ofxCML is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with ofxCML.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with ofxCML. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -84,11 +84,17 @@ class ofxCML {
 	
 	
 		/* Methods */
-		void loadFile(string _path);
+		void loadFile(string _path);            /* Load */
 		
-		void saveFile();
+		void saveFile();                        /* Save */
 		void saveFile(string _path);
-		
+
+		void listHardware();                    /* List Hardware, Software, Interface, Control etc.*/
+		void listSoftware();
+		void listMessage();
+		void listInterface(int _which);
+		void listControl(int _which);
+	
 		void addHardware();
 		void addHardware(string _name, string _platform, string _company, string _modell, string _url);
 

@@ -16,11 +16,11 @@
  *
  *  ofxCML is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with ofxCML.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with ofxCML. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -31,10 +31,25 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	
-	// Load and Initialise the CML File.
+	/* Load and Initialise the CML File. */
 	cml.loadFile("cml_example.xml");
 	cout << "--- " << cml.cmlMessage << endl;
 	
+	
+	cml.listHardware();
+	cml.listInterface(0);
+	cml.listInterface(1);
+	cml.listControl(0);
+	cml.listControl(1);
+	
+	
+	/* Add Hardware Tag */
+	cml.addHardware("0x11120119", "0x11120119", "0x11120119", "0x11120119", "0x11120119");
+	
+	/* Change Attribute Value */
+	cml.setHardwareName(1);
+	
+	cml.saveFile("cml_example_2.xml");
 }
 
 
