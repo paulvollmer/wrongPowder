@@ -25,59 +25,110 @@
  */
 
 
+
+
+
 #ifndef _OFX_CML
 #define _OFX_CML
-
-#define WNGHEX          "0x11120119"
-#define NUM_HARDWARE	5
-#define NUM_CONTROL		100
 
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 
 
+/* Variables */
+#define WNGHEX                  "0x11120119"    /* WNG Debug Code */
+
+/* CML Syntax */
+#define TAG_CML                 "CML"           /* Static Tag. Example: <CML></CML> */
+#define TAG_HARDWARE            "HARDWARE"      /* Static Tag. Example: <HARDWARE></HARDWARE> */
+#define TAG_SOFTWARE            "SOFTWARE"      /* Static Tag. Example: <SOFTWARE></SOFTWARE> */
+#define TAG_MESSAGE             "MESSAGE"       /* Static Tag. Example: <MESSAGE></MESSAGE> */
+#define TAG_INTERFACE           "INTERFACE"     /* Static Tag. Example: <INTERFACE></INTERFACE> */
+#define TAG_CONTROL             "CONTROL"       /* Static Tag. Example: <CONTROL></CONTROL> */
+
+#define ATTRIBUTE_VERSION       "version"       /* Static Attribute. Example: version="1.0" */
+#define ATTRIBUTE_ID            "id"            /* Static Attribute. Example: id="" */
+#define ATTRIBUTE_URL           "url"           /* Static Attribute. Example: url="" */
+#define ATTRIBUTE_NAME          "name"          /* Static Attribute. Example: name="" */
+#define ATTRIBUTE_PLATFORM      "platform"      /* Static Attribute. Example: platform="" */
+#define ATTRIBUTE_COMPANY       "company"       /* Static Attribute. Example: company="" */
+#define ATTRIBUTE_MODELL        "modell"        /* Static Attribute. Example: modell="" */
+#define ATTRIBUTE_MIDI_IN       "midi-in"       /* Static Attribute. Example: midi-in="" */
+#define ATTRIBUTE_MIDI_OUT      "midi-out"      /* Static Attribute. Example: midi-out="" */
+#define ATTRIBUTE_MIDI_BYTE0    "midi-b0"       /* Static Attribute. Example: midi-b0="" */
+#define ATTRIBUTE_MIDI_BYTE1    "midi-b1"       /* Static Attribute. Example: midi-b1="" */
+#define ATTRIBUTE_MIDI_BYTE2    "midi-b2"       /* Static Attribute. Example: midi-b2="" */
+#define ATTRIBUTE_OSC_HOSTIN    "osc-host-in"   /* Static Attribute. Example: osc-host-in="" */
+#define ATTRIBUTE_OSC_HOSTOUT   "osc-host-out"  /* Static Attribute. Example: osc-host-out="" */
+#define ATTRIBUTE_OSC_PORTIN    "osc-port-in"   /* Static Attribute. Example: osc-port-in="" */
+#define ATTRIBUTE_OSC_PORTOUT   "osc-port-out"  /* Static Attribute. Example: osc-port-out="" */
+#define ATTRIBUTE_OSC_PATH      "osc-path"      /* Static Attribute. Example: osc-path="" */
+#define ATTRIBUTE_OSC_START     "osc-start"     /* Static Attribute. Example: osc-start="" */
+#define ATTRIBUTE_OSC_STOP      "osc-stop"      /* Static Attribute. Example: osc-stop="" */
+
+#define NOT_AVAILABLE           "Not Available" /* Static Attribute. */
+
+/* ofxCML Variables */
+#define NUM_HARDWARE            5               /* Total Number of readable <HARDWARE> Tags. */
+#define NUM_CONTROL             100             /* Total Number of readable <CONTROL> Tags. */
+
+
+
+
+
 class ofxCML {
 	
 	public:
-		// Constructor
+		/* Constructor */
 		ofxCML();
 	
-		// Function
-		void loadFile(string path);
-		void saveFile();
-		void saveFile(string path);
-		
-		// Variables
-		string cmlVersion;										// CML Attrinute: version=""
-		string cmlUrl;											// CML Attrinute: url=""
-		int	   getNumHardware;
-		string getHardwareName[NUM_HARDWARE];					// HARDWARE Attribute: name=""
-		string getHardwarePlatform[NUM_HARDWARE];				// HARDWARE Attribute: platform=""
-		string getHardwareCompany[NUM_HARDWARE];				// HARDWARE Attribute: company=""
-		string getHardwareModell[NUM_HARDWARE];					// HARDWARE Attribute: modell=""
-		string getHardwareUrl[NUM_HARDWARE];					// HARDWARE Attribute: url=""
-		string getInterfaceMidiIn[NUM_HARDWARE];				// INTERFACE Attribute: midi-in=""
-		string getInterfaceMidiOut[NUM_HARDWARE];				// INTERFACE Attribute: midi-out=""
-		string getInterfaceOscHostIn[NUM_HARDWARE];				// INTERFACE Attribute: osc-host-in=""
-		string getInterfaceOscHostOut[NUM_HARDWARE];			// INTERFACE Attribute: osc-host-out=""
-		string getInterfaceOscPortIn[NUM_HARDWARE];				// INTERFACE Attribute: osc-pott-in=""
-		string getInterfaceOscPortOut[NUM_HARDWARE];			// INTERFACE Attribute: osc-pott-put=""
-		int	   getNumControl[NUM_HARDWARE];
-		string getControlName[NUM_CONTROL][NUM_HARDWARE];		// CONTROL Attribute: name=""
-		string getControlMidiB0[NUM_CONTROL][NUM_HARDWARE];		// CONTROL Attribute: midi-b0=""
-		string getControlMidiB1[NUM_CONTROL][NUM_HARDWARE];		// CONTROL Attribute: midi-b1name=""
-		string getControlMidiB2[NUM_CONTROL][NUM_HARDWARE];		// CONTROL Attribute: midi-b2name=""
-		string getControlOscPath[NUM_CONTROL][NUM_HARDWARE];	// CONTROL Attribute: osc-path=""
-		string getControlOscStart[NUM_CONTROL][NUM_HARDWARE];	// CONTROL Attribute: osc-start=""
-		string getControlOscStop[NUM_CONTROL][NUM_HARDWARE];	// CONTROL Attribute: osc-stop=""
 	
+		/* Methods */
+		void loadFile(string _path);
 		
-		string cmlMessage;										// Load, Read and write messages to this Variable
+		void saveFile();
+		void saveFile(string _path);
+		
+		void addHardware();
+		void addHardware(string _name, string _platform, string _company, string _modell, string _url);
+
+		void setHardwareName(int _n);
+	
+	
+		/* Variables */
+		string filePath;                                        /* Path of the loaded CML File. */
+	
+		string cmlMessage;                                      /* write messages to this Variable like a Console. */
+	
+		string cmlVersion;                                      /* <CML> Attrinute: version="" */
+		string cmlUrl;                                          /* <CML> Attrinute: url="" */
+		
+		int    getNumHardware;                                  /* Total Number of <HARDWARE> Tags. */
+		string getHardwareName[NUM_HARDWARE];                   /* <HARDWARE> Attribute: name="" */
+		string getHardwarePlatform[NUM_HARDWARE];               /* <HARDWARE> Attribute: platform="" */
+		string getHardwareCompany[NUM_HARDWARE];                /* <HARDWARE> Attribute: company="" */
+		string getHardwareModell[NUM_HARDWARE];                 /* <HARDWARE> Attribute: modell="" */
+		string getHardwareUrl[NUM_HARDWARE];                    /* <HARDWARE> Attribute: url="" */
+		string getInterfaceMidiIn[NUM_HARDWARE];                /* <INTERFACE> Attribute: midi-in="" */
+		string getInterfaceMidiOut[NUM_HARDWARE];               /* <INTERFACE> Attribute: midi-out="" */
+		string getInterfaceOscHostIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-host-in="" */
+		string getInterfaceOscHostOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-host-out="" */
+		string getInterfaceOscPortIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-pott-in="" */
+		string getInterfaceOscPortOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-pott-put="" */
+		
+		int    getNumControl[NUM_HARDWARE];                     /* Total Number of <HARDWARE> Tags. */
+		string getControlName[NUM_CONTROL][NUM_HARDWARE];       /* <CONTROL> Attribute: name="" */
+		string getControlMidiB0[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b0="" */
+		string getControlMidiB1[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b1="" */
+		string getControlMidiB2[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b2="" */
+		string getControlOscPath[NUM_CONTROL][NUM_HARDWARE];    /* <CONTROL> Attribute: osc-path="" */
+		string getControlOscStart[NUM_CONTROL][NUM_HARDWARE];   /* <CONTROL> Attribute: osc-start="" */
+		string getControlOscStop[NUM_CONTROL][NUM_HARDWARE];    /* <CONTROL> Attribute: osc-stop="" */
+	
 	
 	
 	private:
-		ofxXmlSettings XML;										// initialize XML addon
-	
+		ofxXmlSettings XML;                                     /* Initialize XML addon */
 		
 };
 
