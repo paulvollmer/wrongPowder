@@ -262,14 +262,13 @@ void ofxCML::loadFile(string _path) {
  */
 void ofxCML::listHardware() {
 	XML.pushTag(TAG_CML, 0);
-		string attr[6];
-		attr[0] = ATTRIBUTE_ID;
-		attr[1] = ATTRIBUTE_NAME;
-		attr[2] = ATTRIBUTE_PLATFORM;
-		attr[3] = ATTRIBUTE_COMPANY;
-		attr[4] = ATTRIBUTE_MODELL;
-		attr[5] = ATTRIBUTE_URL;
-		XMLlist(TAG_HARDWARE, attr, 6);
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		XMLlist(TAG_HARDWARE, attr, 5);
 	XML.popTag();
 }
 
@@ -281,14 +280,13 @@ void ofxCML::listHardware() {
 void ofxCML::listSoftware() {
 	XML.pushTag(TAG_CML, 0);
 		// TODO: Think about Software Attributes.
-		string attr[6];
-		attr[0] = ATTRIBUTE_ID;
-		attr[1] = ATTRIBUTE_NAME;
-		attr[2] = ATTRIBUTE_PLATFORM;
-		attr[3] = ATTRIBUTE_COMPANY;
-		attr[4] = ATTRIBUTE_MODELL;
-		attr[5] = ATTRIBUTE_URL;
-		XMLlist(TAG_SOFTWARE, attr, 6);
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		XMLlist(TAG_SOFTWARE, attr, 5);
 	XML.popTag();
 }
 
@@ -300,14 +298,13 @@ void ofxCML::listSoftware() {
 void ofxCML::listMessage() {
 	XML.pushTag(TAG_CML, 0);
 		// TODO: Think about Message Attributes.
-		string attr[6];
-		attr[0] = ATTRIBUTE_ID;
-		attr[1] = ATTRIBUTE_NAME;
-		attr[2] = ATTRIBUTE_PLATFORM;
-		attr[3] = ATTRIBUTE_COMPANY;
-		attr[4] = ATTRIBUTE_MODELL;
-		attr[5] = ATTRIBUTE_URL;
-		XMLlist(TAG_MESSAGE, attr, 6);
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		XMLlist(TAG_MESSAGE, attr, 5);
 	XML.popTag();
 }
 
@@ -324,16 +321,15 @@ void ofxCML::listInterface(int _which) {
 	
 	XML.pushTag(TAG_CML, 0);
 		XML.pushTag(TAG_HARDWARE, _which);
-			string attr[8];
-			attr[0] = ATTRIBUTE_ID;
-			attr[1] = ATTRIBUTE_NAME;
-			attr[2] = ATTRIBUTE_MIDI_IN;
-			attr[3] = ATTRIBUTE_MIDI_OUT;
-			attr[4] = ATTRIBUTE_OSC_HOSTIN;
-			attr[5] = ATTRIBUTE_OSC_HOSTOUT;
-			attr[6] = ATTRIBUTE_OSC_PORTIN;
-			attr[7] = ATTRIBUTE_OSC_PORTOUT;
-			XMLlist(TAG_INTERFACE, attr, 8);
+			string attr[7];
+			attr[0] = ATTRIBUTE_NAME;
+			attr[1] = ATTRIBUTE_MIDI_IN;
+			attr[2] = ATTRIBUTE_MIDI_OUT;
+			attr[3] = ATTRIBUTE_OSC_HOSTIN;
+			attr[4] = ATTRIBUTE_OSC_HOSTOUT;
+			attr[5] = ATTRIBUTE_OSC_PORTIN;
+			attr[6] = ATTRIBUTE_OSC_PORTOUT;
+			XMLlist(TAG_INTERFACE, attr, 7);
 		XML.popTag();
 	XML.popTag();
 }
@@ -351,16 +347,15 @@ void ofxCML::listControl(int _which) {
 	
 	XML.pushTag(TAG_CML, 0);
 		XML.pushTag(TAG_HARDWARE, _which);
-			string attr[8];
-			attr[0] = ATTRIBUTE_ID;
-			attr[1] = ATTRIBUTE_NAME;
-			attr[2] = ATTRIBUTE_MIDI_BYTE0;
-			attr[3] = ATTRIBUTE_MIDI_BYTE1;
-			attr[4] = ATTRIBUTE_MIDI_BYTE2;
-			attr[5] = ATTRIBUTE_OSC_PATH;
-			attr[6] = ATTRIBUTE_OSC_START;
-			attr[7] = ATTRIBUTE_OSC_STOP;
-			XMLlist(TAG_CONTROL, attr, 8);
+			string attr[7];
+			attr[0] = ATTRIBUTE_NAME;
+			attr[1] = ATTRIBUTE_MIDI_BYTE0;
+			attr[2] = ATTRIBUTE_MIDI_BYTE1;
+			attr[3] = ATTRIBUTE_MIDI_BYTE2;
+			attr[4] = ATTRIBUTE_OSC_PATH;
+			attr[5] = ATTRIBUTE_OSC_START;
+			attr[6] = ATTRIBUTE_OSC_STOP;
+			XMLlist(TAG_CONTROL, attr, 7);
 		XML.popTag();
 	XML.popTag();
 }
@@ -381,112 +376,134 @@ void ofxCML::listControl(int _which) {
 
 
 /**
- * ofxCML getId
+ * ofxCML addHardware
  *
- * @param _tag
- *        The Tag, that will be read.
- * @param _which
- *        Which Tag will be read.
+ * Add a <HARDWARE> Tag to the CML File.
+ *
+ * @param _name
+ *        Set <HARDWARE> name attribute
+ * @param _platform
+ *        Set <HARDWARE> platform attribute
+ * @param _company
+ *        Set <HARDWARE> company attribute
+ * @param _modell
+ *        Set <HARDWARE> modell attribute
+ * @param _url
+ *        Set <HARDWARE> url attribute
  */
-string ofxCML::getId(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_ID, _which);
+void ofxCML::addHardware(string _name, string _platform, string _company, string _modell, string _url) {
+	/* Push into <CML> Tag. */
+	if(XML.pushTag(TAG_CML, 0)) {
+		
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		string attrVal[5];
+		attrVal[0] = _name;
+		attrVal[1] = _platform;
+		attrVal[2] = _company;
+		attrVal[3] = _modell;
+		attrVal[4] = _url;
+		XMLaddTag(TAG_HARDWARE, attr, attrVal, 5);
+		
+		/* Pop <CML> Tag. */
+		XML.popTag();
+	}
 }
 
-string ofxCML::getUrl(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_URL, _which);
+void ofxCML::addHardware() {
+	addHardware(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
 }
-
-string ofxCML::getName(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_NAME, _which);
-}
-
-string ofxCML::getPlatform(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_PLATFORM, _which);
-}
-
-string ofxCML::getCompany(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_COMPANY, _which);
-}
-
-string ofxCML::getModell(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_MODELL, _which);
-}
-
-string ofxCML::getMidiIn(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_MIDI_IN, _which);
-}
-
-string ofxCML::getMidiOut(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_MIDI_OUT, _which);
-}
-
-string ofxCML::getMidiByte0(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_MIDI_BYTE0, _which);
-}
-
-string ofxCML::getMidiByte1(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_MIDI_BYTE1, _which);
-}
-
-string ofxCML::getMidiByte2(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_MIDI_BYTE2, _which);
-}
-
-string ofxCML::getOscHostIn(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_HOSTIN, _which);
-}
-
-string ofxCML::getOscHostOut(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_HOSTOUT, _which);
-}
-
-string ofxCML::getOscPortIn(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_PORTIN, _which);
-}
-
-string ofxCML::getOscPortOut(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_PORTOUT, _which);
-}
-
-string ofxCML::getOscPath(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_PATH, _which);
-}
-
-string ofxCML::getOscStart(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_START, _which);
-}
-
-string ofxCML::getOscStop(string _tag, int _which) {
-	return XMLgetAttribute(_tag, ATTRIBUTE_OSC_STOP, _which);
-}
-
-
-
-
-
-/***************************************************************
- * Save File
- ***************************************************************/
-
-
 
 /**
- * ofxCML saveFile
+ * ofxCML addSoftware
  *
- * Save CML File. No data gets saved unless you use this function.
+ * Add a <SOFTWARE> Tag to the CML File.
  *
- * @param path 
- *        CML File Path
+ * @param _name
+ *        Set <SOFTWARE> name attribute
+ * @param _platform
+ *        Set <SOFTWARE> platform attribute
+ * @param _company
+ *        Set <SOFTWARE> company attribute
+ * @param _modell
+ *        Set <SOFTWARE> modell attribute
+ * @param _url
+ *        Set <SOFTWARE> url attribute
  */
-void ofxCML::saveFile(string _path) {
-	filePath = _path;
-	XML.saveFile(filePath);
-	cmlMessage = "CML saved.\n";
-	cout << cmlMessage;
+void ofxCML::addSoftware(string _name, string _platform, string _company, string _modell, string _url) {
+	/* Push into <CML> Tag. */
+	if(XML.pushTag(TAG_CML, 0)) {
+		
+		// TODO: Think about Software Attributes.
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		string attrVal[5];
+		attrVal[0] = _name;
+		attrVal[1] = _platform;
+		attrVal[2] = _company;
+		attrVal[3] = _modell;
+		attrVal[4] = _url;
+		XMLaddTag(TAG_SOFTWARE, attr, attrVal, 5);
+		
+		/* Pop <CML> Tag. */
+		XML.popTag();
+	}
 }
 
-void ofxCML::saveFile() {
-	saveFile(filePath);
+void ofxCML::addSoftware() {
+	addSoftware(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
+}
+
+/**
+ * ofxCML addMessage
+ *
+ * Add a <MESSAGE> Tag to the CML File.
+ *
+ * @param _name
+ *        Set <MESSAGE> name Attribute.
+ * @param _platform
+ *        Set <MESSAGE> platform Attribute.
+ * @param _company
+ *        Set <MESSAGE> company Attribute.
+ * @param _modell
+ *        Set <MESSAGE> modell Attribute.
+ * @param _url
+ *        Set <MESSAGE> url Attribute.
+ */
+void ofxCML::addMessage(string _name, string _platform, string _company, string _modell, string _url) {
+	/* Push into <CML> Tag. */
+	if(XML.pushTag(TAG_CML, 0)) {
+		
+		// TODO: Think about Message Attributes.
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		string attrVal[5];
+		attrVal[0] = _name;
+		attrVal[1] = _platform;
+		attrVal[2] = _company;
+		attrVal[3] = _modell;
+		attrVal[4] = _url;
+		XMLaddTag(TAG_MESSAGE, attr, attrVal, 5);
+		
+		/* Pop <CML> Tag. */
+		XML.popTag();
+	}
+}
+
+void ofxCML::addMessage() {
+	addMessage(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
 }
 
 
@@ -523,152 +540,28 @@ void ofxCML::setHardwareName(int _n) {
 
 
 /***************************************************************
- * Add Tag
+ * Save File
  ***************************************************************/
 
 
 
 /**
- * ofxCML addHardware
+ * ofxCML saveFile
  *
- * Add a <HARDWARE> Tag to the CML File.
+ * Save CML File. No data gets saved unless you use this function.
  *
- * @param _id
- *        Set the Ident Number.
- * @param _name
- *        Set <HARDWARE> name attribute
- * @param _platform
- *        Set <HARDWARE> platform attribute
- * @param _company
- *        Set <HARDWARE> company attribute
- * @param _modell
- *        Set <HARDWARE> modell attribute
- * @param _url
- *        Set <HARDWARE> url attribute
+ * @param path 
+ *        CML File Path
  */
-void ofxCML::addHardware(string _id, string _name, string _platform, string _company, string _modell, string _url) {
-	/* Push into <CML> Tag. */
-	if(XML.pushTag(TAG_CML, 0)) {
-		
-		string attr[6];
-		attr[0] = ATTRIBUTE_ID;
-		attr[1] = ATTRIBUTE_NAME;
-		attr[2] = ATTRIBUTE_PLATFORM;
-		attr[3] = ATTRIBUTE_COMPANY;
-		attr[4] = ATTRIBUTE_MODELL;
-		attr[5] = ATTRIBUTE_URL;
-		string attrVal[6];
-		attrVal[0] = _id;
-		attrVal[1] = _name;
-		attrVal[2] = _platform;
-		attrVal[3] = _company;
-		attrVal[4] = _modell;
-		attrVal[5] = _url;
-		XMLaddTag(TAG_HARDWARE, attr, attrVal, 6);
-		
-		/* Pop <CML> Tag. */
-		XML.popTag();
-	}
+void ofxCML::saveFile(string _path) {
+	filePath = _path;
+	XML.saveFile(filePath);
+	cmlMessage = "CML saved.\n";
+	cout << cmlMessage;
 }
 
-void ofxCML::addHardware() {
-	addHardware(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
-}
-
-/**
- * ofxCML addSoftware
- *
- * Add a <SOFTWARE> Tag to the CML File.
- *
- * @param _id
- *        Set the Ident Number.
- * @param _name
- *        Set <SOFTWARE> name attribute
- * @param _platform
- *        Set <SOFTWARE> platform attribute
- * @param _company
- *        Set <SOFTWARE> company attribute
- * @param _modell
- *        Set <SOFTWARE> modell attribute
- * @param _url
- *        Set <SOFTWARE> url attribute
- */
-void ofxCML::addSoftware(string _id, string _name, string _platform, string _company, string _modell, string _url) {
-	/* Push into <CML> Tag. */
-	if(XML.pushTag(TAG_CML, 0)) {
-		
-		// TODO: Think about Software Attributes.
-		string attr[6];
-		attr[0] = ATTRIBUTE_ID;
-		attr[1] = ATTRIBUTE_NAME;
-		attr[2] = ATTRIBUTE_PLATFORM;
-		attr[3] = ATTRIBUTE_COMPANY;
-		attr[4] = ATTRIBUTE_MODELL;
-		attr[5] = ATTRIBUTE_URL;
-		string attrVal[6];
-		attrVal[0] = _id;
-		attrVal[1] = _name;
-		attrVal[2] = _platform;
-		attrVal[3] = _company;
-		attrVal[4] = _modell;
-		attrVal[5] = _url;
-		XMLaddTag(TAG_SOFTWARE, attr, attrVal, 6);
-		
-		/* Pop <CML> Tag. */
-		XML.popTag();
-	}
-}
-
-void ofxCML::addSoftware() {
-	addSoftware(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
-}
-
-/**
- * ofxCML addMessage
- *
- * Add a <MESSAGE> Tag to the CML File.
- *
- * @param _id
- *        Set the Ident Number.
- * @param _name
- *        Set <MESSAGE> name Attribute.
- * @param _platform
- *        Set <MESSAGE> platform Attribute.
- * @param _company
- *        Set <MESSAGE> company Attribute.
- * @param _modell
- *        Set <MESSAGE> modell Attribute.
- * @param _url
- *        Set <MESSAGE> url Attribute.
- */
-void ofxCML::addMessage(string _id, string _name, string _platform, string _company, string _modell, string _url) {
-	/* Push into <CML> Tag. */
-	if(XML.pushTag(TAG_CML, 0)) {
-		
-		// TODO: Think about Message Attributes.
-		string attr[6];
-		attr[0] = ATTRIBUTE_ID;
-		attr[1] = ATTRIBUTE_NAME;
-		attr[2] = ATTRIBUTE_PLATFORM;
-		attr[3] = ATTRIBUTE_COMPANY;
-		attr[4] = ATTRIBUTE_MODELL;
-		attr[5] = ATTRIBUTE_URL;
-		string attrVal[6];
-		attrVal[0] = _id;
-		attrVal[1] = _name;
-		attrVal[2] = _platform;
-		attrVal[3] = _company;
-		attrVal[4] = _modell;
-		attrVal[5] = _url;
-		XMLaddTag(TAG_MESSAGE, attr, attrVal, 6);
-		
-		/* Pop <CML> Tag. */
-		XML.popTag();
-	}
-}
-
-void ofxCML::addMessage() {
-	addMessage(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
+void ofxCML::saveFile() {
+	saveFile(filePath);
 }
 
 
@@ -757,11 +650,10 @@ void ofxCML::XMLlist(string _tag, string _attribute[], int _numAttribute) {
 	
 	/* Lets see how many <_tag> Tags are inside the CML File. */
 	int num = XML.getNumTags(_tag);
+	cout << "###\t\t Number of <" << _tag << "> Tags: " << ofToString(num) << endl;
 	
 	/* If one or more Tags exist. */
 	if(num > 0) {
-		cout << "###\t\t Number of <" << _tag << "> Tags: " << ofToString(num) << endl;
-		
 		/* List all Tags... */
 		for(int i = 0; i < num; i++) {
 			cout << "###\t\t " << _tag << "[" << ofToString(i) << "]" << endl;
@@ -772,32 +664,10 @@ void ofxCML::XMLlist(string _tag, string _attribute[], int _numAttribute) {
 			}
 			
 		}
-	} else {
-		cout << "###\t\t <" << _tag << "> Tag not Available!" << endl;
 	}
 	
 	cout << "###" << endl;
 }
-
-
-
-
-
-/**
- * ofxCML XMLgetAttribute
- *
- * -- Private Method.
- */
-string ofxCML::XMLgetAttribute(string _tag, string _attribute, int _which) {
-	string name;
-	
-	XML.pushTag(TAG_CML, 0);
-		name = XML.getAttribute(_tag, _attribute, NOT_AVAILABLE, _which);
-	XML.popTag();
-	
-	return name;
-}
-
 
 
 

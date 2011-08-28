@@ -87,30 +87,11 @@ class ofxCML {
 		/* Methods */
 		void loadFile(string _path);            /* Load */
 	
-		void listHardware();                    /* List Tags */
+		void listHardware();                    /* List Hardware, Software, Interface, Control etc.*/
 		void listSoftware();
 		void listMessage();
 		void listInterface(int _which);
 		void listControl(int _which);
-	
-		string getId(string _tag, int _which);  /* get Attribute */
-		string getUrl(string _tag, int _which);
-		string getName(string _tag, int _which);
-		string getPlatform(string _tag, int _which);
-		string getCompany(string _tag, int _which);
-		string getModell(string _tag, int _which);
-		string getMidiIn(string _tag, int _which);
-		string getMidiOut(string _tag, int _which);
-		string getMidiByte0(string _tag, int _which);
-		string getMidiByte1(string _tag, int _which);
-		string getMidiByte2(string _tag, int _which);
-		string getOscHostIn(string _tag, int _which);
-		string getOscHostOut(string _tag, int _which);
-		string getOscPortIn(string _tag, int _which);
-		string getOscPortOut(string _tag, int _which);
-		string getOscPath(string _tag, int _which);
-		string getOscStart(string _tag, int _which);
-		string getOscStop(string _tag, int _which);
 	
 		void saveFile();                        /* Save */
 		void saveFile(string _path);
@@ -118,11 +99,11 @@ class ofxCML {
 		void setHardwareName(int _n);
 	
 		void addHardware();                     /* add Tag */
-		void addHardware(string _id, string _name, string _platform, string _company, string _modell, string _url);
+		void addHardware(string _name, string _platform, string _company, string _modell, string _url);
 		void addSoftware();
-		void addSoftware(string _id, string _name, string _platform, string _company, string _modell, string _url);
+		void addSoftware(string _name, string _platform, string _company, string _modell, string _url);
 		void addMessage();
-		void addMessage(string _id, string _name, string _platform, string _company, string _modell, string _url);
+		void addMessage(string _name, string _platform, string _company, string _modell, string _url);
 	
 	
 	
@@ -162,7 +143,6 @@ class ofxCML {
 		ofxXmlSettings XML;                                     /* Initialize XML addon */
 		void           XMLloadFile(string _path);
 		void           XMLlist(string _tag, string _attribute[], int _numAttribute);
-		string         XMLgetAttribute(string _tag, string _attribute, int _which);
 		void           XMLaddTag(string _tag, string _attribute[], string _attributeVal[], int _numAttribute);
 		
 };
