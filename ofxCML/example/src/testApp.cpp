@@ -47,18 +47,45 @@ void testApp::setup(){
 	
 	
 	/* Add Hardware Tag. */
-	cml.addHardware("Wng-Hardware", "MAC", "Wrong-Entertainment", "Wrong Controller", "http://www.wrong-entertainment.com");
+	cml.addHardware("1", "Wng-Hardware", "MAC", "Wrong-Entertainment", "Wrong Controller", "http://www.wrong-entertainment.com");
 	
 	/* Add Software Tag. */
 	cml.addSoftware();
-	cml.addSoftware("Wng-Software", "MAC", "Wrong-Entertainment", "Wrong Application", "http://www.wrong-entertainment.com");
+	cml.addSoftware("2", "Wng-Software", "MAC", "Wrong-Entertainment", "Wrong Application", "http://www.wrong-entertainment.com");
 	
 	/* Add Message Tag. */
-	cml.addMessage("OSC-Cloud-Message", "MAC", "Wrong-Entertainment", "osc-cloud", "http://osc-cloud.com");
+	cml.addMessage("3", "OSC-Cloud-Message", "MAC", "Wrong-Entertainment", "osc-cloud", "http://osc-cloud.com");
 	
 	
 	/* Change Attribute Value. */
 	cml.setHardwareName(1);
+	
+	
+	/* Test getAttribute Method. */
+	cout << "--- WNGTEST: " << cml.getId("HARDWARE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getName("HARDWARE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getPlatform("HARDWARE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getCompany("HARDWARE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getModell("HARDWARE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getUrl("HARDWARE", 0) << endl;
+	
+	cout << "--- WNGTEST: " << cml.getId("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getName("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getMidiIn("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getMidiOut("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscHostIn("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscHostOut("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscPortIn("HARDWARE:INTERFACE", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscPortOut("HARDWARE:INTERFACE", 0) << endl;
+	
+	cout << "--- WNGTEST: " << cml.getId("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getName("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getMidiByte0("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getMidiByte1("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getMidiByte2("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscPath("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscStart("HARDWARE:CONTROL", 0) << endl;
+	cout << "--- WNGTEST: " << cml.getOscStop("HARDWARE:CONTROL", 0) << endl;
 	
 	
 	/* Save CML File. */
