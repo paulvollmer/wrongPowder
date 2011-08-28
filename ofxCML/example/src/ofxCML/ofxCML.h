@@ -98,8 +98,12 @@ class ofxCML {
 	
 		void setHardwareName(int _n);
 	
-		void addHardware();
+		void addHardware();                     /* add Tag */
 		void addHardware(string _name, string _platform, string _company, string _modell, string _url);
+		void addSoftware();
+		void addSoftware(string _name, string _platform, string _company, string _modell, string _url);
+		void addMessage();
+		void addMessage(string _name, string _platform, string _company, string _modell, string _url);
 	
 	
 	
@@ -139,6 +143,7 @@ class ofxCML {
 		ofxXmlSettings XML;                                     /* Initialize XML addon */
 		void           XMLloadFile(string _path);
 		void           XMLlist(string _tag, string _attribute[], int _numAttribute);
+		void           XMLaddTag(string _tag, string _attribute[], string _attributeVal[], int _numAttribute);
 		
 };
 
