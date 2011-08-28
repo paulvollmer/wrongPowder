@@ -81,6 +81,7 @@ class ofxCML {
 	public:
 		/* Constructor */
 		ofxCML();
+		ofxCML(string _path);
 	
 	
 		/* Methods */
@@ -135,6 +136,7 @@ class ofxCML {
 	
 	private:
 		ofxXmlSettings XML;                                     /* Initialize XML addon */
+		void           XMLloadFile(string _path);
 		
 };
 
