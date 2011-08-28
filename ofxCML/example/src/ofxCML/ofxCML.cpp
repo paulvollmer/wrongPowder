@@ -91,33 +91,6 @@ void ofxCML::loadFile(string _path) {
 			getControlOscStop[j][i]  = WNGHEX;
 		}
 	}
-	
-	
-	
-	
-	/* Check CML File.                    */
-	/* Search <CML> Tag inside a File.    */
-	/* Check the Version and get the url. */
-	int NUM_CML_TAGS = XML.getNumTags(TAG_CML);
-	cmlMessage = cmlMessage + "Check the CML File. " + ofToString(NUM_CML_TAGS) + " CML Tag/s found at loaded File\n";
-	
-	/* If <CML> Tag exist, read... */
-	if(NUM_CML_TAGS > 0) {
-		
-		
-		/* Check <CML> Attributes. */
-		
-		/* Check the 'version' Attribute. Save Value. */
-		if(XML.attributeExists(TAG_CML, "version", 0) == 1) {
-			cmlVersion = XML.getAttribute(TAG_CML, ATTRIBUTE_VERSION, NOT_AVAILABLE);
-			cmlMessage = cmlMessage + "CML Version: " + cmlVersion + "\n";
-		}
-		
-		/* Check the 'url' Attribute. Save Value. */
-		if(XML.attributeExists(TAG_CML, "url", 0) == 1) {
-			cmlUrl = XML.getAttribute(TAG_CML, ATTRIBUTE_URL, NOT_AVAILABLE);
-			cmlMessage = cmlMessage + "CML Url: " + cmlUrl + "\n";
-		}
 		
 		
 		
@@ -265,8 +238,6 @@ void ofxCML::loadFile(string _path) {
 		/* Pop Main <CML> Tag. */
 		XML.popTag();
 		
-		
-	}
 }
 
 
@@ -279,29 +250,15 @@ void ofxCML::loadFile(string _path) {
  * List all available <HARDWARE> Tags. 
  */
 void ofxCML::listHardware() {
-	cout << "### CML HARDWARE LIST" << endl;
-	
 	XML.pushTag(TAG_CML, 0);
-		
-		/* Lets see how many <HARDWARE> Tags are inside the CML File. */
-		int nHardware = XML.getNumTags(TAG_HARDWARE);
-		cout << "###     Number of <HARDWARE> Tags: " << ofToString(nHardware) << endl;
-	
-		/* List all Attributes and list the available values. */
-		if(nHardware > 0) {
-			for(int i = 0; i < nHardware; i++) {
-				cout << "###     Hardware[" << ofToString(i) << "]" << endl;
-				cout << "###             name:     " << ofToString(XML.getAttribute(TAG_HARDWARE, ATTRIBUTE_NAME,     NOT_AVAILABLE, i)) << endl;
-				cout << "###             platform: " << ofToString(XML.getAttribute(TAG_HARDWARE, ATTRIBUTE_PLATFORM, NOT_AVAILABLE, i)) << endl;
-				cout << "###             company:  " << ofToString(XML.getAttribute(TAG_HARDWARE, ATTRIBUTE_COMPANY,  NOT_AVAILABLE, i)) << endl;
-				cout << "###             modell:   " << ofToString(XML.getAttribute(TAG_HARDWARE, ATTRIBUTE_MODELL,   NOT_AVAILABLE, i)) << endl;
-				cout << "###             url:      " << ofToString(XML.getAttribute(TAG_HARDWARE, ATTRIBUTE_URL,      NOT_AVAILABLE, i)) << endl;
-			}
-		}
-	
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		XMLlist(TAG_HARDWARE, attr, 5);
 	XML.popTag();
-	
-	cout << "###" << endl;
 }
 
 /**
@@ -310,30 +267,15 @@ void ofxCML::listHardware() {
  * List all available <SOFTWARE> Tags. 
  */
 void ofxCML::listSoftware() {
-	cout << "### CML SOFTWARE LIST" << endl;
-	
 	XML.pushTag(TAG_CML, 0);
-	
-	/* Lets see how many <SOFTWARE> Tags are inside the CML File. */
-	int nSoftware = XML.getNumTags(TAG_SOFTWARE);
-	cout << "###     Number of <SOFTWARE> Tags: " << ofToString(nSoftware) << endl;
-	
-	/* List all Attributes and list the available values. */
-	// TODO: Think about Software Attributes.
-	if(nSoftware > 0) {
-		for(int i = 0; i < nSoftware; i++) {
-			cout << "###     Software[" << ofToString(i) << "]" << endl;
-			cout << "###             name:     " << ofToString(XML.getAttribute(TAG_SOFTWARE, ATTRIBUTE_NAME,     NOT_AVAILABLE, i)) << endl;
-			cout << "###             platform: " << ofToString(XML.getAttribute(TAG_SOFTWARE, ATTRIBUTE_PLATFORM, NOT_AVAILABLE, i)) << endl;
-			cout << "###             company:  " << ofToString(XML.getAttribute(TAG_SOFTWARE, ATTRIBUTE_COMPANY,  NOT_AVAILABLE, i)) << endl;
-			cout << "###             modell:   " << ofToString(XML.getAttribute(TAG_SOFTWARE, ATTRIBUTE_MODELL,   NOT_AVAILABLE, i)) << endl;
-			cout << "###             url:      " << ofToString(XML.getAttribute(TAG_SOFTWARE, ATTRIBUTE_URL,      NOT_AVAILABLE, i)) << endl;
-		}
-	}
-	
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		XMLlist(TAG_SOFTWARE, attr, 5);
 	XML.popTag();
-	
-	cout << "###" << endl;
 }
 
 /**
@@ -342,30 +284,15 @@ void ofxCML::listSoftware() {
  * List all available <MESSAGE> Tags. 
  */
 void ofxCML::listMessage() {
-	cout << "### CML MESSAGE LIST" << endl;
-	
 	XML.pushTag(TAG_CML, 0);
-	
-	/* Lets see how many <MESSAGE> Tags are inside the CML File. */
-	int nMessage = XML.getNumTags(TAG_MESSAGE);
-	cout << "###     Number of <MESSAGE> Tags: " << ofToString(nMessage) << endl;
-	
-	/* List all Attributes and list the available values. */
-	// TODO: Think about Message Attributes.
-	if(nMessage > 0) {
-		for(int i = 0; i < nMessage; i++) {
-			cout << "###     Message[" << ofToString(i) << "]" << endl;
-			cout << "###            name:     " << ofToString(XML.getAttribute(TAG_MESSAGE, ATTRIBUTE_NAME,     NOT_AVAILABLE, i)) << endl;
-			cout << "###            platform: " << ofToString(XML.getAttribute(TAG_MESSAGE, ATTRIBUTE_PLATFORM, NOT_AVAILABLE, i)) << endl;
-			cout << "###            company:  " << ofToString(XML.getAttribute(TAG_MESSAGE, ATTRIBUTE_COMPANY,  NOT_AVAILABLE, i)) << endl;
-			cout << "###            modell:   " << ofToString(XML.getAttribute(TAG_MESSAGE, ATTRIBUTE_MODELL,   NOT_AVAILABLE, i)) << endl;
-			cout << "###            url:      " << ofToString(XML.getAttribute(TAG_MESSAGE, ATTRIBUTE_URL,      NOT_AVAILABLE, i)) << endl;
-		}
-	}
-	
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		XMLlist(TAG_MESSAGE, attr, 5);
 	XML.popTag();
-	
-	cout << "###" << endl;
 }
 
 /**
@@ -377,34 +304,21 @@ void ofxCML::listMessage() {
  *        Which <HARDWARE> Tag will be selected?
  */
 void ofxCML::listInterface(int _which) {
-	cout << "### CML INTERFACE LIST" << endl;
+	cout << "### CML SELECTED HARDWARE[" << ofToString(_which) << "]" << endl;
 	
 	XML.pushTag(TAG_CML, 0);
 		XML.pushTag(TAG_HARDWARE, _which);
-	
-			/* Lets see how many <HARDWARE> Tags are inside the CML File. */
-			int nInterface = XML.getNumTags(TAG_INTERFACE);
-			cout << "###     Selected Hardware[" << ofToString(_which) << "]" << endl;
-			cout << "###     Number of <INTERFACE> Tags: " << ofToString(nInterface) << endl;
-			
-			/* List all Attributes and list the available values. */
-			if(nInterface > 0) {
-				for(int i = 0; i < nInterface; i++) {
-					cout << "###     Interface[" << ofToString(i) << "]" << endl;
-					cout << "###              name:         " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_NAME,        NOT_AVAILABLE, i)) << endl;
-					cout << "###              midi-in:      " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_MIDI_IN,     NOT_AVAILABLE, i)) << endl;
-					cout << "###              midi-out:     " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_MIDI_OUT,    NOT_AVAILABLE, i)) << endl;
-					cout << "###              osc-host-in:  " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_OSC_HOSTIN,  NOT_AVAILABLE, i)) << endl;
-					cout << "###              osc-host-out: " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_OSC_HOSTOUT, NOT_AVAILABLE, i)) << endl;
-					cout << "###              osc-port-in:  " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_OSC_PORTIN,  NOT_AVAILABLE, i)) << endl;
-					cout << "###              osc-port-out: " << ofToString(XML.getAttribute(TAG_INTERFACE, ATTRIBUTE_OSC_PORTOUT, NOT_AVAILABLE, i)) << endl;
-				}
-			}
-		
+			string attr[7];
+			attr[0] = ATTRIBUTE_NAME;
+			attr[1] = ATTRIBUTE_MIDI_IN;
+			attr[2] = ATTRIBUTE_MIDI_OUT;
+			attr[3] = ATTRIBUTE_OSC_HOSTIN;
+			attr[4] = ATTRIBUTE_OSC_HOSTOUT;
+			attr[5] = ATTRIBUTE_OSC_PORTIN;
+			attr[6] = ATTRIBUTE_OSC_PORTOUT;
+			XMLlist(TAG_INTERFACE, attr, 7);
 		XML.popTag();
 	XML.popTag();
-	
-	cout << "###" << endl;
 }
 
 /**
@@ -416,33 +330,21 @@ void ofxCML::listInterface(int _which) {
  *        Which <HARDWARE> Tag will be selected?
  */
 void ofxCML::listControl(int _which) {
-	cout << "### CML CONTROL LIST" << endl;
+	cout << "### CML SELECTED HARDWARE[" << ofToString(_which) << "]" << endl;
 	
 	XML.pushTag(TAG_CML, 0);
 		XML.pushTag(TAG_HARDWARE, _which);
-	
-			/* Lets see how many <HARDWARE> Tags are inside the CML File. */
-			int n = XML.getNumTags(TAG_CONTROL);
-			cout << "###     Selected Control[" << ofToString(_which) << "]" << endl;
-			cout << "###     Number of <CONTROL> Tags: " << ofToString(n) << endl;
-	
-			if(n > 0) {
-				for(int i = 0; i < n; i++) {
-					cout << "###     Control[" << ofToString(i) << "]" << endl;
-					cout << "###            name:         " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_NAME,        NOT_AVAILABLE, i)) << endl;
-					cout << "###            midi-b0:      " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_MIDI_BYTE0,  NOT_AVAILABLE, i)) << endl;
-					cout << "###            midi-b1:      " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_MIDI_BYTE1,  NOT_AVAILABLE, i)) << endl;
-					cout << "###            midi-b2:      " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_MIDI_BYTE2,  NOT_AVAILABLE, i)) << endl;
-					cout << "###            osc-path      " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_OSC_PATH,    NOT_AVAILABLE, i)) << endl;
-					cout << "###            osc-start:    " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_OSC_START,   NOT_AVAILABLE, i)) << endl;
-					cout << "###            osc-s:op      " << ofToString(XML.getAttribute(TAG_CONTROL, ATTRIBUTE_OSC_STOP,    NOT_AVAILABLE, i)) << endl;
-				}
-			}
-	
+			string attr[7];
+			attr[0] = ATTRIBUTE_NAME;
+			attr[1] = ATTRIBUTE_MIDI_BYTE0;
+			attr[2] = ATTRIBUTE_MIDI_BYTE1;
+			attr[3] = ATTRIBUTE_MIDI_BYTE2;
+			attr[4] = ATTRIBUTE_OSC_PATH;
+			attr[5] = ATTRIBUTE_OSC_START;
+			attr[6] = ATTRIBUTE_OSC_STOP;
+			XMLlist(TAG_CONTROL, attr, 7);
 		XML.popTag();
 	XML.popTag();
-	
-	cout << "###" << endl;
 }
 
 
@@ -522,19 +424,90 @@ void ofxCML::saveFile() {
  * ofxCML XMLloadFile
  *
  * -- Private Method.
- * Main Method to Load XML File.
+ * Main Method to Load XML File. If CML File is loaded,
+ * check File and Search <CML> Tag. Get the version, url and save the values.
  * 
  * @param path 
  *        CML File Path
  */
 void ofxCML::XMLloadFile(string _path) {
 	/* Save File Path to the Variable. */
+	/* The filePath Variable will be used for default saveFile Path. */
 	filePath = _path;
 	
 	/* Load the XML File. */
+	/* Add loading status to cmlMessage. */
 	if(XML.loadFile(filePath)) {
-		cmlMessage = "### CML FILE " + filePath + " LOADED!\n";
+		cmlMessage = "### CML FILE '" + filePath + "' LOADED!\n";
 	} else {
 		cmlMessage = "### CML UNABLE TO LOAD " + filePath + ". CHECK DATA/ FOLDER!\n";
-	}	
+	}
+	
+	/* Check CML File. */
+	/* Search <CML> Tag inside a File. */
+	/* Check the Version and get the url. */
+	int NUM_CML_TAGS = XML.getNumTags(TAG_CML);
+	cmlMessage = cmlMessage + "### CML CHECK THE FILE. \n" +
+	                          "###\t\t Number of <CML> Tags: " + ofToString(NUM_CML_TAGS) + "\n";
+	
+	/* If <CML> Tag exist, read... */
+	if(NUM_CML_TAGS > 0) {
+		/* Check <CML> Attributes. */
+		/* Check the 'version' Attribute. Save Value. */
+		if(XML.attributeExists(TAG_CML, "version", 0) == 1) {
+			cmlVersion = XML.getAttribute(TAG_CML, ATTRIBUTE_VERSION, NOT_AVAILABLE);
+			cmlMessage = cmlMessage + "###\t\t\tversion: " + cmlVersion + "\n";
+		}
+		/* Check the 'url' Attribute. Save Value. */
+		if(XML.attributeExists(TAG_CML, "url", 0) == 1) {
+			cmlUrl = XML.getAttribute(TAG_CML, ATTRIBUTE_URL, NOT_AVAILABLE);
+			cmlMessage = cmlMessage + "###\t\t\turl: " + cmlUrl + "\n";
+		}
+	}
+	
+	cout << "###" << endl;
+}
+
+
+
+
+
+/**
+ * ofxCML XMLlist
+ *
+ * -- Private Method.
+ * List all available <_tag> Tags and the specific Attributes.
+ * Print out to Console.
+ *
+ * @param _tag
+ *        Tag/s to List.
+ *
+ * @param _attribute
+ *        Attribute/s to List.
+ *
+ * @param _numAttribute
+ *        Number of attribute/s.
+ */
+void ofxCML::XMLlist(string _tag, string _attribute[], int _numAttribute) {
+	cout << "### CML " << _tag << " LIST" << endl;
+	
+	/* Lets see how many <_tag> Tags are inside the CML File. */
+	int num = XML.getNumTags(_tag);
+	cout << "###\t\t Number of <" << _tag << "> Tags: " << ofToString(num) << endl;
+	
+	/* If one or more Tags exist. */
+	if(num > 0) {
+		/* List all Tags... */
+		for(int i = 0; i < num; i++) {
+			cout << "###\t\t " << _tag << "[" << ofToString(i) << "]" << endl;
+			
+			/* ...and all Attributes from the Tag. if one value is not available, set to NOT_AVAILABLE. */
+			for(int j = 0; j < _numAttribute; j++) {
+				cout << "###\t\t\t" << _attribute[j] << ": " << ofToString(XML.getAttribute(_tag, _attribute[j], NOT_AVAILABLE, i)) << endl;
+			}
+			
+		}
+	}
+	
+	cout << "###" << endl;
 }

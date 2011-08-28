@@ -138,6 +138,7 @@ class ofxCML {
 	private:
 		ofxXmlSettings XML;                                     /* Initialize XML addon */
 		void           XMLloadFile(string _path);
+		void           XMLlist(string _tag, string _attribute[], int _numAttribute);
 		
 };
 
