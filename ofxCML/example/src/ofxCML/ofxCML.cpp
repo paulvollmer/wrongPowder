@@ -244,6 +244,17 @@ void ofxCML::loadFile(string _path) {
 
 
 
+
+
+
+
+
+/***************************************************************
+ * List
+ ***************************************************************/
+
+
+
 /**
  * ofxCML listHardware
  *
@@ -268,6 +279,7 @@ void ofxCML::listHardware() {
  */
 void ofxCML::listSoftware() {
 	XML.pushTag(TAG_CML, 0);
+		// TODO: Think about Software Attributes.
 		string attr[5];
 		attr[0] = ATTRIBUTE_NAME;
 		attr[1] = ATTRIBUTE_PLATFORM;
@@ -285,6 +297,7 @@ void ofxCML::listSoftware() {
  */
 void ofxCML::listMessage() {
 	XML.pushTag(TAG_CML, 0);
+		// TODO: Think about Message Attributes.
 		string attr[5];
 		attr[0] = ATTRIBUTE_NAME;
 		attr[1] = ATTRIBUTE_PLATFORM;
@@ -351,25 +364,50 @@ void ofxCML::listControl(int _which) {
 
 
 
+
+
+
+
+
+/***************************************************************
+ * Add Tag
+ ***************************************************************/
+
+
+
 /**
  * ofxCML addHardware
  *
  * Add a <HARDWARE> Tag to the CML File.
+ *
+ * @param _name
+ *        Set <HARDWARE> name attribute
+ * @param _platform
+ *        Set <HARDWARE> platform attribute
+ * @param _company
+ *        Set <HARDWARE> company attribute
+ * @param _modell
+ *        Set <HARDWARE> modell attribute
+ * @param _url
+ *        Set <HARDWARE> url attribute
  */
 void ofxCML::addHardware(string _name, string _platform, string _company, string _modell, string _url) {
 	/* Push into <CML> Tag. */
 	if(XML.pushTag(TAG_CML, 0)) {
-		/* Add a <HARDWARE> Tag. */
-		XML.addTag(TAG_HARDWARE);
-		cmlMessage = "Add <"+ofToString(TAG_HARDWARE)+"> Tag\n";
-		cout << cmlMessage;
 		
-		/* Add Attributes to the <HARDWARE> Tag. */
-		XML.addAttribute(TAG_HARDWARE, ATTRIBUTE_NAME,     _name,     1);
-		XML.addAttribute(TAG_HARDWARE, ATTRIBUTE_PLATFORM, _platform, 1);
-		XML.addAttribute(TAG_HARDWARE, ATTRIBUTE_COMPANY,  _company,  1);
-		XML.addAttribute(TAG_HARDWARE, ATTRIBUTE_MODELL,   _modell,   1);
-		XML.addAttribute(TAG_HARDWARE, ATTRIBUTE_URL,      _url,      1);
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		string attrVal[5];
+		attrVal[0] = _name;
+		attrVal[1] = _platform;
+		attrVal[2] = _company;
+		attrVal[3] = _modell;
+		attrVal[4] = _url;
+		XMLaddTag(TAG_HARDWARE, attr, attrVal, 5);
 		
 		/* Pop <CML> Tag. */
 		XML.popTag();
@@ -377,10 +415,109 @@ void ofxCML::addHardware(string _name, string _platform, string _company, string
 }
 
 void ofxCML::addHardware() {
-	addHardware(WNGHEX, WNGHEX, WNGHEX, WNGHEX, WNGHEX);
+	addHardware(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
+}
+
+/**
+ * ofxCML addSoftware
+ *
+ * Add a <SOFTWARE> Tag to the CML File.
+ *
+ * @param _name
+ *        Set <SOFTWARE> name attribute
+ * @param _platform
+ *        Set <SOFTWARE> platform attribute
+ * @param _company
+ *        Set <SOFTWARE> company attribute
+ * @param _modell
+ *        Set <SOFTWARE> modell attribute
+ * @param _url
+ *        Set <SOFTWARE> url attribute
+ */
+void ofxCML::addSoftware(string _name, string _platform, string _company, string _modell, string _url) {
+	/* Push into <CML> Tag. */
+	if(XML.pushTag(TAG_CML, 0)) {
+		
+		// TODO: Think about Software Attributes.
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		string attrVal[5];
+		attrVal[0] = _name;
+		attrVal[1] = _platform;
+		attrVal[2] = _company;
+		attrVal[3] = _modell;
+		attrVal[4] = _url;
+		XMLaddTag(TAG_SOFTWARE, attr, attrVal, 5);
+		
+		/* Pop <CML> Tag. */
+		XML.popTag();
+	}
+}
+
+void ofxCML::addSoftware() {
+	addSoftware(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
+}
+
+/**
+ * ofxCML addMessage
+ *
+ * Add a <MESSAGE> Tag to the CML File.
+ *
+ * @param _name
+ *        Set <MESSAGE> name Attribute.
+ * @param _platform
+ *        Set <MESSAGE> platform Attribute.
+ * @param _company
+ *        Set <MESSAGE> company Attribute.
+ * @param _modell
+ *        Set <MESSAGE> modell Attribute.
+ * @param _url
+ *        Set <MESSAGE> url Attribute.
+ */
+void ofxCML::addMessage(string _name, string _platform, string _company, string _modell, string _url) {
+	/* Push into <CML> Tag. */
+	if(XML.pushTag(TAG_CML, 0)) {
+		
+		// TODO: Think about Message Attributes.
+		string attr[5];
+		attr[0] = ATTRIBUTE_NAME;
+		attr[1] = ATTRIBUTE_PLATFORM;
+		attr[2] = ATTRIBUTE_COMPANY;
+		attr[3] = ATTRIBUTE_MODELL;
+		attr[4] = ATTRIBUTE_URL;
+		string attrVal[5];
+		attrVal[0] = _name;
+		attrVal[1] = _platform;
+		attrVal[2] = _company;
+		attrVal[3] = _modell;
+		attrVal[4] = _url;
+		XMLaddTag(TAG_MESSAGE, attr, attrVal, 5);
+		
+		/* Pop <CML> Tag. */
+		XML.popTag();
+	}
+}
+
+void ofxCML::addMessage() {
+	addMessage(NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE, NOT_AVAILABLE);
 }
 
 
+
+
+
+
+
+
+
+
+/***************************************************************
+ * Set Attribute
+ ***************************************************************/
 
 
 
@@ -394,6 +531,17 @@ void ofxCML::setHardwareName(int _n) {
 }
 
 
+
+
+
+
+
+
+
+
+/***************************************************************
+ * Save File
+ ***************************************************************/
 
 
 
@@ -417,6 +565,17 @@ void ofxCML::saveFile() {
 }
 
 
+
+
+
+
+
+
+
+
+/***************************************************************
+ * Private Methods
+ ***************************************************************/
 
 
 
@@ -481,10 +640,8 @@ void ofxCML::XMLloadFile(string _path) {
  *
  * @param _tag
  *        Tag/s to List.
- *
  * @param _attribute
  *        Attribute/s to List.
- *
  * @param _numAttribute
  *        Number of attribute/s.
  */
@@ -510,4 +667,38 @@ void ofxCML::XMLlist(string _tag, string _attribute[], int _numAttribute) {
 	}
 	
 	cout << "###" << endl;
+}
+
+
+
+
+/**
+ * ofxCML XMLaddTag
+ *
+ * -- Private Method.
+ * Add a Tag and specific Attributes to the CML File.
+ *
+ * @param _tag
+ *        Tag/s to Add.
+ * @param _attribute
+ *        Name of the Attribute.
+ * @param _attributeVal
+ *        Value of the Attribute.
+ * @param _numAttribute
+ *        Number of Attributes to add.
+ */
+void ofxCML::XMLaddTag(string _tag, string _attribute[], string _attributeVal[], int _numAttribute) {
+	/* Lets see how many <_tag> Tags are inside the CML File. */
+	int num = XML.getNumTags(_tag);
+	//cout << "###\t\t Number of <" << _tag << "> Tags: " << ofToString(num) << endl;
+	
+	/* Add a <_tag> Tag. */
+	XML.addTag(_tag);
+	cmlMessage = "### CML ADD <" + _tag + "> TAG\n";
+	//cout << cmlMessage;
+		
+	/* Add Attributes to the <_tag> Tag. */
+	for(int i=0; i < _numAttribute; i++) {
+		XML.addAttribute(_tag, _attribute[i], _attributeVal[i], num);
+	}
 }
