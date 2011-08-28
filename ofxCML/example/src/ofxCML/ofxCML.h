@@ -86,20 +86,21 @@ class ofxCML {
 	
 		/* Methods */
 		void loadFile(string _path);            /* Load */
-		
-		void saveFile();                        /* Save */
-		void saveFile(string _path);
-
+	
 		void listHardware();                    /* List Hardware, Software, Interface, Control etc.*/
 		void listSoftware();
 		void listMessage();
 		void listInterface(int _which);
 		void listControl(int _which);
 	
+		void saveFile();                        /* Save */
+		void saveFile(string _path);
+	
+		void setHardwareName(int _n);
+	
 		void addHardware();
 		void addHardware(string _name, string _platform, string _company, string _modell, string _url);
-
-		void setHardwareName(int _n);
+	
 	
 	
 		/* Variables */
@@ -109,7 +110,7 @@ class ofxCML {
 	
 		string cmlVersion;                                      /* <CML> Attrinute: version="" */
 		string cmlUrl;                                          /* <CML> Attrinute: url="" */
-		
+	
 		int    getNumHardware;                                  /* Total Number of <HARDWARE> Tags. */
 		string getHardwareName[NUM_HARDWARE];                   /* <HARDWARE> Attribute: name="" */
 		string getHardwarePlatform[NUM_HARDWARE];               /* <HARDWARE> Attribute: platform="" */
@@ -122,7 +123,7 @@ class ofxCML {
 		string getInterfaceOscHostOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-host-out="" */
 		string getInterfaceOscPortIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-pott-in="" */
 		string getInterfaceOscPortOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-pott-put="" */
-		
+	
 		int    getNumControl[NUM_HARDWARE];                     /* Total Number of <HARDWARE> Tags. */
 		string getControlName[NUM_CONTROL][NUM_HARDWARE];       /* <CONTROL> Attribute: name="" */
 		string getControlMidiB0[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b0="" */
