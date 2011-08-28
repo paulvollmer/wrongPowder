@@ -41,6 +41,13 @@ ofxCML::ofxCML() {
 	
 }
 
+ofxCML::ofxCML(string _path) {
+	/* Main Method (Private) to Load CML File. */
+	XMLloadFile(_path);	
+}
+
+
+
 
 
 /**
@@ -55,17 +62,8 @@ ofxCML::ofxCML() {
  *        CML File Path
  */
 void ofxCML::loadFile(string _path) {
-	
-	/* Save File Path to the Variable. */
-	filePath = _path;
-	
-	/* Load the CML File. */
-	if(XML.loadFile(filePath)) {
-		cmlMessage = "CML File " + filePath + " loaded!\n";
-	} else {
-		cmlMessage = "Unable to Load CML File " + filePath + " check data/ folder\n";
-	}
-	
+	/* Main Method (Private) to Load CML File. */
+	XMLloadFile(_path);
 	
 	
 	
@@ -469,4 +467,29 @@ void ofxCML::saveFile(string _path) {
 
 void ofxCML::saveFile() {
 	saveFile(filePath);
+}
+
+
+
+
+
+/**
+ * ofxCML XMLloadFile
+ *
+ * -- Private Method.
+ * Main Method to Load XML File.
+ * 
+ * @param path 
+ *        CML File Path
+ */
+void ofxCML::XMLloadFile(string _path) {
+	/* Save File Path to the Variable. */
+	filePath = _path;
+	
+	/* Load the XML File. */
+	if(XML.loadFile(filePath)) {
+		cmlMessage = "CML File " + filePath + " loaded!\n";
+	} else {
+		cmlMessage = "Unable to Load CML File " + filePath + " check data/ folder\n";
+	}	
 }
