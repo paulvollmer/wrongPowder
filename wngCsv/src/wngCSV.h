@@ -50,6 +50,14 @@ namespace wng {
 			vector<string> getFromString(string s, string separator);
 			vector<string> getFromString(string s);
 			
+			int		getInt(int row, int col);
+			float	getFloat(int row, int col);
+			string	getString(int row, int col);
+		
+			void	setInt(int row, int col, string what);
+			void	setFloat(int row, int col, string what);
+			void	setString(int row, int col, string what);
+		
 	
 			/* Variables */
 			vector<vector<string> > data;	// Declare a Vector of strings to store Data.

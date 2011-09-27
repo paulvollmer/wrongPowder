@@ -126,5 +126,105 @@ namespace wng {
 	vector<string> wngCSV::getFromString(string s) {
 		getFromString(s, ",");
 	}
+	
+	
+	/**
+	 * getInt
+	 * get the Integer of a specific row and column.
+	 *
+	 * @param rowIndex
+	 *        row number
+	 * @param column
+	 *        column number
+	 * @return integer
+	 */
+	int wngCSV::getInt(int row, int col) {
+		// TODO
+		int temp = 23; //atoi(data[row][col]);
+		return temp;
+	}
+	
+	
+	/**
+	 * getFloat
+	 * get the Float of a specific row and column.
+	 *
+	 * @param rowName
+	 *        name of the row
+	 * @param column
+	 *        column number
+	 * @return float
+	 */
+	float wngCSV::getFloat(int row, int col) {
+		// TODO
+		float temp = 15.6f; //data[row][col];
+		return temp;
+	}
+	
+	
+	/**
+	 * getString
+	 * get the String of a specific row and column.
+	 *
+	 * @param rowName
+	 *        name of the row
+	 * @param column
+	 *        column number
+	 * @return float
+	 */
+	string wngCSV::getString(int row, int col) {
+		// TODO
+		string temp = "asf"; //data[row][col];
+		return temp;
+	}
+	
+	
+	/**
+	 * setInt
+	 * set a specific Integer to a new value.
+	 *
+	 * @param rowIndex
+	 *        row number
+	 * @param column
+	 *        column number
+	 * @param what
+	 *        new row String
+	 */
+	void wngCSV::setInt(int row, int col, string what) {
+		data[row][col] = what;
+	}
+	
+	
+	/**
+	 * setFloat
+	 * set a specific Float to a new value.
+	 *
+	 * @param rowIndex
+	 *        row number
+	 * @param column
+	 *        column number
+	 * @param what
+	 *        new row String
+	 */
+	void wngCSV::setFloat(int row, int col, string what) {
+		data[row][col] = what;
+	}
+	
+	
+	/**
+	 * setString
+	 * set a specific String to a new value.
+	 *
+	 * @param rowIndex
+	 *        row number
+	 * @param column
+	 *        column number
+	 * @param what
+	 *        new row String
+	 */
+	void wngCSV::setString(int row, int col, string what) {
+		data[row][col] = what;
+	}
+	
 
 }
