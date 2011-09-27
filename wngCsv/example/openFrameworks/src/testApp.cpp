@@ -6,10 +6,10 @@ void testApp::setup(){
 	csv.loadFile(ofToDataPath("file.csv"));
 	
 	// Check how many rows exist.
-	cout << "csv rows: " << csv.rowCount << endl;
+	cout << "csv rows: " << csv.numRows << endl;
 	
 	// Print out all rows and cols.
-	for(int i=0; i<csv.rowCount; i++) {
+	for(int i=0; i<csv.numRows; i++) {
 		for(int j=0; j<csv.data[i].size(); j++) {
 			cout << csv.data[i][j] << endl;
 		}
@@ -25,59 +25,68 @@ void testApp::setup(){
 	
 	// misc...
 	cout << csv.data[0].max_size() << endl;
+	
+	
+	// read a CSV row as simple String.
+	vector<string> dataExample = csv.getFromString("0x11120119,100,40,445,23,543,46,24,56,14,964, 12", ",");
+	cout << "dataExample[0]" << dataExample[0] << endl;
+	// print the hole csv data string to console.
+	for(int i=0; i<dataExample.size(); i++) {
+		cout << "\tdataExample[" << i << "]: " << dataExample[i] << endl;
+	}
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::gotMessage(ofMessage msg){
-
+	
 }
 
 //--------------------------------------------------------------
 void testApp::dragEvent(ofDragInfo dragInfo){ 
-
+	
 }

@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "wngCSV.h"
 
+using namespace wng;
+
 
 class testApp : public ofBaseApp{
 
