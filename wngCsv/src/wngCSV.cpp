@@ -28,83 +28,103 @@
 #include "wngCSV.h"
 
 
-/**
- * A Constructor, usually called to initialize and start the class.
- */
-wngCSV::wngCSV(){
-}
-
-
-/**
- * loadFile
- *
- * @param path
- *        Set the File Path.
- * @param separator
- *        Set the Separator to split CSV file.
- * @param comments
- *        Set the Comments sign.
- */
-void wngCSV::loadFile(string path, string separator, string comments){
-	// Declare a File Stream.
-	ifstream fileIn;
+namespace wng {
 	
-	// Open your Text File:
-	fileIn.open(path.c_str());
-	
-	// Check if File is open.
-	if(fileIn.is_open()) {
-		int lineCount = 0;
-		vector<string> rows;
-		
-		while(fileIn != NULL) {
-			string str;		
-			getline(fileIn, str);
-			
-			// Skip empty lines.
-			if(str.length() == 0) {
-				//cout << "Skip empty line no: " << lineCount << endl;
-			}
-			// Skip Comment lines.
-			else if(str == comments) {
-				//cout << "Skip Comment line no: " << lineCount << endl;
-			}
-			else {
-				rows.push_back(str);
-				
-				// Split the row.
-				vector<string> cols = ofSplitString(rows[lineCount], ",");
-				
-				// Write the string to data.
-				data.push_back(cols);
-				
-				// Erase remaining elements.
-				cols.erase(cols.begin(), cols.end());
-				//cout << "cols: After erasing all elements, vector integers " << (cols.empty() ? "is" : "is not" ) << " empty" << endl;
-				
-				lineCount++;
-			}
-		}
-		
-		// Save the Number of Rows.
-		rowCount = rows.size();
-		
-		// Erase remaining elements.
-		rows.erase(rows.begin(), rows.end());
-		//cout << "rows: After erasing all elements, vector integers " << (rows.empty() ? "is" : "is not" ) << " empty" << endl;
-		
-	// If File cannot opening, print a message to console.
-	} else {
-		cout << "Error opening " << path << ".\n";
+	/**
+	 * A Constructor, usually called to initialize and start the class.
+	 */
+	wngCSV::wngCSV(){
 	}
-}
 
 
-void wngCSV::loadFile(string path, string separator) {
-	loadFile(path, separator, "#");
-}
+	/**
+	 * loadFile
+	 *
+	 * @param path
+	 *        Set the File Path.
+	 * @param separator
+	 *        Set the Separator to split CSV file.
+	 * @param comments
+	 *        Set the Comments sign.
+	 */
+	void wngCSV::loadFile(string path, string separator, string comments){
+		// Declare a File Stream.
+		ifstream fileIn;
+	
+		// Open your Text File:
+		fileIn.open(path.c_str());
+	
+		// Check if File is open.
+		if(fileIn.is_open()) {
+			int lineCount = 0;
+			vector<string> rows;
+		
+			while(fileIn != NULL) {
+				string temp;		
+				getline(fileIn, temp);
+			
+				// Skip empty lines.
+				if(temp.length() == 0) {
+					//cout << "Skip empty line no: " << lineCount << endl;
+				}
+				// Skip Comment lines.
+				else if(temp == comments) {
+					//cout << "Skip Comment line no: " << lineCount << endl;
+				} else {
+					rows.push_back(temp);
+				
+					// Split row into cols.
+					vector<string> cols = ofSplitString(rows[lineCount], ",");
+				
+					// Write the string to data.
+					data.push_back(cols);
+				
+					// Erase remaining elements.
+					cols.erase(cols.begin(), cols.end());
+					//cout << "cols: After erasing all elements, vector integers " << (cols.empty() ? "is" : "is not" ) << " empty" << endl;
+				
+					lineCount++;
+				}
+			}
+		
+			// Save the Number of Rows.
+			numRows = rows.size();
+		
+			// Erase remaining elements.
+			rows.erase(rows.begin(), rows.end());
+			//cout << "rows: After erasing all elements, vector integers " << (rows.empty() ? "is" : "is not" ) << " empty" << endl;
+		
+			// If File cannot opening, print a message to console.
+		} else {
+		cout << "Error opening " << path << ".\n";
+		}
+	}
 
 
-void wngCSV::loadFile(string path) {
-	loadFile(path, ",", "#");
+	void wngCSV::loadFile(string path, string separator) {
+		loadFile(path, separator, "#");
+	}
+
+
+	void wngCSV::loadFile(string path) {
+		loadFile(path, ",", "#");
+	}
+
+
+	/**
+	 * loadFromString
+	 *
+	 * @param s
+	 *        String Input.
+	 */
+	vector<string> wngCSV::getFromString(string s, string separator) {
+		vector<string> cols = ofSplitString(s, separator);
+		return cols;
+	}
+	
+	
+	vector<string> wngCSV::getFromString(string s) {
+		getFromString(s, ",");
+	}
+
 }

@@ -28,22 +28,36 @@
 #pragma once
 
 #include "ofMain.h"
-#include <fstream>
+//#include <iostream>
+//#include <vector>
+//#include <fstream>
+//using namespace std;
 
+namespace wng {
+	
+	class wngCSV {
+		public:
+	
+			/* Constructor */
+			wngCSV();
+	
+	
+			/* Methods */
+			void	loadFile(string path, string separator, string comments);
+			void	loadFile(string path, string separator);
+			void	loadFile(string path);
+			
+			vector<string> getFromString(string s, string separator);
+			vector<string> getFromString(string s);
+			
+	
+			/* Variables */
+			vector<vector<string> > data;	// Declare a Vector of strings to store Data.
+		
+			int	numRows;					// The number of data rows.
+			int numCols;					// Also, empty lines containing only whitespace characters
+											// that follow the last non-empty row are not included.
+	
+	};
 
-class wngCSV {
-	
-	public:
-		/* Constructor */
-		wngCSV();
-	
-		/* Methods */
-		void loadFile(string path, string separator, string comments);
-		void loadFile(string path, string separator);
-		void loadFile(string path);
-	
-		/* Variables */
-		vector<vector<string> > data;	// Declare a Vector of strings to store Data.
-		int rowCount;					// Return the number of rows.
-	
 };
