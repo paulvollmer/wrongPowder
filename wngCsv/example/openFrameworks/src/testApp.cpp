@@ -15,10 +15,16 @@ void testApp::setup(){
 		}
 	}
 	
-	//cout << csv.data[0][1] << endl;
-	//cout << csv.data.front() << endl;
-	//cout << csv.data.at(2) << endl;
-	//cout << csv.data.max_size() << endl;
+	// Print out the first value
+	cout << csv.data[0].front() << endl;
+	
+	// Print out a specific CSV value.
+	cout << csv.data[0][1] << endl;
+	// or
+	cout << csv.data[0].at(1) << endl;
+	
+	// misc...
+	cout << csv.data[0].max_size() << endl;
 }
 
 //--------------------------------------------------------------
