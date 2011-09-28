@@ -34,6 +34,12 @@ void testApp::setup(){
 	for(int i=0; i<dataExample.size(); i++) {
 		cout << "\tdataExample[" << i << "]: " << dataExample[i] << endl;
 	}
+	
+	// Get a specific value as int, float, string etc.
+	cout << "getInt: " << csv.getInt(0, 0) << endl;
+	cout << "getFloat: " << csv.getFloat(0, 1) << endl;
+	cout << "getString: " << csv.getString(0, 2) << endl;
+	cout << "getBool: " << csv.getBool(0, 3) << endl;
 }
 
 //--------------------------------------------------------------

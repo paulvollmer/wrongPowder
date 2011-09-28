@@ -53,10 +53,12 @@ namespace wng {
 			int		getInt(int row, int col);
 			float	getFloat(int row, int col);
 			string	getString(int row, int col);
+			bool	getBool(int row, int col);
 		
-			void	setInt(int row, int col, string what);
-			void	setFloat(int row, int col, string what);
+			void	setInt(int row, int col, int what);
+			void	setFloat(int row, int col, float what);
 			void	setString(int row, int col, string what);
+			void	setBool(int row, int col, bool what);
 		
 	
 			/* Variables */

@@ -132,15 +132,16 @@ namespace wng {
 	 * getInt
 	 * get the Integer of a specific row and column.
 	 *
-	 * @param rowIndex
+	 * @param row
 	 *        row number
-	 * @param column
+	 * @param col
 	 *        column number
 	 * @return integer
 	 */
 	int wngCSV::getInt(int row, int col) {
-		// TODO
-		int temp = 23; //atoi(data[row][col]);
+		int temp = 0;
+		istringstream buffer(data[row][col]);
+		buffer >> temp;
 		return temp;
 	}
 	
@@ -149,15 +150,16 @@ namespace wng {
 	 * getFloat
 	 * get the Float of a specific row and column.
 	 *
-	 * @param rowName
-	 *        name of the row
-	 * @param column
+	 * @param row
+	 *        row number
+	 * @param col
 	 *        column number
 	 * @return float
 	 */
 	float wngCSV::getFloat(int row, int col) {
-		// TODO
-		float temp = 15.6f; //data[row][col];
+		float temp = 0;
+		istringstream buffer(data[row][col]);
+		buffer >> temp;
 		return temp;
 	}
 	
@@ -166,15 +168,41 @@ namespace wng {
 	 * getString
 	 * get the String of a specific row and column.
 	 *
-	 * @param rowName
-	 *        name of the row
-	 * @param column
+	 * @param row
+	 *        row number
+	 * @param col
 	 *        column number
 	 * @return float
 	 */
 	string wngCSV::getString(int row, int col) {
-		// TODO
-		string temp = "asf"; //data[row][col];
+		string temp = data[row][col];
+		return temp;
+	}
+	
+	
+	/**
+	 * getBool
+	 * get the Boolean of a specific row and column.
+	 *
+	 * @param row
+	 *        row number
+	 * @param col
+	 *        column number
+	 * @return bool
+	 */
+	bool wngCSV::getBool(int row, int col) {
+		static const string trueString = "true";
+		static const string falseString = "false";
+		string lower = ofToLower(data[row][col]);
+		if(lower == trueString) {
+			return true;
+		}
+		if(lower == falseString) {
+			return false;
+		}
+		bool temp = false;
+		istringstream cur(lower);
+		cur >> temp;
 		return temp;
 	}
 	
@@ -183,14 +211,15 @@ namespace wng {
 	 * setInt
 	 * set a specific Integer to a new value.
 	 *
-	 * @param rowIndex
+	 * @param row
 	 *        row number
-	 * @param column
+	 * @param col
 	 *        column number
 	 * @param what
-	 *        new row String
+	 *        new Integer
 	 */
-	void wngCSV::setInt(int row, int col, string what) {
+	void wngCSV::setInt(int row, int col, int what) {
+		// TODO
 		data[row][col] = what;
 	}
 	
@@ -199,14 +228,15 @@ namespace wng {
 	 * setFloat
 	 * set a specific Float to a new value.
 	 *
-	 * @param rowIndex
+	 * @param row
 	 *        row number
-	 * @param column
+	 * @param col
 	 *        column number
 	 * @param what
-	 *        new row String
+	 *        new row Float
 	 */
-	void wngCSV::setFloat(int row, int col, string what) {
+	void wngCSV::setFloat(int row, int col, float what) {
+		// TODO
 		data[row][col] = what;
 	}
 	
@@ -215,14 +245,32 @@ namespace wng {
 	 * setString
 	 * set a specific String to a new value.
 	 *
-	 * @param rowIndex
+	 * @param row
 	 *        row number
-	 * @param column
+	 * @param col
 	 *        column number
 	 * @param what
 	 *        new row String
 	 */
 	void wngCSV::setString(int row, int col, string what) {
+		// TODO
+		data[row][col] = what;
+	}
+	
+	
+	/**
+	 * setBool
+	 * set a specific Boolean to a new value.
+	 *
+	 * @param row
+	 *        row number
+	 * @param col
+	 *        column number
+	 * @param what
+	 *        new row Boolean
+	 */
+	void wngCSV::setBool(int row, int col, bool what) {
+		// TODO
 		data[row][col] = what;
 	}
 	
