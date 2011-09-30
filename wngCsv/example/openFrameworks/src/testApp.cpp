@@ -42,12 +42,16 @@ void testApp::setup(){
 	cout << "getFloat: " << csv.getFloat(0, 1) << endl;
 	cout << "getString: " << csv.getString(0, 2) << endl;
 	cout << "getBool: " << csv.getBool(0, 3) << endl;
-	
-	// Set a specific value as int, float, string etc.
-	cout << "setInt: " << csv.setInt(0, 0) << endl;
-	cout << "setFloat: " << csv.setFloat(0, 1) << endl;
-	cout << "setString: " << csv.setString(0, 2) << endl;
-	cout << "setBool: " << csv.setBool(0, 3) << endl;
+
+    // Get a specific value as int, float, string etc.
+	csv.setInt(0, 0, 2305);
+	cout << "getInt: " << csv.getInt(0, 0) << endl;
+	csv.setFloat(0, 1, 23.666);
+	cout << "getFloat: " << csv.getFloat(0, 1) << endl;
+	csv.setString(0, 2, "helloworld");
+	cout << "getString: " << csv.getString(0, 2) << endl;
+	csv.setBool(0, 3, true);
+	cout << "getBool: " << csv.getBool(0, 3) << endl;
 }
 
 //--------------------------------------------------------------
