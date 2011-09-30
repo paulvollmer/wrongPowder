@@ -219,8 +219,7 @@ namespace wng {
 	 *        new Integer
 	 */
 	void wngCSV::setInt(int row, int col, int what) {
-		// TODO
-		data[row][col] = what;
+		data[row][col] = ofToString(what);
 	}
 	
 	
@@ -236,8 +235,7 @@ namespace wng {
 	 *        new row Float
 	 */
 	void wngCSV::setFloat(int row, int col, float what) {
-		// TODO
-		data[row][col] = what;
+		data[row][col] = ofToString(what);
 	}
 	
 	
@@ -253,8 +251,7 @@ namespace wng {
 	 *        new row String
 	 */
 	void wngCSV::setString(int row, int col, string what) {
-		// TODO
-		data[row][col] = what;
+		data[row][col] = ofToString(what);
 	}
 	
 	
@@ -270,8 +267,7 @@ namespace wng {
 	 *        new row Boolean
 	 */
 	void wngCSV::setBool(int row, int col, bool what) {
-		// TODO
-		data[row][col] = what;
+		data[row][col] = ofToString(what);
 	}
 	
 
