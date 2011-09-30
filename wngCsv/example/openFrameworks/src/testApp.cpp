@@ -7,6 +7,8 @@ void testApp::setup(){
 	
 	// Check how many rows exist.
 	cout << "csv rows: " << csv.numRows << endl;
+	// Check how many columnss exist.
+	cout << "csv cols: " << csv.numCols << endl;
 	
 	// Print out all rows and cols.
 	for(int i=0; i<csv.numRows; i++) {
