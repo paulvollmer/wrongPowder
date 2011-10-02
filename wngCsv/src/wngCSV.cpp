@@ -73,7 +73,7 @@ namespace wng {
 					//cout << "Skip empty line no: " << lineCount << endl;
 				}
 				// Skip Comment lines.
-				else if(temp == comments) {
+				else if(ofToString(temp[0]) == comments) {
 					//cout << "Skip Comment line no: " << lineCount << endl;
 				} else {
 					rows.push_back(temp);
@@ -132,8 +132,15 @@ namespace wng {
 		ofstream myfile;
 		myfile.open(path.c_str());
 		if (myfile.is_open()) {
-			myfile << "This is a line.\n";
-			myfile << "This is another line.\n";
+			// Write data to file.
+			for(int i=0; i<numRows; i++) {
+				for(int j=0; j<data[i].size(); j++) {
+					myfile << data[i][j] << separator;
+					if(j==(data[i].size()-1)) {
+						myfile << "\n";
+					}
+				}
+			}
 			myfile.close();
 			//cout << "Open file" << endl;
 		} else {
