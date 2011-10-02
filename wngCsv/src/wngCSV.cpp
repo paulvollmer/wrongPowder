@@ -48,6 +48,11 @@ namespace wng {
 	 *        Set the Comments sign.
 	 */
 	void wngCSV::loadFile(string path, string separator, string comments){
+		// Save string variables.
+		filePath = path;
+		fileSeparator = separator;
+		fileComments = comments;
+		
 		// Declare a File Stream.
 		ifstream fileIn;
 	
@@ -99,18 +104,78 @@ namespace wng {
 		cout << "Error opening " << path << ".\n";
 		}
 	}
-
-
+	
+	
 	void wngCSV::loadFile(string path, string separator) {
 		loadFile(path, separator, "#");
 	}
-
-
+	
+	
 	void wngCSV::loadFile(string path) {
 		loadFile(path, ",", "#");
 	}
-
-
+	
+	
+	/**
+	 * saveFile
+	 *
+	 * @param path
+	 *        Set the File Path.
+	 * @param separator
+	 *        Set the Separator to split CSV file.
+	 * @param comments
+	 *        Set the Comments sign.
+	 */
+	void wngCSV::saveFile(string path, string separator, string comments) {
+		createFile(path);
+		
+		ofstream myfile;
+		myfile.open(path.c_str());
+		if (myfile.is_open()) {
+			myfile << "This is a line.\n";
+			myfile << "This is another line.\n";
+			myfile.close();
+			//cout << "Open file" << endl;
+		} else {
+			//cout << "Unable to open file" << endl;
+		}
+	
+	}
+	
+	
+	void wngCSV::saveFile(string path, string separator) {
+		createFile(path);
+		saveFile(path, separator, fileComments);
+	}
+	
+	
+	void wngCSV::saveFile(string path) {
+		createFile(path);
+		saveFile(path, fileSeparator, fileComments);
+	}
+	
+	
+	void wngCSV::saveFile() {
+		saveFile(filePath, fileSeparator, fileComments);
+	}
+	
+	
+	/**
+	 * createFile
+	 *
+	 * @param path
+	 *        Set the File Path.
+	 */
+	void wngCSV::createFile(string path) {
+		FILE * pFile;
+		pFile = fopen (path.c_str(),"w");
+		if (pFile!=NULL) {
+			//fputs ("fopen example",pFile);
+			fclose (pFile);
+		}
+	}
+	
+	
 	/**
 	 * loadFromString
 	 *

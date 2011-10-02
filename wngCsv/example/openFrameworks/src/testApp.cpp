@@ -52,6 +52,9 @@ void testApp::setup(){
 	cout << "getString: " << csv.getString(0, 2) << endl;
 	csv.setBool(0, 3, true);
 	cout << "getBool: " << csv.getBool(0, 3) << endl;
+	
+	csv.saveFile(ofToDataPath("savefile.csv"));
+	csv.createFile(ofToDataPath("createfile.csv"));
 }
 
 //--------------------------------------------------------------

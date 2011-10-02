@@ -28,10 +28,10 @@
 #pragma once
 
 #include "ofMain.h"
-//#include <iostream>
-//#include <vector>
-//#include <fstream>
-//using namespace std;
+#include <iostream>
+#include <vector>
+#include <fstream>
+using namespace std;
 
 namespace wng {
 	
@@ -46,10 +46,17 @@ namespace wng {
 			void	loadFile(string path, string separator, string comments);
 			void	loadFile(string path, string separator);
 			void	loadFile(string path);
+		
+			void	saveFile(string path, string separator, string comments);
+			void	saveFile(string path, string separator);
+			void	saveFile(string path);
+			void	saveFile();
 			
+			void	createFile(string path);
+		
 			vector<string> getFromString(string s, string separator);
 			vector<string> getFromString(string s);
-			
+		
 			int		getInt(int row, int col);
 			float	getFloat(int row, int col);
 			string	getString(int row, int col);
@@ -60,12 +67,16 @@ namespace wng {
 			void	setString(int row, int col, string what);
 			void	setBool(int row, int col, bool what);
 		
-	
+			
 			/* Variables */
+			string	filePath;				// Save loaded Filepath.
+			string	fileSeparator;			// Save loaded File Separator.
+			string	fileComments;			// Save loaded File Comments.
+			
 			vector<vector<string> > data;	// Declare a Vector of strings to store Data.
-		
-			int	numRows;					// The number of data rows.
-			int numCols;					// Also, empty lines containing only whitespace characters
+			
+			int		numRows;				// The number of data rows.
+			int		numCols;				// Also, empty lines containing only whitespace characters
 											// that follow the last non-empty row are not included.
 	
 	};
