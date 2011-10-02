@@ -53,7 +53,10 @@ void testApp::setup(){
 	csv.setBool(0, 3, true);
 	cout << "getBool: " << csv.getBool(0, 3) << endl;
 	
+	// Save File.
 	csv.saveFile(ofToDataPath("savefile.csv"));
+	
+	// Create new File.
 	csv.createFile(ofToDataPath("createfile.csv"));
 }
 

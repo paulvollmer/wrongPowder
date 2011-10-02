@@ -28,10 +28,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include <iostream>
-#include <vector>
-#include <fstream>
-using namespace std;
 
 namespace wng {
 	

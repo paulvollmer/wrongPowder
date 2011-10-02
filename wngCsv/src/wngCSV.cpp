@@ -211,10 +211,7 @@ namespace wng {
 	 * @return integer
 	 */
 	int wngCSV::getInt(int row, int col) {
-		int temp = 0;
-		istringstream buffer(data[row][col]);
-		buffer >> temp;
-		return temp;
+		return ofToInt(data[row][col]);//temp;
 	}
 	
 	
@@ -229,10 +226,7 @@ namespace wng {
 	 * @return float
 	 */
 	float wngCSV::getFloat(int row, int col) {
-		float temp = 0;
-		istringstream buffer(data[row][col]);
-		buffer >> temp;
-		return temp;
+		return ofToFloat(data[row][col]);//temp;
 	}
 	
 	
@@ -262,19 +256,7 @@ namespace wng {
 	 * @return bool
 	 */
 	bool wngCSV::getBool(int row, int col) {
-		static const string trueString = "true";
-		static const string falseString = "false";
-		string lower = ofToLower(data[row][col]);
-		if(lower == trueString) {
-			return true;
-		}
-		if(lower == falseString) {
-			return false;
-		}
-		bool temp = false;
-		istringstream cur(lower);
-		cur >> temp;
-		return temp;
+		return ofToBool(data[row][col]);//temp;
 	}
 	
 	
