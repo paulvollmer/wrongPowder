@@ -247,8 +247,7 @@ namespace wng {
 	 * @return float
 	 */
 	string wngCSV::getString(int row, int col) {
-		string temp = data[row][col];
-		return temp;
+		return data[row][col];
 	}
 	
 	
