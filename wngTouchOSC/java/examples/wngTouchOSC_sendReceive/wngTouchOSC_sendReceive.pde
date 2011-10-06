@@ -25,16 +25,7 @@
  */
 
 
-import wnglibs.*;
-/*import oscP5.*;
-import netP5.*;
-
-OscP5 osc;
-OscMessage message;
-NetAddress net;*/
-
 wngTouchOSC touchosc;
-
 
 
 /**
@@ -44,23 +35,9 @@ void setup() {
   size(400, 400);
   frameRate(30);
   
-  // start oscP5, listening for incoming messages at port 1234
-  //osc = new OscP5(this, 1234);
+  touchosc = new wngTouchOSC("127.0.0.1", 8000, 9000);
   
-  // myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
-  // an ip address and a port number. myRemoteLocation is used as parameter in
-  // oscP5.send() when sending osc packets to another computer, device, 
-  // application. usage see below. for testing purposes the listening port
-  // and the port of the remote location address are the same, hence you will
-  // send messages back to this sketch.
-  //net = new NetAddress("127.0.0.1", 1234);
   
-  touchosc = new wngTouchOSC();
-  
-  /*println("ACC X: " + touchosc.accX(message));
-  println("ACC Y: " + touchosc.accY(message));
-  println("ACC Z: " + touchosc.accZ(message));
-  */
   touchosc.selectPage("/3");
   
   touchosc.setLED("/1/ledanysolo", 0.5);
@@ -69,6 +46,7 @@ void setup() {
   touchosc.setXYpad("/page6/xy1", 0.5, 0.5);
   touchosc.setFader("/1/volume1", 0.5);
   touchosc.setRotary("/3/pan", 0.9);
+  
   //tOsc.setMultiToggle("/3/insertbypass", 12, 1, 0);
   int[] mt = {0,1,0,1,0,1,0,1,0,1,0,1};
   touchosc.setMultiToggle("/3/insertbypass", 12, 1, mt);
@@ -76,16 +54,13 @@ void setup() {
   //int[][] mt = new int[12][1];
   //mt[][0] = {0,1,0,1,0,1,0,1,0,1,0,1};
   //touchosc.setMultiToggle("/3/insertbypass", mt);
-  //tOsc.setMultiFader("/4/gain", 6, 1);
+  touchosc.setMultiFader("/4/gain", 6, 1);
   float[] mf = {0.9, 0.2, 0.3, 0.7, 0.5, 0.6};
   touchosc.setMultiFader("/4/gain", mf);
   
   touchosc.show("/3/pan");
   touchosc.hide("/3/pan");
   touchosc.setColor("/4/gain", "orange");
-  
-  //touchosc.controllerVisible("/page1/toggle86", 0);
-  //touchosc.controllerColor("/page1/toggle85", "gray");
 }
 
 
@@ -97,7 +72,16 @@ void draw() {
 }
 
 
-/*void oscEvent(OscMessage message) {
+/**
+ * oscEvent
+ */
+void oscEvent(OscMessage message) {
+  // Get the Accelerometer values.
+  println("ACC X: " + touchosc.accX(message));
+  println("ACC Y: " + touchosc.accY(message));
+  println("ACC Z: " + touchosc.accZ(message));
   
-}*/
+  // Get a TouchOSC controller message.
+  println(touchosc.getValue(message, "/3/pan"));
+}
 

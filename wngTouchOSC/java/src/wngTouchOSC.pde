@@ -25,11 +25,9 @@
  */
 
 
-package wnglibs;
-
 import oscP5.*;
 import netP5.*;
-
+  
 
 public class wngTouchOSC {
   
@@ -37,100 +35,38 @@ public class wngTouchOSC {
   OscMessage message;
   NetAddress net;
   
-  public String ip;
-  public int    portReceive;
-  public int    portSend;
-  //public float[] accelerometer = new float[3]; 
-  public float  accelerometerX;
-  public float  accelerometerY;
-  public float  accelerometerZ;
-  //private float page;
-  private float val;
-  
   
   /**
-   * a Constructor, usually called in the setup() method in your sketch to
+   * A Constructor, usually called in the setup() method in your sketch to
    * initialize and start the library.
+   *
+   * @param ip
+   *        The IP to receive.
+   * @param send
+   *        The Port to send.
+   * @param receive
+   *        The Port to receive.
    */
-  public wngTouchOSC() {
+  public wngTouchOSC(String ip, int portSend, int portReceive) {
     // start oscP5, listening for incoming messages at port 1234
-    osc = new OscP5(this, 1234);
-    
+    osc = new OscP5(this, portSend);
     // myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
     // an ip address and a port number. myRemoteLocation is used as parameter in
     // oscP5.send() when sending osc packets to another computer, device, 
     // application. usage see below. for testing purposes the listening port
     // and the port of the remote location address are the same, hence you will
     // send messages back to this sketch.
-    net = new NetAddress("127.0.0.1", 1234);
+    net = new NetAddress(ip, portReceive);
   }
   
   
-  
-  // TODO //////////////////////////////////////////////////////////////////////
-  // add oscP5 function
-  
-  //TouchOSCp5() { }
-  
-  /*TouchOSC(int receive, String i, int send) {
-    portReceive = receive;
-    ip = i;
-    portSend = send
-  }*/
-  
-  
-  
-  /**
-   * oscSetup
-   * initialize OscP5, setting port value
-   *
-   * @param portReceive
-   *        port Receiver value
-   * @param ip
-   *        IP to send
-   * @param portSend
-   *        port Sender value
-   *
-  void oscSetup(int portReceive, String ip, int portSend) {
-    if(osc_active == true) {
-      // start oscP5, listening for incoming messages at "port"
-      osc = new OscP5(this, portReceive);
-      
-      // myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
-      // an ip address and a port number. myRemoteLocation is used as parameter in
-      // oscP5.send() when sending osc packets to another computer, device, 
-      // application. usage see below. for testing purposes the listening port
-      // and the port of the remote location address are the same, hence you will
-      // send messages back to this sketch.
-      net = new NetAddress(ip, portSend);
-    }
-  }*/
-  
-  
-  
-  
-  
-  /**
-   * Device Accelerometer X, Y, Z value array
-   */
-  /*public float[] acc(OscMessage message) {
-    float[] accelerometer = new float[3]; 
-    // check accelerator value and get the values
-    if(msg.checkAddrPattern("/accxyz") == true) {
-      // check if the typetag is the right one.
-      if(msg.checkTypetag("fff")) {
-        accelerometer[0] = msg.get(0).floatValue();
-        accelerometer[1] = msg.get(1).floatValue();
-        accelerometer[2] = msg.get(2).floatValue();
-      }
-    }
-    return accelerometer;
-  }*/
-  
   /**
    * Device Accelerometer X value
+   *
+   * @return float
    */
   public float accX(OscMessage msg) {
+    float accelerometerX = 0;
     // check accelerator value and get the values
     if(msg.checkAddrPattern("/accxyz") == true) {
       // check if the typetag is the right one.
@@ -141,10 +77,14 @@ public class wngTouchOSC {
     return accelerometerX;
   }
   
+  
   /**
    * Device Accelerometer Y value
+   *
+   * @return float
    */
   public float accY(OscMessage msg) {
+    float accelerometerY = 0;
     // check accelerator value and get the values
     if(msg.checkAddrPattern("/accxyz") == true) {
       // check if the typetag is the right one.
@@ -155,10 +95,14 @@ public class wngTouchOSC {
     return accelerometerY;
   }
   
+  
   /**
    * Device Accelerometer Z value
+   *
+   * @return float
    */
   public float accZ(OscMessage msg) {
+    float accelerometerZ = 0;
     // check accelerator value and get the values
     if(msg.checkAddrPattern("/accxyz") == true) {
       // check if the typetag is the right one.
@@ -168,9 +112,6 @@ public class wngTouchOSC {
     }
     return accelerometerZ;
   }
-  
-  
-  
   
   
   // TODO /////////////////////////////////////////////////
@@ -190,29 +131,24 @@ public class wngTouchOSC {
     return page;
   }*/
   
+  
   /**
    * getValue
    * get a float value
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
+   * @return float
    */
   public float getValue(OscMessage msg, String oscName) {
+    float value = 0;
     if(msg.checkAddrPattern(oscName) == true) {
       if(msg.checkTypetag("f")) {
-        val = msg.get(0).floatValue();
+        value = msg.get(0).floatValue();
       }
     }
-    return val;
+    return value;
   }
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   /**
@@ -220,8 +156,7 @@ public class wngTouchOSC {
    * Though not configurable controls, the pages in a TouchOSC layout can be addressed
    * with OSC messages. Sending an OSC message to TouchOSC with only the page name
    * as the address will make that page the active page and display it on the device.
-   *
-   * http://hexler.net/docs/touchosc-controls/
+   * info @ http://hexler.net/docs/touchosc-controls/
    *
    * @param oscName
    *        TouchOSC will make the page named <oscName> the active page.
@@ -229,20 +164,14 @@ public class wngTouchOSC {
   public void selectPage(String oscName) {
     message = new OscMessage(oscName);
     osc.send(message, net);
-    
-    consoleOutput("Page: <"+oscName+"> selected");
   }
-  
-  
-  
   
   
   /**
    * setLED
    * Incoming messages are mapped to the control’s value range and
    * update the brightness of the LED display.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -253,12 +182,12 @@ public class wngTouchOSC {
     setLED(oscName, (float)controlValue);
   }
   
+  
   /**
    * setLED
    * Incoming messages are mapped to the control’s value range and
    * update the brightness of the LED display.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -267,20 +196,14 @@ public class wngTouchOSC {
    */
   public void setLED(String oscName, float controlValue) {
     sendMessage(oscName, controlValue);
-    
-    consoleOutput("LED: "+oscName+" set to "+controlValue);
   }
-  
-  
-  
   
   
   /**
    * setLabel
    * Values of incoming messages are displayed as text. Both textual and numeric values
    * can be received and displayed.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -291,11 +214,11 @@ public class wngTouchOSC {
     setLabel(oscName, (float)lableName);
   }
   
+  
   /**
    * setLabel
    * Values are displayed as text. Both textual and numeric values can be send.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -304,16 +227,14 @@ public class wngTouchOSC {
    */
   public void setLabel(String oscName, float lableName) {
     sendMessage(oscName, lableName);
-    
-    consoleOutput("Lable: "+oscName+" set to "+lableName);
   }
+  
   
   /**
    * setLabel
    * Values are displayed as text. Both textual and numeric values can be send.
    * do not use Ä, ä, Ö, ö, Ü, ü and ß
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -322,19 +243,13 @@ public class wngTouchOSC {
    */
   public void setLabel(String oscName, String lableName) {
     sendMessage(oscName, lableName);
-    
-    consoleOutput("Lable: "+oscName+" set to "+lableName);
   }
-  
-  
-  
   
   
   /**
    * setButton
    * Set the control state/value of Push/Toggle Buttons.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -343,20 +258,14 @@ public class wngTouchOSC {
    */
   public void setButton(String oscName, int controlState) {
     sendMessage(oscName, controlState);
-    
-    consoleOutput("Push/Toggle: "+oscName+" set to "+controlState);
   }
-  
-  
-  
   
   
   /**
    * setXYpad
    * Set the control x and y value of XY Pad.
    * Both x and y values use the same value range.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -369,12 +278,12 @@ public class wngTouchOSC {
     setXYpad(oscName, (float)controlX, (float)controlY);
   }
   
+  
   /**
    * setXYpad
    * Set the control x and y value of XY Pad.
    * Both x and y values use the same value range.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -388,19 +297,13 @@ public class wngTouchOSC {
     message.add(controlX);
     message.add(controlY);
     osc.send(message, net);
-    
-    consoleOutput("XY Pad: "+oscName+" set to X: "+controlX+", Y: "+controlY);
   }
-  
-  
-  
   
   
   /**
    * setFader
    * Set the control value of Fader.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -411,11 +314,11 @@ public class wngTouchOSC {
     setFader(oscName, (float)controlValue);
   }
   
+  
   /**
    * setFader
    * Set the control value of Fader.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -424,19 +327,13 @@ public class wngTouchOSC {
    */
   public void setFader(String oscName, float controlValue) {
     sendMessage(oscName, controlValue);
-    
-    consoleOutput("Fader: "+oscName+" set to "+controlValue);
   }
-  
-  
-  
   
   
   /**
    * setRotary
    * Set the control value of Rotary.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -447,11 +344,11 @@ public class wngTouchOSC {
     setRotary(oscName, (float)controlValue);
   }
   
+  
   /**
    * setRotary
    * Set the control value of Rotary.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -460,19 +357,13 @@ public class wngTouchOSC {
    */
   public void setRotary(String oscName, float controlValue) {
     sendMessage(oscName, controlValue);
-    
-    consoleOutput("Rotary: "+oscName+" set to "+controlValue);
   }
-  
-  
-  
   
   
   /**
    * setMultiToggle
    * Set the control state/value of all Multi-Toggle element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -491,15 +382,13 @@ public class wngTouchOSC {
       }
     }
     osc.send(message, net);
-    
-    consoleOutput("Multi-Toggle "+rows+"x"+cols+": "+oscName+" set all to "+controlState);
   }
+  
   
   /**
    * setMultiToggle
    * Set the control state/value of each Multi-Toggle element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -511,27 +400,21 @@ public class wngTouchOSC {
    *        int array for each Button element.
    */
   public void setMultiToggle(String oscName, int rows, int cols, int[] controlState) {
-    //print("### ["+year()+"/"+month()+"/"+day()+" "+hour()+":"+minute()+":"+second()+"] TouchOSC Multi-Toggle "+rows+"x"+cols+": "+oscName+" set to ");
-    
     message = new OscMessage(oscName);
     for(int i=0; i<rows; i++) {
       for(int j=0; j<cols; j++) {
         message.add(controlState[i+j]);
-        
-        //print(controlState[i+j]+", ");
       }
     }
     osc.send(message, net);
-    
-    //println();
   }
+  
   
   // TODO ////////////////////////////////////////////////////////////////////////////////////////
   /**
    * setMultiToggle
    * Set the control state/value of each Multi-Toggle element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -555,14 +438,10 @@ public class wngTouchOSC {
   }*/
   
   
-  
-  
-  
   /**
    * setMultiFader
    * Set the control state/value of all Multi-Fader element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -575,11 +454,11 @@ public class wngTouchOSC {
     setMultiFader(oscName, num, (float)controlValue);
   }
   
+  
   /**
    * setMultiFader
    * Set the control state/value of all Multi-Fader element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -594,15 +473,13 @@ public class wngTouchOSC {
       message.add(controlValue);
     }
     osc.send(message, net);
-    
-    consoleOutput("Multi-Toggle "+num+" : "+oscName+" set all to "+controlValue);
   }
+  
   
   /**
    * setMultiFader
    * Set the control state/value of each Multi-Fader element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -610,24 +487,18 @@ public class wngTouchOSC {
    *        int array for each Fader element.
    */
   public void setMultiFader(String oscName, int[] controlValue) {
-    //print("### ["+year()+"/"+month()+"/"+day()+" "+hour()+":"+minute()+":"+second()+"] TouchOSC Multi-Fader "+oscName+" set to ");
-    
     message = new OscMessage(oscName);
     for(int i=0; i<controlValue.length; i++) {
       message.add(controlValue[i]);
-      
-      //print(controlValue[i]+", ");
     }
     osc.send(message, net);
-    
-    //println();
   }
+  
   
   /**
    * setMultiFader
    * Set the control state/value of each Multi-Fader element.
-   *
-   * http://hexler.net/docs/touchosc-controls-reference/
+   * info @ http://hexler.net/docs/touchosc-controls-reference/
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
@@ -635,23 +506,12 @@ public class wngTouchOSC {
    *        float array for each Fader element.
    */
   public void setMultiFader(String oscName, float[] controlValue) {
-    //print("### ["+year()+"/"+month()+"/"+day()+" "+hour()+":"+minute()+":"+second()+"] TouchOSC Multi-Fader "+oscName+" set to ");
-    
     message = new OscMessage(oscName);
     for(int i=0; i<controlValue.length; i++) {
       message.add(controlValue[i]);
-      
-      //print(controlValue[i]+", ");
     }
     osc.send(message, net);
-    
-    //println();
   }
-  
-  
-  
-  
-  
   
   
   /**
@@ -669,6 +529,7 @@ public class wngTouchOSC {
     osc.send(message, net);
   }
   
+  
   /**
    * sendMessage
    * Send a Float value to the TouchOSC control element.
@@ -683,6 +544,7 @@ public class wngTouchOSC {
     message.add(msg);
     osc.send(message, net);
   }
+  
   
   /**
    * sendMessage
@@ -700,9 +562,6 @@ public class wngTouchOSC {
   }
   
   
-  
-  
-  
   /**
    * vibrate
    * Triggers device vibration (iPhone only)
@@ -712,9 +571,6 @@ public class wngTouchOSC {
     message = new OscMessage("/vibrate");
     osc.send(message, net);
   }
-  
-  
-  
   
   
   /**
@@ -733,6 +589,7 @@ public class wngTouchOSC {
     sendMessage(oscName+"/visible", controlStatus);
   }
   
+  
   /**
    * show
    * Set TouchOSC control to be visible.
@@ -745,6 +602,7 @@ public class wngTouchOSC {
     sendMessage(oscName+"/visible", 1);
   }
   
+  
   /**
    * hide
    * Set TouchOSC control to be invisible.
@@ -756,9 +614,6 @@ public class wngTouchOSC {
   public void hide(String oscName) {
     sendMessage(oscName+"/visible", 0);
   }
-  
-  
-  
   
   
   /**
@@ -778,14 +633,4 @@ public class wngTouchOSC {
   }
   
   
-  
-  /*
-   * ### [year/month/day hour:minute:second] TouchOSC
-   */
-  private void consoleOutput(String s) {
-    //println("### ["+year()+"/"+month()+"/"+day()+" "+hour()+":"+minute()+":"+second()+"] TouchOSC "+s);
-  }
-
-
-
 }
