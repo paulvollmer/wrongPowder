@@ -9,7 +9,7 @@ Tested Platform: MAC OS
 * * * 
 
 The wngTouchOSC Project is Hosted at github.  
-Check out for New released Version at (<https://github.com/WrongEntertainment/wnglibs/tree/master/wngCsv>).
+Check out for New released Version at (<https://github.com/WrongEntertainment/wnglibs/tree/master/wngTouchOSC>).
 
 wngTouchOSC is a wrong-entertainment production.  
 Copyright 2011 [wrong-entertainment](http://wrong-entertainment.com)  
