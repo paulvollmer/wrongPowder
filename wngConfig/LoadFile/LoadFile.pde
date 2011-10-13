@@ -1,5 +1,5 @@
 
-wngConfig config = new wngConfig();
+wngConfig config = new wngConfig(); 
 
 
 void setup() {
