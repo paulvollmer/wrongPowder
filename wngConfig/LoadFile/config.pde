@@ -69,9 +69,9 @@ public class wngConfig {
         + folderName + File.separator + fileName;
       break;
 
-      // MACOS9
+      // MACOS9 !Not tested, i think it Works!
     case 3:
-      filePath = "/";
+      filePath = "/Users/" + System.getProperty("user.name") + "/Library/Application Support/" + folderName + File.separator + fileName;
       break;
 
       // LINUX
