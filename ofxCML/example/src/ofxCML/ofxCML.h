@@ -28,8 +28,7 @@
 
 
 
-#ifndef _OFX_CML
-#define _OFX_CML
+#pragma once
 
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
@@ -76,95 +75,97 @@
 
 
 
-class ofxCML {
+namespace wng {
+
+	class ofxCML {
 	
-	public:
-		/* Constructor */
-		ofxCML();
-		ofxCML(string _path);
-	
-	
-		/* Methods */
-		void loadFile(string _path);            /* Load */
-	
-		void listHardware();                    /* List Tags */
-		void listSoftware();
-		void listMessage();
-		void listInterface(int _which);
-		void listControl(int _which);
-	
-		string getId(string _tag, int _which);  /* get Attribute */
-		string getUrl(string _tag, int _which);
-		string getName(string _tag, int _which);
-		string getPlatform(string _tag, int _which);
-		string getCompany(string _tag, int _which);
-		string getModell(string _tag, int _which);
-		string getMidiIn(string _tag, int _which);
-		string getMidiOut(string _tag, int _which);
-		string getMidiByte0(string _tag, int _which);
-		string getMidiByte1(string _tag, int _which);
-		string getMidiByte2(string _tag, int _which);
-		string getOscHostIn(string _tag, int _which);
-		string getOscHostOut(string _tag, int _which);
-		string getOscPortIn(string _tag, int _which);
-		string getOscPortOut(string _tag, int _which);
-		string getOscPath(string _tag, int _which);
-		string getOscStart(string _tag, int _which);
-		string getOscStop(string _tag, int _which);
-	
-		void saveFile();                        /* Save */
-		void saveFile(string _path);
-	
-		void setHardwareName(int _n);
-	
-		void addHardware();                     /* add Tag */
-		void addHardware(string _id, string _name, string _platform, string _company, string _modell, string _url);
-		void addSoftware();
-		void addSoftware(string _id, string _name, string _platform, string _company, string _modell, string _url);
-		void addMessage();
-		void addMessage(string _id, string _name, string _platform, string _company, string _modell, string _url);
+		public:
+			/* Constructor */
+			ofxCML();
+			ofxCML(string _path);
 	
 	
+			/* Methods */
+			void loadFile(string _path);            /* Load */
 	
-		/* Variables */
-		string filePath;                                        /* Path of the loaded CML File. */
+			void listHardware();                    /* List Tags */
+			void listSoftware();
+			void listMessage();
+			void listInterface(int _which);
+			void listControl(int _which);
 	
-		string cmlMessage;                                      /* write messages to this Variable like a Console. */
+			string getId(string _tag, int _which);  /* get Attribute */
+			string getUrl(string _tag, int _which);
+			string getName(string _tag, int _which);
+			string getPlatform(string _tag, int _which);
+			string getCompany(string _tag, int _which);
+			string getModell(string _tag, int _which);
+			string getMidiIn(string _tag, int _which);
+			string getMidiOut(string _tag, int _which);
+			string getMidiByte0(string _tag, int _which);
+			string getMidiByte1(string _tag, int _which);
+			string getMidiByte2(string _tag, int _which);
+			string getOscHostIn(string _tag, int _which);
+			string getOscHostOut(string _tag, int _which);
+			string getOscPortIn(string _tag, int _which);
+			string getOscPortOut(string _tag, int _which);
+			string getOscPath(string _tag, int _which);
+			string getOscStart(string _tag, int _which);
+			string getOscStop(string _tag, int _which);
 	
-		string cmlVersion;                                      /* <CML> Attrinute: version="" */
-		string cmlUrl;                                          /* <CML> Attrinute: url="" */
+			void saveFile();                        /* Save */
+			void saveFile(string _path);
 	
-		int    getNumHardware;                                  /* Total Number of <HARDWARE> Tags. */
-		string getHardwareName[NUM_HARDWARE];                   /* <HARDWARE> Attribute: name="" */
-		string getHardwarePlatform[NUM_HARDWARE];               /* <HARDWARE> Attribute: platform="" */
-		string getHardwareCompany[NUM_HARDWARE];                /* <HARDWARE> Attribute: company="" */
-		string getHardwareModell[NUM_HARDWARE];                 /* <HARDWARE> Attribute: modell="" */
-		string getHardwareUrl[NUM_HARDWARE];                    /* <HARDWARE> Attribute: url="" */
-		string getInterfaceMidiIn[NUM_HARDWARE];                /* <INTERFACE> Attribute: midi-in="" */
-		string getInterfaceMidiOut[NUM_HARDWARE];               /* <INTERFACE> Attribute: midi-out="" */
-		string getInterfaceOscHostIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-host-in="" */
-		string getInterfaceOscHostOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-host-out="" */
-		string getInterfaceOscPortIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-pott-in="" */
-		string getInterfaceOscPortOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-pott-put="" */
+			void setHardwareName(int _n);
 	
-		int    getNumControl[NUM_HARDWARE];                     /* Total Number of <HARDWARE> Tags. */
-		string getControlName[NUM_CONTROL][NUM_HARDWARE];       /* <CONTROL> Attribute: name="" */
-		string getControlMidiB0[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b0="" */
-		string getControlMidiB1[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b1="" */
-		string getControlMidiB2[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b2="" */
-		string getControlOscPath[NUM_CONTROL][NUM_HARDWARE];    /* <CONTROL> Attribute: osc-path="" */
-		string getControlOscStart[NUM_CONTROL][NUM_HARDWARE];   /* <CONTROL> Attribute: osc-start="" */
-		string getControlOscStop[NUM_CONTROL][NUM_HARDWARE];    /* <CONTROL> Attribute: osc-stop="" */
+			void addHardware();                     /* add Tag */
+			void addHardware(string _id, string _name, string _platform, string _company, string _modell, string _url);
+			void addSoftware();
+			void addSoftware(string _id, string _name, string _platform, string _company, string _modell, string _url);
+			void addMessage();
+			void addMessage(string _id, string _name, string _platform, string _company, string _modell, string _url);
 	
 	
 	
-	private:
-		ofxXmlSettings XML;                                     /* Initialize XML addon */
-		void           XMLloadFile(string _path);
-		void           XMLlist(string _tag, string _attribute[], int _numAttribute);
-		string         XMLgetAttribute(string _tag, string _attribute, int _which);
-		void           XMLaddTag(string _tag, string _attribute[], string _attributeVal[], int _numAttribute);
+			/* Variables */
+			string filePath;                                        /* Path of the loaded CML File. */
+	
+			string cmlMessage;                                      /* write messages to this Variable like a Console. */
+	
+			string cmlVersion;                                      /* <CML> Attrinute: version="" */
+			string cmlUrl;                                          /* <CML> Attrinute: url="" */
+	
+			int    getNumHardware;                                  /* Total Number of <HARDWARE> Tags. */
+			string getHardwareName[NUM_HARDWARE];                   /* <HARDWARE> Attribute: name="" */
+			string getHardwarePlatform[NUM_HARDWARE];               /* <HARDWARE> Attribute: platform="" */
+			string getHardwareCompany[NUM_HARDWARE];                /* <HARDWARE> Attribute: company="" */
+			string getHardwareModell[NUM_HARDWARE];                 /* <HARDWARE> Attribute: modell="" */
+			string getHardwareUrl[NUM_HARDWARE];                    /* <HARDWARE> Attribute: url="" */
+			string getInterfaceMidiIn[NUM_HARDWARE];                /* <INTERFACE> Attribute: midi-in="" */
+			string getInterfaceMidiOut[NUM_HARDWARE];               /* <INTERFACE> Attribute: midi-out="" */
+			string getInterfaceOscHostIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-host-in="" */
+			string getInterfaceOscHostOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-host-out="" */
+			string getInterfaceOscPortIn[NUM_HARDWARE];             /* <INTERFACE> Attribute: osc-pott-in="" */
+			string getInterfaceOscPortOut[NUM_HARDWARE];            /* <INTERFACE> Attribute: osc-pott-put="" */
+	
+			int    getNumControl[NUM_HARDWARE];                     /* Total Number of <HARDWARE> Tags. */
+			string getControlName[NUM_CONTROL][NUM_HARDWARE];       /* <CONTROL> Attribute: name="" */
+			string getControlMidiB0[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b0="" */
+			string getControlMidiB1[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b1="" */
+			string getControlMidiB2[NUM_CONTROL][NUM_HARDWARE];     /* <CONTROL> Attribute: midi-b2="" */
+			string getControlOscPath[NUM_CONTROL][NUM_HARDWARE];    /* <CONTROL> Attribute: osc-path="" */
+			string getControlOscStart[NUM_CONTROL][NUM_HARDWARE];   /* <CONTROL> Attribute: osc-start="" */
+			string getControlOscStop[NUM_CONTROL][NUM_HARDWARE];    /* <CONTROL> Attribute: osc-stop="" */
+	
+	
+	
+		private:
+			ofxXmlSettings XML;                                     /* Initialize XML addon */
+			void           XMLloadFile(string _path);
+			void           XMLlist(string _tag, string _attribute[], int _numAttribute);
+			string         XMLgetAttribute(string _tag, string _attribute, int _which);
+			void           XMLaddTag(string _tag, string _attribute[], string _attributeVal[], int _numAttribute);
+			
+		};
 		
 };
-
-#endif
