@@ -30,28 +30,22 @@ public class wngConfig {
 
   public Properties props = new Properties();
   public String filePath;
+  
+  // Constructors -----------------------------------------------
+  wngConfig() {}
 
-
-
-
-  wngConfig() {
-  }
-
-  /*
-  wngConfig(String path) {
-   load(path);
+  wngConfig(String folderName, String fileName) {
+   load(folderName, pathName);
    }
-   */
-
-
-
 
   /**
    * load
    * Check the Platform and load a Configuration File.
    *
-   * @param path
-   *        The Configuration Filepath.
+   * @param folderName
+   *        Name of the folder (Use your application name)
+   * @param fileName
+            Name of the config file
    */
   public void load(String folderName, String fileName) {  //@Tim: changed constructor
     // check Platform and save Filepath to Variable.
@@ -114,8 +108,8 @@ public class wngConfig {
 
   /**
    * checkFile
-   * Private method to check if Configuration File exist.
-   * If no file found, create a file at the directory.
+   * Private method to check if Configuration File exists.
+   * If no file is found, create a file at the directory.
    */
   private void checkFile() {
     try {
@@ -133,9 +127,12 @@ public class wngConfig {
       }
       else {  // File does not exist 
         println("checkFile(): Configuration File does not exist. Create an empty File.");
+        // Create base directory
         File folder = new File(file.getParent());
         folder.mkdirs();
+        // create config file
         file.createNewFile();
+        // write default config data to config file
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
         String[] confText = getDefaultConfigText();
         for (int i=0; i<confText.length; i++) {
