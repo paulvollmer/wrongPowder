@@ -4,7 +4,7 @@ wngConfig config = new wngConfig();
 
 void setup() {
   // Load configuration File.  
-  config.load("wngMT/config.txt");
+  config.load("wngMT", "config.txt");
   int w = int(config.props.getProperty("app.width", ""+200));
   int h = int(config.props.getProperty("app.height", ""+200));
   
@@ -31,8 +31,9 @@ void draw() {
 
 
 void keyPressed() {
-  config.props.setProperty("app.width", "100");
-  config.save();
+  config.props.setProperty("app.width", ""+width);
+  config.props.setProperty("app.height", ""+height);
+  config.store();
   
   println("###");
 }

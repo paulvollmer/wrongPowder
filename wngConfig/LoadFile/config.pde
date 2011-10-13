@@ -52,8 +52,7 @@ public class wngConfig {
    *        The Configuration Filepath.
    */
   public void load(String path) {
-    // check Platform
-    // Save Filepath to Variable and check File.
+    // check Platform and save Filepath to Variable.
     switch(platform) {
       
       // WINDOWS
@@ -66,7 +65,6 @@ public class wngConfig {
       // Path: /Users/NAME/Library/Application Support/APPNAME/FILENAME.SUFFIX
       case 2:
         filePath = "/Users/"+System.getProperty("user.name")+"/Library/Application Support/"+path;
-        checkFile();
       break;
       
       // MACOS9
@@ -85,6 +83,8 @@ public class wngConfig {
       break;
     
     }
+    
+    checkFile();
     
   }
   
@@ -128,16 +128,23 @@ public class wngConfig {
   
   
   /**
-   * save
+   * store
    */
-  public void save() {
+  public void store(String path) {
     try {
-      FileOutputStream out = new FileOutputStream(filePath);
-      props.store(out, "wngConfig");
+      FileOutputStream out = new FileOutputStream(path);
+      props.store(out, path+" savet at:");
       out.close();
     } catch(IOException e) {
     
     }
+  }
+  
+  /**
+   * store
+   */
+  public void store() {
+    store(filePath);
   }
   
   
