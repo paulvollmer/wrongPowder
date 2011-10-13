@@ -4,14 +4,23 @@ wngConfig config = new wngConfig();
 
 void setup() {
   // Load configuration File.  
-  config.loadFile("wngMT", "config.txt");
+  config.load("wngMT/config.txt");
+  int w = int(config.props.getProperty("app.width", ""+200));
+  int h = int(config.props.getProperty("app.height", ""+200));
   
-  println(config.file);
-  String[] appWidth = split(config.file[0], '=');
-  String[] appHeight = split(config.file[1], '=');
-  
-  size(int(appWidth[1]), int(appHeight[1]));
+  size(w, h);
   this.frame.setResizable(true);
+  
+  // Get the number of Property Elements.
+  println(config.props.size());
+  
+  // Get a Property list.
+  config.props.list(System.out);
+  // Or get all Property Names.
+  println("-- propertyNames --");
+  for(Enumeration e = config.props.propertyNames() ; e.hasMoreElements() ;) {
+    println(e.nextElement());
+  }
 }
 
 
@@ -21,20 +30,9 @@ void draw() {
 
 
 
-void dispose() {
-  String[] configSaver = new String[2];
-  configSaver[0] = "appWidth="+width;
-  configSaver[1] = "appHeight="+height;
-  
-  config.saveFile(configSaver);
+void keyPressed() {
+  config.props.setProperty("app.width", "100");
+  config.save();
   
   println("###");
-}
-
-void exit() {
-  println("exit");
-}
-
-void close() {
-  println("stop");
 }
