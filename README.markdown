@@ -1,7 +1,7 @@
-#wnglibs (version 0.1 BETA)#
+#wrongPowder (version 0.1 ALPHA)#
 
 Description:  
-wnglibs openFrameworks addons. 
+wrongPowder openFrameworks / Processing addons. 
 
 * * * 
 
@@ -13,6 +13,8 @@ Check out for New released Version at (<https://github.com/WrongEntertainment/wn
 wnglibs is a wrong-entertainment production.  
 Copyright 2011 [wrong-entertainment](http://wrong-entertainment.com)  
 <wrongentertainment@yahoo.de>
+[timpulver.de](http://timpulver.de)
+<pulver.tim@googlemail.com>
 
 This file is part of wnglibs.  
 
