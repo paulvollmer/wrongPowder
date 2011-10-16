@@ -5,30 +5,33 @@ wrongPowder openFrameworks / Processing addons.
 
 * * * 
 
-Build with [openFrameworks](http://www.openframeworks.cc) (version 0.7)
+Build for Processing
 
-The wnglibs Project is Hosted at github.  
-Check out for New released Version at (<https://github.com/WrongEntertainment/wnglibs>).
+The wrongPowder Project is Hosted at github.  
+Check out for New released Version at (<https://github.com/WrongEntertainment/wrongPowder>).
 
-wnglibs is a wrong-entertainment production.  
-Copyright 2011 [wrong-entertainment](http://wrong-entertainment.com)  
-<wrongentertainment@yahoo.de>
+wrongPowder is developed by:  
+[wrong-entertainment](http://wrong-entertainment.com)
+
+Copyright 2011 Paul Vollmer & Tim Pulver  
+[paulvollmer.net](http://paul-vollmer.net)  
+<vollmerpaul@yahoo.de>  
 [timpulver.de](http://timpulver.de)
 <pulver.tim@googlemail.com>
 
-This file is part of wnglibs.  
+This file is part of wrongPowder.  
 
 * * *
 
-wnglibs is free software: you can redistribute it and/or modify  
+wrongPowder is free software: you can redistribute it and/or modify  
 it under the terms of the GNU Lesser General Public License as published by  
 the Free Software Foundation, either version 3 of the License, or  
 (at your option) any later version.  
 
-wnglibs is distributed in the hope that it will be useful,  
+wrongPowder is distributed in the hope that it will be useful,  
 but WITHOUT ANY WARRANTY; without even the implied warranty of  
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the  
 GNU Lesser General Public License for more details.  
 
 You should have received a copy of the GNU Lesser General Public License  
-along with wnglibs.  If not, see <http://www.gnu.org/licenses/>.  
+along with wrongPowder.  If not, see <http://www.gnu.org/licenses/>.  
