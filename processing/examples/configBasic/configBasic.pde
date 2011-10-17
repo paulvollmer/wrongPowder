@@ -11,7 +11,7 @@ void setup() {
   int h = conf.getIntProperty("app.height", 200);
 		
   size(w, h);
-  this.frame.setResizable(true);
+  //this.frame.setResizable(true);
   
   // Get the number of Property Elements.
   println(conf.getSize());
