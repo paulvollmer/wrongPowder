@@ -23,7 +23,7 @@
  * @version	0.1.0
  */
 
-package wng.FCP;
+package wrongPowder.fcp;
 
 import java.io.*;
 
@@ -35,7 +35,7 @@ import processing.core.*;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class wngFCPexport {
+public class FcpExport {
 
   private PApplet p5;
 
@@ -57,7 +57,7 @@ public class wngFCPexport {
    * @example wrongAgent
    * @param theParent
    */
-  public wngFCPexport(PApplet parent) {
+  public FcpExport(PApplet parent) {
     this.p5 = parent;
     // welcome console line
     System.out.println("### "+LIBRARYNAME+" library "+VERSION+"\n### "+LIBRARYNAME+" is a library from wrong-entertainment.com\n");
