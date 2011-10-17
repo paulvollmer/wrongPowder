@@ -23,7 +23,7 @@
  * @version		0.1.0A
  */
 
-package wng.agent;
+package wrongPowder.hacks;
 
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
@@ -40,7 +40,7 @@ import processing.core.PApplet;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class wngHacks {
+public class hacks {
 
 	private PApplet p5;
 
@@ -56,7 +56,7 @@ public class wngHacks {
 	 * @example wrongHacks
 	 * @param theParent
 	 */
-	public wngHacks(PApplet parent) {
+	public hacks(PApplet parent) {
 		p5 = parent;
 		welcome();
 	}

@@ -23,7 +23,7 @@
  * @version		0.1.0
  */
 
-package wng.agent;
+package wrongPowder.info;
 
 import processing.core.PApplet;
 
@@ -37,7 +37,7 @@ import processing.core.PApplet;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class wngInfo {
+public class info {
 
 	PApplet p5;
 
@@ -54,7 +54,7 @@ public class wngInfo {
 	 * @example wrongAgent
 	 * @param theParent
 	 */
-	public wngInfo(PApplet parent) {
+	public info(PApplet parent) {
 		p5 = parent;
 		welcome();
 	}

@@ -23,7 +23,7 @@
  * @version		0.1.0
  */
 
-package wng.agent;
+package wrongPowder.calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +38,7 @@ import processing.core.PApplet;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class wngCalendar {
+public class Calendar {
 
 	private PApplet p5;
 
@@ -84,7 +84,7 @@ public class wngCalendar {
 	 * @example wngCalendar
 	 * @param theParent
 	 */
-	public wngCalendar(PApplet parent) {
+	public Calendar(PApplet parent) {
 		p5 = parent;
                 welcome();
 	}
