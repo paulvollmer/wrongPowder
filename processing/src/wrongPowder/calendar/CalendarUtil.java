@@ -38,7 +38,7 @@ import processing.core.PApplet;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class Calendar {
+public class CalendarUtil {
 
 	private PApplet p5;
 
@@ -84,17 +84,17 @@ public class Calendar {
 	 * @example wngCalendar
 	 * @param theParent
 	 */
-	public Calendar(PApplet parent) {
+	public CalendarUtil(PApplet parent) {
 		p5 = parent;
-                welcome();
+                //welcome();
 	}
 
         /*
 	 * welcome text for processing IDE console
 	 */
-	protected void welcome() {
+	/*protected void welcome() {
 		System.out.println("### START wngCalendar CLASS");
-	}
+	}*/
 
 	/**
 	 * timestamp return a timestamp
