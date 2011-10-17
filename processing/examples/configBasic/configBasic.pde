@@ -1,6 +1,6 @@
-import wrongPowder.config.*;
+import wrongPowder.io.config.*;
 
-config conf = new config();
+Config conf = new Config();
 
 
 void setup() {

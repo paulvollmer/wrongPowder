@@ -50,7 +50,7 @@ import java.util.Properties;
  *
  */
 
-public class config {
+public class Config {
 
 	public Properties props = new Properties();
 	public String filePath;
@@ -64,9 +64,9 @@ public class config {
 	 * @example Hello
 	 * @param theParent
 	 */
-	public config() {}
+	public Config() {}
 	
-	public config(String folderName, String fileName) {
+	public Config(String folderName, String fileName) {
 		load(folderName, fileName);
 	}
 	
