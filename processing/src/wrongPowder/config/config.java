@@ -43,7 +43,7 @@ import java.util.Properties;
  * Make sure you rename this class as well as the name of the example package 'template' 
  * to your own lobrary or tool naming convention.
  * 
- * @example Hello 
+ * @example configBasic 
  * 
  * (the tag @example followed by the name of an example included in folder 'examples' will
  * automatically include the example in the javadoc.)
@@ -61,7 +61,7 @@ public class config {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
-	 * @example Hello
+	 * @example configBasic
 	 * @param theParent
 	 */
 	public config() {}
