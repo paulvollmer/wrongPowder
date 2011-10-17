@@ -28,8 +28,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-import wng.FXG.*;
-wngFXGexport FXG = new wngFXGexport(this);
+import wrongPowder.fxg.*;
+fxg FXG = new fxg(this);
 
 
 

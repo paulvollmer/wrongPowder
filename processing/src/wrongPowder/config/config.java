@@ -8,15 +8,15 @@
  *  timpulver.de
  *  pulver.tim@googlemail.com
  * 
- *  This file is part of wnglibs library.
+ *  This file is part of wrongPowder library.
  *
- *  wngConfig is distributed in the hope that it will be useful,
+ *  wrongPowder is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with wngConfig. If not, see <http://www.gnu.org/licenses/>.
+ *  along with wrongPowder. If not, see <http://www.gnu.org/licenses/>.
  * 
  *  @author		##author##
  *  @modified	##date##

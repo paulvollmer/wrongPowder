@@ -1,22 +1,20 @@
 /**
- *  wrongPowder is developed by wrong-entertainment & powder
+ *  wrongPowder.fxg is developed by wrong-entertainment & powder
  *
  *
- *  Copyright 2011 Paul Vollmer & Tim Pulver
+ *  Copyright 2011 Paul Vollmer
  *  paulvollmer.net
  *  vollmerpaul@yahoo.de
- *  timpulver.de
- *  pulver.tim@googlemail.com
  * 
- *  This file is part of wnglibs library.
+ *  This file is part of wrongPowder library.
  *
- *  wngConfig is distributed in the hope that it will be useful,
+ *  wrongPowder.fxg is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with wngConfig. If not, see <http://www.gnu.org/licenses/>.
+ *  along with wrongPowder.fxg. If not, see <http://www.gnu.org/licenses/>.
  * 
  *  @author		##author##
  *  @modified	##date##
@@ -32,7 +30,7 @@ import processing.core.PImage;
 
 
 /**
- * @example wngFXGexport
+ * @example manyFXGs
  * @author Paul Vollmer, http://www.wrong-entertainment.com
  */
 public class fxg implements fxgConstants {
