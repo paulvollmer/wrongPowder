@@ -39,17 +39,10 @@ import java.util.Properties;
 
 
 /**
- * This is a template class and can be used to start a new processing library or tool.
- * Make sure you rename this class as well as the name of the example package 'template' 
- * to your own lobrary or tool naming convention.
+ * config
  * 
- * @example configBasic 
- * 
- * (the tag @example followed by the name of an example included in folder 'examples' will
- * automatically include the example in the javadoc.)
- *
+ * @example config_basic 
  */
-
 public class config {
 
 	public Properties props = new Properties();
@@ -61,7 +54,7 @@ public class config {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
-	 * @example configBasic
+	 * @example config_basic
 	 * @param theParent
 	 */
 	public config() {}
@@ -76,6 +69,7 @@ public class config {
 	 * load
 	 * Check the Platform and load a Configuration File.
 	 *
+	 * @example config_basic
 	 * @param folderName Name of the folder (Use your application name)
 	 * @param fileName Name of the config file
 	 */
@@ -116,6 +110,7 @@ public class config {
 	 * loadStatic
 	 * Load a Configuration file from a static path.
 	 * 
+	 * @example config_loadStatic
 	 * @param path The Filepath.
 	 */
 	public void loadStatic(String path) {
@@ -194,6 +189,7 @@ public class config {
 	 * store
 	 * Method to save the Configuration File,
 	 *
+	 * @example config_advanced
 	 * @param path The Filepath.
 	 */
 	public void store(String path) {
@@ -210,6 +206,8 @@ public class config {
 	/**
 	 * store
 	 * Method to save the Configuration File,
+	 * 
+	 * @example config_basic
 	 */
 	public void store() {
 		store(filePath);
@@ -220,6 +218,7 @@ public class config {
 	/**
 	 * getSize
 	 * 
+	 * @example config_advanced
 	 * @return int
 	 */
 	public int getSize() {
@@ -232,6 +231,7 @@ public class config {
 	/**
 	 * list
 	 * 
+	 * @example config_advanced
 	 * Get a list of all Property Elements. Print to console.
 	 */
 	public void list() {
@@ -243,6 +243,7 @@ public class config {
 	/**
 	 * getIntProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -255,6 +256,7 @@ public class config {
 	/**
 	 * getFloatProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -267,6 +269,7 @@ public class config {
 	/**
 	 * getStringProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -279,6 +282,7 @@ public class config {
 	/**
 	 * getBooleanProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -293,6 +297,7 @@ public class config {
 	/**
 	 * setProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param val The value to set.
 	 */
@@ -302,6 +307,11 @@ public class config {
 	
 	
 	
+	/**
+	 * time
+	 * 
+	 * @return String time.
+	 */
 	private String time() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 		String ts = sdf.format(new Date());
@@ -309,18 +319,33 @@ public class config {
 	}
 	
 	
+	/**
+	 * isWin
+	 * 
+	 * @return win String
+	 */
 	private static boolean isWindows() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//windows
 	    return (os.indexOf( "win" ) >= 0); 
 	}
  
+	/**
+	 * isMac
+	 * 
+	 * @return mac String
+	 */
 	private static boolean isMac() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//Mac
 	    return (os.indexOf( "mac" ) >= 0); 
 	}
  
+	/**
+	 * isUnix
+	 * 
+	 * @return nix or nux String
+	 */
 	private static boolean isUnix() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//linux or unix
