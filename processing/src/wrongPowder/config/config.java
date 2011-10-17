@@ -23,7 +23,7 @@
  *  @version	##version##
  */
 
-package wrongPowder.config;
+package wrongPowder.io.config;
 
 
 
