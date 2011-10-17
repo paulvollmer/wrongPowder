@@ -8,22 +8,22 @@
  *  timpulver.de
  *  pulver.tim@googlemail.com
  * 
- *  This file is part of wnglibs library.
+ *  This file is part of wrongPowder library.
  *
- *  wngConfig is distributed in the hope that it will be useful,
+ *  wrongPowder is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with wngConfig. If not, see <http://www.gnu.org/licenses/>.
+ *  along with wrongPowder. If not, see <http://www.gnu.org/licenses/>.
  * 
  *  @author		##author##
  *  @modified	##date##
  *  @version	##version##
  */
 
-package wrongPowder.io.config;
+package wrongPowder.config;
 
 
 
@@ -39,18 +39,11 @@ import java.util.Properties;
 
 
 /**
- * This is a template class and can be used to start a new processing library or tool.
- * Make sure you rename this class as well as the name of the example package 'template' 
- * to your own lobrary or tool naming convention.
+ * config
  * 
- * @example Hello 
- * 
- * (the tag @example followed by the name of an example included in folder 'examples' will
- * automatically include the example in the javadoc.)
- *
+ * @example config_basic 
  */
-
-public class Config {
+public class config {
 
 	public Properties props = new Properties();
 	public String filePath;
@@ -61,12 +54,12 @@ public class Config {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
-	 * @example Hello
+	 * @example config_basic
 	 * @param theParent
 	 */
-	public Config() {}
+	public config() {}
 	
-	public Config(String folderName, String fileName) {
+	public config(String folderName, String fileName) {
 		load(folderName, fileName);
 	}
 	
@@ -76,6 +69,7 @@ public class Config {
 	 * load
 	 * Check the Platform and load a Configuration File.
 	 *
+	 * @example config_basic
 	 * @param folderName Name of the folder (Use your application name)
 	 * @param fileName Name of the config file
 	 */
@@ -97,7 +91,6 @@ public class Config {
 		else if(isMac()) {
 			filePath = File.separator + "Users" + File.separator + System.getProperty("user.name") + File.separator
 			+ "Library" + File.separator + "Application Support" + File.separator + folderName + File.separator + fileName;
-			System.out.println("MAC Filepath selected.");
 		}
 		// LINUX
 		else if(isUnix()) {	
@@ -117,6 +110,7 @@ public class Config {
 	 * loadStatic
 	 * Load a Configuration file from a static path.
 	 * 
+	 * @example config_loadStatic
 	 * @param path The Filepath.
 	 */
 	public void loadStatic(String path) {
@@ -140,6 +134,11 @@ public class Config {
 					FileInputStream in = new FileInputStream(filePath);
 					props.load(in);
 					System.out.println("checkFile(): Config file successfully loaded.");
+					// Application counter
+					int appCount = Integer.parseInt(props.getProperty("app.count", ""+0));
+					appCount ++;
+					props.setProperty("app.count", ""+appCount );
+					store(filePath);
 				}
 				catch(IOException e) {
 					System.err.println("checkFile(): File could not be loaded");
@@ -167,8 +166,6 @@ public class Config {
 					System.err.println("Error: " + e.getMessage());
 				}
 			}
-			
-			//saveStrings(filePath, newFile);
 		}
 		catch(Exception e) {
 			System.out.println("Error");
@@ -180,6 +177,7 @@ public class Config {
 	private String[] getDefaultConfigText() {
 		// set Configuration text.
 		String[] conf = { "# "+time(),
+				          "app.count=1",
 				          "app.width=300",
 				          "app.height=300"};
 		return conf;
@@ -191,6 +189,7 @@ public class Config {
 	 * store
 	 * Method to save the Configuration File,
 	 *
+	 * @example config_advanced
 	 * @param path The Filepath.
 	 */
 	public void store(String path) {
@@ -207,6 +206,8 @@ public class Config {
 	/**
 	 * store
 	 * Method to save the Configuration File,
+	 * 
+	 * @example config_basic
 	 */
 	public void store() {
 		store(filePath);
@@ -217,6 +218,7 @@ public class Config {
 	/**
 	 * getSize
 	 * 
+	 * @example config_advanced
 	 * @return int
 	 */
 	public int getSize() {
@@ -229,6 +231,7 @@ public class Config {
 	/**
 	 * list
 	 * 
+	 * @example config_advanced
 	 * Get a list of all Property Elements. Print to console.
 	 */
 	public void list() {
@@ -240,6 +243,7 @@ public class Config {
 	/**
 	 * getIntProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -252,6 +256,7 @@ public class Config {
 	/**
 	 * getFloatProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -264,6 +269,7 @@ public class Config {
 	/**
 	 * getStringProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -276,6 +282,7 @@ public class Config {
 	/**
 	 * getBooleanProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
 	 * @return
@@ -290,6 +297,7 @@ public class Config {
 	/**
 	 * setProperty
 	 * 
+	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param val The value to set.
 	 */
@@ -299,6 +307,11 @@ public class Config {
 	
 	
 	
+	/**
+	 * time
+	 * 
+	 * @return String time.
+	 */
 	private String time() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 		String ts = sdf.format(new Date());
@@ -306,18 +319,33 @@ public class Config {
 	}
 	
 	
+	/**
+	 * isWin
+	 * 
+	 * @return win String
+	 */
 	private static boolean isWindows() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//windows
 	    return (os.indexOf( "win" ) >= 0); 
 	}
  
+	/**
+	 * isMac
+	 * 
+	 * @return mac String
+	 */
 	private static boolean isMac() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//Mac
 	    return (os.indexOf( "mac" ) >= 0); 
 	}
  
+	/**
+	 * isUnix
+	 * 
+	 * @return nix or nux String
+	 */
 	private static boolean isUnix() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//linux or unix
@@ -326,4 +354,3 @@ public class Config {
 	
 	
 }
-

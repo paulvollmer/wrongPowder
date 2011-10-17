@@ -3,21 +3,21 @@
 Description:  
 wrongPowder openFrameworks / Processing addons. 
 
-* * *
+* * * 
 
 Build for Processing
 
 The wrongPowder Project is Hosted at github.  
 Check out for New released Version at (<https://github.com/WrongEntertainment/wrongPowder>).
 
-wrongPowder is developed by [wrong-entertainment](https://github.com/WrongEntertainment/) & [Powder](https://github.com/Powder/).
-
+wrongPowder is developed by:  
+[wrong-entertainment](http://wrong-entertainment.com)
 
 Copyright 2011 Paul Vollmer & Tim Pulver  
 [paulvollmer.net](http://paul-vollmer.net)  
 <vollmerpaul@yahoo.de>  
-[timpulver.de](http://timpulver.de)  
-<pulver.tim@googlemail.com>  
+[timpulver.de](http://timpulver.de)
+<pulver.tim@googlemail.com>
 
 This file is part of wrongPowder.  
 
