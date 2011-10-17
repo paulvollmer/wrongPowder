@@ -9,7 +9,7 @@ void setup() {
   //config.loadStatic("/Users/wrongMacBookpro/Library/Application Support/wngMT/config.txt");
   int w = conf.getIntProperty("app.width", 200);
   int h = conf.getIntProperty("app.height", 200);
-		
+
   size(w, h);
   //this.frame.setResizable(true);
   

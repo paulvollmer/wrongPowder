@@ -97,7 +97,6 @@ public class config {
 		else if(isMac()) {
 			filePath = File.separator + "Users" + File.separator + System.getProperty("user.name") + File.separator
 			+ "Library" + File.separator + "Application Support" + File.separator + folderName + File.separator + fileName;
-			System.out.println("MAC Filepath selected.");
 		}
 		// LINUX
 		else if(isUnix()) {	
@@ -140,6 +139,11 @@ public class config {
 					FileInputStream in = new FileInputStream(filePath);
 					props.load(in);
 					System.out.println("checkFile(): Config file successfully loaded.");
+					// Application counter
+					int appCount = Integer.parseInt(props.getProperty("app.count", ""+0));
+					appCount ++;
+					props.setProperty("app.count", ""+appCount );
+					store(filePath);
 				}
 				catch(IOException e) {
 					System.err.println("checkFile(): File could not be loaded");
@@ -167,8 +171,6 @@ public class config {
 					System.err.println("Error: " + e.getMessage());
 				}
 			}
-			
-			//saveStrings(filePath, newFile);
 		}
 		catch(Exception e) {
 			System.out.println("Error");
@@ -180,6 +182,7 @@ public class config {
 	private String[] getDefaultConfigText() {
 		// set Configuration text.
 		String[] conf = { "# "+time(),
+				          "app.count=1",
 				          "app.width=300",
 				          "app.height=300"};
 		return conf;
@@ -326,4 +329,3 @@ public class config {
 	
 	
 }
-
