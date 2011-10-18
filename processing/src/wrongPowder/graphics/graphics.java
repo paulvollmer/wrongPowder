@@ -23,7 +23,7 @@
  * @version		0.1.0
  */
 
-package wrongPowder.graphics;
+package wrongPowder.Graphics;
 
 import processing.core.PApplet;
 
@@ -43,7 +43,7 @@ import processing.core.PApplet;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class graphics {
+public class Graphics {
 
 	private PApplet p5;
 
@@ -55,7 +55,7 @@ public class graphics {
 	 * @example wngShape
 	 * @param theParent
 	 */
-	public graphics(PApplet parent) {
+	public Graphics(PApplet parent) {
 		p5 = parent;
 		welcome();
 	}

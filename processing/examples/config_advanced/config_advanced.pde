@@ -32,7 +32,7 @@ void setup() {
   size(w, h);
   this.frame.setResizable(true);
   
-  frameRate(setProperty("app.framerate", 30));
+  frameRate(conf.getIntProperty("app.framerate", 30));
 }
 
 

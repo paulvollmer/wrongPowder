@@ -27,7 +27,7 @@ package wrongPowder.fxg;
 /**
  * @invisible
  */
-public interface fxgConstants {
+public interface FxgConstants {
   
   // Library Information
   public final static String LIBRARYNAME = "wng.FXG";

@@ -51,14 +51,22 @@ public class config {
 	
 
 	/**
-	 * a Constructor, usually called in the setup() method in your sketch to
+	 * A Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
 	 * @example config_basic
-	 * @param theParent
 	 */
 	public config() {}
 	
+	/**
+	 * A Constructor, usually called in the setup() method in your sketch to
+	 * initialize and start the library.
+	 * Also the constructor load a Configuration file.
+	 * 
+	 * @example config_basic
+	 * @param folderName Name of the folder (Use your application name).
+	 * @param fileName Name of the Configuration file.
+	 */
 	public config(String folderName, String fileName) {
 		load(folderName, fileName);
 	}
@@ -67,11 +75,11 @@ public class config {
 	
 	/**
 	 * load
-	 * Check the Platform and load a Configuration File.
+	 * Check the Platform and load a Configuration file.
 	 *
 	 * @example config_basic
-	 * @param folderName Name of the folder (Use your application name)
-	 * @param fileName Name of the config file
+	 * @param folderName Name of the folder (Use your application name).
+	 * @param fileName Name of the Configuration file.
 	 */
 	public void load(String folderName, String fileName) {  //@Tim: changed constructor
 		// check Platform and save Filepath to Variable.
@@ -174,6 +182,11 @@ public class config {
 	
 	
 	
+	/**
+	 * getDefaultConfigText
+	 * 
+	 * @return default Configuration content.
+	 */
 	private String[] getDefaultConfigText() {
 		// set Configuration text.
 		String[] conf = { "# "+time(),
@@ -205,7 +218,7 @@ public class config {
 	
 	/**
 	 * store
-	 * Method to save the Configuration File,
+	 * Method to save the Configuration File.
 	 * 
 	 * @example config_basic
 	 */
@@ -219,7 +232,7 @@ public class config {
 	 * getSize
 	 * 
 	 * @example config_advanced
-	 * @return int
+	 * @return int How many Properties contains the Configuration File.
 	 */
 	public int getSize() {
 		int s = props.size();
@@ -230,9 +243,11 @@ public class config {
 	
 	/**
 	 * list
-	 * 
-	 * @example config_advanced
-	 * Get a list of all Property Elements. Print to console.
+	 * Get a list of all Property Elements. Print to console like this:
+	 * -- listing properties --
+	 * app.width=300
+	 * app.height=300
+	 * app.count=3
 	 */
 	public void list() {
 		props.list(System.out);
@@ -246,7 +261,7 @@ public class config {
 	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
-	 * @return
+	 * @return int The Property value.
 	 */
 	public int getIntProperty(String key, int defVal) {
 		int i = Integer.parseInt(props.getProperty(key, ""+defVal));
@@ -259,7 +274,7 @@ public class config {
 	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
-	 * @return
+	 * @return int The Property value.
 	 */
 	public float getFloatProperty(String key, float defVal) {
 		float f = Float.parseFloat(props.getProperty(key, ""+defVal));
@@ -272,7 +287,7 @@ public class config {
 	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
-	 * @return
+	 * @return int The Property value.
 	 */
 	public String getStringProperty(String key, String defVal) {
 		String f = props.getProperty(key, defVal);
@@ -285,7 +300,7 @@ public class config {
 	 * @example config_advanced
 	 * @param key The Property key name.
 	 * @param defVal The default value.
-	 * @return
+	 * @return int The Property value.
 	 */
 	public boolean getBooleanProperty(String key, boolean defVal) {
 		boolean f = Boolean.parseBoolean(props.getProperty(key, ""+defVal));

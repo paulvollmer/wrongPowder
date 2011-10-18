@@ -33,7 +33,7 @@ import processing.core.PImage;
  * @example manyFXGs
  * @author Paul Vollmer, http://www.wrong-entertainment.com
  */
-public class fxg implements fxgConstants {
+public class Fxg implements FxgConstants {
   
   private PApplet p5;
   
@@ -126,7 +126,7 @@ public class fxg implements fxgConstants {
    * @example wrongAgent
    * @param theParent
    */
-  public fxg(PApplet parent) {
+  public Fxg(PApplet parent) {
     this.p5 = parent;
     // welcome console line
     System.out.println("### "+LIBRARYNAME+" library "+VERSION+

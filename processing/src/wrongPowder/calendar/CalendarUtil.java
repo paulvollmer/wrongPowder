@@ -1,33 +1,34 @@
 /**
- * wngCalendar is a class of the wng.agent library.
+ *  wrongPowder is developed by wrong-entertainment & powder
  *
- * (c) paul vollmer, 2010
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
+ *  Copyright 2011 Paul Vollmer
+ *  paulvollmer.net
+ *  vollmerpaul@yahoo.de
  * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ *  This file is part of wrongPowder library.
+ *
+ *  wrongPowder is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with wrongPowder. If not, see <http://www.gnu.org/licenses/>.
  * 
- * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA  02111-1307  USA
- * 
- * @author		paul vollmer http://www.wrong-entertainment.com
- * @modified	2010/11/10
- * @version		0.1.0
+ *  @author		Paul Vollmer
+ *  @modified	##date##
+ *  @version	##version##
  */
 
 package wrongPowder.calendar;
 
+
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import processing.core.PApplet;
+import java.util.Calendar;
+//import processing.core.PApplet;
 
 
 /**
@@ -38,67 +39,28 @@ import processing.core.PApplet;
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
-public class CalendarUtil {
+public class CalendarUtil implements CalendarConstants {
 
-	private PApplet p5;
-
-	public final String MON = "Monday";
-	public final String TUE = "Tuesday";
-	public final String WED = "Wednesday";
-	public final String THU = "Thursday";
-	public final String FRI = "Friday";
-	public final String SAT = "Saturday";
-	public final String SUN = "Sunday";
-
-	public final String JAN = "Janurary";
-	public final String FEB = "February";
-	public final String MAR = "March";
-	public final String APR = "April";
-	public final String MAY = "May";
-	public final String JUN = "Juni";
-	public final String JUL = "July";
-	public final String AUG = "August";
-	public final String SEP = "September";
-	public final String OCT = "October";
-	public final String NOV = "November";
-	public final String DEC = "Decenber";
-
-	public final int JAN_DAYS = 31;
-	public final int FEB_DAYS = 28;
-	public final int MAR_DAYS = 31;
-	public final int APR_DAYS = 30;
-	public final int MAY_DAYS = 31;
-	public final int JUN_DAYS = 30;
-	public final int JUL_DAYS = 31;
-	public final int AUG_DAYS = 31;
-	public final int SEP_DAYS = 30;
-	public final int OCT_DAYS = 31;
-	public final int NOV_DAYS = 30;
-	public final int DEC_DAYS = 31;
+	//private PApplet p5;
 
 	
 	/**
 	 * wngCalendar a Constructor, usually called in the setup() method in your
 	 * sketch to initialize and start the class.
 	 * 
-	 * @example wngCalendar
+	 * @example calendar_basic
 	 * @param theParent
 	 */
-	public CalendarUtil(PApplet parent) {
-		p5 = parent;
-                //welcome();
+	public CalendarUtil() {//PApplet parent) {
+		//p5 = parent;
 	}
-
-        /*
-	 * welcome text for processing IDE console
-	 */
-	/*protected void welcome() {
-		System.out.println("### START wngCalendar CLASS");
-	}*/
+	
+	
 
 	/**
 	 * timestamp return a timestamp
 	 * 
+	 * @example calendar_basic
 	 * @return String
 	 */
 	public String timestamp() {
@@ -106,10 +68,13 @@ public class CalendarUtil {
 		String ts = sdf.format(new Date());
 		return ts;
 	}
-
+	
+	
+	
 	/**
 	 * timezone return a timezone
 	 * 
+	 * @example calendar_basic
 	 * @return String
 	 */
 	public String timezone() {
@@ -121,22 +86,27 @@ public class CalendarUtil {
 	/**
 	 * unixtime return the unixtime as an integer
 	 * 
+	 * @example calendar_basic
 	 * @return int
 	 */
 	public int unixtime() {
 		int[] daysToMonthbegin = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 }; // ohne Schalttag
 		int unix_time;
-		int y = p5.year();
+		Calendar toDay = Calendar.getInstance();
+		int y = toDay.get(Calendar.YEAR);
+		int m = toDay.get(Calendar.MONTH);
+		int d = toDay.get(Calendar.DAY_OF_MONTH);
+		/*int y = p5.year();
 		int m = p5.month();
-		int d = p5.day();
+		int d = p5.day();*/
 
 		int Year = y - 1970;
 		int schaltjahre = ((y - 1) - 1968) / 4 - ((y - 1) - 1900) / 100 + ((y - 1) - 1600) / 400;
-		int Second = p5.second();
+		int Second = toDay.get(Calendar.SECOND);
 		;
-		int Minute = p5.minute();
+		int Minute = toDay.get(Calendar.MINUTE);
 		;
-		int Hour = p5.hour();
+		int Hour = toDay.get(Calendar.HOUR);
 		;
 		unix_time = Second + 60 * Minute + 60 * 60 * Hour
 				    + (daysToMonthbegin[m - 1] + d - 1) * 60 * 60 * 24
@@ -150,6 +120,7 @@ public class CalendarUtil {
 	/**
 	 * eraDesignator return a era designator
 	 * 
+	 * @example calendar_basic
 	 * @return String
 	 */
 	public String eraDesignator() {
@@ -161,6 +132,7 @@ public class CalendarUtil {
 	/**
 	 * weekInYear return week in year
 	 * 
+	 * @example calendar_basic
 	 * @return int
 	 */
 	public int weekInYear() {
@@ -173,6 +145,7 @@ public class CalendarUtil {
 	/**
 	 * weekInMonth return week in month
 	 * 
+	 * @example calendar_basic
 	 * @return int
 	 */
 	public int weekInMonth() {
@@ -185,6 +158,7 @@ public class CalendarUtil {
 	/**
 	 * dayInYear return day in year
 	 * 
+	 * @example calendar_basic
 	 * @return int
 	 */
 	public int dayInYear() {
@@ -197,6 +171,7 @@ public class CalendarUtil {
 	/**
 	 * dayInMonth return day in month
 	 * 
+	 * @example calendar_basic
 	 * @return int
 	 */
 	public int dayInMonth() {
@@ -209,6 +184,7 @@ public class CalendarUtil {
 	/**
 	 * dayInWeek return day in week
 	 * 
+	 * @example calendar_basic
 	 * @return String
 	 */
 	public String dayInWeek() {
@@ -220,13 +196,11 @@ public class CalendarUtil {
 	/**
 	 * getUnixtime return the unixtime of a date as an integer
 	 * 
-	 * @param y
-	 *        int
-	 * @param m
-	 *        int
-	 * @param d
-	 *        int
-	 * @return int
+	 * @example calendar_basic
+	 * @param y int year
+	 * @param m int month
+	 * @param d int day
+	 * @return int unixtime
 	 */
 	public int getUnixtime(int y, int m, int d) {
 		String dname = "### not correct date";
@@ -251,19 +225,13 @@ public class CalendarUtil {
 	/**
 	 * getUnixtime return the unixtime of a date as an integer
 	 * 
-	 * @param y
-	 *        int
-	 * @param m
-	 *        int
-	 * @param d
-	 *        int
-	 * @param hou
-	 *        int
-	 * @param min
-	 *        int
-	 * @param sec
-	 *        int
-	 * @return int
+	 * @param y int
+	 * @param m int
+	 * @param d int
+	 * @param hou int
+	 * @param min int
+	 * @param sec in
+	 * @return int unixtime
 	 */
 	public int getUnixtime(int y, int m, int d, int hou, int min, int sec) {
 		String dname = "### not correct date";
@@ -287,9 +255,10 @@ public class CalendarUtil {
 
 	/**
 	 * getDay return the name of a day as a String
-	 * 
-	 * @param m
-	 *        int
+	 *
+	 * @param y int
+	 * @param m int
+	 * @param d int
 	 * @return String
 	 */
 	public String getDay(int y, int m, int d) {
@@ -300,25 +269,53 @@ public class CalendarUtil {
 	/**
 	 * getMonth return the name of a month as a String
 	 * 
-	 * @param m
-	 *        int
+	 * @param m int
 	 * @return String
 	 */
 	public String getMonth(int m) {
-		int im = m;
-		String sm = "### not a correct month number";
-		if (im == 1) sm = JAN;
-		if (im == 2) sm = FEB;
-		if (im == 3) sm = MAR;
-		if (im == 4) sm = APR;
-		if (im == 5) sm = MAY;
-		if (im == 6) sm = JUN;
-		if (im == 7) sm = JUL;
-		if (im == 8) sm = AUG;
-		if (im == 9) sm = SEP;
-		if (im == 10) sm = OCT;
-		if (im == 11) sm = NOV;
-		if (im == 12) sm = DEC;
+		String sm;
+		switch(m) {
+		case 1:
+			sm = JAN;
+			break;
+		case 2:
+			sm = FEB;
+			break;
+		case 3:
+			sm = MAR;
+			break;
+		case 4:
+			sm = APR;
+			break;
+		case 5:
+			sm = MAY;
+			break;
+		case 6:
+			sm = JUN;
+			break;
+		case 7:
+			sm = JUL;
+			break;
+		case 8:
+			sm = AUG;
+			break;
+		case 9:
+			sm = SEP;
+			break;
+		case 10:
+			sm = OCT;
+			break;
+		case 11:
+			sm = NOV;
+			break;
+		case 12:
+			sm = DEC;
+			break;
+		default:
+			System.err.println("### not a correct month number");
+			sm = "default";
+			break;
+		}
 		return sm;
 	}
 
