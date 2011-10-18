@@ -28,20 +28,15 @@ package wrongPowder.calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
-//import processing.core.PApplet;
 
 
 /**
- * wngCalendar is a class contains returns.
+ * CalendarUtil
  * http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
  * 
- * @example wngCalendar
- * @author Paul Vollmer, wrong-entertainment.com
- * 
+ * @example calendar_basic
  */
 public class CalendarUtil implements CalendarConstants {
-
-	//private PApplet p5;
 
 	
 	/**
@@ -51,17 +46,16 @@ public class CalendarUtil implements CalendarConstants {
 	 * @example calendar_basic
 	 * @param theParent
 	 */
-	public CalendarUtil() {//PApplet parent) {
-		//p5 = parent;
+	public CalendarUtil() {
 	}
 	
 	
 
 	/**
-	 * timestamp return a timestamp
+	 * timestamp
 	 * 
 	 * @example calendar_basic
-	 * @return String
+	 * @return String timestamp
 	 */
 	public String timestamp() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -72,10 +66,10 @@ public class CalendarUtil implements CalendarConstants {
 	
 	
 	/**
-	 * timezone return a timezone
+	 * timezone
 	 * 
 	 * @example calendar_basic
-	 * @return String
+	 * @return String timezone
 	 */
 	public String timezone() {
 		SimpleDateFormat sdf = new SimpleDateFormat("zzzzz");
@@ -84,10 +78,10 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * unixtime return the unixtime as an integer
+	 * unixtime
 	 * 
 	 * @example calendar_basic
-	 * @return int
+	 * @return int The unixtime as an integer.
 	 */
 	public int unixtime() {
 		int[] daysToMonthbegin = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 }; // ohne Schalttag
@@ -96,24 +90,19 @@ public class CalendarUtil implements CalendarConstants {
 		int y = toDay.get(Calendar.YEAR);
 		int m = toDay.get(Calendar.MONTH);
 		int d = toDay.get(Calendar.DAY_OF_MONTH);
-		/*int y = p5.year();
-		int m = p5.month();
-		int d = p5.day();*/
 
 		int Year = y - 1970;
 		int schaltjahre = ((y - 1) - 1968) / 4 - ((y - 1) - 1900) / 100 + ((y - 1) - 1600) / 400;
 		int Second = toDay.get(Calendar.SECOND);
-		;
 		int Minute = toDay.get(Calendar.MINUTE);
-		;
 		int Hour = toDay.get(Calendar.HOUR);
-		;
+		
 		unix_time = Second + 60 * Minute + 60 * 60 * Hour
 				    + (daysToMonthbegin[m - 1] + d - 1) * 60 * 60 * 24
 				    + (Year * 365 + schaltjahre) * 60 * 60 * 24;
 
 		if ((m > 2) && (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)))
-			unix_time += 60 * 60 * 24; /* +Schalttag wenn jahr Schaltjahr ist */
+			unix_time += 60 * 60 * 24; // +Schalttag wenn jahr Schaltjahr ist
 		return unix_time;
 	}
 
@@ -121,7 +110,7 @@ public class CalendarUtil implements CalendarConstants {
 	 * eraDesignator return a era designator
 	 * 
 	 * @example calendar_basic
-	 * @return String
+	 * @return String 
 	 */
 	public String eraDesignator() {
 		SimpleDateFormat sdf = new SimpleDateFormat("G");
@@ -130,10 +119,10 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * weekInYear return week in year
+	 * weekInYear
 	 * 
 	 * @example calendar_basic
-	 * @return int
+	 * @return int week in year 
 	 */
 	public int weekInYear() {
 		SimpleDateFormat sdf = new SimpleDateFormat("w");
@@ -143,10 +132,10 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * weekInMonth return week in month
+	 * weekInMonth
 	 * 
 	 * @example calendar_basic
-	 * @return int
+	 * @return int week in month
 	 */
 	public int weekInMonth() {
 		SimpleDateFormat sdf = new SimpleDateFormat("W");
@@ -156,10 +145,10 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * dayInYear return day in year
+	 * dayInYear
 	 * 
 	 * @example calendar_basic
-	 * @return int
+	 * @return int day in year
 	 */
 	public int dayInYear() {
 		SimpleDateFormat sdf = new SimpleDateFormat("D");
@@ -169,10 +158,10 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * dayInMonth return day in month
+	 * dayInMonth
 	 * 
 	 * @example calendar_basic
-	 * @return int
+	 * @return int day in month
 	 */
 	public int dayInMonth() {
 		SimpleDateFormat sdf = new SimpleDateFormat("d");
@@ -182,10 +171,10 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * dayInWeek return day in week
+	 * dayInWeek
 	 * 
 	 * @example calendar_basic
-	 * @return String
+	 * @return String day in week
 	 */
 	public String dayInWeek() {
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEEE");
@@ -194,13 +183,13 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * getUnixtime return the unixtime of a date as an integer
+	 * getUnixtime
 	 * 
 	 * @example calendar_basic
-	 * @param y int year
-	 * @param m int month
-	 * @param d int day
-	 * @return int unixtime
+	 * @param y int Year
+	 * @param m int Month
+	 * @param d int Day
+	 * @return int the unixtime of a date as an integer
 	 */
 	public int getUnixtime(int y, int m, int d) {
 		String dname = "### not correct date";
@@ -223,15 +212,15 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * getUnixtime return the unixtime of a date as an integer
+	 * getUnixtime
 	 * 
-	 * @param y int
-	 * @param m int
-	 * @param d int
-	 * @param hou int
-	 * @param min int
-	 * @param sec in
-	 * @return int unixtime
+	 * @param y int Year
+	 * @param m int Month
+	 * @param d int Day
+	 * @param hou int Hour
+	 * @param min int Minute
+	 * @param sec int Second
+	 * @return int unixtime of a date as an integer
 	 */
 	public int getUnixtime(int y, int m, int d, int hou, int min, int sec) {
 		String dname = "### not correct date";
@@ -254,12 +243,13 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * getDay return the name of a day as a String
+	 * getDay
+	 * TODO: The name of a day as a String.
 	 *
-	 * @param y int
-	 * @param m int
-	 * @param d int
-	 * @return String
+	 * @param y int Year
+	 * @param m int Month
+	 * @param d int Day
+	 * @return String 
 	 */
 	public String getDay(int y, int m, int d) {
 		String dname = "### not correct date";
@@ -267,13 +257,14 @@ public class CalendarUtil implements CalendarConstants {
 	}
 
 	/**
-	 * getMonth return the name of a month as a String
+	 * getMonth
 	 * 
-	 * @param m int
-	 * @return String
+	 * @param m int Month
+	 * @return String The name of a month as a String
 	 */
 	public String getMonth(int m) {
 		String sm;
+		
 		switch(m) {
 		case 1:
 			sm = JAN;
@@ -316,81 +307,114 @@ public class CalendarUtil implements CalendarConstants {
 			sm = "default";
 			break;
 		}
+		
 		return sm;
 	}
 
 	/**
-	 * getMonth return the name of a month as a integer
+	 * getMonth
 	 * 
-	 * @param m
-	 *        String
-	 * @return int
+	 * @param m String
+	 * @return int The name of a month as a integer.
 	 */
 	public int getMonth(String m) {
-		String sm = m;
 		int im = 0;
-		if (sm == JAN) im = 1;
-		if (sm == FEB) im = 2;
-		if (sm == MAR) im = 3;
-		if (sm == APR) im = 4;
-		if (sm == MAY) im = 5;
-		if (sm == JUN) im = 6;
-		if (sm == JUL) im = 7;
-		if (sm == AUG) im = 8;
-		if (sm == SEP) im = 9;
-		if (sm == OCT) im = 10;
-		if (sm == NOV) im = 11;
-		if (sm == DEC) im = 12;
+		
+		if(m == JAN) im = 1;
+		if(m == FEB) im = 2;
+		if(m == MAR) im = 3;
+		if(m == APR) im = 4;
+		if(m == MAY) im = 5;
+		if(m == JUN) im = 6;
+		if(m == JUL) im = 7;
+		if(m == AUG) im = 8;
+		if(m == SEP) im = 9;
+		if(m == OCT) im = 10;
+		if(m == NOV) im = 11;
+		if(m == DEC) im = 12;
+		
 		return im;
 	}
 
 	/**
-	 * getMonthDays return the days number of a month as a integer
+	 * getMonthDays
 	 * 
-	 * @param m
-	 *        int
-	 * @return int
+	 * @param m int
+	 * @return int The days number of a month as a integer.
 	 */
 	public int getMonthDays(int m) {
-		int im = m;
-		int sm = 0;
-		if (im == 1)sm = JAN_DAYS;
-		if (im == 2)sm = FEB_DAYS;
-		if (im == 3)sm = MAR_DAYS;
-		if (im == 4)sm = APR_DAYS;
-		if (im == 5)sm = MAY_DAYS;
-		if (im == 6)sm = JUN_DAYS;
-		if (im == 7)sm = JUL_DAYS;
-		if (im == 8)sm = AUG_DAYS;
-		if (im == 9)sm = SEP_DAYS;
-		if (im == 10)sm = OCT_DAYS;
-		if (im == 11)sm = NOV_DAYS;
-		if (im == 12)sm = DEC_DAYS;
-		return sm;
+		int im;
+		
+		switch(m) {
+		case 1:
+			im = JAN_DAYS;
+			break;
+		case 2:
+			im = FEB_DAYS;
+			break;
+		case 3:
+			im = MAR_DAYS;
+			break;
+		case 4:
+			im = APR_DAYS;
+			break;
+		case 5:
+			im = MAY_DAYS;
+			break;
+		case 6:
+			im = JUN_DAYS;
+			break;
+		case 7:
+			im = JUL_DAYS;
+			break;
+		case 8:
+			im = AUG_DAYS;
+			break;
+		case 9:
+			im = SEP_DAYS;
+			break;
+		case 10:
+			im = OCT_DAYS;
+			break;
+		case 11:
+			im = NOV_DAYS;
+			break;
+		case 12:
+			im = DEC_DAYS;
+			break;
+		default:
+			System.err.println("### not a correct month number");
+			im = 0;
+			break;
+		}
+		
+		return im;
 	}
 
 	/**
-	 * getMonthDays return the days number of a month as a integer
+	 * getMonthDays
 	 * 
-	 * @param m
-	 *        String
-	 * @return int
+	 * @param m String
+	 * @return int The days number of a month as a integer 
 	 */
 	public int getMonthDays(String m) {
-		String sm = m;
 		int im = 0;
-		if (sm == JAN) im = JAN_DAYS;
-		if (sm == FEB) im = FEB_DAYS;
-		if (sm == MAR) im = MAR_DAYS;
-		if (sm == APR) im = APR_DAYS;
-		if (sm == MAY) im = MAY_DAYS;
-		if (sm == JUN) im = JUN_DAYS;
-		if (sm == JUL) im = JUL_DAYS;
-		if (sm == AUG) im = AUG_DAYS;
-		if (sm == SEP) im = SEP_DAYS;
-		if (sm == OCT) im = OCT_DAYS;
-		if (sm == NOV) im = NOV_DAYS;
-		if (sm == DEC) im = DEC_DAYS;
+		
+		if(m == JAN) im = JAN_DAYS;
+		if(m == FEB) im = FEB_DAYS;
+		if(m == MAR) im = MAR_DAYS;
+		if(m == APR) im = APR_DAYS;
+		if(m == MAY) im = MAY_DAYS;
+		if(m == JUN) im = JUN_DAYS;
+		if(m == JUL) im = JUL_DAYS;
+		if(m == AUG) im = AUG_DAYS;
+		if(m == SEP) im = SEP_DAYS;
+		if(m == OCT) im = OCT_DAYS;
+		if(m == NOV) im = NOV_DAYS;
+		if(m == DEC) im = DEC_DAYS;
+		
 		return im;
 	}
+	
+	
 }
