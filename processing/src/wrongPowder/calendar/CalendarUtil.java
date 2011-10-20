@@ -21,7 +21,7 @@
  *  @version	##version##
  */
 
-package wrongPowder.calendar;
+package wrongPowder.Calendar;
 
 
 
@@ -36,8 +36,43 @@ import java.util.Calendar;
  * 
  * @example calendar_basic
  */
-public class CalendarUtil implements CalendarConstants {
+public class CalendarUtil {
 
+	public final String	MON = "Monday";
+	public final String TUE = "Tuesday";
+	public final String WED = "Wednesday";
+	public final String THU = "Thursday";
+	public final String FRI = "Friday";
+	public final String SAT = "Saturday";
+	public final String SUN = "Sunday";
+
+	public final String JAN = "Janurary";
+	public final String FEB = "February";
+	public final String MAR = "March";
+	public final String APR = "April";
+	public final String MAY = "May";
+	public final String JUN = "Juni";
+	public final String JUL = "July";
+	public final String AUG = "August";
+	public final String SEP = "September";
+	public final String OCT = "October";
+	public final String NOV = "November";
+	public final String DEC = "Decenber";
+
+	public final int JAN_DAYS = 31;
+	public final int FEB_DAYS = 28;
+	public final int MAR_DAYS = 31;
+	public final int APR_DAYS = 30;
+	public final int MAY_DAYS = 31;
+	public final int JUN_DAYS = 30;
+	public final int JUL_DAYS = 31;
+	public final int AUG_DAYS = 31;
+	public final int SEP_DAYS = 30;
+	public final int OCT_DAYS = 31;
+	public final int NOV_DAYS = 30;
+	public final int DEC_DAYS = 31;
+	
+	
 	
 	/**
 	 * wngCalendar a Constructor, usually called in the setup() method in your
@@ -80,7 +115,7 @@ public class CalendarUtil implements CalendarConstants {
 	/**
 	 * unixtime
 	 * 
-	 * @example calendar_basic
+	 * @example calendar_unixtime
 	 * @return int The unixtime as an integer.
 	 */
 	public int unixtime() {

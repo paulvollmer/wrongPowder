@@ -23,7 +23,7 @@
  *  @version	##version##
  */
 
-package wrongPowder.config;
+package wrongPowder.io;
 
 
 
@@ -43,7 +43,7 @@ import java.util.Properties;
  * 
  * @example config_basic 
  */
-public class config {
+public class Config {
 
 	public Properties props = new Properties();
 	public String filePath;
@@ -56,7 +56,7 @@ public class config {
 	 * 
 	 * @example config_basic
 	 */
-	public config() {}
+	public Config() {}
 	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
@@ -67,7 +67,7 @@ public class config {
 	 * @param folderName Name of the folder (Use your application name).
 	 * @param fileName Name of the Configuration file.
 	 */
-	public config(String folderName, String fileName) {
+	public Config(String folderName, String fileName) {
 		load(folderName, fileName);
 	}
 	
@@ -153,7 +153,7 @@ public class config {
 				}
 			}
 			else {  // File does not exist 
-				System.out.println("checkFile(): Configuration File does not exist. Create an empty File.");
+				System.out.println("checkFile(): Configuration File does not exist. Create an default File.");
 				// Create base directory
 				File folder = new File(file.getParent());
 				folder.mkdirs();

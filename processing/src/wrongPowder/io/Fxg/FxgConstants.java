@@ -21,7 +21,7 @@
  *  @version	##version##
  */
 
-package wrongPowder.fxg;
+package wrongPowder.io.Fxg;
 
 
 /**

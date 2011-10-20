@@ -7,32 +7,30 @@
  * at the "Application Support" or "APPDATA" folder.
  *
  * @author    Paul Vollmer
- * @modified  2011.10.17
+ * @modified  2011.10.19
  */
 
 
-import wrongPowder.config.*;
+import wrongPowder.io.Config;
 
-config conf = new config();
+Config CONFIG = new Config();
 
 
 void setup() {
   // Load configuration File.  
-  conf.load("wrongPowder_configAdvanced", "config.txt");
+  CONFIG.load("wrongPowder_configAdvanced", "config.txt");
   
   // Get the number of Property Elements.
-  println(conf.getSize());
+  println(CONFIG.getSize());
   // Get a Property list.
-  conf.list();
+  CONFIG.list();
   
-  // Get Configuration Properties.
-  int w = conf.getIntProperty("app.width", 200);
-  int h = conf.getIntProperty("app.height", 200);
+  // Get Configuration Properties and set app.width, app.height to size()
   
-  size(w, h);
+  size(CONFIG.getIntProperty("app.width", 200), CONFIG.getIntProperty("app.height", 200));
   this.frame.setResizable(true);
   
-  frameRate(conf.getIntProperty("app.framerate", 30));
+  frameRate(CONFIG.getIntProperty("app.framerate", 30));
 }
 
 
@@ -43,10 +41,10 @@ public void draw() {
 
 // TODO: make this by exit the application.
 public void keyPressed() {
-  conf.setProperty("app.width", width);
-  conf.setProperty("app.height", height);
-  conf.store();
+  CONFIG.setProperty("app.width", width);
+  CONFIG.setProperty("app.height", height);
+  CONFIG.store();
   
   // Save a copy to data folder.
-  conf.store(dataPath("dataExample/")+"/storeConfig.txt");
+  CONFIG.store(dataPath("dataExample/")+"/storeConfig.txt");
 }

@@ -7,18 +7,20 @@
  * at the "Application Support" or "APPDATA" folder.
  *
  * @author    Paul Vollmer
- * @modified  2011.10.17
+ * @modified  2011.10.19
  */
 
 
-import wrongPowder.config.*;
+import wrongPowder.io.Config;
 
-config conf = new config();
+Config CONFIG = new Config();
 
 
 void setup() {
-  // Load configuration File.  
-  conf.loadStatic(dataPath("dataExample/")+"configFile.txt");
+  // Load configuration file.
+  // If no file exist, create default file. 
+  CONFIG.loadStatic(dataPath("dataExample/")+"configFile.txt");
   
-  size(conf.getIntProperty("app.width", 200), conf.getIntProperty("app.height", 200));
+  // Set size from configuration file values.
+  size(CONFIG.getIntProperty("app.width", 200), CONFIG.getIntProperty("app.height", 200));
 }
