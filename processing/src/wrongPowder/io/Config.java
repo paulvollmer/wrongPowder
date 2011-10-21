@@ -37,9 +37,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import wrongPowder.util.OsCheck;
+
 
 /**
- * config
+ * Config
  * 
  * @example config_basic 
  */
@@ -47,6 +49,7 @@ public class Config {
 
 	public Properties props = new Properties();
 	public String filePath;
+	OsCheck utilities = new OsCheck();
 	
 	
 
@@ -85,7 +88,7 @@ public class Config {
 		// check Platform and save Filepath to Variable.
 		
 		// WINDOWS
-		if(isWindows()) {
+		if(utilities.isWindows()) {
 			try {
 				filePath = System.getenv("APPDATA") + File.separator + folderName + File.separator + fileName;
 			}
@@ -96,12 +99,12 @@ public class Config {
 		// MACOSX
 		// On MacOS we use the User Application Support Folder to search and store the files.
 		// Path: /Users/NAME/Library/Application Support/APPNAME/FILENAME.SUFFIX
-		else if(isMac()) {
+		else if(utilities.isMac()) {
 			filePath = File.separator + "Users" + File.separator + System.getProperty("user.name") + File.separator
 			+ "Library" + File.separator + "Application Support" + File.separator + folderName + File.separator + fileName;
 		}
 		// LINUX
-		else if(isUnix()) {	
+		else if(utilities.isUnix()) {	
 			filePath = ""; // TODO: Add Filepath
 		}
 		// OTHER
@@ -338,34 +341,34 @@ public class Config {
 	 * isWin
 	 * 
 	 * @return win String
-	 */
+	 *
 	private static boolean isWindows() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//windows
 	    return (os.indexOf( "win" ) >= 0); 
-	}
+	}*/
  
 	/**
 	 * isMac
 	 * 
 	 * @return mac String
-	 */
+	 *
 	private static boolean isMac() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//Mac
 	    return (os.indexOf( "mac" ) >= 0); 
-	}
+	}*/
  
 	/**
 	 * isUnix
 	 * 
 	 * @return nix or nux String
-	 */
+	 *
 	private static boolean isUnix() {
 		String os = System.getProperty("os.name").toLowerCase();
 		//linux or unix
 	    return (os.indexOf( "nix") >=0 || os.indexOf( "nux") >=0);
-	}
+	}*/
 	
 	
 }
