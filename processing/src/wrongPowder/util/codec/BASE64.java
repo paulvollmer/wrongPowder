@@ -23,7 +23,7 @@
  *  @version	##version##
  */
 
-package wrongPowder.util;
+package wrongPowder.util.codec;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
