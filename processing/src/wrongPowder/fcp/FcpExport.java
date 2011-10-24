@@ -23,7 +23,7 @@
  * @version	0.1.0
  */
 
-package wrongPowder.Fcp;
+package wrongPowder.fcp;
 
 import java.io.*;
 

@@ -1,4 +1,4 @@
-package wrongPowder.Graphics.ShapeMosaic;
+package wrongPowder.graphics.ShapeMosaic;
 
 import java.util.ArrayList;
 

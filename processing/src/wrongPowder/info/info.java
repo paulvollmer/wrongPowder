@@ -23,7 +23,7 @@
  * @version		0.1.0
  */
 
-package wrongPowder.Info;
+package wrongPowder.info;
 
 import processing.core.PApplet;
 

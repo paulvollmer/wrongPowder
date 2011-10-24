@@ -23,7 +23,7 @@
  * @version		0.1.0
  */
 
-package wrongPowder.Graphics;
+package wrongPowder.graphics;
 
 import processing.core.PApplet;
 

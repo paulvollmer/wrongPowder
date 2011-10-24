@@ -21,7 +21,7 @@
  *  @version	##version##
  */
 
-package wrongPowder.Calendar;
+package wrongPowder.calendar;
 
 
 
