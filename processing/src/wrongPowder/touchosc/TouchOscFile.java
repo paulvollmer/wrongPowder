@@ -35,7 +35,7 @@ import java.util.zip.ZipFile;
 import processing.core.XML;
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
-import wrongPowder.util.BASE64;
+import wrongPowder.util.codec.BASE64;
 
 public class TouchOscFile {
 	
