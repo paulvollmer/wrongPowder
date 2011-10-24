@@ -23,7 +23,7 @@
  * @version		0.1.0A
  */
 
-package wrongPowder.Hacks;
+package wrongPowder.hacks;
 
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
