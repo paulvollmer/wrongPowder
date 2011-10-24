@@ -8,45 +8,26 @@ TouchOscFile TOSCFILE = new TouchOscFile();
 void setup() {
   size(400, 400);
   
-  // Import a TouchOSC File.
   TOSCFILE.load(dataPath("Untitled 1.touchosc"));
   
-  //println("version:     " + TOSCFILE.version());
-  //println("mode:        " + TOSCFILE.mode());
-  //println("orientation: " + TOSCFILE.orientation());
+  println("version:     " + TOSCFILE.version());
+  println("mode:        " + TOSCFILE.mode());
+  println("orientation: " + TOSCFILE.orientation());
   
-  // list all children of xml
-  /*println("\nlistChildren:");
-  println(TOSCFILE.xml.listChildren());
-  
-  
-  XML[] childs = TOSCFILE.xml.getChildren();
-  println(childs.length);
-  
-  int numtabpage = 0;
-  for(int i=1; i<childs.length; i+=2) {
-    // If a child is tabpage
-    if(childs[i].getName() == "tabpage") {
-      numtabpage++;
-    }
-  }
-  println("\nNumber of TabPages: "+numtabpage);*/
-  
+  println("numTabs: "+TOSCFILE.xml.getParent());
   
   
   //println(childz[1].getAttributeCount());
   
-  //println("numTabs: " + TOSCFILE.xml.getParent());
-  
   // Check all childz and create tabpage XML[]
-  //XML[] tabpage = new XML[childz.length];
-  /*int numtabpage = 0;
-  for(int i=1; i<childs.length; i+=2) {
+  XML[] tabpage;
+  int numtabpage = 0;
+  for(int i=1; i<childz.length; i+=2) {
 
     // If a child is tabpage
-    if(childs[i].getName() == "tabpage") {
-      println(childs[i]);
-      /*tabpage = childs[i].getChildren();
+    if(childz[i].getName() == "tabpage") {
+      println(childz[i]);
+      tabpage = childz[i].getChildren();
       
       // if control, create the different types of gui elements.
       if(tabpage[0].getName() == "control") {
@@ -54,19 +35,20 @@ void setup() {
       }
       else {
         println("NO Control tag");
-      }*/
+      }
       
-      //println(tabpage);
-      //numtabpage++;
+      println(tabpage);
+      numtabpage++;
       
       /*for(int j=0; j<tabpage[1].getAttributeCount(); j++) {
         println(tabpage[j].listAttributes());
         //fill();
       }*/
       
-    //}
-  //}
+    }
+  }
   
+  println("\nNumber of TabPages: "+numtabpage);
   
   /*for(int j=0; j<numtabpage; j++) {
     //for(int j=0; j<tabpage[i].getAttributeCount(); j++) {
@@ -74,9 +56,6 @@ void setup() {
       //fill();
     //}
   }*/
-  
-  
-  
   
   
   
