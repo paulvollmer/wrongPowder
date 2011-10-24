@@ -1,39 +1,39 @@
 /**
+ *  wrongPowder is developed by wrong-entertainment & powder
  *
- *  wngTouchOSC is a wrong-entertainment production
  *
- *
- *  Copyright 2011 wrong-entertainment
- *                 <wrongentertainment@yahoo.de>
- *                 <http://wrong-entertainment.com>
+ *  Copyright 2011 Paul Vollmer & Tim Pulver
+ *  paulvollmer.net
+ *  vollmerpaul@yahoo.de
+ *  timpulver.de
+ *  pulver.tim@googlemail.com
  * 
- *  This file is part of wnglibs.
+ *  This file is part of wrongPowder library.
  *
- *  wngTouchOSC is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  wngTouchOSC is distributed in the hope that it will be useful,
+ *  wrongPowder is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
  *  
  *  You should have received a copy of the GNU Lesser General Public License
- *  along with wngTouchOSC. If not, see <http://www.gnu.org/licenses/>.
- *
+ *  along with wrongPowder. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ *  @author		##author##
+ *  @modified	##date##
+ *  @version	##version##
  */
 
+package wrongPowder.touchosc;
 
-import oscP5.*;
-import netP5.*;
+//import oscP5.*;
+//import netP5.*;
   
 
-public class wngTouchOSC {
+public class TouchOsc {
   
-  OscP5 osc;
-  OscMessage message;
-  NetAddress net;
+  //OscP5 osc;
+  //OscMessage message;
+  //NetAddress net;
   
   
   /**
@@ -47,16 +47,16 @@ public class wngTouchOSC {
    * @param receive
    *        The Port to receive.
    */
-  public wngTouchOSC(String ip, int portSend, int portReceive) {
+  public TouchOsc(String ip, int portSend, int portReceive) {
     // start oscP5, listening for incoming messages at port 1234
-    osc = new OscP5(this, portSend);
+    //osc = new OscP5(this, portSend);
     // myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
     // an ip address and a port number. myRemoteLocation is used as parameter in
     // oscP5.send() when sending osc packets to another computer, device, 
     // application. usage see below. for testing purposes the listening port
     // and the port of the remote location address are the same, hence you will
     // send messages back to this sketch.
-    net = new NetAddress(ip, portReceive);
+    //net = new NetAddress(ip, portReceive);
   }
   
   
@@ -64,7 +64,7 @@ public class wngTouchOSC {
    * Device Accelerometer X value
    *
    * @return float
-   */
+   *
   public float accX(OscMessage msg) {
     float accelerometerX = 0;
     // check accelerator value and get the values
@@ -75,14 +75,14 @@ public class wngTouchOSC {
       }
     }
     return accelerometerX;
-  }
+  }*/
   
   
   /**
    * Device Accelerometer Y value
    *
    * @return float
-   */
+   *
   public float accY(OscMessage msg) {
     float accelerometerY = 0;
     // check accelerator value and get the values
@@ -93,14 +93,14 @@ public class wngTouchOSC {
       }
     }
     return accelerometerY;
-  }
+  }*/
   
   
   /**
    * Device Accelerometer Z value
    *
    * @return float
-   */
+   *
   public float accZ(OscMessage msg) {
     float accelerometerZ = 0;
     // check accelerator value and get the values
@@ -111,7 +111,7 @@ public class wngTouchOSC {
       }
     }
     return accelerometerZ;
-  }
+  }*/
   
   
   // TODO /////////////////////////////////////////////////
@@ -139,7 +139,7 @@ public class wngTouchOSC {
    * @param oscName
    *        OSC name of the TouchOSC control element.
    * @return float
-   */
+   *
   public float getValue(OscMessage msg, String oscName) {
     float value = 0;
     if(msg.checkAddrPattern(oscName) == true) {
@@ -148,7 +148,7 @@ public class wngTouchOSC {
       }
     }
     return value;
-  }
+  }*/
   
   
   /**
@@ -162,8 +162,8 @@ public class wngTouchOSC {
    *        TouchOSC will make the page named <oscName> the active page.
    */
   public void selectPage(String oscName) {
-    message = new OscMessage(oscName);
-    osc.send(message, net);
+    //message = new OscMessage(oscName);
+    //osc.send(message, net);
   }
   
   
@@ -293,10 +293,10 @@ public class wngTouchOSC {
    *        y axis float value of the control
    */
   public void setXYpad(String oscName, float controlX, float controlY) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     message.add(controlX);
     message.add(controlY);
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -375,13 +375,13 @@ public class wngTouchOSC {
    *        int
    */
   public void setMultiToggle(String oscName, int rows, int cols, int controlState) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     for(int i=0; i<rows; i++) {
       for(int j=0; j<cols; j++) {
         message.add(controlState);
       }
     }
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -400,13 +400,13 @@ public class wngTouchOSC {
    *        int array for each Button element.
    */
   public void setMultiToggle(String oscName, int rows, int cols, int[] controlState) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     for(int i=0; i<rows; i++) {
       for(int j=0; j<cols; j++) {
         message.add(controlState[i+j]);
       }
     }
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -468,11 +468,11 @@ public class wngTouchOSC {
    *        float value
    */
   public void setMultiFader(String oscName, int num, float controlValue) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     for(int i=0; i<num; i++) {
       message.add(controlValue);
     }
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -487,11 +487,11 @@ public class wngTouchOSC {
    *        int array for each Fader element.
    */
   public void setMultiFader(String oscName, int[] controlValue) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     for(int i=0; i<controlValue.length; i++) {
       message.add(controlValue[i]);
     }
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -506,11 +506,11 @@ public class wngTouchOSC {
    *        float array for each Fader element.
    */
   public void setMultiFader(String oscName, float[] controlValue) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     for(int i=0; i<controlValue.length; i++) {
       message.add(controlValue[i]);
     }
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -524,9 +524,9 @@ public class wngTouchOSC {
    *        int to be send.
    */
   public void sendMessage(String oscName, int msg) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     message.add(msg);
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -540,9 +540,9 @@ public class wngTouchOSC {
    *        float to be send.
    */
   public void sendMessage(String oscName, float msg) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     message.add(msg);
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -556,9 +556,9 @@ public class wngTouchOSC {
    *        String to be send.
    */
   public void sendMessage(String oscName, String msg) {
-    message = new OscMessage(oscName);
+    /*message = new OscMessage(oscName);
     message.add(msg);
-    osc.send(message, net);
+    osc.send(message, net);*/
   }
   
   
@@ -568,8 +568,8 @@ public class wngTouchOSC {
    * info @ http://hexler.net/docs/touchosc-controls/
    */
   public void vibrate() {
-    message = new OscMessage("/vibrate");
-    osc.send(message, net);
+    /*message = new OscMessage("/vibrate");
+    osc.send(message, net);*/
   }
   
   
