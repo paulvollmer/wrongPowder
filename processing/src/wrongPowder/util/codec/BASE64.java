@@ -59,14 +59,19 @@ public class BASE64 {
 	 * @throws UnsupportedEncodingException
 	 * @throws IOException
 	 */
-	public String encode(String input, String format) throws UnsupportedEncodingException {
-		String encoded = new BASE64Encoder().encode(input.getBytes(format));
+	public String encode(String input, String format) {
+		String encoded = null;
+		try {
+			encoded = new BASE64Encoder().encode(input.getBytes(format));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return encoded;
 	}
 	
-	public String encode(String input) throws UnsupportedEncodingException {
-		String encoded = new BASE64Encoder().encode(input.getBytes("UTF-8"));
-		return encoded;
+	public String encode(String input) {
+		return encode(input, "UTF-8");
 	}
 	
 	
@@ -79,14 +84,23 @@ public class BASE64 {
 	 * @throws UnsupportedEncodingException
 	 * @throws IOException
 	 */
-	public String decode(String input, String format) throws UnsupportedEncodingException, IOException {
-		String decoded = new String(new BASE64Decoder().decodeBuffer(input),format);
+	public String decode(String input, String format){
+		String decoded = null;
+		try {
+			decoded = new String(new BASE64Decoder().decodeBuffer(input),format);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return decoded;
 	}
 	
-	public String decode(String input) throws UnsupportedEncodingException, IOException {
-		String decoded = new String(new BASE64Decoder().decodeBuffer(input),"UTF-8");
-		return decoded;
+	public String decode(String input) {
+		return decode(input, "UTF-8");
 	}
  	
 }
