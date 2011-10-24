@@ -61,7 +61,12 @@ public class BASE64 {
 	 */
 	public String encode(String input, String format) throws UnsupportedEncodingException {
 		String encoded = new BASE64Encoder().encode(input.getBytes(format));
-	    return encoded; 
+		return encoded;
+	}
+	
+	public String encode(String input) throws UnsupportedEncodingException {
+		String encoded = new BASE64Encoder().encode(input.getBytes("UTF-8"));
+		return encoded;
 	}
 	
 	
@@ -76,6 +81,11 @@ public class BASE64 {
 	 */
 	public String decode(String input, String format) throws UnsupportedEncodingException, IOException {
 		String decoded = new String(new BASE64Decoder().decodeBuffer(input),format);
+		return decoded;
+	}
+	
+	public String decode(String input) throws UnsupportedEncodingException, IOException {
+		String decoded = new String(new BASE64Decoder().decodeBuffer(input),"UTF-8");
 		return decoded;
 	}
  	
