@@ -27,7 +27,6 @@ package wrongPowder.util.codec;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -52,29 +51,28 @@ public class Base64 {
 	
 	
 	/**
-	 * Encode a string with Base64.
+	 * Encode a String with Base64.
 	 * 
 	 * @example codec_basic
 	 * @param input Text String.
 	 * @param format Text Format like UTF-8 etc.
-	 * @return The encoded string.
+	 * @return The encoded String.
 	 */
 	public String encode(String input, String format) {
 		String encoded = null;
 		try {
 			encoded = new BASE64Encoder().encode(input.getBytes(format));
 		} catch (UnsupportedEncodingException e) {
-			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		return encoded;
 	}
 	
 	/**
-	 * Encode a string with Base64 and Text Format UTF-8.
+	 * Encode a String with Base64 and Text Format UTF-8.
 	 * 
 	 * @param input Text String.
-	 * @return The encoded string.
+	 * @return The encoded String.
 	 */
 	public String encode(String input) {
 		return encode(input, "UTF-8");
@@ -82,22 +80,64 @@ public class Base64 {
 	
 	
 	/**
-	 * Decode a string with Base64.
+	 * Encode a Integer with Base64.
+	 * 
+	 * @param input Integer value.
+	 * @param format Text Format like UTF-8 etc.
+	 * @return The encoded String.
+	 */
+	public String encode(int input, String format) {
+		return encode(String.valueOf(input), format);
+	}
+	
+	/**
+	 * Encode a Integer with Base64 and Text Format UTF-8.
+	 * 
+	 * @param input Integer value.
+	 * @return The encoded String.
+	 */
+	public String encode(int input) {
+		return encode(String.valueOf(input), "UTF-8");
+	}
+	
+	
+	/**
+	 * Encode a Float with Base64.
+	 * 
+	 * @param input Float value.
+	 * @param format Text Format like UTF-8 etc.
+	 * @return The encoded String.
+	 */
+	public String encode(float input, String format) {
+		return encode(String.valueOf(input), format);
+	}
+	
+	/**
+	 * Encode a Float with Base64 and Text Format UTF-8.
+	 * 
+	 * @param input Float value.
+	 * @return The encoded String.
+	 */
+	public String encode(float input) {
+		return encode(String.valueOf(input), "UTF-8");
+	}
+	
+	
+	/**
+	 * Decode a String with Base64.
 	 * 
 	 * @example codec_basic
 	 * @param input Text String.
 	 * @param format Text Format like UTF-8 etc.
-	 * @return The decoded string.
+	 * @return The decoded String.
 	 */
 	public String decode(String input, String format){
 		String decoded = null;
 		try {
 			decoded = new String(new BASE64Decoder().decodeBuffer(input),format);
 		} catch (UnsupportedEncodingException e) {
-			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -105,10 +145,10 @@ public class Base64 {
 	}
 	
 	/**
-	 * Decode a string with Base64 and Text Format UTF-8.
+	 * Decode a String with Base64 and Text Format UTF-8.
 	 * 
 	 * @param input Text String.
-	 * @return The decoded string.
+	 * @return The decoded String.
 	 */
 	public String decode(String input) {
 		return decode(input, "UTF-8");
