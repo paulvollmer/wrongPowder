@@ -11,7 +11,7 @@
 
 import wrongPowder.calendar.*;
 
-CalendarUtil CAL = new CalendarUtil();
+CalendarUtil cal = new CalendarUtil();
 
 
 void setup() {
@@ -20,36 +20,36 @@ void setup() {
   
   // Get the Unixtime
   text("unixtime():", 50, 100);
-  int ut = CAL.unixtime();
+  int ut = cal.unixtime();
   text(ut, 180, 100);
   // Get the Unixtime from 2011.10.17
   text("getUnixtime():", 50, 120);
-  int getUt = CAL.getUnixtime(2011, 10, 17);
+  int getUt = cal.getUnixtime(2011, 10, 17);
   text(getUt, 180, 120);
   // Get the Timestamp
   text("timestamp():", 50, 140);
-  String ts = CAL.timestamp();
+  String ts = cal.timestamp();
   text(ts, 180, 140);
   // Get the Timezone
   text("timezone():", 50, 160);
-  String tz = CAL.timezone();
+  String tz = cal.timezone();
   text(tz, 180, 160);
   
   // Get a Month Name
   text("getMonth():", 50, 200);
-  String m = CAL.getMonth(1);
+  String m = cal.getMonth(1);
   text(m, 180, 200);
   // Get the Number of days
   text("getMonthDays():", 50, 220);
-  int nm = CAL.getMonthDays(1);
+  int nm = cal.getMonthDays(1);
   text(nm, 180, 220);
   
   // Get the week in year number
   text("weekInYear():", 50, 260);
-  int wiy = CAL.weekInYear();
+  int wiy = cal.weekInYear();
   text(wiy, 180, 260);
   // Get the day in year number
   text("dayInYear():", 50, 280);
-  int diy = CAL.dayInYear();
+  int diy = cal.dayInYear();
   text(diy, 180, 280);
 }

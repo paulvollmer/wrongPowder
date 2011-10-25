@@ -11,16 +11,16 @@
 
 import wrongPowder.io.Config;
 
-Config CONFIG = new Config();
+Config config = new Config();
 
 
 void setup() {
   // Load configuration File.  
-  CONFIG.load("wrongPowder_configBasic", "config.txt");
+  config.load("wrongPowder_configBasic", "config.txt");
   
   // Get Configuration Properties.
-  int w = CONFIG.getIntProperty("app.width", 400);
-  int h = CONFIG.getIntProperty("app.height", 400);
+  int w = config.getIntProperty("app.width", 400);
+  int h = config.getIntProperty("app.height", 400);
   
   size(w, h);
   this.frame.setResizable(true);
@@ -33,7 +33,7 @@ void draw() {
 
 // TODO: make this by exit the application.
 public void keyPressed() {
-  CONFIG.setProperty("app.width", width);
-  CONFIG.setProperty("app.height", height);
-  CONFIG.store();
+  config.setProperty("app.width", width);
+  config.setProperty("app.height", height);
+  config.store();
 }

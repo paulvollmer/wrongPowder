@@ -11,7 +11,7 @@
 
 import wrongPowder.calendar.*;
 
-CalendarUtil CAL = new CalendarUtil();
+CalendarUtil cal = new CalendarUtil();
 
 
 void setup() {
@@ -29,7 +29,7 @@ void draw() {
   textSize(9);
   // draw the calender
   for(int i=0; i<=11; i++) {
-    for(int j=0; j<CAL.getMonthDays(i+1); j++) {
+    for(int j=0; j<cal.getMonthDays(i+1); j++) {
       // draw ground
       fill(100);
       stroke(0);
@@ -37,7 +37,7 @@ void draw() {
       // draw text
       fill(0);
       noStroke();
-      text((j+1)+" "+CAL.getMonth(i+1), i*cWidth+5, j*cHeight+15);
+      text((j+1)+" "+cal.getMonth(i+1), i*cWidth+5, j*cHeight+15);
     }
   }
   

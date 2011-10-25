@@ -13,24 +13,24 @@
 
 import wrongPowder.io.Config;
 
-Config CONFIG = new Config();
+Config config = new Config();
 
 
 void setup() {
   // Load configuration File.  
-  CONFIG.load("wrongPowder_configAdvanced", "config.txt");
+  config.load("wrongPowder_configAdvanced", "config.txt");
   
   // Get the number of Property Elements.
-  println(CONFIG.getSize());
+  println(config.getSize());
   // Get a Property list.
-  CONFIG.list();
+  config.list();
   
   // Get Configuration Properties and set app.width, app.height to size()
   
-  size(CONFIG.getIntProperty("app.width", 200), CONFIG.getIntProperty("app.height", 200));
+  size(config.getIntProperty("app.width", 200), config.getIntProperty("app.height", 200));
   this.frame.setResizable(true);
   
-  frameRate(CONFIG.getIntProperty("app.framerate", 30));
+  frameRate(config.getIntProperty("app.framerate", 30));
 }
 
 
@@ -41,10 +41,10 @@ public void draw() {
 
 // TODO: make this by exit the application.
 public void keyPressed() {
-  CONFIG.setProperty("app.width", width);
-  CONFIG.setProperty("app.height", height);
-  CONFIG.store();
+  config.setProperty("app.width", width);
+  config.setProperty("app.height", height);
+  config.store();
   
   // Save a copy to data folder.
-  CONFIG.store(dataPath("dataExample/")+"/storeConfig.txt");
+  config.store(dataPath("dataExample/")+"/storeConfig.txt");
 }

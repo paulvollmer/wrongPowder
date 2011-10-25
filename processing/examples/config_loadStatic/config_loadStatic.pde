@@ -13,14 +13,14 @@
 
 import wrongPowder.io.Config;
 
-Config CONFIG = new Config();
+Config config = new Config();
 
 
 void setup() {
   // Load configuration file.
   // If no file exist, create default file. 
-  CONFIG.loadStatic(dataPath("dataExample/")+"configFile.txt");
+  config.loadStatic(dataPath("dataExample/")+"configFile.txt");
   
   // Set size from configuration file values.
-  size(CONFIG.getIntProperty("app.width", 200), CONFIG.getIntProperty("app.height", 200));
+  size(config.getIntProperty("app.width", 200), config.getIntProperty("app.height", 200));
 }

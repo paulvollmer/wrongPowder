@@ -11,7 +11,7 @@
 
 import wrongPowder.calendar.*;
 
-CalendarUtil CAL = new CalendarUtil();
+CalendarUtil cal = new CalendarUtil();
 
 int unixtimeStart;
 
@@ -20,7 +20,7 @@ void setup() {
   size(950, 200);
   
   // Save start Unixtime to <unixtimeStart> value
-  unixtimeStart = CAL.unixtime();
+  unixtimeStart = cal.unixtime();
 }
 
 
@@ -36,8 +36,8 @@ void draw() {
   
   // Draw value text
   fill(255, 255, 0);
-  text(CAL.unixtime(), 500, 80);
+  text(cal.unixtime(), 500, 80);
   // Calculate application seconds
-  int secondsRun = CAL.unixtime() - unixtimeStart;
+  int secondsRun = cal.unixtime() - unixtimeStart;
   text(secondsRun, 500, 160);
 }
