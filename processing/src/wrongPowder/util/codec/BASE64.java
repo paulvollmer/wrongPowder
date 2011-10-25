@@ -34,71 +34,82 @@ import sun.misc.BASE64Encoder;
 
 
 /**
- * BASE64
+ * Base64
  * 
- * @example util_basic 
+ * @example codec_basic 
  */
-public class BASE64 {	
+public class Base64 {	
 	
 
 	/**
-	 * A Constructor, usually called in the setup() method in your sketch to
-	 * initialize and start the library.
+	 * A Constructor, usually called in the <code>setup()</code> method in your sketch to
+	 * initialize and start the library.<br>
+	 * More information about Base64 at <a href="http://en.wikipedia.org/wiki/Base64">wikipedia</a>.
 	 * 
-	 * @example util_basic
+	 * @example codec_basic
 	 */
-	public BASE64() {}
+	public Base64() {}
 	
 	
 	/**
-	 * Encode a string with BASE64.
+	 * Encode a string with Base64.
 	 * 
-	 * @param input
-	 * @param format
+	 * @example codec_basic
+	 * @param input Text String.
+	 * @param format Text Format like UTF-8 etc.
 	 * @return The encoded string.
-	 * @throws UnsupportedEncodingException
-	 * @throws IOException
 	 */
 	public String encode(String input, String format) {
 		String encoded = null;
 		try {
 			encoded = new BASE64Encoder().encode(input.getBytes(format));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		return encoded;
 	}
 	
+	/**
+	 * Encode a string with Base64 and Text Format UTF-8.
+	 * 
+	 * @param input Text String.
+	 * @return The encoded string.
+	 */
 	public String encode(String input) {
 		return encode(input, "UTF-8");
 	}
 	
 	
 	/**
-	 * Decode a String with BASE64.
+	 * Decode a string with Base64.
 	 * 
-	 * @param input
-	 * @param format
+	 * @example codec_basic
+	 * @param input Text String.
+	 * @param format Text Format like UTF-8 etc.
 	 * @return The decoded string.
-	 * @throws UnsupportedEncodingException
-	 * @throws IOException
 	 */
 	public String decode(String input, String format){
 		String decoded = null;
 		try {
 			decoded = new String(new BASE64Decoder().decodeBuffer(input),format);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return decoded;
 	}
 	
+	/**
+	 * Decode a string with Base64 and Text Format UTF-8.
+	 * 
+	 * @param input Text String.
+	 * @return The decoded string.
+	 */
 	public String decode(String input) {
 		return decode(input, "UTF-8");
 	}

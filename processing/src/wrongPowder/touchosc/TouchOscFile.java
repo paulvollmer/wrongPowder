@@ -35,12 +35,12 @@ import java.util.zip.ZipFile;
 import processing.core.XML;
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
-import wrongPowder.util.codec.BASE64;
+import wrongPowder.util.codec.Base64;
 
 public class TouchOscFile {
 	
 	public XML xml;
-	private BASE64 base64;
+	private Base64 base64;
 	
 	
 	/**
@@ -62,7 +62,7 @@ public class TouchOscFile {
 	 * @return String FileName
 	 */
 	public void load(String fileName) {
-		base64 = new BASE64();
+		base64 = new Base64();
 		
 	    try {
 	    	ZipFile zf = new ZipFile(fileName);

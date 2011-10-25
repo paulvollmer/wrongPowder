@@ -9,13 +9,17 @@
  */
 
 
-import wrongPowder.util.codec.BASE64;
+import wrongPowder.util.codec.Base64;
 
-BASE64 base64 = new BASE64();
+Base64 base64 = new Base64();
 
 
 void setup() {
-  String encoded;
- encoded = base64.encode("helloworld", "UTF-8");
-  println("BASE64.encode() " + encoded);
+  // Encode a text String.
+  String encoded = base64.encode("hello world", "UTF-8");
+  println("Base64.encode() " + encoded);
+  
+  // Decode backto human readable text.
+  String decoded = base64.decode(encoded);
+  println("Base64.decode() " + decoded);
 }
