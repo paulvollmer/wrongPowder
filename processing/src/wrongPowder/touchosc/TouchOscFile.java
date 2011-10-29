@@ -30,7 +30,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -43,26 +42,26 @@ public class TouchOscFile {
 	
 	public XML xml;
 	
-	private int    fileVersion     = 0;
-	private int    fileMode        = 0;
-	private String fileOrientation = "horizontal";
+	private static int    fileVersion     = 0;
+	private static int    fileMode        = 0;
+	private static String fileOrientation = "horizontal";
 	
-	public String[]   tabName;
-	public String[][] controlName;
-	public String[][] controlType;
-	public int[][]    controlX;
-	public int[][]    controlY;
-	public int[][]    controlW;
-	public int[][]    controlH;
-	public int[][]    controlColor;
+	public static String[]   tabName;
+	public static String[][] controlName;
+	public static String[][] controlType;
+	public static int[][]    controlX;
+	public static int[][]    controlY;
+	public static int[][]    controlW;
+	public static int[][]    controlH;
+	public static int[][]    controlColor;
 
-	public boolean[][] controlLocaloff;
-	public float[][]   controlScalef;
-	public float[][]   controlScalet;
-	public boolean[][] controlBackground;
-	public boolean[][] controlOutline;
-	public int[][]     controlSize;
-	public String[][]  controlText;
+	public static boolean[][] controlLocaloff;
+	public static float[][]   controlScalef;
+	public static float[][]   controlScalet;
+	public static boolean[][] controlBackground;
+	public static boolean[][] controlOutline;
+	public static int[][]     controlSize;
+	public static String[][]  controlText;
 
 	// Create Base64 object to decode TouchOsc name of control tag.
 	private Base64 base64 = new Base64();
@@ -91,7 +90,7 @@ public class TouchOscFile {
 		unzip(fileName);
 		
 	    // Print out the xml file.
-	    //System.out.println("\nXML File:\n" + xml);
+	    System.out.println("\nXML File:\n" + xml);
 	    
 	    // List all children of xml.
 	    // Use for debugging...
@@ -244,130 +243,16 @@ public class TouchOscFile {
    					}
    				}
    				
+   				
    				tabCounter++;
+   				
 	    	}
+	    	else {
+				System.out.println("NO Control tag");
+			}
+	    	
 	    }
-	    		
 	    
-	    
-	    
-	    
-   				/*
-	    				// Search the different control elements.
-	    				// If exist, add to ArrayList and create new TouchOscXX element.
-	    				if(controlType.compareTo("batteryh") == 0) {
-	    					//System.out.println("batteryh");
-	    					tBatteryh = new ArrayList();
-	    					tBatteryh.add(new TouchOscBatteryh(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("batteryv") == 0) {
-	   								//System.out.println("batteryv");
-	    							tBatteryv = new ArrayList();
-	    							tBatteryv.add(new TouchOscBatteryv(controlName, controlX, controlY, controlW, controlH, controlColor));
-    							}
-	    						
-	    						if(controlType.compareTo("faderh") == 0) {
-	    							//System.out.println("faderh");
-	    							tFaderh = new ArrayList();
-	    							tFaderh.add(new TouchOscFaderh(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("faderv") == 0) {
-	    							//System.out.println("faderv");
-	    							tFaderv = new ArrayList();
-	    							tFaderv.add(new TouchOscFaderv(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("labelh") == 0) {
-	    							//System.out.println("labelh");
-	    							tLabelh = new ArrayList();
-	    							tLabelh.add(new TouchOscLabelh(controlName, controlX, controlY, controlW, controlH, controlColor, controlText));
-	    						}
-	    						
-	    						if(controlType.compareTo("labelv") == 0) {
-	    							//System.out.println("labelv");
-	    							tLabelv = new ArrayList();
-	    							tLabelv.add(new TouchOscLabelv(controlName, controlX, controlY, controlW, controlH, controlColor, controlText));
-	    						}
-	    						
-	    						if(controlType.compareTo("led") == 0) {
-	    							//System.out.println("led");
-	    							tLed = new ArrayList();
-	    							tLed.add(new TouchOscLed(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("multifaderh") == 0) {
-	    							//System.out.println("multifaderh");
-	    							tMultifaderh = new ArrayList();
-	    							tMultifaderh.add(new TouchOscMultifaderh(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("multifaderv") == 0) {
-	    							//System.out.println("multifaderv");
-	    							tMultifaderv = new ArrayList();
-	    							tMultifaderv.add(new TouchOscMultifaderv(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("multitoggle") == 0) {
-	   								//System.out.println("multitoggle");
-	    							tMultitoggle = new ArrayList();
-	    							tMultitoggle.add(new TouchOscMultitoggle(controlName, controlX, controlY, controlW, controlH, controlColor));
-    							}
-	    						
-	    						if(controlType.compareTo("push") == 0) {
-	    							//System.out.println("push");
-	    							tPush = new ArrayList();
-	    							tPush.add(new TouchOscPush(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("rotaryh") == 0) {
-	   								//System.out.println("rotaryh");
-	   								tRotaryh = new ArrayList();
-	    							tRotaryh.add(new TouchOscRotaryh(controlName, controlX, controlY, controlW, controlH, controlColor));
-	   							}
-	    						
-	    						if(controlType.compareTo("rotaryv") == 0) {
-	    							//System.out.println("rotaryv");
-	    							tRotaryv = new ArrayList();
-	    							tRotaryv.add(new TouchOscRotaryv(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("timeh") == 0) {
-	   								//System.out.println("timeh");
-	    							tTimeh = new ArrayList();
-	    							tTimeh.add(new TouchOscTimeh(controlName, controlX, controlY, controlW, controlH, controlColor));
-	   							}
-	    						
-	    						if(controlType.compareTo("timev") == 0) {
-	    							//System.out.println("timev");
-	    							tTimev = new ArrayList();
-	    							tTimev.add(new TouchOscTimev(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("toggle") == 0) {
-	    							//System.out.println("toggle");
-	    							tToggle = new ArrayList();
-	    							tToggle.add(new TouchOscToggle(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	    						
-	    						if(controlType.compareTo("xy") == 0) {
-	    							//System.out.println("xy");
-	    							tXy = new ArrayList();
-	    							tXy.add(new TouchOscXy(controlName, controlX, controlY, controlW, controlH, controlColor));
-	    						}
-	   							
-	    						
-	    							
-	    					} //else {
-	    						//System.out.println("NO Control tag");
-	    					//}
-	    				}
-	    				
-	    			}
-	    			
-	    		}
-	    		System.out.println("\nList Tabs: " + tabs);*/
 	}
 	
 	
@@ -429,7 +314,7 @@ public class TouchOscFile {
 	 * 
 	 * @return version
 	 */
-	public int version() {
+	public static int version() {
 		return fileVersion;
 	}
 	
@@ -440,7 +325,7 @@ public class TouchOscFile {
 	 * 
 	 * @return mode
 	 */
-	public int mode() {
+	public static int mode() {
 		return fileMode;
 	}
 	
@@ -450,7 +335,7 @@ public class TouchOscFile {
 	 * 
 	 * @return orientation
 	 */
-	public String orientation() {
+	public static String orientation() {
 		return fileOrientation;
 	}
 	
@@ -460,7 +345,7 @@ public class TouchOscFile {
 	 * 
 	 * @return Integer
 	 */
-	public int numTabs() {
+	public static int numTabs() {
 		return tabName.length;
 	}
 	
