@@ -26,34 +26,11 @@
 package wrongPowder.touchosc;
 
 
-//import java.util.ArrayList;
 import processing.core.*;
-//import wrongPowder.touchosc.TouchOscFile;
 
 
 
 public class TouchOscLayout extends TouchOscFile {
-	
-	/*public ArrayList tabs = new ArrayList();
-	public ArrayList tBatteryh;
-	public ArrayList tBatteryv;
-	public ArrayList tFaderh;
-	public ArrayList tFaderv;
-	public ArrayList tLabelh;
-	public ArrayList tLabelv;
-	public ArrayList tLed;
-	public ArrayList tMultifaderh;
-	public ArrayList tMultifaderv;
-	public ArrayList tMultitoggle;
-	public ArrayList tPush;
-	public ArrayList tRotaryh;
-	public ArrayList tRotaryv;
-	public ArrayList tTimeh;
-	public ArrayList tTimev;
-	public ArrayList tToggle;
-	public ArrayList tXy;*/
-	
-	//private TouchOscFile tFile = new TouchOscFile();
 	
 	// TouchOsc control color variables.
 	public static int RED_ON     = 0xFFFF0000;
@@ -67,14 +44,17 @@ public class TouchOscLayout extends TouchOscFile {
 	public static int PURPLE_ON  = 0xFFDC00FF;
 	public static int PURPLE_OFF = 0xFFDC00FF;
 	public static int GRAY_ON    = 0xFFD6D6D6;
+	public static int GRAY_OFF   = 0xFFD6D6D6;
 	public static int ORANGE_OFF = 0xFFFFB700;
 	public static int ORANGE_ON  = 0xFFFFB700;
 	
-	// Create Base64 object to decode TouchOsc name of control tag.
-	//private Base64 base64 = new Base64();
-	public static int GRAY_OFF   = 0xFFD6D6D6;
+	private int layoutWidth;
+	private int layoutHeight;
+	
+	public int tabWidth;
 	
 	private PApplet p;
+	
 	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
@@ -82,6 +62,41 @@ public class TouchOscLayout extends TouchOscFile {
 	 */
 	public TouchOscLayout(PApplet p) {
 		this.p = p;
+	}
+	
+	
+	public void init() {
+		//System.out.println("Start init");
+		
+		// Check the mode.
+		// 0 = iPhone/iPod Touch
+		if(wrongPowder.touchosc.TouchOscFile.mode() == 0) {
+			if(wrongPowder.touchosc.TouchOscFile.orientation().equals("horizontal")) {
+				layoutWidth = 360;
+				layoutHeight = 480;
+			}
+			if(wrongPowder.touchosc.TouchOscFile.orientation().equals("vertical")) {
+				layoutWidth = 480;
+				layoutHeight = 360;
+			}
+		}
+		
+		// 1 = iPad
+		if(wrongPowder.touchosc.TouchOscFile.mode() == 1) {
+			if(wrongPowder.touchosc.TouchOscFile.orientation().equals("horizontal")) {
+				layoutWidth = 768;
+				layoutHeight = 1024;
+			}
+			if(wrongPowder.touchosc.TouchOscFile.orientation().equals("vertical")) {
+				layoutWidth = 1024;
+				layoutHeight = 768;
+			}
+		}
+		
+		// Set the size of the tabs. For this, read
+		// the layoutWidth and calculate the tab size.
+		tabWidth = layoutWidth/wrongPowder.touchosc.TouchOscFile.numTabs() - 3;
+		
 	}
 	
 	
@@ -93,20 +108,52 @@ public class TouchOscLayout extends TouchOscFile {
 	public void draw(int x, int y) {
 		p.pushMatrix();
 			p.translate(x, y);
-			//p.rotate(p.HALF_PI);
-			
+		
 			// ground
 			p.noStroke();
 			p.fill(0);
-			p.rect(0, 0, 1024, 768);
+			p.rect(0, 0, layoutWidth, layoutHeight);
 			
 			// tabs
-			/*int tabWidth = 1024/wrongPowder.touchosc.TouchOscFile.numTabs();
-			for(int i=0; i<2; i++) {
+			//int tabWidth = ;
+			for(int i=0; i<layoutHeight; i+=tabWidth) {
 				p.stroke(0);
-				p.fill(255, 0, 0);
-				//p.rect(i*(tabWidth), 0, tabWidth, 20);
-			}*/
+				p.fill(50);
+				p.rect(i+1, 0, tabWidth, 40);
+			}
+		
+			if(wrongPowder.touchosc.TouchOscFile.orientation().equals("vertical")) {
+				p.translate(0, layoutHeight);
+				p.rotate(-p.radians(90));
+			}
+			
+			p.noStroke();
+			for(int i=0; i<wrongPowder.touchosc.TouchOscFile.numTabs(); i++) {
+				for(int j=0; j<wrongPowder.touchosc.TouchOscFile.controlType[i].length; j++) {
+					
+					// Led
+					if(wrongPowder.touchosc.TouchOscFile.controlType[i][j].equals("led")) {
+						//System.out.println("LED");
+						p.fill(wrongPowder.touchosc.TouchOscFile.controlColor[i][j]);
+						p.ellipse(wrongPowder.touchosc.TouchOscFile.controlX[i][j],
+							      wrongPowder.touchosc.TouchOscFile.controlY[i][j],
+							      wrongPowder.touchosc.TouchOscFile.controlW[i][j],
+							      wrongPowder.touchosc.TouchOscFile.controlH[i][j]);
+					}
+					
+					//if(wrongPowder.touchosc.TouchOscFile.controlType[i][j].equals("led")) {
+						//System.out.println("LED");
+					p.fill(wrongPowder.touchosc.TouchOscFile.controlColor[i][j]);
+					p.rect(wrongPowder.touchosc.TouchOscFile.controlX[i][j],
+						   wrongPowder.touchosc.TouchOscFile.controlY[i][j],
+						   wrongPowder.touchosc.TouchOscFile.controlW[i][j],
+						   wrongPowder.touchosc.TouchOscFile.controlH[i][j]);
+					//}
+				}
+			}
+			
+			
+			
 			
 			// draw control elements.
 			/*for(int i = tBatteryh.size()-1; i >= 0; i--) {
