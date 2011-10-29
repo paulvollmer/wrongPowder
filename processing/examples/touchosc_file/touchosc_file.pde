@@ -1,8 +1,8 @@
 import wrongPowder.touchosc.TouchOscFile;
-import wrongPowder.touchosc.TouchOscLayout;
+//import wrongPowder.touchosc.TouchOscLayout;
 
 TouchOscFile tOscFile;
-TouchOscLayout tOscLayout;
+//TouchOscLayout tOscLayout;
 
 
 void setup() {
@@ -12,7 +12,7 @@ void setup() {
   
   // Initialize the class.
   tOscFile = new TouchOscFile();
-  tOscLayout = new TouchOscLayout(this);
+  //tOscLayout = new TouchOscLayout(this);
   
   // Load a TouchOSC File.
   tOscFile.load(dataPath("Untitled 1.touchosc"));
@@ -25,7 +25,21 @@ void setup() {
   // How many Tab Pages exist?
   println("numTabs(): " + tOscFile.numTabs());
   
-  println(tOscFile.tabs);
+  println(tOscFile.tabName);
+  
+  println("List Control Tags");
+  for(int i=0; i<tOscFile.numTabs(); i++) {
+    for(int j=0; j<tOscFile.controlType[i].length; j++) {
+      println("[" + tOscFile.tabName[i] + "] " +
+              "Name: "+tOscFile.controlName[i][j] +
+              " Type: "+tOscFile.controlType[i][j] +
+              " X: "+tOscFile.controlX[i][j] +
+              " Y: "+tOscFile.controlY[i][j] +
+              " W: "+tOscFile.controlW[i][j] +
+              " H: "+tOscFile.controlH[i][j] +
+              " Color: "+tOscFile.controlColor[i][j]);
+    }
+  }
 }
 
 
@@ -33,7 +47,7 @@ void draw() {
   background(100);
   
   // Display the TouchOSC file layout.
-  tOscLayout.draw(0, 0);
+  //tOscLayout.draw(0, 0);
   
   /*for(int i=0; i<tOscFile.tabs.length; i++) {
     stroke(0);
