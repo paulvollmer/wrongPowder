@@ -1,81 +1,45 @@
-
 import wrongPowder.touchosc.TouchOscFile;
+import wrongPowder.touchosc.TouchOscLayout;
 
-TouchOscFile TOSCFILE = new TouchOscFile();
-//XML xml;
+TouchOscFile tOscFile;
+TouchOscLayout tOscLayout;
 
 
 void setup() {
-  size(400, 400);
+  size(1200, 800);
+  frameRate(30);
+  smooth();
   
-  TOSCFILE.load(dataPath("Untitled 1.touchosc"));
+  // Initialize the class.
+  tOscFile = new TouchOscFile();
+  tOscLayout = new TouchOscLayout(this);
   
-  println("version:     " + TOSCFILE.version());
-  println("mode:        " + TOSCFILE.mode());
-  println("orientation: " + TOSCFILE.orientation());
+  // Load a TouchOSC File.
+  tOscFile.load(dataPath("Untitled 1.touchosc"));
   
-  println("numTabs: "+TOSCFILE.xml.getParent());
+  // Get the version, mode and orientation of the TouchOSC file.
+  println("version:     " + tOscFile.version());
+  println("mode:        " + tOscFile.mode());
+  println("orientation: " + tOscFile.orientation());
   
+  // How many Tab Pages exist?
+  println("numTabs(): " + tOscFile.numTabs());
   
-  //println(childz[1].getAttributeCount());
-  
-  // Check all childz and create tabpage XML[]
-  XML[] tabpage;
-  int numtabpage = 0;
-  for(int i=1; i<childz.length; i+=2) {
-
-    // If a child is tabpage
-    if(childz[i].getName() == "tabpage") {
-      println(childz[i]);
-      tabpage = childz[i].getChildren();
-      
-      // if control, create the different types of gui elements.
-      if(tabpage[0].getName() == "control") {
-        println("control no. < "+i+" >"  );
-      }
-      else {
-        println("NO Control tag");
-      }
-      
-      println(tabpage);
-      numtabpage++;
-      
-      /*for(int j=0; j<tabpage[1].getAttributeCount(); j++) {
-        println(tabpage[j].listAttributes());
-        //fill();
-      }*/
-      
-    }
-  }
-  
-  println("\nNumber of TabPages: "+numtabpage);
-  
-  /*for(int j=0; j<numtabpage; j++) {
-    //for(int j=0; j<tabpage[i].getAttributeCount(); j++) {
-      println(tabpage[j].listAttributes());
-      //fill();
-    //}
-  }*/
-  
-  
-  
-  /*println(xml.getName());
-  XML layout = xml.getChild(1);
-  
-  println(layout.getContent());
-  
-  println("getChildCount: "+xml.getChildCount());
-  */
-  //XML layout = xml.getChild(0);
-  //println(layout);
-  /*
-  println("###\n");
-  println(layout);
-  */
-  //println(tosc.file);
+  println(tOscFile.tabs);
 }
 
 
 void draw() {
   background(100);
+  
+  // Display the TouchOSC file layout.
+  tOscLayout.draw(0, 0);
+  
+  /*for(int i=0; i<tOscFile.tabs.length; i++) {
+    stroke(0);
+    fill(255, 0, 0);
+    rect(i*(1024/tOscFile.tabs.length), 0, 1024/tOscFile.tabs.length, 20);
+  }*/
+  
+  //exit();
 }
