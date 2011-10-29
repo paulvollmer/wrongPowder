@@ -47,26 +47,23 @@ public class TouchOscFile {
 	private int    fileMode        = 0;
 	private String fileOrientation = "horizontal";
 	
-	public String[] tabs;
-	public String[][] controls;
-	/*public ArrayList tBatteryh = new ArrayList();;
-	public ArrayList tBatteryv;
-	public ArrayList tFaderh;
-	public ArrayList tFaderv;
-	public ArrayList tLabelh;
-	public ArrayList tLabelv;
-	public ArrayList tLed;
-	public ArrayList tMultifaderh;
-	public ArrayList tMultifaderv;
-	public ArrayList tMultitoggle;
-	public ArrayList tPush;
-	public ArrayList tRotaryh;
-	public ArrayList tRotaryv;
-	public ArrayList tTimeh;
-	public ArrayList tTimev;
-	public ArrayList tToggle;
-	public ArrayList tXy;*/
-	
+	public String[]   tabName;
+	public String[][] controlName;
+	public String[][] controlType;
+	public int[][]    controlX;
+	public int[][]    controlY;
+	public int[][]    controlW;
+	public int[][]    controlH;
+	public int[][]    controlColor;
+
+	public boolean[][] controlLocaloff;
+	public float[][]   controlScalef;
+	public float[][]   controlScalet;
+	public boolean[][] controlBackground;
+	public boolean[][] controlOutline;
+	public int[][]     controlSize;
+	public String[][]  controlText;
+
 	// Create Base64 object to decode TouchOsc name of control tag.
 	private Base64 base64 = new Base64();
 	
@@ -94,7 +91,16 @@ public class TouchOscFile {
 		unzip(fileName);
 		
 	    // Print out the xml file.
-	    System.out.println("\nXML File:\n" + xml);
+	    //System.out.println("\nXML File:\n" + xml);
+	    
+	    // List all children of xml.
+	    // Use for debugging...
+	    /*System.out.println("\nxml-file listChildren:");
+	    String[] list = xml.listChildren();
+	    for(int i=0; i<list.length; i++) {
+	    	System.out.println("["+i+"] " + list[i]);
+	    }*/
+	    
 	    
 	    // Set the version, mode and orientation values.
 	    fileVersion     = xml.getInt("version");;
@@ -104,20 +110,30 @@ public class TouchOscFile {
 	    
 	    // Tabs
 	    
-	    // List all children of xml.
-	    // Use for debugging...
-	    System.out.println("\nxml-file listChildren:");
-	    String[] list = xml.listChildren();
-	    for(int i=0; i<list.length; i++) {
-	    	System.out.println("["+i+"] " + list[i]);
-	    }
-	    
 	    XML[] xmlChildren = xml.getChildren();
-	    System.out.println("xmlChildren.length: "+xmlChildren.length);
-	    
+	    //System.out.println("\nxmlChildren.length: "+xmlChildren.length);
+
+	    // Calculate the number of <tabpage> tags.
+	    int tabLength = (xmlChildren.length-1)/2;
 	    // Set the size of the tabs String Array.
-	    // (xmlChildren.length-1)/2 calculate the number of <tabpage> tags.
-	    tabs = new String[(xmlChildren.length-1)/2];
+	    tabName = new String[tabLength];
+	    
+	    controlName  = new String[tabLength][];
+	    controlType  = new String[tabLength][];
+	    controlX     = new int[tabLength][];
+	    controlY     = new int[tabLength][];
+	    controlW     = new int[tabLength][];
+	    controlH     = new int[tabLength][];
+	    controlColor = new int[tabLength][];
+	    
+	    controlLocaloff   = new boolean[tabLength][];
+		controlScalef     = new float[tabLength][];
+		controlScalet     = new float[tabLength][];
+		controlBackground = new boolean[tabLength][];
+		controlOutline    = new boolean[tabLength][];
+		controlSize       = new int[tabLength][];
+		controlText       = new String[tabLength][];
+		
 	    // Create a tabCounter for the tabs String Array.
 	    int tabCounter = 0;
 	    
@@ -126,22 +142,37 @@ public class TouchOscFile {
 	    	
 	    	// If a <tabpage> tag exist...
 	    	if(xmlChildren[i].getName() == "tabpage") {
-	    		System.out.println("AttributeCount: "+xmlChildren[i].getAttributeCount());
-	    		System.out.println("Attribute: "+xmlChildren[i].getString("name"));
+	    		//System.out.println("AttributeCount: "+xmlChildren[i].getAttributeCount());
+	    		//System.out.println("Attribute: "+xmlChildren[i].getString("name"));
 	    		
 	    		// get the name of the tabpage and decode it with Base64.
-	    		tabs[tabCounter] = base64.decode( xmlChildren[i].getString("name"), "UTF-8");
+	    		tabName[tabCounter] = base64.decode( xmlChildren[i].getString("name"), "UTF-8");
 	    		
 	    		
 	    		// Controls
 	    		
 	    		// Get the content of <tabpage> and store it to controls array.
-	    		/*XML[] xmlControls = xmlChildren[i].getChildren();
-	    		System.out.println("controls.length: "+controls.length);
+	    		XML[] xmlControls = xmlChildren[i].getChildren();
+	    		//System.out.println("controls.length: "+controls.length);
 	    		
+	    		// Calculate the number of <control> tags.
+	    		int controlLength = (xmlControls.length-1)/2;
 	    		// Set the size of the controls String Array.
-	    	    // (xmlControls.length-1)/2 calculate the number of <control> tags.
-	    	    controls = new String[tabCounter][(xmlControls.length-1)/2];
+	    		controlName[tabCounter]  = new String[controlLength];
+	    	    controlType[tabCounter]  = new String[controlLength];
+	    	    controlX[tabCounter]     = new int[controlLength];
+	    	    controlY[tabCounter]     = new int[controlLength];
+	    	    controlW[tabCounter]     = new int[controlLength];
+	    	    controlH[tabCounter]     = new int[controlLength];
+	    	    controlColor[tabCounter] = new int[controlLength];
+	    	    
+	    	    controlLocaloff[tabCounter]   = new boolean[controlLength];
+	    		controlScalef[tabCounter]     = new float[controlLength];
+	    		controlScalet[tabCounter]     = new float[controlLength];
+	    		controlBackground[tabCounter] = new boolean[controlLength];
+	    		controlOutline[tabCounter]    = new boolean[controlLength];
+	    		controlSize[tabCounter]       = new int[controlLength];
+	    		controlText[tabCounter]       = new String[controlLength];
 	    	    // Create a controlCounter for the controls String Array.
 	    	    int controlCounter = 0;
 	    	    
@@ -150,59 +181,77 @@ public class TouchOscFile {
    					
    					// If a <control> tag with attribute "type" exist...
    					if(xmlControls[j].getName() == "control" && xmlControls[j].hasAttribute("type")) {
-	    			
-   						// Get the type.
-   						controls[tabCounter][controlCounter] = xmlControls[j].getString("type");
-   						//System.out.println("Type: " + controlType);
    						
-	    				// Get the name.
-	    				/*String controlName = base64.decode( xmlControls[j].getString("name"), "UTF-8");
-	  					//System.out.println("Name: " + controlName);
+   						// Get the name.
+	    				controlName[tabCounter][controlCounter] = base64.decode( xmlControls[j].getString("name"), "UTF-8");
+	  					//System.out.println("Name: " + controlName[tabCounter][controlCounter]);
 	  					
+   						// Get the type.
+   						controlType[tabCounter][controlCounter] = xmlControls[j].getString("type");
+   						//System.out.println("Type: " + controlType[tabCounter][controlCounter]);
+   						
 	    				// Get the position and size.
-	    				int controlX = xmlControls[j].getInt("x");
-	   					int controlY = xmlControls[j].getInt("y");
-	   					int controlW = xmlControls[j].getInt("w");
-	   					int controlH = xmlControls[j].getInt("h");
-	    				//System.out.println("Pos/Size: x " + controlX + " y " + controlY + " w " + controlW + " h " + controlH);
+	   					controlX[tabCounter][controlCounter] = xmlControls[j].getInt("x");
+	   					controlY[tabCounter][controlCounter] = xmlControls[j].getInt("y");
+	   					controlW[tabCounter][controlCounter] = xmlControls[j].getInt("w");
+	   					controlH[tabCounter][controlCounter] = xmlControls[j].getInt("h");
+	    				/*System.out.println("Pos/Size: x " + controlX[tabCounter][controlCounter] +
+	   					                            " y " + controlY[tabCounter][controlCounter] +
+	   					                            " w " + controlW[tabCounter][controlCounter] +
+	   					                            " h " + controlH[tabCounter][controlCounter]);*/
 	    				
 	    				// Get color.
-	    				String cColor = xmlControls[j].getString("color");
-	    				int controlColor = 0;
-	    				if(cColor.compareTo("red") == 0) {
-	    					controlColor    = wrongPowder.touchosc.TouchOscLayout.RED_ON;
-	    				}
-	    				else if(cColor.compareTo("green") == 0) {
-	    					controlColor  = wrongPowder.touchosc.TouchOscLayout.GREEN_ON;
-	    				}
-	    				else if(cColor.compareTo("blue") == 0) {
-	    					controlColor   = wrongPowder.touchosc.TouchOscLayout.BLUE_ON;
-	    				}
-	    				else if(cColor.compareTo("yellow") == 0) {
-	    					controlColor = wrongPowder.touchosc.TouchOscLayout.YELLOW_ON;
-	    				}
-	    				else if(cColor.compareTo("purple") == 0) {
-	    					controlColor = wrongPowder.touchosc.TouchOscLayout.PURPLE_ON;
-	    				}
-	    				else if(cColor.compareTo("gray") == 0) {
-	    					controlColor   = wrongPowder.touchosc.TouchOscLayout.GRAY_ON;
-	    				}
-	    				else if(cColor.compareTo("orange") == 0) {
-	    					controlColor = wrongPowder.touchosc.TouchOscLayout.ORANGE_ON;
-	    				}
-	    				/*String controlText = "default";
-	    				if(controls[j].hasAttribute("text")) {
-	    				controlText = base64.decode( controls[j].getString("text"), "UTF-8");
-	    				//System.out.println("text: " + controlText);
-	    				}*/
+	    				String tempColor = xmlControls[j].getString("color");
+	    				if(tempColor.compareTo("red") == 0)         controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.RED_ON;
+	    				else if(tempColor.compareTo("green") == 0)  controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.GREEN_ON;
+	    				else if(tempColor.compareTo("blue") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.BLUE_ON;
+	    				else if(tempColor.compareTo("yellow") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.YELLOW_ON;
+	    				else if(tempColor.compareTo("purple") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.PURPLE_ON;
+	    				else if(tempColor.compareTo("gray") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.GRAY_ON;
+	    				else if(tempColor.compareTo("orange") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.ORANGE_ON;
+	    				
+	    				// Get localoff
+	    				if(xmlControls[j].hasAttribute("local_off")) controlLocaloff[tabCounter][controlCounter] = Boolean.parseBoolean(xmlControls[j].getString("local_off"));
+	    				else controlLocaloff[tabCounter][controlCounter] = false;
+	    				
+	    				// Get scalef
+	    				if(xmlControls[j].hasAttribute("scalef")) controlScalef[tabCounter][controlCounter] = xmlControls[j].getFloat("scalef");
+	    				else controlScalef[tabCounter][controlCounter] = 0.0f;
+	    				
+	    				// Get scalet
+	    				if(xmlControls[j].hasAttribute("scalet")) controlScalet[tabCounter][controlCounter] = xmlControls[j].getFloat("scalet");
+	    				else controlScalet[tabCounter][controlCounter] = 0.0f;
+	    				
+	    				// Get background
+	    				if(xmlControls[j].hasAttribute("local_off")) controlBackground[tabCounter][controlCounter] = Boolean.parseBoolean(xmlControls[j].getString("background"));
+	    				else controlBackground[tabCounter][controlCounter] = false;
+	    				
+	    				// Get outline
+	    				if(xmlControls[j].hasAttribute("outline")) controlOutline[tabCounter][controlCounter] = Boolean.parseBoolean(xmlControls[j].getString("outline"));
+	    				else controlOutline[tabCounter][controlCounter] = false;
+	    				
+	    				// Get size
+	    				if(xmlControls[j].hasAttribute("size")) controlSize[tabCounter][controlCounter] = xmlControls[j].getInt("size");
+	    				else controlSize[tabCounter][controlCounter] = 0;
+	    				
+	    				// Get text
+	    				if(xmlControls[j].hasAttribute("text")) controlText[tabCounter][controlCounter] = base64.decode( xmlControls[j].getString("text"), "UTF-8");
+	    				else controlText[tabCounter][controlCounter] = "not available";
+	    				
+	    				            
+   						controlCounter++;
    						
-   						
-   					//}
-   				//}
+   					}
+   				}
+   				
    				tabCounter++;
 	    	}
 	    }
-	    				
+	    		
+	    
+	    
+	    
+	    
    				/*
 	    				// Search the different control elements.
 	    				// If exist, add to ArrayList and create new TouchOscXX element.
@@ -412,7 +461,7 @@ public class TouchOscFile {
 	 * @return Integer
 	 */
 	public int numTabs() {
-		return tabs.length;
+		return tabName.length;
 	}
 	
 	
