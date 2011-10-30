@@ -30,6 +30,8 @@ package wrongPowder.io;
 import org.apache.log4j.*;
 import org.apache.log4j.lf5.util.LogMonitorAdapter;
 
+import wrongPowder.calendar.CalendarUtil;
+
 
 /**
  * Config
@@ -37,7 +39,9 @@ import org.apache.log4j.lf5.util.LogMonitorAdapter;
  * @example config_basic 
  */
 public class Log {
-
+	
+	CalendarUtil time = new CalendarUtil();
+	
 	private String fileName;
 	private static Logger logger = Logger.getRootLogger();
 	
@@ -60,7 +64,7 @@ public class Log {
 		try {
 			SimpleLayout layout = new SimpleLayout();
 				ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-				logger.addAppender( consoleAppender );
+				logger.addAppender(consoleAppender);
 				FileAppender fileAppender = new FileAppender(layout, fileName);
 				logger.addAppender(fileAppender);
 				// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
@@ -69,18 +73,53 @@ public class Log {
 			System.out.println(ex);
 		}
 		
-		logger.debug("Meine Debug-Meldung");
-		logger.info("Meine Info-Meldung");
-		logger.warn("Meine Warn-Meldung");
-		logger.error("Meine Error-Meldung");
-		logger.fatal("Meine Fatal-Meldung");
+		info("Initialise Log File.");
 	}
 	
 	
-	public void println(String s) {
-		logger.info(s);
+	/**
+	 * Print a Message to log file with level DEBUG.
+	 * 
+	 * @param s Message.
+	 */
+	public void debug(String s) {
+		logger.debug(time.timestamp("[HH:mm:ss] ")+s);
 	}
 	
+	/**
+	 * Print a Message to log file with level INFO.
+	 * 
+	 * @param s Message.
+	 */
+	public void info(String s) {
+		logger.info(time.timestamp(" [HH:mm:ss] ")+s);
+	}
 	
+	/**
+	 * Print a Message to log file with level WARN.
+	 * 
+	 * @param s Message.
+	 */
+	public void warn(String s) {
+		logger.warn(time.timestamp(" [HH:mm:ss] ")+s);
+	}
+	
+	/**
+	 * Print a Message to log file with level ERROR.
+	 * 
+	 * @param s Message.
+	 */
+	public void error(String s) {
+		logger.error(time.timestamp("[HH:mm:ss] ")+s);
+	}
+	
+	/**
+	 * Print a Message to log file with level FATAL.
+	 * 
+	 * @param s Message.
+	 */
+	public void fatal(String s) {
+		logger.fatal(time.timestamp("[HH:mm:ss] ")+s);
+	}
 	
 }
