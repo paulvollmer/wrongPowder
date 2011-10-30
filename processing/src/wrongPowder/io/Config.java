@@ -49,7 +49,7 @@ public class Config {
 
 	public Properties props = new Properties();
 	public String filePath;
-	OsCheck utilities = new OsCheck();
+	OsCheck osCheck = new OsCheck();
 	
 	
 
@@ -88,7 +88,7 @@ public class Config {
 		// check Platform and save Filepath to Variable.
 		
 		// WINDOWS
-		if(utilities.isWindows()) {
+		if(osCheck.isWindows()) {
 			try {
 				filePath = System.getenv("APPDATA") + File.separator + folderName + File.separator + fileName;
 			}
@@ -99,12 +99,12 @@ public class Config {
 		// MACOSX
 		// On MacOS we use the User Application Support Folder to search and store the files.
 		// Path: /Users/NAME/Library/Application Support/APPNAME/FILENAME.SUFFIX
-		else if(utilities.isMac()) {
+		else if(osCheck.isMac()) {
 			filePath = File.separator + "Users" + File.separator + System.getProperty("user.name") + File.separator
 			+ "Library" + File.separator + "Application Support" + File.separator + folderName + File.separator + fileName;
 		}
 		// LINUX
-		else if(utilities.isUnix()) {	
+		else if(osCheck.isUnix()) {	
 			filePath = ""; // TODO: Add Filepath
 		}
 		// OTHER
