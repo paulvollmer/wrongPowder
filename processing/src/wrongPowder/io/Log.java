@@ -27,7 +27,8 @@ package wrongPowder.io;
 
 
 
-import java.io.BufferedWriter;
+import org.apache.log4j.*;
+import org.apache.log4j.lf5.util.LogMonitorAdapter;
 
 
 /**
@@ -37,7 +38,8 @@ import java.io.BufferedWriter;
  */
 public class Log {
 
-	//public 
+	private String fileName;
+	private static Logger logger = Logger.getRootLogger();
 	
 	
 
@@ -48,6 +50,36 @@ public class Log {
 	 * @example config_basic
 	 */
 	public Log() {}
+	
+	public Log(String fileName) {
+		this.fileName = fileName;
+		init();
+	}
+	
+	public void init() {
+		try {
+			SimpleLayout layout = new SimpleLayout();
+				ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+				logger.addAppender( consoleAppender );
+				FileAppender fileAppender = new FileAppender(layout, fileName);
+				logger.addAppender(fileAppender);
+				// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
+				//logger.setLevel( Level.WARN );
+		} catch(Exception ex) {
+			System.out.println(ex);
+		}
+		
+		logger.debug("Meine Debug-Meldung");
+		logger.info("Meine Info-Meldung");
+		logger.warn("Meine Warn-Meldung");
+		logger.error("Meine Error-Meldung");
+		logger.fatal("Meine Fatal-Meldung");
+	}
+	
+	
+	public void println(String s) {
+		logger.info(s);
+	}
 	
 	
 	
