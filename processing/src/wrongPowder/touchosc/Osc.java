@@ -23,86 +23,101 @@
  *  @version	##version##
  */
 
+
 package wrongPowder.touchosc;
 
 
-//import oscP5.*;
-//import netP5.*;
+import oscP5.*;
+import netP5.*;
 
 
 
-public class TouchOsc {
+public class Osc implements OscEventListener {
+	
+	//private static final OscEventListener t = null;
+	public OscP5 oscP5;
+	public OscMessage message;
+	public NetAddress net;
+	
+	
+	/**
+	 * A Constructor, usually called in the setup() method in your sketch to
+	 * initialize and start the library.
+	 *
+	 * @param ip
+	 *        The IP to receive.
+	 * @param send
+	 *        The Port to send.
+	 * @param receive
+	 *        The Port to receive.
+	 */
+	public Osc(){//String ip, int portSend, int portReceive) {
+		// start oscP5, listening for incoming messages at port 1234
+		//oscP5 = new OscP5(this, portSend);
+		//TestListener t = new TestListener();
+		//oscP5.addListener(t);
+		// myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
+		// an ip address and a port number. myRemoteLocation is used as parameter in
+		// oscP5.send() when sending osc packets to another computer, device, 
+		// application. usage see below. for testing purposes the listening port
+		// and the port of the remote location address are the same, hence you will
+		// send messages back to this sketch.
+		//net = new NetAddress(ip, portReceive);
+	}
+	
+	
+	public void oscEvent(OscMessage theEvent) {
+	    int a = theEvent.get(0).intValue();
+	    System.out.println("\ncustom OscEventListener Test\nreceived an osc message\nvalue at index 0 (int expected) : "+a);
+	  }
+	  
+	  public void oscStatus(OscStatus theStatus) {
+		  System.out.println("osc status : "+theStatus.id());
+	  }  
+	
+	
+	
+	/**
+	 * Device Accelerometer X value
+	 *
+	 * @return float
+	 */
+	public float accX(OscMessage msg) {
+		float accelerometerX = 0;
+		// check accelerator value and get the values
+		if(msg.checkAddrPattern("/accxyz") == true) {
+			// check if the typetag is the right one.
+			if(msg.checkTypetag("fff")) {
+				accelerometerX = msg.get(0).floatValue();
+			}
+		}
+		return accelerometerX;
+	}
   
-  //OscP5 osc;
-  //OscMessage message;
-  //NetAddress net;
+  
+	/**
+	 * Device Accelerometer Y value
+	 *
+	 * @return float
+	 */
+	public float accY(OscMessage msg) {
+		float accelerometerY = 0;
+		// check accelerator value and get the values
+		if(msg.checkAddrPattern("/accxyz") == true) {
+			// check if the typetag is the right one.
+			if(msg.checkTypetag("fff")) {
+				accelerometerY = msg.get(1).floatValue();
+			}
+		}
+		return accelerometerY;
+	}
   
   
-  /**
-   * A Constructor, usually called in the setup() method in your sketch to
-   * initialize and start the library.
-   *
-   * @param ip
-   *        The IP to receive.
-   * @param send
-   *        The Port to send.
-   * @param receive
-   *        The Port to receive.
+	/**
+	 * Device Accelerometer Z value
+	 *
+	 * @return float
    */
-  public TouchOsc(String ip, int portSend, int portReceive) {
-    // start oscP5, listening for incoming messages at port 1234
-    //osc = new OscP5(this, portSend);
-    // myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
-    // an ip address and a port number. myRemoteLocation is used as parameter in
-    // oscP5.send() when sending osc packets to another computer, device, 
-    // application. usage see below. for testing purposes the listening port
-    // and the port of the remote location address are the same, hence you will
-    // send messages back to this sketch.
-    //net = new NetAddress(ip, portReceive);
-  }
-  
-  
-  /**
-   * Device Accelerometer X value
-   *
-   * @return float
-   *
-  public float accX(OscMessage msg) {
-    float accelerometerX = 0;
-    // check accelerator value and get the values
-    if(msg.checkAddrPattern("/accxyz") == true) {
-      // check if the typetag is the right one.
-      if(msg.checkTypetag("fff")) {
-        accelerometerX = msg.get(0).floatValue();
-      }
-    }
-    return accelerometerX;
-  }*/
-  
-  
-  /**
-   * Device Accelerometer Y value
-   *
-   * @return float
-   *
-  public float accY(OscMessage msg) {
-    float accelerometerY = 0;
-    // check accelerator value and get the values
-    if(msg.checkAddrPattern("/accxyz") == true) {
-      // check if the typetag is the right one.
-      if(msg.checkTypetag("fff")) {
-        accelerometerY = msg.get(1).floatValue();
-      }
-    }
-    return accelerometerY;
-  }*/
-  
-  
-  /**
-   * Device Accelerometer Z value
-   *
-   * @return float
-   *
   public float accZ(OscMessage msg) {
     float accelerometerZ = 0;
     // check accelerator value and get the values
@@ -113,7 +128,7 @@ public class TouchOsc {
       }
     }
     return accelerometerZ;
-  }*/
+  }
   
   
   // TODO /////////////////////////////////////////////////
@@ -123,8 +138,8 @@ public class TouchOsc {
    *
    * @param oscName
    *        OSC name of the TouchOSC control element.
-   *
-  public String getPage(OscMessage msg, String oscName) {
+   */
+  /*public String getPage(OscMessage msg, String oscName) {
     if(msg.checkAddrPattern(oscName) == true) {
       if(msg.checkTypetag("f")) {
         page = msg.get(0).floatValue();
@@ -141,17 +156,17 @@ public class TouchOsc {
    * @param oscName
    *        OSC name of the TouchOSC control element.
    * @return float
-   *
+   */
   public float getValue(OscMessage msg, String oscName) {
-    float value = 0;
-    if(msg.checkAddrPattern(oscName) == true) {
-      if(msg.checkTypetag("f")) {
-        value = msg.get(0).floatValue();
-      }
-    }
+	  float value = 0;
+	  if(msg.checkAddrPattern(oscName) == true) {
+	      if(msg.checkTypetag("f")) {
+	        System.out.println(msg.get(0).floatValue());
+	        value = msg.get(0).floatValue();
+	      }
+	    }
     return value;
-  }*/
-  
+  }
   
   /**
    * selectPage
@@ -180,8 +195,8 @@ public class TouchOsc {
    * @param controlValue
    *        int value
    */
-  public void setLED(String oscName, int controlValue) {
-    setLED(oscName, (float)controlValue);
+  public void setLED(OscP5 tempOsc, String oscName, int controlValue) {
+    setLED(tempOsc, oscName, (float)controlValue);
   }
   
   
@@ -196,8 +211,8 @@ public class TouchOsc {
    * @param controlValue
    *        float value
    */
-  public void setLED(String oscName, float controlValue) {
-    sendMessage(oscName, controlValue);
+  public void setLED(OscP5 tempOsc, String oscName, float controlValue) {
+    sendMessage(tempOsc, oscName, controlValue);
   }
   
   
@@ -212,8 +227,8 @@ public class TouchOsc {
    * @param lableName
    *        int value
    */
-  public void setLabel(String oscName, int lableName) {
-    setLabel(oscName, (float)lableName);
+  public void setLabel(OscP5 tempOsc, String oscName, int lableName) {
+    setLabel(tempOsc, oscName, (float)lableName);
   }
   
   
@@ -227,8 +242,8 @@ public class TouchOsc {
    * @param lableName
    *        float value
    */
-  public void setLabel(String oscName, float lableName) {
-    sendMessage(oscName, lableName);
+  public void setLabel(OscP5 tempOsc, String oscName, float lableName) {
+    sendMessage(tempOsc, oscName, lableName);
   }
   
   
@@ -243,8 +258,8 @@ public class TouchOsc {
    * @param lableName
    *        String value
    */
-  public void setLabel(String oscName, String lableName) {
-    sendMessage(oscName, lableName);
+  public void setLabel(OscP5 tempOsc, String oscName, String lableName) {
+    sendMessage(tempOsc, oscName, lableName);
   }
   
   
@@ -258,8 +273,8 @@ public class TouchOsc {
    * @param controlState
    *        int
    */
-  public void setButton(String oscName, int controlState) {
-    sendMessage(oscName, controlState);
+  public void setButton(OscP5 tempOsc, String oscName, int controlState) {
+    sendMessage(tempOsc, oscName, controlState);
   }
   
   
@@ -277,7 +292,7 @@ public class TouchOsc {
    *        y axis integer value of the control
    */
   public void setXYpad(String oscName, int controlX, int controlY) {
-    setXYpad(oscName, (float)controlX, (float)controlY);
+    setXYpad(oscName, (int)controlX, (int)controlY);
   }
   
   
@@ -294,11 +309,11 @@ public class TouchOsc {
    * @param controlY
    *        y axis float value of the control
    */
-  public void setXYpad(String oscName, float controlX, float controlY) {
-    /*message = new OscMessage(oscName);
+  public void setXYpad(OscP5 tempOsc, String oscName, float controlX, float controlY) {
+    message = new OscMessage(oscName);
     message.add(controlX);
     message.add(controlY);
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -312,8 +327,8 @@ public class TouchOsc {
    * @param controlValue
    *        integer value
    */
-  public void setFader(String oscName, int controlValue) {
-    setFader(oscName, (float)controlValue);
+  public void setFader(OscP5 tempOsc, String oscName, int controlValue) {
+    setFader(tempOsc, oscName, (float)controlValue);
   }
   
   
@@ -327,8 +342,8 @@ public class TouchOsc {
    * @param controlValue
    *        float value
    */
-  public void setFader(String oscName, float controlValue) {
-    sendMessage(oscName, controlValue);
+  public void setFader(OscP5 tempOsc, String oscName, float controlValue) {
+    sendMessage(tempOsc, oscName, controlValue);
   }
   
   
@@ -342,8 +357,8 @@ public class TouchOsc {
    * @param controlValue
    *        integer value
    */
-  public void setRotary(String oscName, int controlValue) {
-    setRotary(oscName, (float)controlValue);
+  public void setRotary(OscP5 tempOsc, String oscName, int controlValue) {
+    setRotary(tempOsc, oscName, (float)controlValue);
   }
   
   
@@ -357,8 +372,8 @@ public class TouchOsc {
    * @param controlValue
    *        float value
    */
-  public void setRotary(String oscName, float controlValue) {
-    sendMessage(oscName, controlValue);
+  public void setRotary(OscP5 tempOsc, String oscName, float controlValue) {
+    sendMessage(tempOsc, oscName, controlValue);
   }
   
   
@@ -376,14 +391,14 @@ public class TouchOsc {
    * @param controlState
    *        int
    */
-  public void setMultiToggle(String oscName, int rows, int cols, int controlState) {
-    /*message = new OscMessage(oscName);
+  public void setMultiToggle(OscP5 tempOsc, String oscName, int rows, int cols, int controlState) {
+    message = new OscMessage(oscName);
     for(int i=0; i<rows; i++) {
       for(int j=0; j<cols; j++) {
         message.add(controlState);
       }
     }
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -401,14 +416,14 @@ public class TouchOsc {
    * @param controlState
    *        int array for each Button element.
    */
-  public void setMultiToggle(String oscName, int rows, int cols, int[] controlState) {
-    /*message = new OscMessage(oscName);
+  public void setMultiToggle(OscP5 tempOsc, String oscName, int rows, int cols, int[] controlState) {
+    message = new OscMessage(oscName);
     for(int i=0; i<rows; i++) {
       for(int j=0; j<cols; j++) {
         message.add(controlState[i+j]);
       }
     }
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -452,8 +467,8 @@ public class TouchOsc {
    * @param controlValue
    *        int value
    */
-  public void setMultiFader(String oscName, int num, int controlValue) {
-    setMultiFader(oscName, num, (float)controlValue);
+  public void setMultiFader(OscP5 tempOsc, String oscName, int num, int controlValue) {
+    setMultiFader(tempOsc, oscName, num, (float)controlValue);
   }
   
   
@@ -469,12 +484,12 @@ public class TouchOsc {
    * @param controlValue
    *        float value
    */
-  public void setMultiFader(String oscName, int num, float controlValue) {
-    /*message = new OscMessage(oscName);
+  public void setMultiFader(OscP5 tempOsc, String oscName, int num, float controlValue) {
+    message = new OscMessage(oscName);
     for(int i=0; i<num; i++) {
       message.add(controlValue);
     }
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -488,12 +503,12 @@ public class TouchOsc {
    * @param controlValue
    *        int array for each Fader element.
    */
-  public void setMultiFader(String oscName, int[] controlValue) {
-    /*message = new OscMessage(oscName);
+  public void setMultiFader(OscP5 tempOsc, String oscName, int[] controlValue) {
+    message = new OscMessage(oscName);
     for(int i=0; i<controlValue.length; i++) {
       message.add(controlValue[i]);
     }
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -507,12 +522,12 @@ public class TouchOsc {
    * @param controlValue
    *        float array for each Fader element.
    */
-  public void setMultiFader(String oscName, float[] controlValue) {
-    /*message = new OscMessage(oscName);
+  public void setMultiFader(OscP5 tempOsc, String oscName, float[] controlValue) {
+    message = new OscMessage(oscName);
     for(int i=0; i<controlValue.length; i++) {
       message.add(controlValue[i]);
     }
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -525,10 +540,10 @@ public class TouchOsc {
    * @param msg
    *        int to be send.
    */
-  public void sendMessage(String oscName, int msg) {
-    /*message = new OscMessage(oscName);
+  public void sendMessage(OscP5 tempOsc, String oscName, int msg) {
+    message = new OscMessage(oscName);
     message.add(msg);
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -541,10 +556,10 @@ public class TouchOsc {
    * @param msg
    *        float to be send.
    */
-  public void sendMessage(String oscName, float msg) {
-    /*message = new OscMessage(oscName);
+  public void sendMessage(OscP5 tempOsc, String oscName, float msg) {
+    message = new OscMessage(oscName);
     message.add(msg);
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -557,10 +572,10 @@ public class TouchOsc {
    * @param msg
    *        String to be send.
    */
-  public void sendMessage(String oscName, String msg) {
-    /*message = new OscMessage(oscName);
+  public void sendMessage(OscP5 tempOsc, String oscName, String msg) {
+    message = new OscMessage(oscName);
     message.add(msg);
-    osc.send(message, net);*/
+    tempOsc.send(message, net);
   }
   
   
@@ -569,9 +584,9 @@ public class TouchOsc {
    * Triggers device vibration (iPhone only)
    * info @ http://hexler.net/docs/touchosc-controls/
    */
-  public void vibrate() {
-    /*message = new OscMessage("/vibrate");
-    osc.send(message, net);*/
+  public void vibrate(OscP5 tempOsc) {
+    message = new OscMessage("/vibrate");
+    tempOsc.send(message, net);
   }
   
   
@@ -587,8 +602,8 @@ public class TouchOsc {
    *        0 set the control to be invisible
    *        1 set the control to be visible
    */
-  public void visible(String oscName, int controlStatus) {
-    sendMessage(oscName+"/visible", controlStatus);
+  public void visible(OscP5 tempOsc, String oscName, int controlStatus) {
+    sendMessage(tempOsc, oscName+"/visible", controlStatus);
   }
   
   
@@ -600,8 +615,8 @@ public class TouchOsc {
    * @param oscName
    *        OSC name of the TouchOSC control element.
    */
-  public void show(String oscName) {
-    sendMessage(oscName+"/visible", 1);
+  public void show(OscP5 tempOsc, String oscName) {
+    sendMessage(tempOsc, oscName+"/visible", 1);
   }
   
   
@@ -613,8 +628,8 @@ public class TouchOsc {
    * @param oscName
    *        OSC name of the TouchOSC control element.
    */
-  public void hide(String oscName) {
-    sendMessage(oscName+"/visible", 0);
+  public void hide(OscP5 tempOsc, String oscName) {
+    sendMessage(tempOsc, oscName+"/visible", 0);
   }
   
   
@@ -630,8 +645,8 @@ public class TouchOsc {
    * @param controlColor
    *        String of available color property.
    */
-  public void setColor(String oscName, String controlColor) {
-    sendMessage(oscName+"/color", controlColor);
+  public void setColor(OscP5 tempOsc, String oscName, String controlColor) {
+    sendMessage(tempOsc, oscName+"/color", controlColor);
   }
   
   

@@ -40,10 +40,11 @@ import wrongPowder.util.codec.Base64;
 
 
 
-public class TouchOscFile {
+public class File {
 	
 	public XML xml;
 	
+	// Variables to store file properties.
 	private static int    fileVersion     = 0;
 	private static int    fileMode        = 0;
 	private static String fileOrientation = "horizontal";
@@ -74,11 +75,11 @@ public class TouchOscFile {
 	 *
 	 * @param fileName
 	 */
-	public TouchOscFile(String fileName) {
+	public File(String fileName) {
 		load(fileName);
 	}
 	
-	public TouchOscFile() {
+	public File() {
 	}
 	
 	
@@ -111,6 +112,8 @@ public class TouchOscFile {
 	    
 	    // Tabs
 	    
+	    // Split the xml datatype. The xmlChildren Array
+	    // contains the <tabpage> tag.
 	    XML[] xmlChildren = xml.getChildren();
 	    //System.out.println("\nxmlChildren.length: "+xmlChildren.length);
 
@@ -203,13 +206,13 @@ public class TouchOscFile {
 	    				
 	    				// Get color.
 	    				String tempColor = xmlControls[j].getString("color");
-	    				if(tempColor.compareTo("red") == 0)         controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.RED_ON;
-	    				else if(tempColor.compareTo("green") == 0)  controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.GREEN_ON;
-	    				else if(tempColor.compareTo("blue") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.BLUE_ON;
-	    				else if(tempColor.compareTo("yellow") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.YELLOW_ON;
-	    				else if(tempColor.compareTo("purple") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.PURPLE_ON;
-	    				else if(tempColor.compareTo("gray") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.GRAY_ON;
-	    				else if(tempColor.compareTo("orange") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.TouchOscLayout.ORANGE_ON;
+	    				if(tempColor.compareTo("red") == 0)         controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.RED_ON;
+	    				else if(tempColor.compareTo("green") == 0)  controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.GREEN_ON;
+	    				else if(tempColor.compareTo("blue") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.BLUE_ON;
+	    				else if(tempColor.compareTo("yellow") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.YELLOW_ON;
+	    				else if(tempColor.compareTo("purple") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.PURPLE_ON;
+	    				else if(tempColor.compareTo("gray") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.GRAY_ON;
+	    				else if(tempColor.compareTo("orange") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.ORANGE_ON;
 	    				
 	    				// Get localoff
 	    				if(xmlControls[j].hasAttribute("local_off")) controlLocaloff[tabCounter][controlCounter] = Boolean.parseBoolean(xmlControls[j].getString("local_off"));
@@ -351,5 +354,13 @@ public class TouchOscFile {
 		return tabName.length;
 	}
 	
+	
+	public static int numControls() {
+		int value = 0;
+		for(int i=0; i<tabName.length; i++) {
+			value = value+controlType[i].length;
+		}
+		return value;
+	}
 	
 }
