@@ -92,14 +92,14 @@ public class CalendarUtil {
 	 * @example calendar_basic
 	 * @return String timestamp
 	 */
-	public String timestamp(String separator) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy"+separator+"MM"+separator+"dd_HH"+separator+"mm"+separator+"ss");
+	public String timestamp(String customized) {
+		SimpleDateFormat sdf = new SimpleDateFormat(customized);
 		String ts = sdf.format(new Date());
 		return ts;
 	}
 	
 	public String timestamp() {
-		return timestamp("");
+		return timestamp("yyyyMMdd_HHmmss");
 	}
 	
 	
