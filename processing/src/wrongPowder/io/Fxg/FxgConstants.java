@@ -37,38 +37,71 @@ public interface FxgConstants {
   
   
   // Formats Print
-  public final static int[] DIN_A10 = { 105,  74 };
-  public final static int[] DIN_A9 =  { 147,  105 };
-  public final static int[] DIN_A8 =  { 210,  147 };
-  public final static int[] DIN_A7 =  { 298,  210 };
-  public final static int[] DIN_A6 =  { 411,  298 };
-  public final static int[] DIN_A5 =  { 595,  411 };
-  public final static int[] DIN_A4 =  { 842,  595 };
-  public final static int[] DIN_A3 =  { 1191, 842 };
-  public final static int[] DIN_A2 =  { 1684, 1191 };
-  public final static int[] DIN_A1 =  { 2384, 1684 };
-  public final static int[] DIN_A0 =  { 3370, 2384 };
-  public final static int[] DIN_B5 =  { 729,  516 };
-  public final static int[] DIN_B4 =  { 1032, 729 };
-  public final static int[] US_LETTER = { 792,  612 };
-  public final static int[] LEGAL =     { 1008, 612 };
+  
+  /* Pixel: 105, 74 */
+  public final static int[] DIN_A10 = {105, 74};
+  /* Pixel: 147, 105 */
+  public final static int[] DIN_A9 = {147, 105};
+  /* Pixel: 210, 147 */
+  public final static int[] DIN_A8 = {210, 147};
+  /* Pixel: 298, 210 */
+  public final static int[] DIN_A7 = {298, 210};
+  /* Pixel: 411, 298 */
+  public final static int[] DIN_A6 = {411, 298};
+  /* Pixel: 595, 411 */
+  public final static int[] DIN_A5 = {595, 411};
+  /* Pixel: 842, 595 */
+  public final static int[] DIN_A4 = {842, 595};
+  /* Pixel: 1191, 842 */
+  public final static int[] DIN_A3 = {1191, 842};
+  /* Pixel: 1684, 1191 */
+  public final static int[] DIN_A2 = {1684, 1191};
+  /* Pixel: 2384, 1684 */
+  public final static int[] DIN_A1 = {2384, 1684};
+  /* Pixel: 3370, 2384 */
+  public final static int[] DIN_A0 = {3370, 2384};
+  /* Pixel: 729, 516 */
+  public final static int[] DIN_B5 = {729, 516};
+  /* Pixel: 1032, 729 */
+  public final static int[] DIN_B4 = {1032, 729};
+  /* Pixel: 792, 612 */
+  public final static int[] US_LETTER = {792, 612};
+  /* Pixel: 1008, 612 */
+  public final static int[] LEGAL = {1008, 612};
+  
   
   // Formats Video
-  public final static int[] NTSC_DV =            { 654,  480 };
-  public final static int[] NTSC_DV_WIDESCREEN = { 873,  480 };
-  public final static int[] NTSC_D1 =            { 654,  486 };
-  public final static int[] NTSC_D1_WIDESCREEN = { 873,  486 };
-  public final static int[] PAL_DV =             { 788,  576 };
-  public final static int[] PAL_DV_WIDESCREEN =  { 1050, 576 };
-  public final static int[] HDV_HDTV_720 =       { 1280, 720 };
-  public final static int[] HDV_1080 =           { 1920, 1080 };
-  public final static int[] DVCPRO_HD_720 =      { 1280, 720 };
-  public final static int[] DVCPRO_HD_1080 =     { 1920, 1080 };
-  public final static int[] HDTV_1080 =          { 1920, 1080 };
-  public final static int[] CINEON_HALF =        { 1828, 1332 };
-  public final static int[] CINEON_FULL =        { 3656, 2664 };
-  public final static int[] FILM_2K =            { 2048, 1556 };
-  public final static int[] FILM_4K =            { 4096, 3112 };
+  
+  /* Pixel: 654, 480 */
+  public final static int[] NTSC_DV = {654, 480};
+  /* Pixel: 873, 480 */
+  public final static int[] NTSC_DV_WIDESCREEN = {873, 480};
+  /* Pixel: 654, 486*/
+  public final static int[] NTSC_D1 = {654, 486};
+  /* Pixel: 873,  486 */
+  public final static int[] NTSC_D1_WIDESCREEN = {873, 486};
+  /* Pixel: 788, 675 */
+  public final static int[] PAL_DV = {788, 576};
+  /* Pixel: 1050, 576 */
+  public final static int[] PAL_DV_WIDESCREEN =  {1050, 576};
+  /* Pixel: 1280, 720 */
+  public final static int[] HDV_HDTV_720 = {1280, 720};
+  /* Pixel: 1920, 1080 */
+  public final static int[] HDV_1080 = {1920, 1080};
+  /* Pixel: 1280, 720 */
+  public final static int[] DVCPRO_HD_720 = {1280, 720};
+  /* Pixel: 1920, 1080 */
+  public final static int[] DVCPRO_HD_1080 = {1920, 1080};
+  /* Pixel: 1920, 1080 */
+  public final static int[] HDTV_1080 = {1920, 1080};
+  /* Pixel: 1828, 1332 */
+  public final static int[] CINEON_HALF = {1828, 1332};
+  /* Pixel: 3656, 2664 */
+  public final static int[] CINEON_FULL = {3656, 2664};
+  /* Pixel: 2048, 1556 */
+  public final static int[] FILM_2K = {2048, 1556};
+  /* Pixel: 4096, 3112 */
+  public final static int[] FILM_4K = {4096, 3112};
   
   
   // FXG
@@ -80,6 +113,5 @@ public interface FxgConstants {
                                                 " xmlns:ATE=\"http://ns.adobe.com/ate/2009\" xmlns:ai=\"http:"+
                                                 "//ns.adobe.com/ai/2009\" xmlns:d=\"http://ns.adobe.com/fxg/2008/dt\""+
                                                 " xmlns:flm=\"http://ns.adobe.com/flame/2008\">";    
-  
-  
+   
 }
