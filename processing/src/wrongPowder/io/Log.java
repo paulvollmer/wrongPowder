@@ -40,9 +40,9 @@ import wrongPowder.calendar.CalendarUtil;
  */
 public class Log {
 	
+	// Use time class for unixtime()
 	CalendarUtil time = new CalendarUtil();
 	
-	private String fileName;
 	private static Logger logger = Logger.getRootLogger();
 	
 	
@@ -56,24 +56,27 @@ public class Log {
 	public Log() {}
 	
 	public Log(String fileName) {
-		this.fileName = fileName;
-		init();
+		init(fileName);
 	}
 	
-	public void init() {
+	
+	public void init(String fileName) {
 		try {
 			SimpleLayout layout = new SimpleLayout();
-				ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-				logger.addAppender(consoleAppender);
-				FileAppender fileAppender = new FileAppender(layout, fileName);
-				logger.addAppender(fileAppender);
-				// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
-				//logger.setLevel( Level.WARN );
+			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+			logger.addAppender(consoleAppender);
+			
+			String path = ".."+fileName;
+			FileAppender fileAppender = new FileAppender(layout, path);
+			
+			logger.addAppender(fileAppender);
+			// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
+			//logger.setLevel( Level.WARN );
 		} catch(Exception ex) {
 			System.out.println(ex);
 		}
 		
-		info("Initialise Log File.");
+		info("Log: Initialise Log File.");
 	}
 	
 	
@@ -83,7 +86,7 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void debug(String s) {
-		logger.debug(time.timestamp("[HH:mm:ss] ")+s);
+		logger.debug(message(s));
 	}
 	
 	/**
@@ -92,7 +95,7 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void info(String s) {
-		logger.info(time.timestamp(" [HH:mm:ss] ")+s);
+		logger.info(message(s));
 	}
 	
 	/**
@@ -101,7 +104,7 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void warn(String s) {
-		logger.warn(time.timestamp(" [HH:mm:ss] ")+s);
+		logger.warn(message(s));
 	}
 	
 	/**
@@ -110,7 +113,7 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void error(String s) {
-		logger.error(time.timestamp("[HH:mm:ss] ")+s);
+		logger.error(message(s));
 	}
 	
 	/**
@@ -119,7 +122,17 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void fatal(String s) {
-		logger.fatal(time.timestamp("[HH:mm:ss] ")+s);
+		logger.fatal(message(s));
+	}
+	
+	
+	/**
+	 * 
+	 * @param s
+	 * @return [unixtime] msg
+	 */
+	private String message(String msg) {
+		return "[" + time.timestamp("HH:mm:ss:SSS") + "] - [" + msg + "]";
 	}
 	
 }
