@@ -7,44 +7,44 @@
  * at the "Application Support" or "APPDATA" folder.
  *
  * @author    Paul Vollmer
- * @modified  2011.10.19
+ * @modified  2011.10.31
  */
 
 
 import wrongPowder.io.Config;
 
-Config config = new Config();
+// Load configuration File.  
+Config config = new Config("wrongPowder_configAdvanced", "config.txt");
 
 
 void setup() {
-  // Load configuration File.  
-  config.load("wrongPowder_configAdvanced", "config.txt");
-  
   // Get the number of Property Elements.
-  println(config.getSize());
+  println("Number of Property Elements: " + config.getSize());
   // Get a Property list.
   config.list();
   
-  // Get Configuration Properties and set app.width, app.height to size()
-  
+  // Get Configuration Properties and set app.width, app.height to size().
+  // 200 is the default value if no property exist.
   size(config.getIntProperty("app.width", 200), config.getIntProperty("app.height", 200));
   this.frame.setResizable(true);
   
-  frameRate(config.getIntProperty("app.framerate", 30));
+  // Set frameRate().
+  // Here is no default value, use value from wrongPowder.io.Config class.
+  frameRate(config.getIntProperty("app.framerate"));
 }
 
 
 public void draw() {
-
 }
 
 
-// TODO: make this by exit the application.
 public void keyPressed() {
+  // TODO: make this by exit the application.
   config.setProperty("app.width", width);
   config.setProperty("app.height", height);
+  config.setProperty("app.framerate", (int)frameRate);
   config.store();
   
   // Save a copy to data folder.
-  config.store(dataPath("dataExample/")+"/storeConfig.txt");
+  config.store(dataPath("configs/")+"config.txt");
 }

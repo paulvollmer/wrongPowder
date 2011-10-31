@@ -18,8 +18,7 @@ Config config = new Config();
 
 void setup() {
   // Load configuration file.
-  // If no file exist, create default file. 
-  config.loadStatic(dataPath("dataExample/")+"configFile.txt");
+  config.loadStatic(dataPath("configFolder/")+"configFile.txt");
   
   // Set size from configuration file values.
   size(config.getIntProperty("app.width", 200), config.getIntProperty("app.height", 200));
