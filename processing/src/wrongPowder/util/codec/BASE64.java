@@ -131,7 +131,7 @@ public class Base64 {
 	 * @param format Text Format like UTF-8 etc.
 	 * @return The decoded String.
 	 */
-	public String decode(String input, String format){
+	public static String decode(String input, String format){
 		String decoded = null;
 		try {
 			decoded = new String(new BASE64Decoder().decodeBuffer(input),format);
@@ -150,7 +150,7 @@ public class Base64 {
 	 * @param input Text String.
 	 * @return The decoded String.
 	 */
-	public String decode(String input) {
+	public static String decode(String input) {
 		return decode(input, "UTF-8");
 	}
  	
