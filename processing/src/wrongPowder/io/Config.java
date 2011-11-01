@@ -288,7 +288,7 @@ public class Config {
 	}
 	
 	public int getIntProperty(String key) {
-		return getIntProperty(key, 0);
+		return Integer.parseInt(props.getProperty(key));
 	}
 	
 	
@@ -305,7 +305,7 @@ public class Config {
 	}
 	
 	public float getFloatProperty(String key) {
-		return getFloatProperty(key, 0.0f);
+		return Float.parseFloat(props.getProperty(key));
 	}
 	
 	
@@ -322,7 +322,7 @@ public class Config {
 	}
 	
 	public String getStringProperty(String key) {
-		return getStringProperty(key, "default");
+		return props.getProperty(key);
 	}
 	
 	
@@ -339,7 +339,7 @@ public class Config {
 	}
 	
 	public boolean getBooleanProperty(String key) {
-		return getBooleanProperty(key, true);
+		return Boolean.parseBoolean(props.getProperty(key));
 	}
 	
 	
