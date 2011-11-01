@@ -21,12 +21,10 @@ void setup() {
   smooth();
   
   // Load a TouchOSC File.
-  file.load(dataPath("ipad.touchosc"));
+  file.load(dataPath("iPhone.touchosc"));
   // and initialioze the Layout class.
   layout.init();
-
-  println(file.numTabs());
-
+  
   // Number of control type.
   println("Batteryh: " + file.numBatteryh);
   println("Push: " + file.numPush);
@@ -37,5 +35,10 @@ void draw() {
   background(100);
   
   // Display the TouchOSC file layout.
-  layout.draw(20, 20);
+  layout.draw();
+}
+
+
+void mousePressed() {
+  layout.mousePressed();
 }

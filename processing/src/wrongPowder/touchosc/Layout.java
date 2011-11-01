@@ -26,13 +26,12 @@
 package wrongPowder.touchosc;
 
 
-import java.awt.event.MouseEvent;
-
+import wrongPowder.gui.Tabs;
 import processing.core.*;
 
 
 
-public class Layout extends File {
+public class Layout {
 	
 	// TouchOsc control color variables.
 	// TODO Enum or something?
@@ -57,7 +56,8 @@ public class Layout extends File {
 	private int layoutHeight;
 	
 	// Create Tab constructor.
-	private Tab tab;
+	private Tabs tab;
+	
 	
 	// Control
 	private Batteryh[] batteryh;
@@ -89,39 +89,7 @@ public class Layout extends File {
 	public Layout(PApplet p) {
 		System.out.println("Start Layout class");
 		this.p = p;
-		p.registerDispose(this);
 	}
-	
-	public void dispose() {
-	    // anything in here will be called automatically when 
-	    // the parent applet shuts down. for instance, this might
-		// shut down a thread used by this library.
-	}
-	
-	
-	public void mouseEvent(MouseEvent event) {
-		  int x = event.getX();
-		  int y = event.getY();
-
-		  switch (event.getID()) {
-		    case MouseEvent.MOUSE_PRESSED:
-		      // do something for the mouse being pressed
-		      break;
-		    case MouseEvent.MOUSE_RELEASED:
-		      // do something for mouse released
-		      break;
-		    case MouseEvent.MOUSE_CLICKED:
-		      // do something for mouse clicked
-		      break;
-		    case MouseEvent.MOUSE_DRAGGED:
-		      // do something for mouse dragged
-		      break;
-		    case MouseEvent.MOUSE_MOVED:
-		      // umm... forgot
-		      break;
-		  }
-		}
-	
 	
 	
 	public void init() {
@@ -132,42 +100,58 @@ public class Layout extends File {
 		
 		
 		// Create tab class array.
-		tab = new Tab(layoutWidth, numTabs());
+		tab = new Tabs(p);
+		tab.init(File.numTabs(), 0, 0, layoutWidth, 40);
+		
 		
 		// Create control class array.
-		batteryh = new Batteryh[numBatteryh];
-		batteryv = new Batteryv[numBatteryv];
-		faderh = new Faderh[numFaderh];
-		faderv = new Faderv[numFaderv];
-		labelh = new Labelh[numLabelh];
-		labelv = new Labelv[numLabelv];
-		led = new Led[numLed];
-		multifaderh = new Multifaderh[numMultifaderh];
-		multifaderv = new Multifaderv[numMultifaderv];
-		multitoggle = new Multitoggle[numMultitoggle];
-		push = new Push[numPush];
-		rotaryh = new Rotaryh[numRotaryh];
-		rotaryv = new Rotaryv[numRotaryv];
-		timeh = new Timeh[numTimeh];
-		timev = new Timev[numTimev];
-		toggle = new Toggle[numToggle];
-		xy = new Xy[numXy];
+		batteryh = new Batteryh[File.numBatteryh];
+		batteryv = new Batteryv[File.numBatteryv];
+		faderh = new Faderh[File.numFaderh];
+		faderv = new Faderv[File.numFaderv];
+		labelh = new Labelh[File.numLabelh];
+		labelv = new Labelv[File.numLabelv];
+		led = new Led[File.numLed];
+		multifaderh = new Multifaderh[File.numMultifaderh];
+		multifaderv = new Multifaderv[File.numMultifaderv];
+		multitoggle = new Multitoggle[File.numMultitoggle];
+		push = new Push[File.numPush];
+		rotaryh = new Rotaryh[File.numRotaryh];
+		rotaryv = new Rotaryv[File.numRotaryv];
+		timeh = new Timeh[File.numTimeh];
+		timev = new Timev[File.numTimev];
+		toggle = new Toggle[File.numToggle];
+		xy = new Xy[File.numXy];
 		
 		
-		int batteryhCounter = 0;
-		
-		for(int i=0; i<numTabs(); i++) {
+		System.out.println("init controls---------------");
+		for(int i=0; i<File.numTabs(); i++) {
 			
-			for(int j=0; j<numBatteryh; j++) {
-				
-				batteryh[batteryhCounter] = new Batteryh(controlName[i][j],
-				                                         controlType[i][j],
-				                                         controlX[i][j],
-				                                         controlY[i][j],
-			                                             controlW[i][j],
-				                                         controlH[i][j],
-				                                         controlColor[i][j]);
-				batteryhCounter++;
+			if(File.numBatteryh > 0) {
+				for(int j=0; j<File.numBatteryh; j++) {
+					System.out.println("bh "+i);
+					batteryh[j] = new Batteryh();
+				}
+			}
+			if(File.numBatteryv > 0) {
+				for(int j=0; j<File.numBatteryv; j++) {
+					System.out.println("bv " + i);
+					batteryv[j] = new Batteryv();
+				}
+			}
+			if(File.numFaderh > 0) {
+				for(int j=0; j<File.numFaderh; j++) {
+					System.out.println("fh " + i);
+					faderh[j] = new Faderh();
+				}
+			}
+			if(File.numFaderv > 0) {
+				for(int j=0; j<File.numFaderv; j++) {
+					System.out.println("fv " + i);
+					faderv[j] = new Faderv();
+				}
+			} else {
+				System.out.println("no fv");
 			}
 		}
 		
@@ -182,9 +166,9 @@ public class Layout extends File {
 	 * layoutWidth, layoutHeight variable.
 	 */
 	private void readMode() {
-        System.out.println("Read Mode: mode = " + mode());
+        System.out.println("Read Mode: mode = " + File.mode());
 		
-        switch(mode()) {
+        switch(File.mode()) {
         case(0):
         	readOrientation("horizontal", 360, 480);
 			readOrientation("vertical", 480, 360);
@@ -224,10 +208,10 @@ public class Layout extends File {
 	 * @param x X Position.
 	 * @param y Y Position.
 	 */
-	public void draw(int x, int y) {
+	public void draw() {//int x, int y) { // Comment out for interaction test
 		p.pushMatrix();
 		
-			p.translate(x, y);
+			//p.translate(x, y);
 		
 			// ground
 			p.noStroke();
@@ -235,11 +219,19 @@ public class Layout extends File {
 			p.rect(0, 0, layoutWidth, layoutHeight);
 			
 			// tabs
-			tab.display(p.mouseX-x, p.mouseY-y);
+			tab.display();
 		
-			if(orientation().equals("vertical")) {
+			if(File.orientation().equals("vertical")) {
 				p.translate(0, layoutHeight);
 				p.rotate(-p.radians(90));
+			}
+			
+			for(int j=0; j<File.controlType[tab.activeTab].length; j++) {
+				p.fill(wrongPowder.touchosc.File.controlColor[tab.activeTab][j]);
+				p.rect(wrongPowder.touchosc.File.controlX[tab.activeTab][j],
+					      wrongPowder.touchosc.File.controlY[tab.activeTab][j],
+					      wrongPowder.touchosc.File.controlW[tab.activeTab][j],
+					      wrongPowder.touchosc.File.controlH[tab.activeTab][j]);
 			}
 			
 			//int counter = 0;
@@ -288,9 +280,12 @@ public class Layout extends File {
 	}
 	
 	
+	public void mousePressed() {
+		tab.mousePressed(p.mouseX, p.mouseY);
+	}
 	
 	
-	private class Tab {
+	/*private class Tab {
 		
 		public int activeTab = 0;
 		
@@ -304,16 +299,15 @@ public class Layout extends File {
 		 * @param w Width of Tab Bar.
 		 * @param num Number oftabs.
 		 */
-		Tab(int w, int num) {
+		/*Tab(int w, int num) {
 			tabWidth = w/num;
 			System.out.println("tabWidth: " + tabWidth);
 		}
 		
-		public void display(int px, int py) {
-			for(int i=0; i<numTabs(); i++) {
+		public void display() {
+			for(int i=0; i<File.numTabs(); i++) {
 				// Set color
 				p.noStroke();
-				//if(wrongPowder.gui.Interaction.overRect(px, py, i*tabWidth, 0, tabWidth-2, 40) == true) {
 				if(activeTab == i) {
 					p.fill(50);
 				} else {
@@ -323,10 +317,17 @@ public class Layout extends File {
 				p.rect(i*tabWidth, 0, tabWidth-2, 40);
 			}
 			
-				
 		}
 		
-	}
+		public void mousePressed(int px, int py) {
+			for(int i=0; i<File.numTabs(); i++) {
+				if(wrongPowder.gui.Interaction.overRect(px, py, i*tabWidth, 0, tabWidth-2, 40) == true) {
+					activeTab = i;
+				}
+			}
+		}
+		
+	}*/
 
 	
 	
@@ -360,120 +361,120 @@ public class Layout extends File {
 	
 	
 	private class Batteryh extends Control {
-		Batteryh(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Batteryh() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Batteryv extends Control {
-		Batteryv(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Batteryv() {
+			
 		}
 	}
 	
 	
 	private class Faderh extends Control {
-		Faderh(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Faderh() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Faderv extends Control {
-		Faderv(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Faderv() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Labelh extends Control {
-		Labelh(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Labelh() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Labelv extends Control {
-		Labelv(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Labelv() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Led extends Control {
-		Led(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Led() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Multifaderh extends Control {
-		Multifaderh(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Multifaderh() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Multifaderv extends Control {
-		Multifaderv(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Multifaderv() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Multitoggle extends Control {
-		Multitoggle(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Multitoggle() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Push extends Control {
-		Push(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Push() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Rotaryh extends Control {
-		Rotaryh(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Rotaryh() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Rotaryv extends Control {
-		Rotaryv(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Rotaryv() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Timeh extends Control {
-		Timeh(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Timeh() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Timev extends Control {
-		Timev(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Timev() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Toggle extends Control {
-		Toggle(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Toggle() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
 	
 	private class Xy extends Control {
-		Xy(String name, String type, int x, int y, int w, int h, int color) {
-			super.init(name, type, x, y, w, h, color);
+		Xy() {//String name, String type, int x, int y, int w, int h, int color) {
+			//super.init(name, type, x, y, w, h, color);
 		}
 	}
 	
