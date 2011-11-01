@@ -36,18 +36,13 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import processing.core.XML;
-import wrongPowder.util.codec.Base64;
+//import wrongPowder.util.codec.Base64;
 
 
 
 public class File {
 	
-	public XML xml;
-	
-	// Variables to store file properties.
-	private static int    fileVersion     = 0;
-	private static int    fileMode        = 0;
-	private static String fileOrientation = "horizontal";
+	public static XML xml;
 	
 	public static String[]   tabName;
 	public static String[][] controlName;
@@ -86,7 +81,7 @@ public class File {
 	
 
 	// Create Base64 object to decode TouchOsc name of control tag.
-	private Base64 base64 = new Base64();
+	//private Base64 base64 = new Base64();
 	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
@@ -95,10 +90,12 @@ public class File {
 	 * @param fileName
 	 */
 	public File(String fileName) {
+		System.out.println("[File] constructor initialized");
 		load(fileName);
 	}
 	
 	public File() {
+		System.out.println("[File] constructor initialized");
 	}
 	
 	
@@ -108,11 +105,13 @@ public class File {
 	 * @return String FileName
 	 */
 	public void load(String fileName) {
+		System.out.println("[File] load start");
+		
 		// Read the TouchOsc file, unzip it and save to xml variable. 
 		unzip(fileName);
 		
 	    // Print out the xml file.
-	    System.out.println("\nXML File:\n" + xml);
+	    System.out.println("[File] XML:\n" + xml);
 	    
 	    // List all children of xml.
 	    // Use for debugging...
@@ -124,9 +123,9 @@ public class File {
 	    
 	    
 	    // Set the version, mode and orientation values.
-	    fileVersion     = xml.getInt("version");;
-	    fileMode        = xml.getInt("mode");;
-	    fileOrientation = xml.getString("orientation");;
+	    /*fileVersion     = xml.getInt("version");
+	    fileMode        = xml.getInt("mode");
+	    fileOrientation = xml.getString("orientation");*/
 	    
 	    
 	    // Tabs
@@ -169,7 +168,7 @@ public class File {
 	    		//System.out.println("Attribute: "+xmlChildren[i].getString("name"));
 	    		
 	    		// get the name of the tabpage and decode it with Base64.
-	    		tabName[tabCounter] = base64.decode( xmlChildren[i].getString("name"), "UTF-8");
+	    		tabName[tabCounter] = wrongPowder.util.codec.Base64.decode( xmlChildren[i].getString("name"), "UTF-8");
 	    		
 	    		
 	    		// Controls
@@ -206,7 +205,7 @@ public class File {
    					if(xmlControls[j].getName() == "control" && xmlControls[j].hasAttribute("type")) {
    						
    						// Get the name.
-	    				controlName[tabCounter][controlCounter] = base64.decode( xmlControls[j].getString("name"), "UTF-8");
+	    				controlName[tabCounter][controlCounter] = wrongPowder.util.codec.Base64.decode( xmlControls[j].getString("name"), "UTF-8");
 	  					//System.out.println("Name: " + controlName[tabCounter][controlCounter]);
 	  					
    						// Get the type.
@@ -246,13 +245,13 @@ public class File {
 	    				
 	    				// Get color.
 	    				String tempColor = xmlControls[j].getString("color");
-	    				if(tempColor.compareTo("red") == 0)         controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.RED_ON;
-	    				else if(tempColor.compareTo("green") == 0)  controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.GREEN_ON;
-	    				else if(tempColor.compareTo("blue") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.BLUE_ON;
-	    				else if(tempColor.compareTo("yellow") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.YELLOW_ON;
-	    				else if(tempColor.compareTo("purple") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.PURPLE_ON;
-	    				else if(tempColor.compareTo("gray") == 0)   controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.GRAY_ON;
-	    				else if(tempColor.compareTo("orange") == 0) controlColor[tabCounter][controlCounter] = wrongPowder.touchosc.Layout.ORANGE_ON;
+	    				if(tempColor.compareTo("red") == 0)         controlColor[tabCounter][controlCounter] = Layout.RED_ON;
+	    				else if(tempColor.compareTo("green") == 0)  controlColor[tabCounter][controlCounter] = Layout.GREEN_ON;
+	    				else if(tempColor.compareTo("blue") == 0)   controlColor[tabCounter][controlCounter] = Layout.BLUE_ON;
+	    				else if(tempColor.compareTo("yellow") == 0) controlColor[tabCounter][controlCounter] = Layout.YELLOW_ON;
+	    				else if(tempColor.compareTo("purple") == 0) controlColor[tabCounter][controlCounter] = Layout.PURPLE_ON;
+	    				else if(tempColor.compareTo("gray") == 0)   controlColor[tabCounter][controlCounter] = Layout.GRAY_ON;
+	    				else if(tempColor.compareTo("orange") == 0) controlColor[tabCounter][controlCounter] = Layout.ORANGE_ON;
 	    				
 	    				// Get localoff
 	    				if(xmlControls[j].hasAttribute("local_off")) controlLocaloff[tabCounter][controlCounter] = Boolean.parseBoolean(xmlControls[j].getString("local_off"));
@@ -279,7 +278,7 @@ public class File {
 	    				else controlSize[tabCounter][controlCounter] = 0;
 	    				
 	    				// Get text
-	    				if(xmlControls[j].hasAttribute("text")) controlText[tabCounter][controlCounter] = base64.decode( xmlControls[j].getString("text"), "UTF-8");
+	    				if(xmlControls[j].hasAttribute("text")) controlText[tabCounter][controlCounter] = wrongPowder.util.codec.Base64.decode( xmlControls[j].getString("text"), "UTF-8");
 	    				else controlText[tabCounter][controlCounter] = "not available";
 	    				
 	    				            
@@ -360,7 +359,7 @@ public class File {
 	 * @return version
 	 */
 	public static int version() {
-		return fileVersion;
+		return xml.getInt("version");
 	}
 	
 	/**
@@ -371,7 +370,7 @@ public class File {
 	 * @return mode
 	 */
 	public static int mode() {
-		return fileMode;
+		return xml.getInt("mode");
 	}
 	
 	/**
@@ -381,7 +380,7 @@ public class File {
 	 * @return orientation
 	 */
 	public static String orientation() {
-		return fileOrientation;
+		return xml.getString("orientation");
 	}
 	
 	
