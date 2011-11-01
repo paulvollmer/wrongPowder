@@ -1,61 +1,98 @@
-import wrongPowder.touchosc.TouchOscFile;
-import wrongPowder.touchosc.TouchOscLayout;
+import oscP5.*;
+import netP5.*;
 
-TouchOscFile tOscFile;
-TouchOscLayout tOscLayout;
+import wrongPowder.touchosc.File;
+import wrongPowder.touchosc.Osc;
+import wrongPowder.touchosc.Layout;
+
+//OscP5 oscP5;
+OscMessage message;
+NetAddress net;
+
+
+File file;
+Osc send;
+OscP5 oscP5;
+Layout layout;
+
+float r;
 
 
 void setup() {
   size(1200, 800);
-  frameRate(30);
   smooth();
   
+  oscP5 = new OscP5(this, 6000);
+  net = new NetAddress("127.0.0.1",12000);
+  
   // Initialize the class.
-  tOscFile = new TouchOscFile();
-  tOscLayout = new TouchOscLayout(this);
-  
+  file = new File();
+  send = new Osc();//oscP5, "127.0.0.1", 6000, 9000);
+  layout = new Layout(this);
+
   // Load a TouchOSC File.
-  tOscFile.load(dataPath("Untitled 1.touchosc"));
+  file.load(dataPath("Untitled 1.touchosc"));
   // and initialioze the Layout class.
-  tOscLayout.init();
-  
+  layout.init();
+
   // Get the version, mode and orientation of the TouchOSC file.
-  println("version:     " + tOscFile.version());
-  println("mode:        " + tOscFile.mode());
-  println("orientation: " + tOscFile.orientation());
-  
+  println("version:     " + file.version());
+  println("mode:        " + file.mode());
+  println("orientation: " + file.orientation());
+
   // How many Tab Pages exist?
-  //println("numTabs(): " + tOscFile.numTabs());
-  
-  //println(tOscFile.tabName);
-  
-  /*println("List Control Tags");
-  for(int i=0; i<tOscFile.numTabs(); i++) {
-    for(int j=0; j<tOscFile.controlType[i].length; j++) {
-      println("[" + tOscFile.tabName[i] + "] " +
-              "Name: "+tOscFile.controlName[i][j] +
-              " Type: "+tOscFile.controlType[i][j] +
-              " X: "+tOscFile.controlX[i][j] +
-              " Y: "+tOscFile.controlY[i][j] +
-              " W: "+tOscFile.controlW[i][j] +
-              " H: "+tOscFile.controlH[i][j] +
-              " Color: "+tOscFile.controlColor[i][j]);
+  println("numTabs(): " + file.numTabs());
+
+  println(file.tabName);
+
+  println("List Control Tags");
+  for(int i=0; i<file.numTabs(); i++) {
+    for(int j=0; j<file.controlType[i].length; j++) {
+      println("[" + file.tabName[i] + "] " +
+              "Name: "+file.controlName[i][j] +
+              " Type: "+file.controlType[i][j] +
+              " X: "+file.controlX[i][j] +
+              " Y: "+file.controlY[i][j] +
+              " W: "+file.controlW[i][j] +
+              " H: "+file.controlH[i][j] +
+              " Color: "+file.controlColor[i][j]);
     }
-  }*/
+  }
+
+
+  /*r = 0.0;
+   for(int i=1; i<=8; i++) {
+   println(r);
+   send.setRotary(oscP5, "/2/send1"+i, r);
+   send.setRotary(oscP5, "/2/send2"+i, r/2);
+   send.setRotary(oscP5, "/2/send3"+i, r/3);
+   send.setRotary(oscP5, "/2/pan"+i, 3/0.1);
+   r+=0.1;
+   }*/
 }
 
 
 void draw() {
   background(100);
-  
+
+  /*send.setRotary("/2/send1"+1, r);
+   if(r>1.0) r=0.0;
+   r+=0.01;
+   println(r);
+   */
+
   // Display the TouchOSC file layout.
-  tOscLayout.draw(200, 200);
-  
-  /*for(int i=0; i<tOscFile.tabs.length; i++) {
-    stroke(0);
-    fill(255, 0, 0);
-    rect(i*(1024/tOscFile.tabs.length), 0, 1024/tOscFile.tabs.length, 20);
-  }*/
+  layout.draw(20, 20);
   
   //exit();
+}
+
+
+void mousePressed() {
+  send.setButton(send.oscP5, "/3/input", 1);
+}
+
+ 
+void mouseDragged() {
+  send.setFader(send.oscP5, "/1/volume1", map(mouseY, 0,height, 0.0, 1.0));
 }
