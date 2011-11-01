@@ -65,6 +65,25 @@ public class File {
 	public static boolean[][] controlOutline;
 	public static int[][]     controlSize;
 	public static String[][]  controlText;
+	
+	public static int numBatteryh    = 0;
+	public static int numBatteryv    = 0;
+	public static int numFaderh      = 0;
+	public static int numFaderv      = 0;
+	public static int numLabelh      = 0;
+	public static int numLabelv      = 0;
+	public static int numLed         = 0;
+	public static int numMultifaderh = 0;
+	public static int numMultifaderv = 0;
+	public static int numMultitoggle = 0;
+	public static int numPush        = 0;
+	public static int numRotaryh     = 0;
+	public static int numRotaryv     = 0;
+	public static int numTimeh       = 0;
+	public static int numTimev       = 0;
+	public static int numToggle      = 0;
+	public static int numXy          = 0;
+	
 
 	// Create Base64 object to decode TouchOsc name of control tag.
 	private Base64 base64 = new Base64();
@@ -193,6 +212,27 @@ public class File {
    						// Get the type.
    						controlType[tabCounter][controlCounter] = xmlControls[j].getString("type");
    						//System.out.println("Type: " + controlType[tabCounter][controlCounter]);
+   						// Count the different types.
+   						
+   						// Use the controlType variable to check if it is a batteryh etc.
+   						if(controlType[tabCounter][controlCounter].equals("batteryh"))    numBatteryh++;
+   						if(controlType[tabCounter][controlCounter].equals("batteryv"))    numBatteryv++;
+   						if(controlType[tabCounter][controlCounter].equals("faderh"))      numFaderh++;
+   						if(controlType[tabCounter][controlCounter].equals("faderv"))      numFaderv++;
+   						if(controlType[tabCounter][controlCounter].equals("labelh"))      numLabelh++;
+   						if(controlType[tabCounter][controlCounter].equals("labelv"))      numLabelv++;
+   						if(controlType[tabCounter][controlCounter].equals("led"))         numLed++;
+   						if(controlType[tabCounter][controlCounter].equals("multifaderh")) numMultifaderh++;
+   						if(controlType[tabCounter][controlCounter].equals("multifaderv")) numMultifaderv++;
+   						if(controlType[tabCounter][controlCounter].equals("multitoggle")) numMultitoggle++;
+   						if(controlType[tabCounter][controlCounter].equals("push"))        numPush++;
+   						if(controlType[tabCounter][controlCounter].equals("rotaryh"))     numRotaryh++;
+   						if(controlType[tabCounter][controlCounter].equals("rotaryv"))     numRotaryv++;
+   						if(controlType[tabCounter][controlCounter].equals("timeh"))       numTimeh++;
+   						if(controlType[tabCounter][controlCounter].equals("timev"))       numTimev++;
+   						if(controlType[tabCounter][controlCounter].equals("toggle"))      numToggle++;
+   						if(controlType[tabCounter][controlCounter].equals("xy"))          numXy++;
+   						
    						
 	    				// Get the position and size.
 	   					controlX[tabCounter][controlCounter] = xmlControls[j].getInt("x");
