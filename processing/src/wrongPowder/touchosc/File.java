@@ -36,7 +36,6 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import processing.core.XML;
-//import wrongPowder.util.codec.Base64;
 
 
 
@@ -122,12 +121,6 @@ public class File {
 	    }*/
 	    
 	    
-	    // Set the version, mode and orientation values.
-	    /*fileVersion     = xml.getInt("version");
-	    fileMode        = xml.getInt("mode");
-	    fileOrientation = xml.getString("orientation");*/
-	    
-	    
 	    // Tabs
 	    
 	    // Split the xml datatype. The xmlChildren Array
@@ -178,23 +171,23 @@ public class File {
 	    		//System.out.println("controls.length: "+controls.length);
 	    		
 	    		// Calculate the number of <control> tags.
-	    		int controlLength = (xmlControls.length-1)/2;
+	    		int tempNumControl = (xmlControls.length-1)/2;
 	    		// Set the size of the controls String Array.
-	    		controlName[tabCounter]  = new String[controlLength];
-	    	    controlType[tabCounter]  = new String[controlLength];
-	    	    controlX[tabCounter]     = new int[controlLength];
-	    	    controlY[tabCounter]     = new int[controlLength];
-	    	    controlW[tabCounter]     = new int[controlLength];
-	    	    controlH[tabCounter]     = new int[controlLength];
-	    	    controlColor[tabCounter] = new int[controlLength];
+	    		controlName[tabCounter]  = new String[tempNumControl];
+	    	    controlType[tabCounter]  = new String[tempNumControl];
+	    	    controlX[tabCounter]     = new int[tempNumControl];
+	    	    controlY[tabCounter]     = new int[tempNumControl];
+	    	    controlW[tabCounter]     = new int[tempNumControl];
+	    	    controlH[tabCounter]     = new int[tempNumControl];
+	    	    controlColor[tabCounter] = new int[tempNumControl];
 	    	    
-	    	    controlLocaloff[tabCounter]   = new boolean[controlLength];
-	    		controlScalef[tabCounter]     = new float[controlLength];
-	    		controlScalet[tabCounter]     = new float[controlLength];
-	    		controlBackground[tabCounter] = new boolean[controlLength];
-	    		controlOutline[tabCounter]    = new boolean[controlLength];
-	    		controlSize[tabCounter]       = new int[controlLength];
-	    		controlText[tabCounter]       = new String[controlLength];
+	    	    controlLocaloff[tabCounter]   = new boolean[tempNumControl];
+	    		controlScalef[tabCounter]     = new float[tempNumControl];
+	    		controlScalet[tabCounter]     = new float[tempNumControl];
+	    		controlBackground[tabCounter] = new boolean[tempNumControl];
+	    		controlOutline[tabCounter]    = new boolean[tempNumControl];
+	    		controlSize[tabCounter]       = new int[tempNumControl];
+	    		controlText[tabCounter]       = new String[tempNumControl];
 	    	    // Create a controlCounter for the controls String Array.
 	    	    int controlCounter = 0;
 	    	    
