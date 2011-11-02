@@ -42,6 +42,9 @@ public class Button {
 	public int buttonWidth;
 	public int buttonHeight;
 	
+	public int buttonColorOn   = 0xFF6D6D6D;
+	public int buttonColorOver = 0xFF545454;
+	public int buttonColorOff  = 0xFF3F3F3F;
 	
 
 	/**
