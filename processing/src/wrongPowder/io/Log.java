@@ -34,9 +34,9 @@ import wrongPowder.calendar.CalendarUtil;
 
 
 /**
- * Config
+ * Log
  * 
- * @example config_basic 
+ * @example log_basic 
  */
 public class Log {
 	
@@ -51,7 +51,7 @@ public class Log {
 	 * A Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
-	 * @example config_basic
+	 * @example log_basic
 	 */
 	public Log() {}
 	
@@ -60,6 +60,11 @@ public class Log {
 	}
 	
 	
+	/**
+	 * Initialize the log file.
+	 * 
+	 * @param fileName Path to save file.
+	 */
 	public void init(String fileName) {
 		try {
 			SimpleLayout layout = new SimpleLayout();
@@ -127,9 +132,10 @@ public class Log {
 	
 	
 	/**
+	 * Use to create the message with timestamp.
 	 * 
-	 * @param s
-	 * @return [unixtime] msg
+	 * @param msg
+	 * @return [unixtime] - [msg]
 	 */
 	private String message(String msg) {
 		return "[" + time.timestamp("HH:mm:ss:SSS") + "] - [" + msg + "]";
