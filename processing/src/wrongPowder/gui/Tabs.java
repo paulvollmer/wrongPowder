@@ -42,17 +42,22 @@ public class Tabs extends Button {
 	public int numTabs;
 	public int activeTab = 0;
 	
-	// Tab width calculated with layoutWidth.
-	private int tabWidth;
 	
+	/**
+	 * A Constructor, usually called in the setup() method in your sketch to
+	 * initialize and start the library.
+	 * 
+	 * @example gui_tabs
+	 */
 	public Tabs(PApplet parent) {
 		p = parent;
 	}
 	
 
 	/**
-	 * Set the size (width) of tabs.
-	 * For this, read the layoutWidth and calculate the tab size.
+	 * Set the size of tabs.
+	 * For this, read the width and calculate the tab size.
+	 * 
 	 * @param num Number oftabs.
 	 * @param x X position.
 	 * @param y Y position.
@@ -62,37 +67,45 @@ public class Tabs extends Button {
 	public void init(int num, int x, int y, int w, int h) {
 		buttonX = x;
 		buttonY = y;
-		buttonWidth = w;
+		// Tab width calculated with layoutWidth.
+		buttonWidth = w/num;
 		buttonHeight = h;
 		numTabs = num;
-		tabWidth = w/num;
-		System.out.println("numTabs: " + numTabs);
-		System.out.println("tabWidth: " + tabWidth);
 	}
-		
+	
+	
+	/**
+	 * Display tabs.
+	 */
 	public void display() {
 		for(int i=0; i<numTabs; i++) {
-			//System.out.println("display tab "+i);
 			// Set color
 			p.noStroke();
 			if(activeTab == i) {
-				p.fill(50);
+				p.fill(buttonColorOn);
 			} else {
-				p.fill(30);
+				p.fill(buttonColorOff);
 			}
 			// Draw graphics
-			p.rect(buttonX+i*tabWidth, buttonY, tabWidth-2, buttonHeight);
+			p.rect(buttonX+i*buttonWidth, buttonY, buttonWidth-2, buttonHeight);
 		}
 		
 	}
-		
+	
+	
+	/**
+	 * Mouse pressed methode.
+	 * 
+	 * @param px Pointer x position
+	 * @param py Pointer y position
+	 */
 	public void mousePressed(int px, int py) {
-		//System.out.println("mousePressed tab");
 		for(int i=0; i<numTabs; i++) {
-			if(wrongPowder.gui.Interaction.overRect(px, py, i*tabWidth+buttonX, buttonY, tabWidth-2, buttonHeight) == true) {
+			if(Interaction.overRect(px, py, i*buttonWidth+buttonX, buttonY, buttonWidth-2, buttonHeight) == true) {
 				activeTab = i;
 			}
 		}
 	}
-		
+	
+	
 }

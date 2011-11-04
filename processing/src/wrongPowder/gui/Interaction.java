@@ -26,10 +26,6 @@
 package wrongPowder.gui;
 
 
-
-//import
-
-
 /**
  * Gui
  * 
@@ -37,10 +33,7 @@ package wrongPowder.gui;
  */
 public class Interaction {
 	
-	//private static Logger logger = Logger.getRootLogger();
 	
-	
-
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
@@ -52,18 +45,19 @@ public class Interaction {
 	
 	
 	/**
-	 * boolean to set true if mouse is overRect,
+	 * Boolean to set true if mouse is overRect,
 	 * else it return false.
-	 * @param px pointer x position
-	 * @param px pointer x position
-	 * @param x rect x position
-	 * @param y rect y position
-	 * @param w rect width
-	 * @param h rect height
-	 * @return status if over.
+	 * 
+	 * @param px Pointer x position
+	 * @param px Pointer x position
+	 * @param x Rectangle x position
+	 * @param y Rectangle  y position
+	 * @param w Rectangle  width
+	 * @param h Rectangle  height
+	 * @return Status if over.
 	 */
 	public static boolean overRect(int px, int py, int x, int y, int w, int h) {
-		System.out.println("overRect");
+		//System.out.println("overRect");
 		if(px >= x && px <= x+w &&
 		   py >= y && py <= y+h) {
 			return true;
