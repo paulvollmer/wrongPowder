@@ -36,5 +36,6 @@ void draw() {
   fill(255, 0, 0);
   grid.rectGrid(0, 200, 600, 200, 10, 30, 10);
   
-  graphics.rectRounded(10, 10, 100, 50, 10);
+  graphics.rectRounded(10, 410, 180, 180, 10);
+  graphics.polygon(210, 410, 180, 5);
 }
