@@ -39,13 +39,11 @@ public class OsCheck {
 	 * A Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
-	 * @example util_basic
 	 */
 	public OsCheck() {}
 	
 	
 	/**
-	 * isWin
 	 * Check if the Operating System is Windows.
 	 * 
 	 * @return win String
@@ -56,7 +54,6 @@ public class OsCheck {
 	}
  
 	/**
-	 * isMac
 	 * Check if the Operating System is Mac.
 	 * 
 	 * @return mac String
@@ -67,7 +64,6 @@ public class OsCheck {
 	}
  
 	/**
-	 * isUnix
 	 * Check if the Operating System is Unix.
 	 * 
 	 * @return nix or nux String

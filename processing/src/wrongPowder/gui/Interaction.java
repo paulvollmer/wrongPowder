@@ -49,11 +49,11 @@ public class Interaction {
 	 * else it return false.
 	 * 
 	 * @param px Pointer x position
-	 * @param px Pointer x position
+	 * @param py Pointer x position
 	 * @param x Rectangle x position
-	 * @param y Rectangle  y position
-	 * @param w Rectangle  width
-	 * @param h Rectangle  height
+	 * @param y Rectangle y position
+	 * @param w Rectangle width
+	 * @param h Rectangle height
 	 * @return Status if over.
 	 */
 	public static boolean overRect(int px, int py, int x, int y, int w, int h) {

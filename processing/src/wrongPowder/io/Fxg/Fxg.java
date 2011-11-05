@@ -30,7 +30,7 @@ import processing.core.PImage;
 
 
 /**
- * @example manyFXGs
+ * @example fxg_manyFiles
  * @author Paul Vollmer, http://www.wrong-entertainment.com
  */
 public class Fxg implements FxgConstants {
@@ -123,8 +123,8 @@ public class Fxg implements FxgConstants {
    * a Constructor, usually called in the setup() method in your sketch to
    * initialize and start the Library.
    * 
-   * @example wrongAgent
-   * @param theParent
+   * @example fxg_manyFiles
+   * @param parent
    */
   public Fxg(PApplet parent) {
     this.p5 = parent;

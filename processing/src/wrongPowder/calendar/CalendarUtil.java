@@ -79,7 +79,6 @@ public class CalendarUtil {
 	 * sketch to initialize and start the class.
 	 * 
 	 * @example calendar_basic
-	 * @param theParent
 	 */
 	public CalendarUtil() {
 	}

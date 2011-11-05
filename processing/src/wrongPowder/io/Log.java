@@ -28,7 +28,7 @@ package wrongPowder.io;
 
 
 import org.apache.log4j.*;
-import org.apache.log4j.lf5.util.LogMonitorAdapter;
+//import org.apache.log4j.lf5.util.LogMonitorAdapter;
 
 import wrongPowder.calendar.CalendarUtil;
 

@@ -36,7 +36,6 @@ import processing.core.PApplet;
  * - 
  * - 
  * 
- * @example wngHacks
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
@@ -53,7 +52,6 @@ public class Hacks {
 	 * wngHacks a Constructor, usually called in the setup() method in your
 	 * sketch to initialize and start the library.
 	 * 
-	 * @example wrongHacks
 	 * @param theParent
 	 */
 	public Hacks(PApplet parent) {

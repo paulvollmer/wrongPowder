@@ -33,7 +33,6 @@ import processing.core.PApplet;
  set all classes to this class
  to create a main class
  * 
- * @example wrongAgent
  * @author Paul Vollmer, wrong-entertainment.com
  * 
  */
@@ -51,7 +50,6 @@ public class Info {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 * 
-	 * @example wrongAgent
 	 * @param theParent
 	 */
 	public Info(PApplet parent) {
