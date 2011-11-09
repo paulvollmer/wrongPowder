@@ -30,6 +30,10 @@ import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import wrongPowder.io.Log;
 
 
@@ -110,6 +114,18 @@ public class AppleScript {
 	
 	
 	/**
+	 * TODO
+	 * Load a script file.
+	 * 
+	 * @param path Filepath.
+	 */
+	public void load(String filePath) {
+	}
+	
+	
+	
+	
+	/**
 	 * Set the source code of a script string.
 	 * 
 	 * @param src The script source code.
@@ -162,11 +178,16 @@ public class AppleScript {
 	}
 	
 	
+	
+	
 	// TODO add to log class. add logActive boolean?!...
 	private void addLog(String message) {
 		if(logActive == true) {
 			log.info("APPLESCRIPT "+message);
 		}
 	}
+	
+	
+	
 	
 }
