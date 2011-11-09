@@ -60,7 +60,7 @@ public class File {
 	public static int[][]     controlSize;
 	public static String[][]  controlText;
 	
-	public static int numBatteryh    = 0;
+	/*public static int numBatteryh    = 0;
 	public static int numBatteryv    = 0;
 	public static int numFaderh      = 0;
 	public static int numFaderv      = 0;
@@ -76,7 +76,7 @@ public class File {
 	public static int numTimeh       = 0;
 	public static int numTimev       = 0;
 	public static int numToggle      = 0;
-	public static int numXy          = 0;
+	public static int numXy          = 0;*/
 	
 
 	// Create Base64 object to decode TouchOsc name of control tag.
@@ -114,11 +114,11 @@ public class File {
 	    
 	    // List all children of xml.
 	    // Use for debugging...
-	    /*System.out.println("\nxml-file listChildren:");
+	    System.out.println("\nxml-file listChildren:");
 	    String[] list = xml.listChildren();
 	    for(int i=0; i<list.length; i++) {
 	    	System.out.println("["+i+"] " + list[i]);
-	    }*/
+	    }
 	    
 	    
 	    // Tabs
@@ -126,7 +126,7 @@ public class File {
 	    // Split the xml datatype. The xmlChildren Array
 	    // contains the <tabpage> tag.
 	    XML[] xmlChildren = xml.getChildren();
-	    //System.out.println("\nxmlChildren.length: "+xmlChildren.length);
+	    System.out.println("\nxmlChildren.length: "+xmlChildren.length);
 
 	    // Calculate the number of <tabpage> tags.
 	    int tabLength = (xmlChildren.length-1)/2;
@@ -157,8 +157,8 @@ public class File {
 	    	
 	    	// If a <tabpage> tag exist...
 	    	if(xmlChildren[i].getName() == "tabpage") {
-	    		//System.out.println("AttributeCount: "+xmlChildren[i].getAttributeCount());
-	    		//System.out.println("Attribute: "+xmlChildren[i].getString("name"));
+	    		System.out.println("AttributeCount: "+xmlChildren[i].getAttributeCount());
+	    		System.out.println("Attribute: "+xmlChildren[i].getString("name"));
 	    		
 	    		// get the name of the tabpage and decode it with Base64.
 	    		tabName[tabCounter] = wrongPowder.util.codec.Base64.decode( xmlChildren[i].getString("name"), "UTF-8");
@@ -206,8 +206,9 @@ public class File {
    						//System.out.println("Type: " + controlType[tabCounter][controlCounter]);
    						// Count the different types.
    						
+   						// TODO delete
    						// Use the controlType variable to check if it is a batteryh etc.
-   						if(controlType[tabCounter][controlCounter].equals("batteryh"))    numBatteryh++;
+   						/*if(controlType[tabCounter][controlCounter].equals("batteryh"))    numBatteryh++;
    						if(controlType[tabCounter][controlCounter].equals("batteryv"))    numBatteryv++;
    						if(controlType[tabCounter][controlCounter].equals("faderh"))      numFaderh++;
    						if(controlType[tabCounter][controlCounter].equals("faderv"))      numFaderv++;
@@ -223,7 +224,7 @@ public class File {
    						if(controlType[tabCounter][controlCounter].equals("timeh"))       numTimeh++;
    						if(controlType[tabCounter][controlCounter].equals("timev"))       numTimev++;
    						if(controlType[tabCounter][controlCounter].equals("toggle"))      numToggle++;
-   						if(controlType[tabCounter][controlCounter].equals("xy"))          numXy++;
+   						if(controlType[tabCounter][controlCounter].equals("xy"))          numXy++;*/
    						
    						
 	    				// Get the position and size.
@@ -231,10 +232,10 @@ public class File {
 	   					controlY[tabCounter][controlCounter] = xmlControls[j].getInt("y");
 	   					controlW[tabCounter][controlCounter] = xmlControls[j].getInt("w");
 	   					controlH[tabCounter][controlCounter] = xmlControls[j].getInt("h");
-	    				/*System.out.println("Pos/Size: x " + controlX[tabCounter][controlCounter] +
+	    				System.out.println("Pos/Size: x " + controlX[tabCounter][controlCounter] +
 	   					                            " y " + controlY[tabCounter][controlCounter] +
 	   					                            " w " + controlW[tabCounter][controlCounter] +
-	   					                            " h " + controlH[tabCounter][controlCounter]);*/
+	   					                            " h " + controlH[tabCounter][controlCounter]);
 	    				
 	    				// Get color.
 	    				String tempColor = xmlControls[j].getString("color");

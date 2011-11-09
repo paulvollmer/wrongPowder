@@ -26,6 +26,8 @@
 package wrongPowder.touchosc;
 
 
+import java.util.ArrayList;
+
 import wrongPowder.gui.Tabs;
 import processing.core.*;
 
@@ -60,7 +62,9 @@ public class Layout {
 	
 	
 	// Control
-	private Batteryh[] batteryh;
+	//private String[] numBatteryh;
+	private ArrayList batteryh;
+	//private int[] batteryhTabpage;             ############### Here we go
 	private Batteryv[] batteryv;
 	private Faderh[] faderh;
 	private Faderv[] faderv;
@@ -103,10 +107,13 @@ public class Layout {
 		tab = new Tabs(p);
 		tab.init(File.numTabs(), 0, 0, layoutWidth, 40);
 		
+	    
 		
-		// Create control class array.
-		batteryh = new Batteryh[File.numBatteryh];
-		batteryv = new Batteryv[File.numBatteryv];
+		
+		// Set Tab size to Class Array.
+		batteryh = new ArrayList();
+		//batteryhTabpage = new int[File.numTabs()];           ############### Here we go
+		/*batteryv = new Batteryv[File.numBatteryv];
 		faderh = new Faderh[File.numFaderh];
 		faderv = new Faderv[File.numFaderv];
 		labelh = new Labelh[File.numLabelh];
@@ -121,19 +128,43 @@ public class Layout {
 		timeh = new Timeh[File.numTimeh];
 		timev = new Timev[File.numTimev];
 		toggle = new Toggle[File.numToggle];
-		xy = new Xy[File.numXy];
+		xy = new Xy[File.numXy];*/
+		
 		
 		
 		System.out.println("init controls---------------");
-		for(int i=0; i<File.numTabs(); i++) {
-			
-			if(File.numBatteryh > 0) {
-				for(int j=0; j<File.numBatteryh; j++) {
-					System.out.println("bh "+i);
-					batteryh[j] = new Batteryh();
+		for(int t=0; t<File.numTabs(); t++) {
+			System.out.println("Tab No: " + t);
+			for(int c=0; c<File.controlType[t].length; c++) {
+				// Add Batteryh
+				if(File.controlType[t][c].equals("batteryh")) {
+					batteryh.add( new Batteryh(File.controlName[t][c],
+							File.controlType[t][c],
+							File.controlX[t][c],
+							File.controlY[t][c],
+							File.controlW[t][c],
+							File.controlH[t][c],
+							File.controlColor[t][c]));
+					System.out.println("batteryh " + c +" "+ File.controlW[t][c]);
 				}
 			}
-			if(File.numBatteryv > 0) {
+		}
+		
+		/*if(File.numBatteryh > 0) {
+			for(int j=0; j<File.numBatteryh; j++) {
+				System.out.println("bh "+j);
+				batteryh[j] = new Batteryh();
+				
+				batteryh[j].init(name, type, x, y, w, h, color);
+			}
+		} else {
+			System.out.println("no bh");
+		}*/
+		
+		
+		
+		
+			/*if(File.numBatteryv > 0) {
 				for(int j=0; j<File.numBatteryv; j++) {
 					System.out.println("bv " + i);
 					batteryv[j] = new Batteryv();
@@ -152,65 +183,18 @@ public class Layout {
 				}
 			} else {
 				System.out.println("no fv");
-			}
+			}*/
 		}
 		
-	}
-	
-	
-	/**
-	 * Read the file mode.
-	 * 0 = iPhone/iPod-Touch
-	 * 1 = iPad.
-	 * Read orientation, set the size and store it to
-	 * layoutWidth, layoutHeight variable.
-	 */
-	private void readMode() {
-        System.out.println("Read Mode: mode = " + File.mode());
-		
-        switch(File.mode()) {
-        case(0):
-        	readOrientation("horizontal", 360, 480);
-			readOrientation("vertical", 480, 360);
-        	break;
-        case(1):
-        	readOrientation("horizontal", 768, 1024);
-			readOrientation("vertical", 1024, 768);
-        	break;
-        }
-	}
-
-	/**
-	 * Read the orientation
-	 * @param ori The file mode. 0 or 1.
-	 * @param width 
-	 * @param height 
-	 */
-	private void readOrientation(String ori, int width, int height) {
-		// If the ori == the file orientation, set variables.
-		if(wrongPowder.touchosc.File.orientation().equals(ori)) {
-			System.out.println("Read Orientation: orientation = " + ori +
-			         "\n                  width = " + width +
-			         "\n                  height = " + height);
-			
-			layoutWidth = width;
-			layoutHeight = height;
-			System.out.println("                  layoutWidth  = " + layoutWidth +
-			                 "\n                  layoutHeight = " + layoutHeight);
-		} else {
-			System.out.println("Read Orientation: not correct orientation.");
-		}
-	}
 
 
 	/**
 	 * 
-	 * @param x X Position.
-	 * @param y Y Position.
 	 */
-	public void draw() {//int x, int y) { // Comment out for interaction test
+	public void draw() {
 		p.pushMatrix();
 		
+			// TODO Add int x, int y for position.
 			//p.translate(x, y);
 		
 			// ground
@@ -226,13 +210,37 @@ public class Layout {
 				p.rotate(-p.radians(90));
 			}
 			
+			
+			// Draw control.
 			for(int j=0; j<File.controlType[tab.activeTab].length; j++) {
+				// Batteryh
+				if(File.controlType[tab.activeTab][j].equals("batteryh")) {
+					//batteryh[tab.activeTab][j].display();
+					for (int i=batteryh.size()-1; i>=0; i--) {
+						//System.out.println("BATTERYYYYY "+i);
+					    // An ArrayList doesn't know what it is storing so we have to cast the object coming out
+					    Batteryh bh = (Batteryh) batteryh.get(i);
+					    bh.display();
+					}
+					/*p.fill(File.controlColor[tab.activeTab][j]);
+					p.ellipse(File.controlX[tab.activeTab][j],
+							File.controlY[tab.activeTab][j],
+							File.controlW[tab.activeTab][j],
+							File.controlH[tab.activeTab][j]);*/
+				}
+				
+			}
+				
+				
+			/*	
 				p.fill(wrongPowder.touchosc.File.controlColor[tab.activeTab][j]);
 				p.rect(wrongPowder.touchosc.File.controlX[tab.activeTab][j],
-					      wrongPowder.touchosc.File.controlY[tab.activeTab][j],
-					      wrongPowder.touchosc.File.controlW[tab.activeTab][j],
-					      wrongPowder.touchosc.File.controlH[tab.activeTab][j]);
+					   wrongPowder.touchosc.File.controlY[tab.activeTab][j],
+					   wrongPowder.touchosc.File.controlW[tab.activeTab][j],
+					   wrongPowder.touchosc.File.controlH[tab.activeTab][j]);
 			}
+			*/
+			
 			
 			//int counter = 0;
 			/*p.noStroke();
@@ -280,70 +288,70 @@ public class Layout {
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public void mousePressed() {
 		tab.mousePressed(p.mouseX, p.mouseY);
 	}
 	
 	
-	/*private class Tab {
+	/**
+	 * Read the file mode.
+	 * 0 = iPhone/iPod-Touch
+	 * 1 = iPad.
+	 * Read orientation, set the size and store it to
+	 * layoutWidth, layoutHeight variable.
+	 */
+	private void readMode() {
+        System.out.println("Read Mode: mode = " + File.mode());
 		
-		public int activeTab = 0;
-		
-		// Tab width calculated with layoutWidth.
-		private int tabWidth;
-		private int tabActive = 0;
-		
-		/**
-		 * Set the size (width) of tabs.
-		 * For this, read the layoutWidth and calculate the tab size.
-		 * @param w Width of Tab Bar.
-		 * @param num Number oftabs.
-		 */
-		/*Tab(int w, int num) {
-			tabWidth = w/num;
-			System.out.println("tabWidth: " + tabWidth);
-		}
-		
-		public void display() {
-			for(int i=0; i<File.numTabs(); i++) {
-				// Set color
-				p.noStroke();
-				if(activeTab == i) {
-					p.fill(50);
-				} else {
-					p.fill(30);
-				}
-				// Draw graphics
-				p.rect(i*tabWidth, 0, tabWidth-2, 40);
-			}
-			
-		}
-		
-		public void mousePressed(int px, int py) {
-			for(int i=0; i<File.numTabs(); i++) {
-				if(wrongPowder.gui.Interaction.overRect(px, py, i*tabWidth, 0, tabWidth-2, 40) == true) {
-					activeTab = i;
-				}
-			}
-		}
-		
-	}*/
+        switch(File.mode()) {
+        case(0):
+        	readOrientation("horizontal", 360, 480);
+			readOrientation("vertical", 480, 360);
+        	break;
+        case(1):
+        	readOrientation("horizontal", 768, 1024);
+			readOrientation("vertical", 1024, 768);
+        	break;
+        }
+	}
 
+	/**
+	 * Read the orientation
+	 * @param ori The file mode. 0 or 1.
+	 * @param width 
+	 * @param height 
+	 */
+	private void readOrientation(String ori, int width, int height) {
+		// If the ori == the file orientation, set variables.
+		if(wrongPowder.touchosc.File.orientation().equals(ori)) {
+			System.out.println("Read Orientation: orientation = " + ori +
+			         "\n                  width = " + width +
+			         "\n                  height = " + height);
+			
+			layoutWidth = width;
+			layoutHeight = height;
+			System.out.println("                  layoutWidth  = " + layoutWidth +
+			                 "\n                  layoutHeight = " + layoutHeight);
+		} else {
+			System.out.println("Read Orientation: not correct orientation.");
+		}
+	}
 	
 	
-	private class Control {
+	
+	
+	
+	
+	private class Control extends wrongPowder.gui.Button {
 		
-		private String name;
-		private String type;
-		private int x;
-		private int y;
-		private int w;
-		private int h;
-		private int color;
+		public String controlName;
+		public String controlType;
+		public int controlColor;
 		
-		Control() {}
-		
-		public void init(String name, String type, int x, int y, int w, int h, int color) {
+		/*Control(String name, String type, int x, int y, int w, int h, int color) {
 			this.name = name;
 			this.type = type;
 			this.x = x;
@@ -351,18 +359,39 @@ public class Layout {
 			this.w = w;
 			this.h = h;
 			this.color = color;
-		}
+		}*/
 		
-		public void display() {
+		/*public void init(String name, String type, int x, int y, int w, int h, int color) {
+			this.name = name;
+			this.type = type;
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+			this.color = color;
+		}*/
+		
+		/*public void display() {
 			p.fill(color);
 			p.rect(x, y, w, h);
-		}
+		}*/
 	}
 	
 	
 	private class Batteryh extends Control {
-		Batteryh() {//String name, String type, int x, int y, int w, int h, int color) {
-			//super.init(name, type, x, y, w, h, color);
+		Batteryh(String name, String type, int x, int y, int w, int h, int color) {
+			controlName = name;
+			controlType = type;
+			buttonX = x;
+			buttonY = y;
+			buttonWidth = w;
+			buttonHeight = h;
+			controlColor = color;
+		}
+		
+		public void display() {
+			p.fill(controlColor);
+			p.rect(buttonX, buttonY, buttonWidth, buttonHeight);
 		}
 	}
 	
