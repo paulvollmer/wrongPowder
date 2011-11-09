@@ -81,7 +81,7 @@ public class Log {
 			System.out.println(ex);
 		}
 		
-		info("Log: Initialise Log File.");
+		info("LOG Initialise File.");
 	}
 	
 	
@@ -138,7 +138,7 @@ public class Log {
 	 * @return [unixtime] - [msg]
 	 */
 	private String message(String msg) {
-		return "[" + time.timestamp("HH:mm:ss:SSS") + "] - [" + msg + "]";
+		return "[" + time.timestamp("yyyy:MM:dd_HH:mm:ss:SSS") + "] " + msg;
 	}
 	
 }
