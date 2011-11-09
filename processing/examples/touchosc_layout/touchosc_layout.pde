@@ -21,13 +21,15 @@ void setup() {
   smooth();
   
   // Load a TouchOSC File.
-  file.load(dataPath("iPhone.touchosc"));
+  file.load(dataPath("iPad Kopie.touchosc"));
   // and initialioze the Layout class.
   layout.init();
   
   // Number of control type.
-  println("Batteryh: " + file.numBatteryh);
+  /*println("Batteryh: " + file.numBatteryh);
+  println("Batteryv: " + file.numBatteryv);
   println("Push: " + file.numPush);
+  println("xy: " + file.numXy);*/
 }
 
 
