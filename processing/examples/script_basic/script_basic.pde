@@ -29,7 +29,11 @@ void setup() {
   // Initialize Log file.
   script.init();
   
-  script.setScript("tell application\"Safari\" \n"+
+  String url = "http://www.wng.cc/";
+  script.setScript("set myurl to \""+url+"\" \n"+
+                   "tell application\"Safari\" \n"+
+                   "set URL of document 1 to myurl \n"+
                    "end tell");
+  
   script.runScript();
 }
