@@ -22,11 +22,10 @@ void setup() {
   size(400, 400);
   
   // Initialize Log file.
-  // Use to write infos it logActife == true.
   log.init(sketchPath("logs")+"/log"+time.timestamp()+".txt");
-  
-  // Set true to write log file.
+  // Use to write log file set logActife == true.
   script.logActive = true;
+  
   // Initialize Log file.
   script.init();
   

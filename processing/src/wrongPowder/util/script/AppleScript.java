@@ -37,13 +37,15 @@ import wrongPowder.io.Log;
 
 public class AppleScript {
 	
+	Log log = new Log();
+    public boolean logActive = false;
+    
 	private ScriptEngineManager manager = new ScriptEngineManager();
     private List<ScriptEngineFactory> engines = manager.getEngineFactories();
     private ScriptEngine engine;
     public String script;
-
-    Log log = new Log();
-    public boolean logActive = false;
+    public String scriptLanguage = "applescript";
+    
     
     
     
@@ -68,7 +70,7 @@ public class AppleScript {
 
 
 
-	public void init(String scriptLanguage) {
+	public void init(String language) {
 		addLog("Start initialize ScriptEngine & search scripting Ports");
 		
 		if (engines.isEmpty()) {
@@ -100,9 +102,9 @@ public class AppleScript {
 			}
 			
 		}
-
-		addLog("Set ScriptEngine to "+scriptLanguage+" scriptLanguage");
-		engine = manager.getEngineByExtension(scriptLanguage);
+		
+		scriptLanguage = language;
+		addLog("Set scriptLanguage to "+language);
 		
 	}
 	
@@ -129,6 +131,9 @@ public class AppleScript {
 	public void setScript(String src) {
 		script = src;
 		addLog("Set Script:\n"+src);
+		
+		addLog("Set ScriptEngine to "+scriptLanguage+" scriptLanguage");
+		engine = manager.getEngineByExtension(scriptLanguage);
 	}
 	
 	
@@ -145,18 +150,31 @@ public class AppleScript {
 	
 	
 	
-	
+	// TODO debug this.
 	/**
 	 * Change a Value from applescript, you need to
 	 * place the methode before runScript.
 	 * Else the value won't be set.
-	 */
-	public void setVal(String scriptValue, int value) {
-		// Set the scriptValue to value.
+	 * 
+	 * @param scriptValue The variable you want to change.
+	 * @param value The new value.
+	 *
+	public void setVal(String scriptValue, String value) {
 		engine.put(scriptValue, ""+value);
 		addLog("Change "+scriptValue+" to "+value);
 	}
 	
+	public void setVal(String scriptValue, int value) {
+		setVal(scriptValue, String.valueOf(value));
+	}
+	
+	public void setVal(String scriptValue, float value) {
+		setVal(scriptValue, String.valueOf(value));
+	}
+	
+	public void setVal(String scriptValue, boolean value) {
+		setVal(scriptValue, String.valueOf(value));
+	}*/
 	
 	
 	
