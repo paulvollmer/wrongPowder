@@ -140,8 +140,142 @@ public class Graphics {
 			}
 		p5.endShape();
 	}
-
-
+	
+	
+	
+	
+	/**
+	 * starRounded
+	 * 
+	 * @param x X position.
+	 * @param y Y position.
+	 * @param innerRadian The inner diameter of the star.
+	 * @param outerRadian The outer diameter of the star.
+	 * @param n
+	 */
+	public void starRounded(float x, float y, float innerRadian, float outerRadian, int n) {
+	  p5.pushMatrix();
+	  p5.translate(x, y);
+	  float rad = PApplet.TWO_PI/n;
+	  
+	  int changer = 1;
+	  p5.beginShape();
+	  p5.curveVertex(PApplet.cos(0*rad)*innerRadian, PApplet.sin(0*rad)*innerRadian);
+	  for(int i = 0; i < n; i++) {
+	    if(changer == 1) {
+	      x = PApplet.cos(i*rad)*innerRadian;
+	      y = PApplet.sin(i*rad)*innerRadian;
+	      p5.curveVertex(x, y);
+	      changer = 2;
+	    }
+	    if(changer == 2) {
+	      x = PApplet.cos((float) (i+0.5)*rad) * outerRadian;
+	      y = PApplet.sin((float) (i+0.5)*rad) * outerRadian;
+	      p5.curveVertex(x, y);
+	      changer = 1;
+	    }
+	  }
+	  p5.curveVertex(PApplet.cos(n*rad)*innerRadian, PApplet.sin(n*rad)*innerRadian);
+	  p5.curveVertex(PApplet.cos(n*rad)*innerRadian, PApplet.sin(n*rad)*innerRadian);
+	  p5.endShape();
+	  p5.popMatrix();
+	}
+	
+	
+	
+	/**
+	 * Draw a ring, assuming it is circular (not an ellipse),
+	 * but accepting that the internal circle isn't centered on the external one
+	 *
+	 * @param ex Center of external ellipse x position
+	 * @param ey Center of external ellipse y position
+	 * @param ew External ellipse width
+	 * @param eh External ellipse height
+	 * @param ix Center of internal ellipse x position
+	 * @param iy Center of internal ellipse y position
+	 * @param iw External ellipse width
+	 * @param ih External ellipse height
+	 */
+	public void ring(float ex, float ey, float ew, float eh, float ix, float iy, float iw, float ih) {
+		p5.beginShape();
+		ellipseCCW(0.448f, ex, ey, ew, eh);
+		ellipseCW(0.448f, ix, iy, iw, ih);
+		p5.endShape();
+	}
+	
+	/**
+	 * Helper method for ring.
+	 * Clockwise Ellipse
+	 */
+	private void ellipseCW(float l, float x, float y, float w, float h) {
+		// Java draws circles using four cubic curves too, with ratio of length of control vector
+		// against radius of 0.552. I compute the complement of this ratio for convenience.
+		float hw = w/2;
+		float hh = h/2;
+		float lx = l*hw;
+		float ly = l*hh;
+		
+		// Assume here default CENTER mode
+		x -= hw;
+		y -= hh;
+		
+		// Left
+		p5.vertex(x, y+hh);
+		// Top
+		p5.bezierVertex(x, y+ly,
+				        x+lx, y,
+				        x+hw, y);
+		// Right
+		p5.bezierVertex(x+w-lx, y,
+				        x+w, y+ly,
+				        x+w, y+hh);
+		// Bottom
+		p5.bezierVertex(x+w, y+h-ly,
+				        x+w-lx, y+h,
+				        x+hw, y+h);
+		// Back to left
+		p5.bezierVertex(x+lx, y+h,
+				        x, y+h-ly,
+				        x, y+hh);
+	}
+	
+	
+	/**
+	 * Helper method for ring.
+	 * Counter Clockwise Ellipse
+	 */
+	private void ellipseCCW(float l, float x, float y, float w, float h) {
+		float hw = w/2;
+		float hh = h/2;
+		float lx = l*hw;
+		float ly = l*hh;
+		
+		// Assume here default CENTER mode
+		x -= hw;
+		y -= hh;
+		
+		// Left
+		p5.vertex(x, y+hh);
+		// Bottom
+		p5.bezierVertex(x, y+h-ly,
+				        x+lx, y+h,
+				        x+hw, y+h);
+		// Right
+		p5.bezierVertex(x+w-lx, y+h,
+				        x+w, y+h-ly,
+				        x+w, y+hh);
+		// Top
+		p5.bezierVertex(x+w, y+ly,
+				        x+w-lx, y,
+				        x+hw, y);
+		// Back to left
+		p5.bezierVertex(x+lx, y,
+				        x, y+ly,
+				        x, y+hh);
+		}
+	
+	
+	
 	/**
 	 * Draw a wrongAgent shape.
 	 * 
