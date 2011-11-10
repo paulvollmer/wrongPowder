@@ -23,6 +23,8 @@
 
 package wrongPowder.util.script;
 
+
+
 import java.util.List;
 
 import javax.script.ScriptEngine;
@@ -30,19 +32,23 @@ import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import wrongPowder.io.Log;
+//import processing.core.*;
 
 
-
-
+/**
+ * AppleScript
+ * 
+ * @example script_basic 
+ */
 public class AppleScript {
-	
-	Log log = new Log();
-    public boolean logActive = false;
     
 	private ScriptEngineManager manager = new ScriptEngineManager();
     private List<ScriptEngineFactory> engines = manager.getEngineFactories();
     private ScriptEngine engine;
+    
+    //PApplet p5;
+    
+    public int logActive = 1;
     public String script;
     public String scriptLanguage = "applescript";
     
@@ -56,20 +62,28 @@ public class AppleScript {
 	 * 
 	 * @example script_basic
 	 */
-	public AppleScript() {
-		addLog("Start");
-	}
+	public AppleScript() {}
 	
 	
 	
-	
+	/**
+	 * @see init(String language)
+	 */
 	public void init() {
 		init("applescript");
 	}
-
-
-
-
+	
+	
+	
+	
+	
+	/**
+	 * Initialize the script engines.
+	 * Search scripting engines and get a list.
+	 * Set the scripting language to string variable language.
+	 * 
+	 * @param language The script language.
+	 */
 	public void init(String language) {
 		addLog("Start initialize ScriptEngine & search scripting Ports");
 		
@@ -116,9 +130,15 @@ public class AppleScript {
 	 * Load a script file.
 	 * 
 	 * @param path Filepath.
-	 */
-	public void load(String filePath) {
-	}
+	 *
+	public void load(String file) {
+		addLog("#");
+		String[] src;
+		src = p5.loadStrings(file);
+		
+		System.out.println(tempSource);
+		addLog("Load script file: "+file);
+	}*/
 	
 	
 	
@@ -132,8 +152,8 @@ public class AppleScript {
 		script = src;
 		addLog("Set Script:\n"+src);
 		
-		addLog("Set ScriptEngine to "+scriptLanguage+" scriptLanguage");
 		engine = manager.getEngineByExtension(scriptLanguage);
+		addLog("Set ScriptEngine to "+scriptLanguage+" scriptLanguage");
 	}
 	
 	
@@ -178,8 +198,10 @@ public class AppleScript {
 	
 	
 	
+	
+	
 	/**
-	 * Run script.
+	 * Run the selected script.
 	 */
 	public void runScript() {
 		try {
@@ -194,14 +216,17 @@ public class AppleScript {
 	
 	
 	
-	// TODO add to log class. add logActive boolean?!...
+	
+	/**
+	 * If the šogActive variable = 0, it will be print messages to Log class.
+	 * 
+	 * @param message The message for the logger.
+	 */
 	private void addLog(String message) {
-		if(logActive == true) {
-			log.info("APPLESCRIPT "+message);
+		if(logActive == 0) {
+			wrongPowder.io.Log.info("APPLESCRIPT "+message);
 		}
 	}
-	
-	
 	
 	
 }
