@@ -31,13 +31,19 @@ void draw() {
 
 
 void mousePressed() {
-  // Set Log level to debug.
-  log.debug("Mouse x:"+mouseX+" y:"+mouseY);
+  // Switch between log.active 0/1
+  // if log.active == 0, stop logging to file...
+  if(log.active == 0) {
+    log.active = 1;
+  // ... et to write.
+  } else {
+    log.active = 0;
+  }
 }
 
 void mouseDragged() {
-  // Set Log level to info.
-  log.info("Mouse x:"+mouseX+" y:"+mouseY);
+  // Set Log level to debug.
+  log.debug("Mouse x:"+mouseX+" y:"+mouseY);
 }
 
 void mouseReleased() {

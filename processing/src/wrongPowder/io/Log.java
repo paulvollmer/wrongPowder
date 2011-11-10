@@ -28,7 +28,6 @@ package wrongPowder.io;
 
 
 import org.apache.log4j.*;
-//import org.apache.log4j.lf5.util.LogMonitorAdapter;
 
 import wrongPowder.calendar.CalendarUtil;
 
@@ -40,9 +39,11 @@ import wrongPowder.calendar.CalendarUtil;
  */
 public class Log {
 	
-	// Use time class for unixtime()
-	CalendarUtil time = new CalendarUtil();
+	public static int active = 0;
 	
+	// Use time class for unixtime().
+	private static CalendarUtil time = new CalendarUtil();
+	// Logger Variable.
 	private static Logger logger = Logger.getRootLogger();
 	
 	
@@ -77,11 +78,14 @@ public class Log {
 			logger.addAppender(fileAppender);
 			// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
 			//logger.setLevel( Level.WARN );
+			
+			// Set active to 0 (log to console and file).
+			//active = 0;
+			
+			info("LOG Initialise File.");
 		} catch(Exception ex) {
 			System.out.println(ex);
 		}
-		
-		info("LOG Initialise File.");
 	}
 	
 	
@@ -91,7 +95,20 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void debug(String s) {
-		logger.debug(message(s));
+		switch(active) {
+			// Log message.
+			case(0):
+				logger.debug(message(s));
+			break;
+			// Do nothing.
+			case(1):
+				break;
+			// Print Error message to console.
+			default:
+				System.err.println("wrongPowder ERROR! logActive not correct\nuse 0 for on, 1 for off.");
+				break;
+		}
+		
 	}
 	
 	/**
@@ -99,8 +116,20 @@ public class Log {
 	 * 
 	 * @param s Message.
 	 */
-	public void info(String s) {
-		logger.info(message(s));
+	public static void info(String s) {
+		switch(active) {
+		// Log message.
+		case(0):
+			logger.info(message(s));
+			break;
+		// Do nothing.
+		case(1):
+			break;
+		// Print Error message to console.
+		default:
+			System.err.println("wrongPowder ERROR! logActive not correct\nuse 0 for on, 1 for off.");
+			break;
+		}
 	}
 	
 	/**
@@ -109,7 +138,19 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void warn(String s) {
-		logger.warn(message(s));
+		switch(active) {
+		// Log message.
+		case(0):
+			logger.warn(message(s));
+			break;
+		// Do nothing.
+		case(1):
+			break;
+		// Print Error message to console.
+		default:
+			System.err.println("wrongPowder ERROR! logActive not correct\nuse 0 for on, 1 for off.");
+			break;
+		}
 	}
 	
 	/**
@@ -118,7 +159,19 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void error(String s) {
-		logger.error(message(s));
+		switch(active) {
+		// Log message.
+		case(0):
+			logger.error(message(s));
+			break;
+		// Do nothing.
+		case(1):
+			break;
+		// Print Error message to console.
+		default:
+			System.err.println("wrongPowder ERROR! logActive not correct\nuse 0 for on, 1 for off.");
+			break;
+		}
 	}
 	
 	/**
@@ -127,7 +180,19 @@ public class Log {
 	 * @param s Message.
 	 */
 	public void fatal(String s) {
-		logger.fatal(message(s));
+		switch(active) {
+		// Log message.
+		case(0):
+			logger.fatal(message(s));
+			break;
+		// Do nothing.
+		case(1):
+			break;
+		// Print Error message to console.
+		default:
+			System.err.println("wrongPowder ERROR! logActive not correct\nuse 0 for on, 1 for off.");
+			break;
+		}
 	}
 	
 	
@@ -137,8 +202,8 @@ public class Log {
 	 * @param msg
 	 * @return [unixtime] - [msg]
 	 */
-	private String message(String msg) {
-		return "[" + time.timestamp("yyyy:MM:dd_HH:mm:ss:SSS") + "] " + msg;
-	}
-	
+	private static String message(String msg) {
+			return "[" + time.timestamp("yyyy:MM:dd_HH:mm:ss:SSS") + "] " + msg;
+		}
+
 }
