@@ -19,6 +19,7 @@ Log log = new Log();
 
 
 
+
 void setup() {
   // Initialize Log file.
   log.init(sketchPath("logs") + "/log" + time.timestamp() + ".txt");
@@ -53,6 +54,24 @@ void draw() {
 
 
 
+void mousePressed() {
+  
+}
+
+
+
+void mouseDragged() {
+  
+}
+
+
+
+void mouseReleased() {
+  
+}
+
+
+
 void keyPressed() {
   // TODO: make this by exit the application.
   config.setProperty("app.width", width);
@@ -62,4 +81,10 @@ void keyPressed() {
   
   // Save a copy to data folder.
   config.store(dataPath("configs/")+"config.txt");
+}
+
+
+
+void KeyReleased() {
+  
 }
