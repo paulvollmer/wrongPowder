@@ -1,0 +1,6 @@
+#wrongPowder.io.Config
+#Mon Nov 14 17:12:49 CET 2011
+app.framerate=58
+app.width=400
+app.height=400
+app.count=11
