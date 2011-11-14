@@ -35,7 +35,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 import wrongPowder.util.OsCheck;
-import wrongPowder.io.Log;
 
 /**
  * Config
