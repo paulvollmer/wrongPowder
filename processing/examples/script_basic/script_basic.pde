@@ -30,10 +30,16 @@ void setup() {
   script.init();
   
   String url = "http://www.wng.cc/";
+  
+  // Set script
   script.setScript("set myurl to \""+url+"\" \n"+
                    "tell application\"Safari\" \n"+
                    "set URL of document 1 to myurl \n"+
                    "end tell");
+  // or a loaded script file.
+  //String src = script.load(datapath("script.txt"));
+  //script.setScript(src);
   
+  // Run the script.
   script.runScript();
 }
