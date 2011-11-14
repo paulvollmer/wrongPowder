@@ -10,35 +10,63 @@
  * @modified  2011.10.31
  */
 
-
 import wrongPowder.io.Config;
 
-// Load configuration File.  
-Config config = new Config("wrongPowder_configAdvanced", "config.txt");
+// Create new configuration Object...
+Config config = new Config();
+// ... or create and load configuration file.
+// This workflow load the Properties file at first!
+//Config config = new Config("wrongPowder_configAdvanced", "config.txt");
+
+// Set a new variable for Property to store how many clicks are counted.
+int customMouseProp = 0;
 
 
 void setup() {
+  // If new Config() is written before, load a configuration File.  
+  config.load("wrongPowder_configAdvanced23", "config.txt");
+  // Or load the file from a static path.
+  config.loadStatic(dataPath("configFolder/")+"configFile.txt");
+  
+  // For Debugging...
   // Get the number of Property Elements.
   println("Number of Property Elements: " + config.getSize());
   // Get a Property list.
   config.list();
   
-  // Get Configuration Properties and set app.width, app.height to size().
-  // 200 is the default value if no property exist.
-  size(config.getIntProperty("app.width", 200), config.getIntProperty("app.height", 200));
+  // Get Configuration Properties and set app.width, app.height to w, h variable.
+  // 400 is the default value if no property exist.
+  int w = config.getIntProperty("app.width", 400);
+  int h = config.getIntProperty("app.height", 400);
+  
+  // Set size and frame resizable.
+  size(w, h);
   this.frame.setResizable(true);
   
   // Set frameRate().
   // Here is no default value, use value from wrongPowder.io.Config class.
   frameRate(config.getIntProperty("app.framerate"));
+  
 }
 
 
-public void draw() {
+
+void draw() {
+  
 }
 
 
-public void keyPressed() {
+
+void mousePressed() {
+  // Add +1 to click counter.
+  customMouseProp++;
+  // Update Property Element.
+  config.setProperty("app.mousePressed", customMouseProp);
+}
+
+
+
+void keyPressed() {
   // TODO: make this by exit the application.
   config.setProperty("app.width", width);
   config.setProperty("app.height", height);
