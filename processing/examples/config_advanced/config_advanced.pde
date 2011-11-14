@@ -24,9 +24,9 @@ int customMouseProp = 0;
 
 void setup() {
   // If new Config() is written before, load a configuration File.  
-  config.load("wrongPowder_configAdvanced23", "config.txt");
+  config.load("wrongPowder_configAdvanced", "config.txt");
   // Or load the file from a static path.
-  config.loadStatic(dataPath("configFolder/")+"configFile.txt");
+  //config.loadStatic(dataPath("configFolder/")+"configFile.txt");
   
   // For Debugging...
   // Get the number of Property Elements.
@@ -43,8 +43,7 @@ void setup() {
   size(w, h);
   this.frame.setResizable(true);
   
-  // Set frameRate().
-  // Here is no default value, use value from wrongPowder.io.Config class.
+  // This get method have no default value, use value from wrongPowder.io.Config class.
   frameRate(config.getIntProperty("app.framerate"));
   
 }

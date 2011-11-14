@@ -24,7 +24,7 @@ void setup() {
   // Initialize Log file.
   log.init(sketchPath("logs")+"/log"+time.timestamp()+".txt");
   
-  // Use to write log file set logActife == true.
+  // Use to write log file set logActife = 0.
   script.logActive = 0;
   // Initialize Log file.
   script.init();
