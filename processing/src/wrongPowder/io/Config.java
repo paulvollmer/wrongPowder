@@ -122,7 +122,7 @@ public class Config {
 	 * loadStatic
 	 * Load a Configuration file from a static path.
 	 * 
-	 * @example config_loadStatic
+	 * @example config_advanced
 	 * @param path The Filepath.
 	 */
 	public void loadStatic(String path) {
@@ -262,12 +262,12 @@ public class Config {
 	/**
 	 * Get a list of the property file.
 	 * Print out to console like this:
-	 *   -- listing properties --
-	 *   app.width=300
-	 *   app.height=300
-	 *   app.count=3
+	 * <code>-- listing properties --
+	 * app.width=300
+	 * app.height=300
+	 * app.count=3</code>
 	 *   
-	 *   @example config_advanced
+	 * @example config_advanced
 	 */
 	public void list() {
 		props.list(System.out);

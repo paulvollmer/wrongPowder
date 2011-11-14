@@ -47,7 +47,8 @@ public class Log {
 	private static Logger logger = Logger.getRootLogger();
 	
 	
-
+	
+	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
@@ -56,24 +57,32 @@ public class Log {
 	 */
 	public Log() {}
 	
+	/**
+	 * A Constructor, usually called in the setup() method in your sketch to
+	 * initialize and start the library.
+	 * 
+	 * @example log_basic
+	 * @param fileName
+	 */
 	public Log(String fileName) {
 		init(fileName);
 	}
 	
 	
+	
+	
 	/**
 	 * Initialize the log file.
 	 * 
-	 * @param fileName Path to save file.
+	 * @param path Path to save file.
 	 */
-	public void init(String fileName) {
+	public void init(String path) {
 		try {
 			SimpleLayout layout = new SimpleLayout();
 			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 			logger.addAppender(consoleAppender);
 			
-			String path = ".."+fileName;
-			FileAppender fileAppender = new FileAppender(layout, path);
+			FileAppender fileAppender = new FileAppender(layout, ".."+path);
 			
 			logger.addAppender(fileAppender);
 			// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
@@ -87,6 +96,8 @@ public class Log {
 			System.out.println(ex);
 		}
 	}
+	
+	
 	
 	
 	/**
@@ -111,6 +122,9 @@ public class Log {
 		
 	}
 	
+	
+	
+	
 	/**
 	 * Print a Message to log file with level INFO.
 	 * 
@@ -131,6 +145,9 @@ public class Log {
 			break;
 		}
 	}
+	
+	
+	
 	
 	/**
 	 * Print a Message to log file with level WARN.
@@ -153,6 +170,9 @@ public class Log {
 		}
 	}
 	
+	
+	
+	
 	/**
 	 * Print a Message to log file with level ERROR.
 	 * 
@@ -173,6 +193,9 @@ public class Log {
 			break;
 		}
 	}
+	
+	
+	
 	
 	/**
 	 * Print a Message to log file with level FATAL.
@@ -196,6 +219,8 @@ public class Log {
 	}
 	
 	
+	
+	
 	/**
 	 * Use to create the message with timestamp.
 	 * 
@@ -203,7 +228,8 @@ public class Log {
 	 * @return [unixtime] - [msg]
 	 */
 	private static String message(String msg) {
-			return "[" + time.timestamp("yyyy:MM:dd_HH:mm:ss:SSS") + "] " + msg;
-		}
-
+		return "[" + time.timestamp("yyyy:MM:dd_HH:mm:ss:SSS") + "] " + msg;
+	}
+	
+	
 }

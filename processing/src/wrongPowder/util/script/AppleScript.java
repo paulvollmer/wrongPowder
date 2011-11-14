@@ -32,7 +32,7 @@ import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-//import processing.core.*;
+import processing.core.*;
 
 
 /**
@@ -46,7 +46,7 @@ public class AppleScript {
     private List<ScriptEngineFactory> engines = manager.getEngineFactories();
     private ScriptEngine engine;
     
-    //PApplet p5;
+    private PApplet p5;
     
     public int logActive = 1;
     public String script;
@@ -62,7 +62,9 @@ public class AppleScript {
 	 * 
 	 * @example script_basic
 	 */
-	public AppleScript() {}
+	public AppleScript(PApplet p) {
+		p5 = p;
+	}
 	
 	
 	
@@ -126,19 +128,24 @@ public class AppleScript {
 	
 	
 	/**
-	 * TODO
 	 * Load a script file.
 	 * 
 	 * @param path Filepath.
-	 *
-	public void load(String file) {
-		addLog("#");
-		String[] src;
-		src = p5.loadStrings(file);
+	 */
+	public String load(String file) {
+		String src = "(*\n * Script loaded with wrongPowder.util.script.AppleScript\n*)\n";
 		
-		System.out.println(tempSource);
+		String[] tempSrc = p5.loadStrings(file);
 		addLog("Load script file: "+file);
-	}*/
+		
+		for(int i=0; i<tempSrc.length; i++) {
+			src = src+tempSrc[i]+"\n";
+		}
+		
+		addLog("Create script string:\n" + src);
+		//System.out.println(src);
+		return src;
+	}
 	
 	
 	
@@ -200,6 +207,7 @@ public class AppleScript {
 	
 	
 	
+	
 	/**
 	 * Run the selected script.
 	 */
@@ -218,7 +226,7 @@ public class AppleScript {
 	
 	
 	/**
-	 * If the šogActive variable = 0, it will be print messages to Log class.
+	 * If the logActive variable = 0, it will be print messages to Log class.
 	 * 
 	 * @param message The message for the logger.
 	 */
