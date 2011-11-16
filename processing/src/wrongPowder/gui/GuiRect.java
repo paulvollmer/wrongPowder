@@ -30,7 +30,7 @@ package wrongPowder.gui;
 
 
 /**
- * A Class to store variables for GUI like position and size.
+ * A Class to store variables for GUI position and size.
  */
 public class GuiRect {
 	
@@ -44,7 +44,7 @@ public class GuiRect {
 	
 	
 	/**
-	 * GuiRect class can be used to store x-, y-position.
+	 * Initialize method can be used to set x-, y-position.
 	 * 
 	 * @param x X position.
 	 * @param y Y position.
@@ -59,7 +59,7 @@ public class GuiRect {
 	
 	
 	/**
-	 * GuiRect class can be used to store x-, y-position, width and height.
+	 * Initialize method can be used to set x-, y-position, width and height.
 	 * 
 	 * @param x X position.
 	 * @param y Y position.
