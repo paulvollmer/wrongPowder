@@ -41,7 +41,7 @@ public class Checkbox extends Button {
 	
 	PApplet p5;
 	
-	public  int size = 10;
+	public int size = 10;
 	
 	
 	
@@ -61,6 +61,12 @@ public class Checkbox extends Button {
 	
 	
 	
+	/**
+	 * Initialize the checkbox position.
+	 * 
+	 * @param x X position.
+	 * @param y Y position.
+	 */
 	public void init(int x, int y) {
 		super.init(x, y, size, size);
 	}
@@ -79,7 +85,7 @@ public class Checkbox extends Button {
 	}
 	
 	/**
-	 * Draw the button rectangle.
+	 * Draw the checkbox with message.
 	 */
 	public void draw(String message) {
 		draw();

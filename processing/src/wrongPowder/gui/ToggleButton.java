@@ -69,7 +69,7 @@ public class ToggleButton extends Button {
 	}
 	
 	/**
-	 * Draw the button rectangle.
+	 * Draw the button rectangle with message.
 	 */
 	public void draw(String message) {
 		draw();

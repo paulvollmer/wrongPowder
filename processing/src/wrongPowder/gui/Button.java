@@ -30,16 +30,17 @@ package wrongPowder.gui;
 
 
 /**
- * Gui
- * 
- * @example gui_basic 
+ * Button class contains toggle and push methode.
+ * Also the class store colorOn and colorOff variables.
  */
 public class Button extends GuiRect {
 	
-	public int id;
-	private int colorOn  = 0xFF6D6D6D;
-	private int colorOff = 0xFF3F3F3F;
+	//public int id;
+	
+	public static int colorOn  = 0xFF6D6D6D;
+	public static int colorOff = 0xFF3F3F3F;
 	public int color = colorOn;
+	
 	// 0 = on, 1 = off
 	public int status = 0;
 
@@ -47,6 +48,13 @@ public class Button extends GuiRect {
 	
 	
 	
+	/**
+	 * Set the toggle status variable if mouse is over rectangle.
+	 * Set the color of GUI element.
+	 * 
+	 * @param mx Mouse x position.
+	 * @param my Mouse y position.
+	 */
 	public void toggle(int mx, int my) {
 		if(Interaction.overRect(mx, my, xpos, ypos, width, height) == true) {
 			switch(status) {
@@ -70,6 +78,14 @@ public class Button extends GuiRect {
 	
 	
 	
+	/**
+	 * Set the press status variable if mouse is over rectangle and pressed.
+	 * Set the color of GUI element.
+	 * 
+	 * @param mx Mouse x position.
+	 * @param my Mouse y position.
+	 * @param s The status.
+	 */
 	public void press(int mx, int my, int s) {
 		if(Interaction.overRect(mx, my, xpos, ypos, width, height) == true) {
 			status = s;
