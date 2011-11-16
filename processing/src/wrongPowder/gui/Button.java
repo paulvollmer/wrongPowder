@@ -101,8 +101,8 @@ public class Button extends GuiRect {
 				System.err.println("wrongPowder ERROR! Not correct status at Button press method.");
 				break;
 			}
+			System.out.println("BUTTON PRESS status " + status);
 		}
-		System.out.println("BUTTON PRESS status " + status);
 	}
 	
 	
