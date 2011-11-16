@@ -77,7 +77,7 @@ public class PushButton extends Button {
 		p5.fill(255);
 		p5.textSize(11);
 		float tWidth = p5.textWidth(message);
-		p5.text(message, xpos+((width-tWidth)/2), ypos+(height/2)-5, width, height);
+		p5.text(message, xpos+((width-tWidth)/2), ypos+(height/3), width, height);
 	}
 	
 	
