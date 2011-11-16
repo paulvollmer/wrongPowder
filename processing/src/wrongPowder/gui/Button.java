@@ -27,33 +27,67 @@ package wrongPowder.gui;
 
 
 
-//import
 
 
 /**
  * Gui
  * 
- * @example config_basic 
+ * @example gui_basic 
  */
-public class Button {
+public class Button extends GuiRect {
 	
-	public int buttonX;
-	public int buttonY;
-	public int buttonWidth;
-	public int buttonHeight;
-	
-	public int buttonColorOn   = 0xFF6D6D6D;
-	public int buttonColorOver = 0xFF545454;
-	public int buttonColorOff  = 0xFF3F3F3F;
-	
+	public int id;
+	private int colorOn  = 0xFF6D6D6D;
+	private int colorOff = 0xFF3F3F3F;
+	public int color = colorOn;
+	// 0 = on, 1 = off
+	public int status = 0;
 
-	/**
-	 * A Constructor, usually called in the setup() method in your sketch to
-	 * initialize and start the library.
-	 * 
-	 * @example config_basic
-	 */
-	//public Button() {}
+	
+	
+	
+	
+	public void toggle(int mx, int my) {
+		if(Interaction.overRect(mx, my, xpos, ypos, width, height) == true) {
+			switch(status) {
+			case(0):
+				status = 1;
+				color = colorOff;
+				break;
+			case(1):
+				status = 0;
+				color = colorOn;
+				break;
+			default:
+				System.err.println("wrongPowder ERROR! Not correct status at Button toggle method.");
+				break;
+			}
+			System.out.println("BUTTON TOGGLE status " + status);
+		}
+	}
+	
+	
+	
+	
+	
+	public void press(int mx, int my, int s) {
+		if(Interaction.overRect(mx, my, xpos, ypos, width, height) == true) {
+			status = s;
+		
+			switch(s) {
+			case(0):
+				color = colorOff;
+				break;
+			case(1):
+				color = colorOn;
+				break;
+			default:
+				System.err.println("wrongPowder ERROR! Not correct status at Button press method.");
+				break;
+			}
+		}
+		System.out.println("BUTTON PRESS status " + status);
+	}
 	
 	
 }
