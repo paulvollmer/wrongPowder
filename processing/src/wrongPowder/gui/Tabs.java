@@ -30,17 +30,23 @@ import processing.core.PApplet;
 
 
 
+
+
 /**
  * Gui
  * 
  * @example config_basic 
  */
-public class Tabs extends Button {
+public class Tabs extends GuiRect {
 	
-	private PApplet p;
+	private PApplet p5;
 	
 	public int numTabs;
 	public int activeTab = 0;
+	//private PushButton[] tabButton;
+	
+	
+	
 	
 	
 	/**
@@ -49,8 +55,8 @@ public class Tabs extends Button {
 	 * 
 	 * @example gui_tabs
 	 */
-	public Tabs(PApplet parent) {
-		p = parent;
+	public Tabs(PApplet p) {
+		p5 = p;
 	}
 	
 
@@ -65,29 +71,40 @@ public class Tabs extends Button {
 	 * @param h Tab Bar height.
 	 */
 	public void init(int num, int x, int y, int w, int h) {
-		buttonX = x;
-		buttonY = y;
-		// Tab width calculated with layoutWidth.
-		buttonWidth = w/num;
-		buttonHeight = h;
 		numTabs = num;
+		
+		/*tabButton = new PushButton[num];
+		
+		for(int i=0; i<num; i++) {
+			tabButton[i] = new PushButton(p5);
+			// Tab width calculated with layoutWidth.
+			tabButton[i].init(x+i*w/num, y, w/num, h);
+		}
+		
+		// Set first tab to activeTab.
+		tabButton[activeTab].status = 0;*/
+		
+		super.init(x, y, w/num, h);
+		
 	}
 	
 	
 	/**
-	 * Display tabs.
+	 * Draw tabs.
 	 */
-	public void display() {
+	public void draw() {
 		for(int i=0; i<numTabs; i++) {
+			//tabButton[i].draw();
+			
 			// Set color
-			p.noStroke();
+			p5.noStroke();
 			if(activeTab == i) {
-				p.fill(buttonColorOn);
+				p5.fill(Button.colorOn);
 			} else {
-				p.fill(buttonColorOff);
+				p5.fill(Button.colorOff);
 			}
 			// Draw graphics
-			p.rect(buttonX+i*buttonWidth, buttonY, buttonWidth-2, buttonHeight);
+			p5.rect(xpos+i*width, ypos, width-2, height);
 		}
 		
 	}
@@ -96,12 +113,20 @@ public class Tabs extends Button {
 	/**
 	 * Mouse pressed methode.
 	 * 
-	 * @param px Pointer x position
-	 * @param py Pointer y position
+	 * @param mx Pointer x position
+	 * @param my Pointer y position
 	 */
-	public void mousePressed(int px, int py) {
+	public void mousePressed(int mx, int my) {
 		for(int i=0; i<numTabs; i++) {
-			if(Interaction.overRect(px, py, i*buttonWidth+buttonX, buttonY, buttonWidth-2, buttonHeight) == true) {
+			/*if(Interaction.overRect(mx, my, tabButton[i].xpos, tabButton[i].ypos, tabButton[i].width-2, tabButton[i].height) == true) {
+				activeTab = i;
+				System.out.println("active tab " + activeTab);
+				tabButton[activeTab].status = 0;
+			} else {
+				tabButton[i].status = 1;
+			}*/
+			
+			if(Interaction.overRect(mx, my, i*width+xpos, ypos, width-2, height) == true) {
 				activeTab = i;
 			}
 		}
