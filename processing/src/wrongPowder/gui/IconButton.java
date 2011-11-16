@@ -27,6 +27,7 @@ package wrongPowder.gui;
 
 
 import processing.core.*;
+import processing.core.PImage;
 
 
 
@@ -40,7 +41,9 @@ import processing.core.*;
 public class IconButton extends Button {
 	
 	PApplet p5;
-	PImage imageOn;
+	
+	public PImage imageOn;
+	public PImage imageOff;
 	
 	
 	
@@ -60,16 +63,18 @@ public class IconButton extends Button {
 	
 	
 	/**
+	 * Initialize method can be used to set Image on, off and
+	 * x-, y-position.
 	 * 
+	 * @param imgOn Image for status on.
+	 * @param imgOff Image for status off.
 	 * @param x
 	 * @param y
-	 * @param w
-	 * @param h
 	 */
-	public void init(PImage img, int x, int y) {
-		// TODO debug this.
-		super.init(x, y, img.width, img.height);
-		imageOn = img;
+	public void init(PImage imgOn, PImage imgOff, int x, int y) {
+		imageOn  = imgOn;
+		imageOff = imgOff;
+		super.init(x, y, imageOn.width, imageOn.height);
 	}
 	
 	
@@ -80,7 +85,14 @@ public class IconButton extends Button {
 	 * Draw the button rectangle.
 	 */
 	public void draw() {
-		p5.image(imageOn, xpos, ypos);
+		switch(status) {
+		case 0:
+			p5.image(imageOn, xpos, ypos);
+			break;
+		case 1:
+			p5.image(imageOff, xpos, ypos);
+			break;
+		}
 	}
 	
 	
@@ -93,7 +105,7 @@ public class IconButton extends Button {
 	 * @param event The processing mouseEvent.
 	 */
 	public void mousePressed(int mx, int my) {
-		System.out.println("ICON BUTTON CLICKED status ");
+		toggle(mx, my);
 	}
 	
 	
