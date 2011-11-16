@@ -36,8 +36,8 @@ public class GuiRect {
 	
 	public int xpos;
 	public int ypos;
-	public int width;
-	public int height;
+	public int width  = 50;
+	public int height = 20;
 	
 	
 	
