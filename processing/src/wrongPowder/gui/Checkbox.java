@@ -57,6 +57,11 @@ public class Checkbox extends Button {
 		p5 = p;
 	}
 	
+	public Checkbox(PApplet p, int x, int y) {
+		p5 = p;
+		init(x, y);
+	}
+	
 	
 	
 	

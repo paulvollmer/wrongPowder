@@ -55,6 +55,11 @@ public class ToggleButton extends Button {
 		p5 = p;
 	}
 	
+	public ToggleButton(PApplet p, int x, int y, int w, int h) {
+		p5 = p;
+		init(x, y, w, h);
+	}
+	
 	
 	
 	

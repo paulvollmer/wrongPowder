@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui>
+	<interface name="i1">
+		<control type="toggle" name="Test Toggle" x="300" y="300"></control>
+	</interface>
+	<interface type="panel" name="i2" x="10" y="100" w="150" h="200">
+		<control type="toggle" name="Test Toggle 1" x="10" y="300" w="100" h="20"></control>
+		<control type="push" name="Test push 2" x="10" y="330" w="80" h="20"></control>
+		<control type="toggle" name="Test Toggle 3" x="10" y="360" w="60" h="20"></control>
+	</interface>
+</gui>

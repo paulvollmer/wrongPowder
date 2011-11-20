@@ -45,6 +45,7 @@ public class Panel extends Button {
 	public int barSize = 20;
 	public int backgroundColor = 0xFF3F3F3F;
 	
+	public String message;
 	private Checkbox minimize;
 	
 	
@@ -60,6 +61,12 @@ public class Panel extends Button {
 	public Panel(PApplet p) {
 		p5 = p;
 		minimize = new Checkbox(p5);
+	}
+	
+	public Panel(PApplet p, int x, int y, int w, int h) {
+		p5 = p;
+		minimize = new Checkbox(p5);
+		init(x, y, w, h);
 	}
 	
 	
