@@ -203,7 +203,7 @@ public class Layout {
 			p.rect(0, 0, layoutWidth, layoutHeight);
 			
 			// tabs
-			tab.display();
+			tab.draw();
 		
 			if(File.orientation().equals("vertical")) {
 				p.translate(0, layoutHeight);
@@ -345,7 +345,7 @@ public class Layout {
 	
 	
 	
-	private class Control extends wrongPowder.gui.Button {
+	private class Control {//extends wrongPowder.gui.Button {
 		
 		public String controlName;
 		public String controlType;
@@ -382,16 +382,16 @@ public class Layout {
 		Batteryh(String name, String type, int x, int y, int w, int h, int color) {
 			controlName = name;
 			controlType = type;
-			buttonX = x;
+			/*buttonX = x;
 			buttonY = y;
 			buttonWidth = w;
-			buttonHeight = h;
+			buttonHeight = h;*/
 			controlColor = color;
 		}
 		
 		public void display() {
 			p.fill(controlColor);
-			p.rect(buttonX, buttonY, buttonWidth, buttonHeight);
+			//p.rect(buttonX, buttonY, buttonWidth, buttonHeight);
 		}
 	}
 	
