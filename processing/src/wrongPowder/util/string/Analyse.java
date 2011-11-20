@@ -27,17 +27,20 @@ package wrongPowder.util.string;
 
 import processing.core.PApplet;
 
+
+
+
+
 /**
  * TextAnalyse class can return
  * - totalWords
  * - totalChars
- * - numSelectedChars
- * - numCharPair
- * - numSameWords
  * - smallestWord
  * - largestWord
  * - numUppercaseChars
  * - numLowercaseChars
+ * - numCharPair
+ * - numSameWords
  * 
  * @example config_basic 
  */
@@ -45,15 +48,20 @@ public class Analyse {
 	
 	PApplet p5;
 	
-
-	public String defaultDelimiters = " ,.?!;:[]";
+	public String text               = "No text available.";
+	public String defaultDelimiters  = " ,.?!;:[]";
+	public int totalWords            = -1;
+	public int totalChars            = -1;
+	public int smallestWord          = -1;
+	public int largestWord           = -1;
+	public int numUppercaseChars     = -1;
+	public int numLowercaseChars     = -1;
+	public int numVowel              = -1;
+	public int numUppercaseVowel     = -1;
+	public int numLowercaseVowel     = -1;
+	public int numConsonants         = -1;
 	
-	public String text;
-	public int totalWords;
-	public int totalChars;
-	public int smallestWord;
-	public int largestWord;
-	  
+	
 	
 	
 	
@@ -77,7 +85,7 @@ public class Analyse {
 	 * @param txt Filename
 	 */
 	public void init(String[] txt) {
-		text = p5.join(txt, "");
+		init(p5.join(txt, ""));
 	}
 	
 	/**
@@ -87,6 +95,17 @@ public class Analyse {
 	 */
 	public void init(String txt) {
 		text = txt;
+		
+		totalWords = getWords(txt);
+		totalChars = getChars(txt);
+		smallestWord = getSmallestWord(txt);
+		largestWord = getLargestWord(txt);
+		numUppercaseChars     = getNumUppercase(txt);
+		numLowercaseChars     = getNumLowercase(txt);
+		numVowel = getNumVowel(txt);
+		numUppercaseVowel = getNumUppercaseVowel(txt);
+		numLowercaseVowel = getNumLowercaseVowel(txt);
+		numConsonants = getNumConsonants(txt);
 	}
 	
 	
@@ -96,12 +115,11 @@ public class Analyse {
 	/**
 	 * Analyze
 	 */
-	public void analyse() {
+	public void printAnalyse() {
 		if(text == null) {
-			System.out.println("no text");
 			System.err.println("wrongPowder.util.string.TextAnalyse No text initialized. Use init(file) before you use analyse method");
 		} else {
-			analyse(text);
+			printAnalyse(text);
 		}
 	}
 	
@@ -110,24 +128,22 @@ public class Analyse {
 	 * 
 	 * @param txt
 	 */
-	public void analyse(String txt) {
+	public void printAnalyse(String txt) {
 		System.out.println("Text: " + txt);
-		System.out.println("Total words: " + totalWords(txt));
-		System.out.println("Total chars: " + totalChars(txt));
+		System.out.println("Total words: " + getWords(txt));
+		System.out.println("Total chars: " + getChars(txt));
 	    /*for(int i=0; i<120; i++) {
 	        println("Number of char "+": " + textAnalyse.numChar((char)i));
 	    }*/
-		System.out.println("Number of char pair: " + numCharPair(txt, "su"));
-		System.out.println("Number of same words: " + numSameWords(txt, "Lorem"));
-		System.out.println("smallestWord: " + smallestWord(txt));
+		//System.out.println("Number of char pair: " + getNumCharPair(txt, "su"));
+		System.out.println("Number of same words: " + getNumSameWords(txt, "Lorem"));
+		System.out.println("smallestWord: " + getSmallestWord(txt));
+		
 	}
 	
 	
 	
 	
-	public int totalWords() {
-		return totalWords(text);
-	}
 	
 	/**
 	 * Return the number of words from variable text.
@@ -135,8 +151,8 @@ public class Analyse {
 	 *
 	 * @return int Number of words.
 	 */
-	public int totalWords(String txt) {
-		return totalWords(txt, defaultDelimiters);
+	public int getWords(String txt) {
+		return getWords(txt, defaultDelimiters);
 	}
 	  
 	/**
@@ -145,7 +161,7 @@ public class Analyse {
 	 * @param String dlimit Default delimiters string.
 	 * @return int Number of words.
 	 */
-	public int totalWords(String txt, String dlimit) {
+	public int getWords(String txt, String dlimit) {
 		String[] index = p5.splitTokens(txt, dlimit);
 		return index.length;
 	}
@@ -159,74 +175,22 @@ public class Analyse {
 	 *
 	 * @return int Number of chars.
 	 */
-	public int totalChars(String txt) {
-		return text.length();
+	public int getChars(String txt) {
+		return txt.length();
 	}
 	
 	
 	
 	
 	
-	/**
-	 * Return the number of a specific char from text.
-	 *
-	 * @return int Number of chars. If no char found, return -1
-	 */
-	public int numChar(String txt, char c) {
-		// check if char exist. search the last char.
-	    int index = text.lastIndexOf(c);
-	    // if index = -1, no char exist.
-	    if(index == -1) {
-	    	System.out.println("no char found");
-	    } else {
-	    	// reset index to 0
-	    	index = 0;
-	    	// search a specific char
-	    	for(int i=0; i<text.length(); i++) {
-	    		if(text.charAt(i) == c) {
-	    			//println(i);
-	    			index++;
-	    		}
-	    	}
-	    }
-	    return index;
-	 }
-	  
-	  
-	  
-	
-	
-	/**
-	 * Char pair count (Bsp. ch=15)
-	 */
-	public int numCharPair(String txt, String chars) {
-		return numSameWords(txt, chars);
-	}
-	  
-	
-	
-	
-	
-	/**
-	 * Number of Same Words
-	 */
-	public int numSameWords(String txt, String word) {
-		String[] index = p5.split(txt, word);
-	    return index.length-1;
-	}
-	  
-	  
-	
-	
-	  
 	/**
 	 * smallest word
 	 */
-	public int smallestWord(String txt) {
+	public int getSmallestWord(String txt) {
 		// split text into string array
 	    String[] tempText = p5.splitTokens(txt, defaultDelimiters);
 	    
-	    // variables to search smallest word
+	    // variables to set the length of the biggest word.
 	    int index = 10000;
 	    int tempIndex;
 	    
@@ -238,47 +202,188 @@ public class Analyse {
 	    
 	    return index;
 	}
-	  
-	
-	
-	
-	  
+
+
+
+
+
 	/**
 	 * largest word
-	 *
-	public int largestWord(char[] c) {
-	    return;
-	}*/
-	  
+	 */
+	public int getLargestWord(String txt) {
+		// split text into string array
+	    String[] tempText = p5.splitTokens(txt, defaultDelimiters);
+	    
+	    // variables to search smallest word
+	    int index = 0;
+	    int tempIndex;
+	    
+	    for(int i=0; i<tempText.length; i++) {
+	    	//println(tempText[i].length());
+	    	tempIndex = tempText[i].length();
+	    	if(index < tempIndex) index = tempIndex;
+	    }
+	    
+	    return index;
+	}
+
+
+
+
+
+	public int getNumUppercase(String txt) {
+		int caps = 0;
+	    for (int i=0; i<txt.length(); i++) {
+	        if (Character.isUpperCase(txt.charAt(i))) {
+	        	caps++;
+	        }
+	    }
+		return caps;
+	}
+
+
+
+
+
+	public int getNumLowercase(String txt) {
+		int caps = 0;
+	    for (int i=0; i<txt.length(); i++) {
+	        if (Character.isLowerCase(txt.charAt(i))) {
+	        	caps++;
+	        }
+	    }
+		return caps;
+	}
+
+
+
+
+
+	/**
+	 * Vowel
+	 * 
+	 * @param txt
+	 * @return
+	 */
+	public int getNumVowel(String txt) {
+		// ascii value: A, E, I, O, U,
+		//              a, e, i, o, u
+		int[] asciiVowel = {65,  69,  73,  79,  85,
+				            97, 101, 105, 111, 117};
+		return getNumCharSet(txt, asciiVowel);
+	}
 	
-	  
+	public int getNumUppercaseVowel(String txt) {
+		// ascii value: A, E, I, O, U
+		int[] asciiVowel = {65, 69, 73, 79, 85};
+		return getNumCharSet(txt, asciiVowel);
+	}
+	
+	public int getNumLowercaseVowel(String txt) {
+		// ascii value: a, e, i, o, u
+		int[] asciiVowel = {97, 101, 105, 111, 117};
+		return getNumCharSet(txt, asciiVowel);
+	}
+
+
+
+	/**
+	 * 
+	 * @param txt
+	 * @return
+	 */
+	public int getNumConsonants(String txt) {
+		// ascii value: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, X, Z, W, Y,
+		//              b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z
+		int[] asciiVowel = {/*A 65*/ 66, 67,  68,  /*E 69*/  70,  71,  72, /*I 73*/   74,  75,  76,  77,
+				            78, /*O 79*/   80,  81,  82,  83,  84, /*U 85*/   86,  87,  88,  89,  90,
+				            /*a 97*/ 98, 99, 100, /*e 101*/ 102, 103, 104, /*i 105*/ 106, 107, 108, 109,
+				            110, /*o 111*/ 112, 113, 114, 115, 116, /*u 117*/ 118, 119, 120, 121, 122};
+		return getNumCharSet(txt, asciiVowel);
+	}
+	
+	public int getNumUpercaseConsonants(String txt) {
+		// ascii value: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, X, Z, W, Y
+		int[] asciiVowel = {/*A 65*/ 66, 67,  68,  /*E 69*/  70,  71,  72, /*I 73*/   74,  75,  76,  77,
+				            78, /*O 79*/   80,  81,  82,  83,  84, /*U 85*/   86,  87,  88,  89,  90};
+		return getNumCharSet(txt, asciiVowel);
+	}
+	
+	public int getNumLowercaseConsonants(String txt) {
+		// ascii value: b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z
+		int[] asciiVowel = {/*a 97*/ 98, 99, 100, /*e 101*/ 102, 103, 104, /*i 105*/ 106, 107, 108, 109,
+				            110, /*o 111*/ 112, 113, 114, 115, 116, /*u 117*/ 118, 119, 120, 121, 122};
+		return getNumCharSet(txt, asciiVowel);
+	}
+
+
+
+
+
+	/**
+	 * Return the number of a specific char from text.
+	 *
+	 * @return int Number of chars. If no char found, return -1
+	 */
+	public int getNumChar(String txt, char c) {
+		return getNumSameWords(txt, ""+c);
+	 }
+	
+	public int getNumChar(String txt, String chars) {
+		return getNumSameWords(txt, chars);
+	}
+	
+	public int getNumChar(String txt, int ascii) {
+		String temp ="";
+		for(int i=0; i<txt.length(); i++) {
+			char thisChar = txt.charAt(i);
+		    if (thisChar == ascii) temp += thisChar;
+		}
+		return temp.length();
+	}
+	
+	
+	
+	
+	
+	public int getNumCharSet(String txt, int[] ascii) {
+		int temp = 0;
+		for(int i=0; i<ascii.length; i++) {
+			int tempNum = getNumChar(txt, ascii[i]);
+			//System.out.println("get the Number of char "+(char)asciiVowel[i]+": "+tempNum);
+			
+			if(tempNum != 0) {
+				temp += tempNum;
+				//System.out.println("char "+(char)asciiVowel[i]+" num "+getNumChar(txt, asciiVowel[i]));
+			}
+		}
+		
+		return temp;
+	}
+	
+	
+	
 	
 	
 	/**
-	 * how many uppercase chars
-	 *
-	public int numUppercaseChars(char[] c) {
-	    return;
-	}*/
+	 * Char pair count (Bsp. ch=15)
+	 */
+	public int getNumCharPair(String txt, String chars) {
+		return getNumSameWords(txt, chars);
+	}
 	  
-	  
+	
 	
 	
 	
 	/**
-	 * how many lowercase chars
-	 *
- 	public int numLowercaseChars(char[] c) {
-	    return;
-	}*/
-	  
+	 * Number of Same Words
+	 */
+	public int getNumSameWords(String txt, String word) {
+		String[] index = p5.split(txt, word);
+	    return index.length-1;
+	}
 	
-	
-	
-	
-	  // TODO:
-	  // public int konsonants/vokals
-	  // public int konsonants (baumhaus)
 
 
 }
