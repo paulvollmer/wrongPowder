@@ -9,24 +9,20 @@
  */
 
 
-//import wrongPowder.util.string.TextAnalyse;
+import wrongPowder.util.string.*;
+TextAnalyse textAnalyse = new TextAnalyse();
 
-//TextAnalyse textAnalyse = new TextAnalyse();
+String[] text;
 
 
 void setup() {
   size(400, 400);
-}
-
-
-void draw() {
-}
-
-
-void keyPressed() {
-  char letter = char(key);
-  println("KEY\t[ ASCII DEC: "+(int)key+
-          " Unicode: "+(int)key+
-          " char: "+ letter +
-          " end ]");
+  
+  // Load a text file and initialize the string array.
+  text = loadStrings("example.txt");
+  //textAnalyse.init(text);
+  //textAnalyse.analyse();
+  textAnalyse.analyse("hello world abc 1");
+  textAnalyse.totalWords();
+  
 }
