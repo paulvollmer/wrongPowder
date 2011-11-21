@@ -32,15 +32,8 @@ import processing.core.PApplet;
 
 
 /**
- * TextAnalyse class can return
- * - totalWords
- * - totalChars
- * - smallestWord
- * - largestWord
- * - numUppercaseChars
- * - numLowercaseChars
- * - numCharPair
- * - numSameWords
+ * TextAnalyse class will help you analyze text input.
+ * It return totalWords, totalChars, smallestWord, largestWord etc.
  * 
  * @example config_basic 
  */
@@ -48,18 +41,20 @@ public class Analyse {
 	
 	PApplet p5;
 	
-	public String text               = "No text available.";
-	public String defaultDelimiters  = " ,.?!;:[]";
-	public int totalWords            = -1;
-	public int totalChars            = -1;
-	public int smallestWord          = -1;
-	public int largestWord           = -1;
-	public int numUppercaseChars     = -1;
-	public int numLowercaseChars     = -1;
-	public int numVowel              = -1;
-	public int numUppercaseVowel     = -1;
-	public int numLowercaseVowel     = -1;
-	public int numConsonants         = -1;
+	public String text                 = "No text available.";
+	public String defaultDelimiters    = " ,.?!;:[]";
+	public int totalWords              = -1;
+	public int totalChars              = -1;
+	public int smallestWord            = -1;
+	public int largestWord             = -1;
+	public int numUppercaseChars       = -1;
+	public int numLowercaseChars       = -1;
+	public int numVowel                = -1;
+	public int numUppercaseVowel       = -1;
+	public int numLowercaseVowel       = -1;
+	public int numConsonants           = -1;
+	public int numUppercaseConsonants  = -1;
+	public int numLowercaseConsonants  = -1;
 	
 	
 	
@@ -71,9 +66,7 @@ public class Analyse {
 	 * 
 	 * @example config_basic
 	 */
-	public Analyse() {
-		// TODO Auto-generated constructor stub
-	}
+	public Analyse() {}
 	
 	
 	
@@ -94,18 +87,19 @@ public class Analyse {
 	 * @param txt Filename
 	 */
 	public void init(String txt) {
-		text = txt;
-		
-		totalWords = getWords(txt);
-		totalChars = getChars(txt);
-		smallestWord = getSmallestWord(txt);
-		largestWord = getLargestWord(txt);
-		numUppercaseChars     = getNumUppercase(txt);
-		numLowercaseChars     = getNumLowercase(txt);
-		numVowel = getNumVowel(txt);
-		numUppercaseVowel = getNumUppercaseVowel(txt);
-		numLowercaseVowel = getNumLowercaseVowel(txt);
-		numConsonants = getNumConsonants(txt);
+		text                   = txt;
+		totalWords             = getWords(txt);
+		totalChars             = getChars(txt);
+		smallestWord           = getSmallestWord(txt);
+		largestWord            = getLargestWord(txt);
+		numUppercaseChars      = getNumUppercase(txt);
+		numLowercaseChars      = getNumLowercase(txt);
+		numVowel               = getNumVowel(txt);
+		numUppercaseVowel      = getNumUppercaseVowel(txt);
+		numLowercaseVowel      = getNumLowercaseVowel(txt);
+		numConsonants          = getNumConsonants(txt);
+		numUppercaseConsonants = getNumUppercaseConsonants(txt);
+		numLowercaseConsonants = getNumLowercaseConsonants(txt);
 	}
 	
 	
@@ -129,16 +123,34 @@ public class Analyse {
 	 * @param txt
 	 */
 	public void printAnalyse(String txt) {
-		System.out.println("Text: " + txt);
-		System.out.println("Total words: " + getWords(txt));
-		System.out.println("Total chars: " + getChars(txt));
-	    /*for(int i=0; i<120; i++) {
-	        println("Number of char "+": " + textAnalyse.numChar((char)i));
-	    }*/
-		//System.out.println("Number of char pair: " + getNumCharPair(txt, "su"));
-		System.out.println("Number of same words: " + getNumSameWords(txt, "Lorem"));
-		System.out.println("smallestWord: " + getSmallestWord(txt));
+		System.out.println("Text:                      " + txt);
+		System.out.println("Total words:               " + getWords(txt));
+		System.out.println("Total chars:               " + getChars(txt));
+		System.out.println("Smallest word:             " + getSmallestWord(txt));
+		System.out.println("Largest word:              " + getLargestWord(txt));
+		System.out.println("getNumUppercase:           " + getNumUppercase(txt));
+		System.out.println("getNumLowercase:           " + getNumLowercase(txt));
+		System.out.println("getNumVowel:               " + getNumVowel(txt));
+		System.out.println("getNumUppercaseVowel:      " + getNumUppercaseVowel(txt));
+		System.out.println("getNumLowercaseVowel:      " + getNumLowercaseVowel(txt));
+		System.out.println("getNumConsonants:          " + getNumConsonants(txt));
+		System.out.println("getNumUppercaseConsonants: " + getNumUppercaseConsonants(txt));
+		System.out.println("getNumLowercaseConsonants: " + getNumLowercaseConsonants(txt));
 		
+		// Get num of char ascii char 32 to 127
+		for(int i=32; i<127; i++) {
+			System.out.println("getNumChar " + (char)i + ":              " + getNumChar(txt, i));
+		}
+		
+		String[] tempWords = p5.splitTokens(txt, defaultDelimiters);
+		for(int i=0; i<tempWords.length; i++) {
+			System.out.println("getNumSameWords " + tempWords[i] + ":          " + getNumSameWords(txt, tempWords[i]));
+		}
+		
+		/*System.out.println("getNumChar:                " + getNumChar(txt, "B"));
+		System.out.println("getNumChar ASCII:          " + getNumChar(txt, 67));
+		System.out.println("getNumCharPair:            " + getNumCharPair(txt, "he"));
+		System.out.println("getNumSameWords:           " + getNumSameWords(txt, "hello"));*/
 	}
 	
 	
@@ -302,7 +314,7 @@ public class Analyse {
 		return getNumCharSet(txt, asciiVowel);
 	}
 	
-	public int getNumUpercaseConsonants(String txt) {
+	public int getNumUppercaseConsonants(String txt) {
 		// ascii value: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, X, Z, W, Y
 		int[] asciiVowel = {/*A 65*/ 66, 67,  68,  /*E 69*/  70,  71,  72, /*I 73*/   74,  75,  76,  77,
 				            78, /*O 79*/   80,  81,  82,  83,  84, /*U 85*/   86,  87,  88,  89,  90};
@@ -375,7 +387,7 @@ public class Analyse {
 	
 	
 	
-	
+	// TODO fix bug.
 	/**
 	 * Number of Same Words
 	 */
