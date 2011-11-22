@@ -25,6 +25,7 @@
 
 package wrongPowder.util.string;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
 
 import processing.core.PApplet;
@@ -43,6 +44,11 @@ public class DudenAnalyse {
 	PApplet p5;
 	
 	public String[] sourcecode;
+	
+	public String wordtype;
+	public String frequency;
+	public String worttrennung;
+	public String herkunft;
 	
 	
 	
@@ -72,49 +78,60 @@ public class DudenAnalyse {
 	}
 	
 	
-	public void rechtschreibung(String url) {
-		System.out.println("Start searching duden.de/rechtschreibung");
+	public void checkWord(String word) {
+		BufferedReader reader = p5.createReader("http://www.duden.de/rechtschreibung/"+word);
 		
-		// Load sourcecode
-		sourcecode = p5.loadStrings(url);
-		// Console out sourcecode
-		for (int i = 0; i < sourcecode.length; i++) {
-			//System.out.println("["+i+"]\n"+sourcecode[i]);
+		try {
+			String line;
+			String sourcecode = "";
+			// save each line to sourcecode variable
+			while ((line = reader.readLine()) != null) {
+			    sourcecode = sourcecode+line;
+			    //System.out.println(line);
+			}
+			//System.out.println(sourcecode);
+			wordtype = htmlParse(sourcecode, "wortart\">", 2, "<");
+			frequency = htmlParse(sourcecode, "frequenzklasse_", 1, "\">");
+			worttrennung = htmlParse(sourcecode, "Worttrennung:</dt><dd class=\"content\">", 1, "</dd>");
+			herkunft = htmlParse(sourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", 1, "</dd></dl></div>");
+			
 		}
-		
-		// Search sourcecode for 
-		String wortartTemp = htmlParse(sourcecode[13], "wortart\">", "wortart\">");
-		/*String[] wortartTemp = p5.split(sourcecode[13], "wortart\">");
-		// Console out sourcecode
-		for (int i = 0; i < wortartTemp.length; i++) {
-			//System.out.println("["+i+"]\n"+wortartTemp[i]);
-		}*/
-		
-		//String wortart = wortartTemp[2];
-		System.out.println("################################### wortart: "+wortartTemp);
-		
-		
-		
-		
+		catch (Exception e) {
+			//e.printStackTrace(); 
+			//System.err.println(word+" No wordtype available ");
+			//wordtype = "not available";
+			//herkunft = "not available";
+			
+		}
 	}
 
 
 
 
-
-	private String htmlParse(String content, String keyIn, String keyOut) {
-		String[] temp = p5.split(content, keyIn);
-		// Console out sourcecode
-		for (int i = 0; i < temp.length; i++) {
-			System.out.println("["+i+"]\n"+temp[i]);
-		}
+	/**
+	 * 
+	 * @param content The content to parse
+	 * @param keyIn The String to begin parsing.
+	 * @param a Set the array iterator of the parsed temp string.
+	 * @param keyOut
+	 * @return Parsed string content.
+	 */
+	public String htmlParse(String content, String keyIn, int a, String keyOut) {
+		String finalParse = "Not available";
 		
-		String[] temp2 = p5.split(temp[2], "<");
+		String[] tempParse1 = p5.split(content, keyIn);
+		/*System.out.println("\nKEYIN\n");
+		for (int i = 0; i < tempParse1.length; i++) {
+			System.out.println("["+i+"]\t"+tempParse1[i]);
+		}*/
+		
+		String[] tempParse2 = p5.split(tempParse1[a], keyOut);
+		/*System.out.println("\nKEYOUT\n");
 		for (int i = 0; i < temp2.length; i++) {
-			System.out.println("["+i+"]\n"+temp2[i]);
-		}
+			System.out.println("["+i+"]\t"+temp2[i]);
+		}*/
 		
-		String finalParse = temp2[0];
+		finalParse = tempParse2[0];
 		return finalParse;
 	}
 	
