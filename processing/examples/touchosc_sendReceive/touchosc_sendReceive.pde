@@ -1,27 +1,12 @@
 /**
+ * touchosc_sendReceive
+ * by wrongPowder Library.
  *
- *  wngTouchOSC is a wrong-entertainment production
+ * Desc.
  *
- *
- *  Copyright 2011 wrong-entertainment
- *                 <wrongentertainment@yahoo.de>
- *                 <http://wrong-entertainment.com>
- * 
- *  This file is part of wnglibs.
- *
- *  wngTouchOSC is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  wngTouchOSC is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU Lesser General Public License for more details.
- *  
- *  You should have received a copy of the GNU Lesser General Public License
- *  along with wngTouchOSC. If not, see <http://www.gnu.org/licenses/>.
- *
+ * @author              Paul Vollmer
+ * @modified            2011.11.22
+ * @processing-version  2.0a1
  */
 
 

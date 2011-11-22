@@ -26,7 +26,6 @@
 package wrongPowder.io;
 
 import java.io.BufferedReader;
-
 import processing.core.PApplet;
 import wrongPowder.io.Log;
 

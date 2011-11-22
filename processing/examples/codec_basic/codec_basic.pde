@@ -4,8 +4,9 @@
  *
  * Encode / decode a string.
  *
- * @author    Paul Vollmer
- * @modified  2011.10.25
+ * @author              Paul Vollmer
+ * @modified            2011.10.25
+ * @processing-version  2.0a1
  */
 
 

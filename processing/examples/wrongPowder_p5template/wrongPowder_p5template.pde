@@ -2,11 +2,12 @@
  * wrongPowder_p5template
  * by wrongPowder Library.
  *
- * this is a Processing template.
- It contains Properties and Log file Support.
+ * This is a Processing template.
+ * It contains Properties and Log file Support.
  *
- * @author    Paul Vollmer
- * @modified  2011.11.14
+ * @author              Paul Vollmer
+ * @modified            2011.11.14
+ * @processing-version  2.0a1
  */
 
 import wrongPowder.calendar.CalendarUtil;

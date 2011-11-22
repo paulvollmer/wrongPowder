@@ -2,10 +2,11 @@
  * capture_basic
  * by wrongPowder Library.
  *
- * TODO desc.
+ * Capture your screen as image.
  *
- * @author    Paul Vollmer
- * @modified  2011.10.31
+ * @author              Paul Vollmer
+ * @modified            2011.10.31
+ * @processing-version  2.0a1
  */
 
 

@@ -4,8 +4,9 @@
  *
  * Load a TouchOsc file and draw the Layout.
  *
- * @author    Paul Vollmer
- * @modified  2011.10.31
+ * @author              Paul Vollmer
+ * @modified            2011.10.31
+ * @processing-version  2.0a1
  */
 
 

@@ -5,8 +5,9 @@
  * Create a Log file at sketchpath or use
  * init(filepath) for custom file directory.
  *
- * @author    Paul Vollmer
- * @modified  2011.11.22
+ * @author              Paul Vollmer
+ * @modified            2011.11.22
+ * @processing-version  2.0a1
  */
 
 

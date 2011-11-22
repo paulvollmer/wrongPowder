@@ -1,13 +1,14 @@
 /**
- * configAdvanced
+ * config_advanced
  * by wrongPowder Library.
  *
  * To load a file from a static filepath.
  * The loadStatic method not search a file
  * at the "Application Support" or "APPDATA" folder.
  *
- * @author    Paul Vollmer
- * @modified  2011.10.31
+ * @author              Paul Vollmer
+ * @modified            2011.10.31
+ * @processing-version  2.0a1
  */
 
 import wrongPowder.io.Config;

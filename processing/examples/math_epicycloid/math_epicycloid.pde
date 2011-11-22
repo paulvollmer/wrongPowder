@@ -1,13 +1,12 @@
-
-
 /**
- * math_basic
+ * math_epicycloid
  * by wrongPowder Library.
  *
  * TODO desc.
  *
- * @author    Paul Vollmer
- * @modified  2011.11.05
+ * @author              Paul Vollmer
+ * @modified            2011.11.05
+ * @processing-version  2.0a1
  */
 
 //import wrongPowder.io.Log;

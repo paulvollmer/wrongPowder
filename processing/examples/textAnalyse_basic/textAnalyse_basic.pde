@@ -5,8 +5,9 @@
  * Analyse a text and get totalWords, totalChars,
  * smallestWord, largestWord etc.
  *
- * @author    Paul Vollmer
- * @modified  2011.10.31
+ * @author              Paul Vollmer
+ * @modified            2011.10.31
+ * @processing-version  2.0a1
  */
 
 
