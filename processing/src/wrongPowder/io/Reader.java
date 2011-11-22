@@ -44,7 +44,7 @@ public class Reader {
 	PApplet p5;
 	
 	// Logger Variable.
-	Log log = new Log();
+	Log log = new Log(p5);
 	
 	
 	
