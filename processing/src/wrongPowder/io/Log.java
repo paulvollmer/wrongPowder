@@ -29,6 +29,7 @@ package wrongPowder.io;
 
 import org.apache.log4j.*;
 
+import processing.core.PApplet;
 import wrongPowder.calendar.CalendarUtil;
 
 
@@ -39,7 +40,10 @@ import wrongPowder.calendar.CalendarUtil;
  */
 public class Log {
 	
+	PApplet p5;
+	
 	public static int active = 0;
+	public static String foldername = "logs";
 	
 	// Use time class for unixtime().
 	private static CalendarUtil time = new CalendarUtil();
@@ -55,7 +59,9 @@ public class Log {
 	 * 
 	 * @example log_basic
 	 */
-	public Log() {}
+	public Log(PApplet p) {
+		p5 = p;
+	}
 	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
@@ -64,12 +70,16 @@ public class Log {
 	 * @example log_basic
 	 * @param fileName
 	 */
-	public Log(String fileName) {
+	public Log(PApplet p, String fileName) {
+		p5 = p;
 		init(fileName);
 	}
 	
 	
 	
+	public void init() {
+		init(p5.sketchPath(foldername+"/")+"log"+time.timestamp("yyyyMMdd_HHmmss")+".txt");
+	}
 	
 	/**
 	 * Initialize the log file.
@@ -82,7 +92,7 @@ public class Log {
 			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 			logger.addAppender(consoleAppender);
 			
-			FileAppender fileAppender = new FileAppender(layout, ".."+path);
+			FileAppender fileAppender = new FileAppender(layout, path);
 			
 			logger.addAppender(fileAppender);
 			// ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
