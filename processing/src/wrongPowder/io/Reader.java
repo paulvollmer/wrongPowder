@@ -49,6 +49,7 @@ public class Reader {
 	
 	
 	
+	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
@@ -65,28 +66,29 @@ public class Reader {
 	 * 
 	 * @example reader_basic
 	 * @param fileName
-	 */
+	 *
 	public Reader(PApplet p, String fileName) {
 		p5 = p;
 		
 		read(fileName);
-	}
+	}*/
+	
 	
 	
 	
 	
 	/**
-	 * Initialize  filae.
+	 * Load a file from path filepath.
 	 * 
-	 * @param path File path.
+	 * @param filepath File path.
+	 * @return File String source.
 	 */
-	public String read(String path) {
-		log.info("start reading");
-		log.info("path "+path);
+	public String load(String filepath) {
+		log.info("READER Start reading filepath: "+filepath);
 		
 		String temp = "";
 		
-		BufferedReader reader = p5.createReader(path);
+		BufferedReader reader = p5.createReader(filepath);
 		
 		try {
 			String line;
@@ -101,8 +103,29 @@ public class Reader {
 		}
 		catch (Exception e) {
 			//e.printStackTrace(); 
-			log.init(path+" No wordtype available ");
+			log.init(filepath+" No wordtype available ");
 			
+		}
+		
+		return temp;
+	}
+	
+	
+	
+	
+	
+	/**
+	 * Read a file from path filepath.
+	 * 
+	 * @param filepath File path.
+	 * @return File String source.
+	 */
+	public String[] load(String[] filepath) {
+		String[] temp = new String[filepath.length];
+		
+		for(int i=0; i<temp.length; i++) {
+			temp[i] =  load(filepath[i]);
+			System.out.println(i);
 		}
 		
 		return temp;
