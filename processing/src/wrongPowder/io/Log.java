@@ -91,7 +91,7 @@ public class Log {
 			// Set active to 0 (log to console and file).
 			//active = 0;
 			
-			info("LOG Initialise File.");
+			//info("LOG Initialise File.");
 		} catch(Exception ex) {
 			System.out.println(ex);
 		}
