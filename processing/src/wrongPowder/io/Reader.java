@@ -55,7 +55,9 @@ public class Reader {
 	 * 
 	 * @example log_basic
 	 */
-	public Reader() {}
+	public Reader(PApplet p) {
+		p5 = p;
+	}
 	
 	/**
 	 * A Constructor, usually called in the setup() method in your sketch to
@@ -64,8 +66,10 @@ public class Reader {
 	 * @example reader_basic
 	 * @param fileName
 	 */
-	public Reader(String fileName) {
-		init(fileName);
+	public Reader(PApplet p, String fileName) {
+		p5 = p;
+		
+		read(fileName);
 	}
 	
 	
@@ -77,6 +81,9 @@ public class Reader {
 	 * @param path File path.
 	 */
 	public String read(String path) {
+		log.info("start reading");
+		log.info("path "+path);
+		
 		String temp = "";
 		
 		BufferedReader reader = p5.createReader(path);
@@ -89,10 +96,12 @@ public class Reader {
 			    //System.out.println(line);
 			}
 			
+			log.init("File ready");
+			
 		}
 		catch (Exception e) {
 			//e.printStackTrace(); 
-			//System.err.println(word+" No wordtype available ");
+			log.init(path+" No wordtype available ");
 			
 		}
 		
