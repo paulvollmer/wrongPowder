@@ -2,3 +2,5 @@ ofxCML/example/bin/ofxCML_exampleDebug.app
 ofxCML/example/build
 ofxWNGUI/example/bin/ofxWNGUI_exampleDebug.app
 ofxWNGUI/example/build
+processing/examples/wrongPowder_p5template/logs
+processing/examples/log_basic/logs
