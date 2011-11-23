@@ -27,7 +27,6 @@ package wrongPowder.io;
 
 import java.io.BufferedReader;
 import processing.core.PApplet;
-import wrongPowder.io.Log;
 
 
 
@@ -41,9 +40,6 @@ import wrongPowder.io.Log;
 public class Reader {
 	
 	PApplet p5;
-	
-	// Logger Variable.
-	Log log = new Log(p5);
 	
 	
 	
@@ -59,19 +55,6 @@ public class Reader {
 		p5 = p;
 	}
 	
-	/**
-	 * A Constructor, usually called in the setup() method in your sketch to
-	 * initialize and start the library.
-	 * 
-	 * @example reader_basic
-	 * @param fileName
-	 *
-	public Reader(PApplet p, String fileName) {
-		p5 = p;
-		
-		read(fileName);
-	}*/
-	
 	
 	
 	
@@ -83,8 +66,6 @@ public class Reader {
 	 * @return File String source.
 	 */
 	public String load(String filepath) {
-		log.info("READER Start reading filepath: "+filepath);
-		
 		String temp = "";
 		
 		BufferedReader reader = p5.createReader(filepath);
@@ -96,13 +77,10 @@ public class Reader {
 			    temp = temp+line;
 			    //System.out.println(line);
 			}
-			
-			log.init("File ready");
-			
 		}
 		catch (Exception e) {
 			//e.printStackTrace(); 
-			log.init(filepath+" No wordtype available ");
+			System.out.println(filepath+" No wordtype available ");
 			
 		}
 		
@@ -124,7 +102,7 @@ public class Reader {
 		
 		for(int i=0; i<temp.length; i++) {
 			temp[i] =  load(filepath[i]);
-			System.out.println(i);
+			//System.out.println("Load file: "+i);
 		}
 		
 		return temp;
