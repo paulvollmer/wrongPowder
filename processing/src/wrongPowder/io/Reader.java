@@ -41,6 +41,7 @@ public class Reader {
 	
 	PApplet p5;
 	
+	public boolean loaded;
 	
 	
 	
@@ -77,11 +78,12 @@ public class Reader {
 			    temp = temp+line;
 			    //System.out.println(line);
 			}
+			loaded = true;
 		}
 		catch (Exception e) {
 			//e.printStackTrace(); 
 			System.out.println(filepath+" No wordtype available ");
-			
+			loaded = false;			
 		}
 		
 		return temp;
