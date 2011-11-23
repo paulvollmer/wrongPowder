@@ -6,7 +6,7 @@
  * It contains Properties and Log file Support.
  *
  * @author              Paul Vollmer
- * @modified            2011.11.14
+ * @modified            2011.11.23
  * @processing-version  2.0a1
  */
 
@@ -21,6 +21,12 @@ Log log = new Log(this);
 int BACKGROUNDCOLOR;
 
 
+
+
+
+/**
+ * Processing setup
+ */
 void setup() {
   // Initialize Log file.
   log.init();
@@ -56,6 +62,11 @@ void setup() {
 
 
 
+
+
+/**
+ * Processing draw
+ */
 void draw() {
   background(BACKGROUNDCOLOR);
 
@@ -63,29 +74,50 @@ void draw() {
 
 
 
+
+
+/**
+ * Processing mousePressed
+ */
 void mousePressed() {
-  
+  log.info("MOUSEPRESSED mouse x: " + mouseX + ", y: " + mouseY);
 }
 
 
 
+
+
+/**
+ * Processing mouseDragged
+ */
 void mouseDragged() {
-  
+  log.info("MOUSEDRAGGED mouse x: " + mouseX + ", y: " + mouseY);
 }
 
 
 
+
+
+/**
+ * Processing mouseReleased
+ */
 void mouseReleased() {
-  
+  log.info("MOUSERELEASED mouse x: " + mouseX + ", y: " + mouseY);
 }
 
 
 
+
+
+/**
+ * Processing keyPressed
+ */
 void keyPressed() {
+  log.info("KEYPRESSED key: " + key + ", keyCode: " + keyCode);
+  
   // TODO: make this by exit the application.
   config.setProperty("app.width", width);
   config.setProperty("app.height", height);
-  config.setProperty("app.framerate", (int)frameRate);
   config.store();
   
   // Save a copy to data folder.
@@ -94,6 +126,12 @@ void keyPressed() {
 
 
 
+
+
+/**
+ * Processing KeyReleased
+ */
 void KeyReleased() {
-  
+  log.info("KEYRELEASED key: " + key + "keyCode: " + keyCode);
 }
+
