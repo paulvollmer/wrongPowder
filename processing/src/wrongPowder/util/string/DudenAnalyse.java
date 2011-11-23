@@ -30,6 +30,7 @@ import java.io.InputStream;
 
 import processing.core.PApplet;
 import wrongPowder.io.Reader;
+import wrongPowder.util.string.Parser;
 
 
 
@@ -44,6 +45,7 @@ public class DudenAnalyse {
 	
 	PApplet p5;
 	Reader reader;
+	Parser parse = new Parser();
 	
 	public String[] sourcecode;
 	
@@ -86,42 +88,11 @@ public class DudenAnalyse {
 		String tempSourcecode = reader.load("http://www.duden.de/rechtschreibung/"+word);
 		//System.out.println(tempSourcecode);
 		
-		wordtype = htmlParse(tempSourcecode, "wortart\">", 2, "<");
-		frequency = htmlParse(tempSourcecode, "frequenzklasse_", 1, "\">");
-		worttrennung = htmlParse(tempSourcecode, "Worttrennung:</dt><dd class=\"content\">", 1, "</dd>");
-		herkunft = htmlParse(tempSourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", 1, "</dd></dl></div>");
+		wordtype = parse.parse(tempSourcecode, "wortart\">", "<", 2);
+		frequency = parse.parse(tempSourcecode, "frequenzklasse_", "\">", 1);
+		worttrennung = parse.parse(tempSourcecode, "Worttrennung:</dt><dd class=\"content\">", "</dd>", 1);
+		herkunft = parse.parse(tempSourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", "</dd></dl></div>", 1);
 	}
-
-
-
-
-	/**
-	 * 
-	 * @param content The content to parse
-	 * @param keyIn The String to begin parsing.
-	 * @param a Set the array iterator of the parsed temp string.
-	 * @param keyOut
-	 * @return Parsed string content.
-	 */
-	public String htmlParse(String content, String keyIn, int a, String keyOut) {
-		String finalParse = "Not available";
-		
-		String[] tempParse1 = p5.split(content, keyIn);
-		/*System.out.println("\nKEYIN\n");
-		for (int i = 0; i < tempParse1.length; i++) {
-			System.out.println("["+i+"]\t"+tempParse1[i]);
-		}*/
-		
-		String[] tempParse2 = p5.split(tempParse1[a], keyOut);
-		/*System.out.println("\nKEYOUT\n");
-		for (int i = 0; i < temp2.length; i++) {
-			System.out.println("["+i+"]\t"+temp2[i]);
-		}*/
-		
-		finalParse = tempParse2[0];
-		return finalParse;
-	}
-	
 	
 
 }
