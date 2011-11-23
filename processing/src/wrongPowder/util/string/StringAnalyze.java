@@ -37,7 +37,7 @@ import processing.core.PApplet;
  * 
  * @example config_basic 
  */
-public class Analyse {
+public class StringAnalyze {
 	
 	PApplet p5;
 	
@@ -66,7 +66,7 @@ public class Analyse {
 	 * 
 	 * @example config_basic
 	 */
-	public Analyse() {}
+	public StringAnalyze() {}
 	
 	
 	
