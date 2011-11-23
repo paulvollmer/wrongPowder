@@ -66,7 +66,7 @@ public class Parser {
 	 * @return Parsed string content.
 	 */
 	public String getString(String src, String keyIn, String keyOut, int a) {
-		System.out.println("Start searching duden.de");	
+		System.out.println("Start String parser");	
 		
 		String finalParse = "Not available";
 		
