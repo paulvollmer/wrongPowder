@@ -48,11 +48,11 @@ public class SeparatedValues {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the library.
 	 */ 
-	SeparatedValues(PApplet p) {
+	public SeparatedValues(PApplet p) {
 		p5 = p;
 	}
 	
-	SeparatedValues(PApplet p, String fileName) {
+	public SeparatedValues(PApplet p, String fileName) {
 		p5 = p;
 		loadFile(fileName);
 	}
