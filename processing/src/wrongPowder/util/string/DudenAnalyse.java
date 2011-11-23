@@ -88,10 +88,10 @@ public class DudenAnalyse {
 		String tempSourcecode = reader.load("http://www.duden.de/rechtschreibung/"+word);
 		//System.out.println(tempSourcecode);
 		
-		wordtype = parse.parse(tempSourcecode, "wortart\">", "<", 2);
-		frequency = parse.parse(tempSourcecode, "frequenzklasse_", "\">", 1);
-		worttrennung = parse.parse(tempSourcecode, "Worttrennung:</dt><dd class=\"content\">", "</dd>", 1);
-		herkunft = parse.parse(tempSourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", "</dd></dl></div>", 1);
+		wordtype = parse.getString(tempSourcecode, "wortart\">", "<", 2);
+		frequency = parse.getString(tempSourcecode, "frequenzklasse_", "\">", 1);
+		worttrennung = parse.getString(tempSourcecode, "Worttrennung:</dt><dd class=\"content\">", "</dd>", 1);
+		herkunft = parse.getString(tempSourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", "</dd></dl></div>", 1);
 	}
 	
 

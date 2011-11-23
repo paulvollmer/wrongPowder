@@ -65,7 +65,7 @@ public class Parser {
 	 * @param a Set the array iterator of the parsed temp string.
 	 * @return Parsed string content.
 	 */
-	public String parse(String src, String keyIn, String keyOut, int a) {
+	public String getString(String src, String keyIn, String keyOut, int a) {
 		System.out.println("Start searching duden.de");	
 		
 		String finalParse = "Not available";
@@ -84,6 +84,11 @@ public class Parser {
 		
 		finalParse = tempParse2[0];
 		return finalParse;
+	}
+	
+	
+	public int getInt(String src, String keyIn, String keyOut, int a) {
+		return Integer.parseInt(getString(src, keyIn, keyOut, a));
 	}
 	
 	
