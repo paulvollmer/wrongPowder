@@ -1,7 +1,8 @@
 #wrongPowder (version 0.1 ALPHA)#
 
 Description:  
-wrongPowder openFrameworks / Processing addons. 
+wrongPowder Beta Library 
+openFrameworks / Processing addons. 
 
 * * * 
 
