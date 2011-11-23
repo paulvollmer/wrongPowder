@@ -38,8 +38,6 @@ import processing.core.PApplet;
  */
 public class Parser {
 	
-	PApplet p5;
-	
 	
 	
 	
@@ -70,13 +68,13 @@ public class Parser {
 		
 		String finalParse = "Not available";
 		
-		String[] tempParse1 = p5.split(src, keyIn);
+		String[] tempParse1 = PApplet.split(src, keyIn);
 		/*System.out.println("\nKEYIN\n");
 		for (int i = 0; i < tempParse1.length; i++) {
 			System.out.println("["+i+"]\t"+tempParse1[i]);
 		}*/
 		
-		String[] tempParse2 = p5.split(tempParse1[a], keyOut);
+		String[] tempParse2 = PApplet.split(tempParse1[a], keyOut);
 		/*System.out.println("\nKEYOUT\n");
 		for (int i = 0; i < temp2.length; i++) {
 			System.out.println("["+i+"]\t"+temp2[i]);
@@ -86,9 +84,12 @@ public class Parser {
 		return finalParse;
 	}
 	
-	
 	public int getInt(String src, String keyIn, String keyOut, int a) {
 		return Integer.parseInt(getString(src, keyIn, keyOut, a));
+	}
+	
+	public float getFloat(String src, String keyIn, String keyOut, int a) {
+		return Float.parseFloat(getString(src, keyIn, keyOut, a));
 	}
 	
 	
