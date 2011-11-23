@@ -63,7 +63,7 @@ public class Parser {
 	 * @param a Set the array iterator of the parsed temp string.
 	 * @return Parsed string content.
 	 */
-	public String getString(String src, String keyIn, String keyOut, int a) {
+	public static String getString(String src, String keyIn, String keyOut, int a) {
 		System.out.println("Start String parser");	
 		
 		String finalParse = "Not available";
@@ -84,11 +84,11 @@ public class Parser {
 		return finalParse;
 	}
 	
-	public int getInt(String src, String keyIn, String keyOut, int a) {
+	public static int getInt(String src, String keyIn, String keyOut, int a) {
 		return Integer.parseInt(getString(src, keyIn, keyOut, a));
 	}
 	
-	public float getFloat(String src, String keyIn, String keyOut, int a) {
+	public static float getFloat(String src, String keyIn, String keyOut, int a) {
 		return Float.parseFloat(getString(src, keyIn, keyOut, a));
 	}
 	

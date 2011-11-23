@@ -45,7 +45,7 @@ public class DudenAnalyse {
 	
 	PApplet p5;
 	Reader reader;
-	Parser parse = new Parser();
+	Parser parse;// = new Parser();
 	
 	public String[] sourcecode;
 	
