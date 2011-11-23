@@ -16,40 +16,48 @@ import wrongPowder.io.Log;
 
 CalendarUtil time = new CalendarUtil();
 Config config = new Config();
-Log log = new Log();
+Log log = new Log(this);
 
-
+int BACKGROUNDCOLOR;
 
 
 void setup() {
   // Initialize Log file.
-  log.init(sketchPath("logs") + "/log" + time.timestamp() + ".txt");
-  log.info("SETUP start");
+  log.init();
+  log.info("LOG Inizialized");
+  log.info("SETUP Start");
   
-  // If new Config() is written before, load a configuration File.  
-  //config.load("wrongPowder_p5template", "config.txt");
-  config.loadStatic(sketchPath("config/") + "appSettings.txt");
-  log.info("SETUP config load");
+  // Load a config file from sketchpath.
+  String configpath = sketchPath("config/") + "appSettings.txt";
+  config.loadStatic(configpath);
+  log.info("CONFIG file "+configpath+" loaded");
   // Get a Property list.
   config.list();
   
-  log.info("SETUP application runtime counter = " + config.getIntProperty("app.count"));
+  // Get the Application runtime counter.
+  log.info("CONFIG Application runtime counter: " + config.getIntProperty("app.count"));
   
   // Get Configuration Properties and set app.width, app.height to w, h variable.
   // 400 is the default value if no property exist.
   int w = config.getIntProperty("app.width", 400);
   int h = config.getIntProperty("app.height", 400);
   size(w, h);
-  log.info("SETUP set size width = " + w + ", height = " + h);
+  log.info("SETUP Set size to CONFIG width: " + w + ", height: " + h);
   
   // This get method have no default value, use value from wrongPowder.io.Config class.
-  // If here is a Null pointer exception, add the app.framerate property
+  // If here is a Null pointer exception, add the app.framerate property 
   frameRate(config.getIntProperty("app.framerate"));
+  log.info("SETUP Set framerate: " + (int)frameRate);
+  
+  this.frame.setTitle(config.getStringProperty("app.titlebarname", "wrongPowder Template"));
+  
+  BACKGROUNDCOLOR = config.getIntProperty("app.backgroundcolor", 30);
 }
 
 
 
 void draw() {
+  background(BACKGROUNDCOLOR);
 
 }
 

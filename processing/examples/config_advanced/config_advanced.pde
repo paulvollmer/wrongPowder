@@ -45,6 +45,7 @@ void setup() {
   this.frame.setResizable(true);
   
   // This get method have no default value, use value from wrongPowder.io.Config class.
+  // If here is a Null pointer exception, add the app.framerate property to config file.
   frameRate(config.getIntProperty("app.framerate"));
   
 }

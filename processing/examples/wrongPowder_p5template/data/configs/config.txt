@@ -1,0 +1,8 @@
+#wrongPowder.io.Config
+#Wed Nov 23 11:13:04 CET 2011
+app.framerate=24
+app.width=800
+app.height=600
+app.count=29
+app.titlebarname=Processing Template
+app.backgroundcolor=40
