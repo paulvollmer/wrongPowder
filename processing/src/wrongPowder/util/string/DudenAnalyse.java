@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 
 import processing.core.PApplet;
+import wrongPowder.io.Reader;
 
 
 
@@ -42,6 +43,7 @@ import processing.core.PApplet;
 public class DudenAnalyse {
 	
 	PApplet p5;
+	Reader reader;
 	
 	public String[] sourcecode;
 	
@@ -62,6 +64,7 @@ public class DudenAnalyse {
 	 */
 	public DudenAnalyse(PApplet p) {
 		p5 = p;
+		reader = new Reader(p);
 	}
 	
 	
@@ -79,30 +82,14 @@ public class DudenAnalyse {
 	
 	
 	public void checkWord(String word) {
-		BufferedReader reader = p5.createReader("http://www.duden.de/rechtschreibung/"+word);
+		// Load the sourcecode
+		String tempSourcecode = reader.load("http://www.duden.de/rechtschreibung/"+word);
+		//System.out.println(tempSourcecode);
 		
-		try {
-			String line;
-			String sourcecode = "";
-			// save each line to sourcecode variable
-			while ((line = reader.readLine()) != null) {
-			    sourcecode = sourcecode+line;
-			    //System.out.println(line);
-			}
-			//System.out.println(sourcecode);
-			wordtype = htmlParse(sourcecode, "wortart\">", 2, "<");
-			frequency = htmlParse(sourcecode, "frequenzklasse_", 1, "\">");
-			worttrennung = htmlParse(sourcecode, "Worttrennung:</dt><dd class=\"content\">", 1, "</dd>");
-			herkunft = htmlParse(sourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", 1, "</dd></dl></div>");
-			
-		}
-		catch (Exception e) {
-			//e.printStackTrace(); 
-			//System.err.println(word+" No wordtype available ");
-			//wordtype = "not available";
-			//herkunft = "not available";
-			
-		}
+		wordtype = htmlParse(tempSourcecode, "wortart\">", 2, "<");
+		frequency = htmlParse(tempSourcecode, "frequenzklasse_", 1, "\">");
+		worttrennung = htmlParse(tempSourcecode, "Worttrennung:</dt><dd class=\"content\">", 1, "</dd>");
+		herkunft = htmlParse(tempSourcecode, "Herkunft</a></h2><dl><dd class=\"content\">", 1, "</dd></dl></div>");
 	}
 
 
