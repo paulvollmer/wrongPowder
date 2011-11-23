@@ -50,9 +50,7 @@ public class Parser {
 	 * 
 	 * @example parse_basic
 	 */
-	public Parser() {//PApplet p) {
-		//p5 = p;
-	}
+	public Parser() {}
 	
 	
 	
