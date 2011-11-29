@@ -1,3 +1,14 @@
 wrongPowder.calendar
-wrongPowder.config
-wrongPowder.fxg
+wrongPowder.graphics
+wrongPowder.graphics.ShapeMosaic
+wrongPowder.gui
+wrongPowder.hacks
+wrongPowder.info
+wrongPowder.io
+wrongPowder.io.Fxg
+wrongPowder.math
+wrongPowder.touchosc
+wrongPowder.util
+wrongPowder.util.codec
+wrongPowder.util.script
+wrongPowder.util.string
