@@ -1,203 +1,84 @@
-/* processingLibs style by andreas schlegel, sojamo. */
-
-
-* {
-	margin:0;
-	padding:0;
-	border:0;
-}
-
-
 body {
-	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif; 
-	font-size : 100%; 
-    font-size : 0.70em;
-	font-weight : normal;
-	line-height	: normal;
+   background-color: #DBDBDB;
+   font-family: Helvetica, Arial, FreeSans, san-serif;
+   color: #000;
+   margin: 0px;
+}
+
+header {
+	margin-left: 7%;
+}
+
+nav {
+	margin-top: 40px;
+	padding-top: 25px;
+	padding-bottom: 5px;
+	padding-left: 18%;
+	background-color: #CCC;
+}
+
+nav a {
+	text-decoration: none
+}
+
+section {
+	margin-left: 18%;
+	margin-top: 80px;
+	padding-bottom: 100px;
+	font-size: 14px;
+	width: 780px;
 }
 
 
 
-#container {
-	margin-left:64px;
-	background-color:#fff;
+footer {
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-left: 7%;
+	background: #27323b;
+	color: #647d90;
+	font-size: 10pt;
+	font-style: italic;
+	bottom:0px;
+}
+footer a {
+	color: #647d90;
 }
 
-#header {
-	float:left;
-	padding-top:24px;
-	padding-bottom:48px;
-}
-
-#menu {
-	margin-top:16px;
-	float:left;
-	margin-bottom:64px;
-}
-
-
-#about,
-#download,
-#examples,
-#demos,
-#misc {
-	width:480px;
-	float:left;
-	margin-right:24px;
-}
-
-
-#resources, #info {
-	width:320px;
-	float:left;
-}
-
-
-.clear {
-	clear:both;
-}
-
-#footer {
-	margin-top:300px;
-	height:20px;
-	margin-bottom:32px;
-}
-
-
-ul {
-	list-style:none;
-	padding:0;
-	margin:0;
-}
-
-
-#menu ul li, #subMenu ul li {
-	float:left;
-	padding-right:6px; 
-}
-
-
-
-
-
-
-/* Headings */
 
 h1 {
-	font-size:2em;
-	font-weight:normal;
+	font-size: 3.8em;
+	color: #171717;
+	margin-bottom: 3px;
+}
+h1 a { text-decoration: none }
+
+h2 {
+	margin-top: 80px;
+	font-size: 32px;
+	color: #171717;
 }
 
-
-h2, h3, h4, h5, th {
-	font-size:1.3em;
-	font-weight:normal;
-	margin-bottom:4px;
+h3 {
+	padding-top: 64px;
 }
 
+a { color: #171717; }
 
-
-p { 
-	font-size:1em;
-	width:90%;
-	margin-bottom:32px;
+pre {
+	background: #27323b;
+	color: #fff;
+	padding: 15px;
 }
 
-
-pre, code {  
-	font-family:"Courier New", Courier, monospace; 
-	font-size:1em; 
-	line-height:normal;
+/* Fix this
+   Fix the footer to the end of page */
+#contact {
+	padding-bottom: 100px;
 }
 
-
-
-
-hr {
-	border:0;
-	height:1px;
-	margin-bottom:24px;
-}
-
-
-a {
-	text-decoration: underline;
-	font-weight: normal;
-}
-
-
-a:hover, 
-a:active {
-	text-decoration: underline;
-	font-weight: normal;
-}
-
-
-a:visited,
-a:link:visited {
-	text-decoration: underline;
-	font-weight: normal;
-}
-
-
-
-img {
-	border: 0px solid #000000;
-}
-
-
-
-
-
-/* COLORS */
-
-
-body {
-	color : #333;
-	background-color :#fff;
-}
-
-
-#header {
-	background-color:#fff;
-	color:#333;
-}
-
-
-
-h1, h2, h3, h4, h5, h6 {
-	color:#666;
-}
-
-
-pre, code {  
-	color: #000000;
-}
-
-
-a,strong {
-	color: #333;
-}
-
-
-a:hover, 
-a:active {
-	color: #333;
-}
-
-
-a:visited,
-a:link:visited {
-	color: #333;
-}
-
-
-#footer, #menu {
-	background-color:#fff;
-	color:#333;
-}
-
-
-#footer a, #menu a {
-	color:#333;
+.subline {
+	font-size: 12px;
+	margin-top: 5px;
+	font-style: italic;
 }
