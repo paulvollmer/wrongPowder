@@ -30,10 +30,8 @@ package wrongPowder.io.Fxg;
 public interface FxgConstants {
   
   // Library Information
-  public final static String LIBRARYNAME = "wng.FXG";
-  public final static String VERSION = "0.1.0";
+  public final static String NAME = "wng.FXG";
   public final static String AUTHOR = "Paul Vollmer, http://www.wrong-entertainment.com";
-  public final static String INFO = "Library: " + LIBRARYNAME + " Version: " + VERSION + " by: " + AUTHOR;
   
   
   // Formats Print
@@ -106,7 +104,7 @@ public interface FxgConstants {
   
   // FXG
   public final static String FXG_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n"+
-                                          "<!-- created with Processing and the "+LIBRARYNAME+" library developed by "+AUTHOR+" -->";
+                                          "<!-- created with Processing and the "+NAME+" library developed by "+AUTHOR+" -->";
   
   public final static String FXG_ADOBE_HEADER = "\" ai:appVersion=\"15.0.0.399\" ATE:version=\"1.0.0\" flm:"+
                                                 "version=\"1.0.0\" d:using=\"\" xmlns=\"http://ns.adobe.com/fxg/2008\""+
@@ -114,4 +112,5 @@ public interface FxgConstants {
                                                 "//ns.adobe.com/ai/2009\" xmlns:d=\"http://ns.adobe.com/fxg/2008/dt\""+
                                                 " xmlns:flm=\"http://ns.adobe.com/flame/2008\">";    
    
+  
 }

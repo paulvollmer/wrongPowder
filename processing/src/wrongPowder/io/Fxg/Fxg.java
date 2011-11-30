@@ -37,83 +37,83 @@ public class Fxg implements FxgConstants {
   
   private PApplet p5;
   
-  File file;
-  PrintWriter writer;
+  private File file;
+  private PrintWriter writer;
   
   
   
   // counter/name
-  static int PAGE_COUNT = 1;
-  static int LAYER_COUNT = 1;
-  static int ID_COUNT = 1;
-  static String PAGE_NAME = "Page ";
-  static String LAYER_NAME = "Layer ";
+  private static int PAGE_COUNT = 1;
+  private static int LAYER_COUNT = 1;
+  private static int ID_COUNT = 1;
+  private static String PAGE_NAME = "Page ";
+  private static String LAYER_NAME = "Layer ";
   // format
-  static float WIDTH;
-  static float HEIGHT;
+  private static float WIDTH;
+  private static float HEIGHT;
 
   // transform
-  static boolean TRANSFORM = false; // check push/popMatrix
-  static float TRANSLATE_X = 0; // translate
-  static float TRANSLATE_Y = 0; // translate
-  static float TRANSLATE_X_SAVER = 0; // translate for push/popMatrix
-  static float TRANSLATE_Y_SAVER = 0; // translate for push/popMatrix
-  static float ROTATE = 0;
-  static float SCALE = 1;
+  private static boolean TRANSFORM = false; // check push/popMatrix
+  private static float TRANSLATE_X = 0; // translate
+  private static float TRANSLATE_Y = 0; // translate
+  private static float TRANSLATE_X_SAVER = 0; // translate for push/popMatrix
+  private static float TRANSLATE_Y_SAVER = 0; // translate for push/popMatrix
+  private static float ROTATE = 0;
+  private static float SCALE = 1;
   
   // fill
-  static boolean FILL_SOLID_COLOR = true;
-  static String  FILL_SOLID_COLOR_VALUE = "FFFFFF";
-  static float   FILL_COLOR_ALPHA_VALUE = 1.0f;
+  private static boolean FILL_SOLID_COLOR = true;
+  private static String  FILL_SOLID_COLOR_VALUE = "FFFFFF";
+  private static float   FILL_COLOR_ALPHA_VALUE = 1.0f;
   // stroke
-  static boolean STROKE_SOLID_COLOR = true;
-  static String STROKE_SOLID_COLOR_VALUE = "000000";
+  private static boolean STROKE_SOLID_COLOR = true;
+  private static String STROKE_SOLID_COLOR_VALUE = "000000";
   // strokeWeight
-  static float STROKE_WEIGHT_VALUE = 1;
-  static String STROKE_CAPS = "none";
-  static String STROKE_JOINTS = "round";
-  static float STROKE_MITER = 10;
+  private static float STROKE_WEIGHT_VALUE = 1;
+  private static String STROKE_CAPS = "none";
+  private static String STROKE_JOINTS = "round";
+  private static float STROKE_MITER = 10;
   
   // shape
-  String LABLENAME = "lablename";
-  static int ELLIPSEMODE = 3;
-  static int RECTMODE = 0;
+  private String LABLENAME = "lablename";
+  private static int ELLIPSEMODE = 3;
+  private static int RECTMODE = 0;
   // VERTEX
-  static int VERTEX_COUNT = 0;
-  static float VERTEX_START_X = 0;
-  static float VERTEX_START_Y = 0;
+  private static int VERTEX_COUNT = 0;
+  private static float VERTEX_START_X = 0;
+  private static float VERTEX_START_Y = 0;
 
   // Adobe Illustrator Blend Mode
-  static String BLENDMODE = "normal";
+  private static String BLENDMODE = "normal";
   
   // Adobe Illustrator Filter DROP_SHADOW_FILTER
-  static boolean DROP_SHADOW_FILTER_checker = false;
-  static int     DROP_SHADOW_FILTER_blurX;
-  static int     DROP_SHADOW_FILTER_blurY;
-  static int     DROP_SHADOW_FILTER_color;
-  static float   DROP_SHADOW_FILTER_alpha;
-  static float   DROP_SHADOW_FILTER_angle = 45;
-  static float   DROP_SHADOW_FILTER_distance = 10;
+  private static boolean DROP_SHADOW_FILTER_checker = false;
+  private static int     DROP_SHADOW_FILTER_blurX;
+  private static int     DROP_SHADOW_FILTER_blurY;
+  private static int     DROP_SHADOW_FILTER_color;
+  private static float   DROP_SHADOW_FILTER_alpha;
+  private static float   DROP_SHADOW_FILTER_angle = 45;
+  private static float   DROP_SHADOW_FILTER_distance = 10;
   // Adobe Illustrator Filter glowInnerFilter
-  static boolean GLOW_INNER_FILTER_checker = false;
-  static int     GLOW_INNER_FILTER_blurX;
-  static int     GLOW_INNER_FILTER_blurY;
-  static int     GLOW_INNER_FILTER_color;
-  static float   GLOW_INNER_FILTER_alpha;
+  private static boolean GLOW_INNER_FILTER_checker = false;
+  private static int     GLOW_INNER_FILTER_blurX;
+  private static int     GLOW_INNER_FILTER_blurY;
+  private static int     GLOW_INNER_FILTER_color;
+  private static float   GLOW_INNER_FILTER_alpha;
   // Adobe Illustrator Filter glowOuterFilter
-  static boolean GLOW_OUTER_FILTER_checker = false;
-  static int     GLOW_OUTER_FILTER_blurX;
-  static int     GLOW_OUTER_FILTER_blurY;
-  static int     GLOW_OUTER_FILTER_color;
-  static float   GLOW_OUTER_FILTER_alpha;
+  private static boolean GLOW_OUTER_FILTER_checker = false;
+  private static int     GLOW_OUTER_FILTER_blurX;
+  private static int     GLOW_OUTER_FILTER_blurY;
+  private static int     GLOW_OUTER_FILTER_color;
+  private static float   GLOW_OUTER_FILTER_alpha;
   
   // Adobe Illustrator gradient
-  static boolean LINEAR_GRADIENT_FILL = false;
-  static float[] LINEAR_GRADIENT_RATIO;
-  static int[]   LINEAR_GRADIENT_COLOR;
-  static boolean RADIAL_GRADIENT_FILL = false;
-  static float[] RADIAL_GRADIENT_RATIO;
-  static int[]   RADIAL_GRADIENT_COLOR;
+  private static boolean LINEAR_GRADIENT_FILL = false;
+  private static float[] LINEAR_GRADIENT_RATIO;
+  private static int[]   LINEAR_GRADIENT_COLOR;
+  private static boolean RADIAL_GRADIENT_FILL = false;
+  private static float[] RADIAL_GRADIENT_RATIO;
+  private static int[]   RADIAL_GRADIENT_COLOR;
   
   
   
@@ -129,45 +129,8 @@ public class Fxg implements FxgConstants {
   public Fxg(PApplet parent) {
     this.p5 = parent;
     // welcome console line
-    System.out.println("### "+LIBRARYNAME+" library "+VERSION+
-                     "\n### "+LIBRARYNAME+" is a library "+AUTHOR+"\n");
-  }
-  
-  
-  /**
-   * Return the Name of the Library.
-   * 
-   * @return String
-   */
-  public static String libraryname() {
-    return LIBRARYNAME;
-  }
-
-  /**
-   * Return the Version of the Library.
-   * 
-   * @return String
-   */
-  public static String version() {
-    return VERSION;
-  }
-
-  /**
-   * Return the Author of the Library.
-   * 
-   * @return String
-   */
-  public static String author() {
-    return AUTHOR;
-  }
-
-  /**
-   * Return Information of the Library.
-   * 
-   * @return String
-   */
-  public static String info() {
-    return INFO;
+    /*System.out.println("### "+NAME+" library "+VERSION+
+                     "\n### "+NAME+" is a library "+AUTHOR+"\n");*/
   }
   
   
@@ -201,7 +164,7 @@ public class Fxg implements FxgConstants {
       if (!file.isAbsolute()) file = null;
     }
     if (file == null) {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! createFXG requires an absolute path for the location of the output file.");
+      throw new RuntimeException("### "+NAME+" Error! createFXG requires an absolute path for the location of the output file.");
     }
     
     // have to create file object here.
@@ -237,7 +200,7 @@ public class Fxg implements FxgConstants {
     
     writer.println("<Private/>");
     writer.println("</Graphic>");
-    System.out.println("### "+LIBRARYNAME+" File writing Ready!");
+    System.out.println("### "+NAME+" File writing Ready!");
     
     // finish writer
     writer.flush();
@@ -346,7 +309,7 @@ public class Fxg implements FxgConstants {
       LAYER_COUNT++;
       ID_COUNT++;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+"Error! Cannot draw more than 100 Pages to FXG Format.");
+      throw new RuntimeException("### "+NAME+"Error! Cannot draw more than 100 Pages to FXG Format.");
     }
   }
   
@@ -1544,7 +1507,7 @@ public class Fxg implements FxgConstants {
    * Translate in X and Y.
    */
   public void translate(float tx, float ty, float tz) {
-    System.out.println("### "+LIBRARYNAME+" Error! "+LIBRARYNAME+" does not work with P3D.");
+    System.out.println("### "+NAME+" Error! "+NAME+" does not work with P3D.");
   }
   
   
@@ -1949,7 +1912,7 @@ public class Fxg implements FxgConstants {
     else if(b == "COLOR")      BLENDMODE = "color";
     else if(b == "LUMINOSITY") BLENDMODE = "luminosity";
     
-    else throw new RuntimeException("### "+LIBRARYNAME+" Error! blendMode not correct.");  
+    else throw new RuntimeException("### "+NAME+" Error! blendMode not correct.");  
   }
 
 
@@ -1987,7 +1950,7 @@ public class Fxg implements FxgConstants {
       DROP_SHADOW_FILTER_blurX = blur*2;
       DROP_SHADOW_FILTER_blurY = blur*2;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! dropShadowFilter blur value must between 1 - 144.");
+      throw new RuntimeException("### "+NAME+" Error! dropShadowFilter blur value must between 1 - 144.");
     }
     
     DROP_SHADOW_FILTER_color = c;
@@ -1996,7 +1959,7 @@ public class Fxg implements FxgConstants {
     if(a >= 0.0 && a <= 1.0) {
       DROP_SHADOW_FILTER_alpha = a;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! dropShadowFilter aplha value must between 0.0 - 1.0.");
+      throw new RuntimeException("### "+NAME+" Error! dropShadowFilter aplha value must between 0.0 - 1.0.");
     }
     
     float an = (float) Math.atan2(x, y);
@@ -2086,7 +2049,7 @@ public class Fxg implements FxgConstants {
       GLOW_OUTER_FILTER_blurX = blur*2;
       GLOW_OUTER_FILTER_blurY = blur*2;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! glowOuterFilter blur value must between 1 - 144.");
+      throw new RuntimeException("### "+NAME+" Error! glowOuterFilter blur value must between 1 - 144.");
     }
     
     GLOW_OUTER_FILTER_color = c;
@@ -2095,7 +2058,7 @@ public class Fxg implements FxgConstants {
     if(a >= 0.0 && a <= 1.0) {
       GLOW_OUTER_FILTER_alpha = a;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! glowOuterFilter aplha value must between 0.0 - 1.0.");
+      throw new RuntimeException("### "+NAME+" Error! glowOuterFilter aplha value must between 0.0 - 1.0.");
     }
     
     GLOW_OUTER_FILTER_checker = true;
@@ -2168,7 +2131,7 @@ public class Fxg implements FxgConstants {
       GLOW_INNER_FILTER_blurX = blur*2;
       GLOW_INNER_FILTER_blurY = blur*2;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! glowInnerFilter blur value must between 1 - 144.");
+      throw new RuntimeException("### "+NAME+" Error! glowInnerFilter blur value must between 1 - 144.");
     }
     
     GLOW_INNER_FILTER_color = c;
@@ -2177,7 +2140,7 @@ public class Fxg implements FxgConstants {
     if(a >= 0.0 && a <= 1.0) {
       GLOW_INNER_FILTER_alpha = a;
     } else {
-      throw new RuntimeException("### "+LIBRARYNAME+" Error! glowInnerFilter aplha value must between 0.0 - 1.0.");
+      throw new RuntimeException("### "+NAME+" Error! glowInnerFilter aplha value must between 0.0 - 1.0.");
     }
     
     GLOW_INNER_FILTER_checker = true;
