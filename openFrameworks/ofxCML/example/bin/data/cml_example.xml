@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<CML version="1.0" url="http://www.osc-cloud.com">
-    <HARDWARE name="Test File" platform="MAC" company="Wrong-Entertainment" modell="ofxCML addon" url="http://www.wng.cc/">
-        <INTERFACE midi-in="MIDI_IN" midi-out="MIDI_OUT" osc-host-in="120.160.0.1" osc-host-out="120.160.0.2" osc-port-in="8000" osc-port-out="9000" />
-        <CONTROL name="Fader" midi-b0="176" midi-b1="10" midi-b2="1" osc-path="/fader/" osc-start="0" osc-stop="1" />
-    </HARDWARE>
-</CML>
